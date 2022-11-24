@@ -22,6 +22,9 @@ export const Login = () => {
               <Field label="Password" />
             </div>
           </Form>
+          <div className='card__footer'>
+            <a href='#' className="link">Sign up</a>
+          </div>
         </Card>
       </div>
     </Layout>
