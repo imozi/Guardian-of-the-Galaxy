@@ -1,0 +1,33 @@
+html,
+body,
+main,
+#root {
+  min-height: 100%;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: $color-white;
+  background-color: $color-black;
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: 400;
+  line-height: $line-height;
+
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
