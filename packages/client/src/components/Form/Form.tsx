@@ -9,7 +9,7 @@ type FormProps = {
 }
 
 export const Form: FC<FormProps> = ({ children, onSubmit, submitText }) => {
-  const [loading, setLoading] = useState<boolean>(false)
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
