@@ -12,9 +12,7 @@ function App() {
   //   fetchServerData()
   // }, [])
 
-  return (
-    <Login />
-  );
+  return <Login />
 }
 
-export default App;
+export default App

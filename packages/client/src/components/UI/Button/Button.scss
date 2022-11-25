@@ -16,15 +16,15 @@
   border-radius: $border-radius;
   background-color: $color-primary;
   text-transform: uppercase;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
   position: relative;
 
   &:hover {
-    opacity: .8;
+    opacity: 0.8;
   }
 
   &[disabled] {
-    opacity: .4;
+    opacity: 0.4;
     pointer-events: none;
   }
 }
@@ -33,7 +33,7 @@
   pointer-events: none;
 
   &::before {
-    content: " ";
+    content: ' ';
     display: block;
     position: absolute;
     width: calc(var(--height) / 2);
@@ -48,7 +48,7 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     z-index: 1;
     top: 0;
