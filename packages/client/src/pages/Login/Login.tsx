@@ -11,7 +11,7 @@ export const Login = () => {
 
   return (
     <Layout>
-      <div className="layout__login">
+      <div className="login">
         <Card title="Guardian of the Galaxy">
           <Form submitText="Sign in" onSubmit={handleSubmit}>
             <div className="form__item">
