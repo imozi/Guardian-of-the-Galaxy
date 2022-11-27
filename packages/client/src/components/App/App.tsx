@@ -1,3 +1,4 @@
+import { Forum } from '../../pages/Forum'
 import { Login } from '../../pages/Login'
 
 function App() {
