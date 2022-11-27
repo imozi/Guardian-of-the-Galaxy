@@ -1,25 +1,17 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
-
 .card {
-  padding: 40px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
   border: 2px solid $color-primary;
   border-radius: $border-radius;
-  background-image: url('/images/back-light.jpg');
-  background-size: cover;
-  background-position: center;
-  width: 350px;
-}
+  background-image: url('../images/background_second.png');
 
-.card__title {
-  @include title;
-  text-align: center;
-  max-width: 240px;
-  margin: 0 auto 30px;
-  text-transform: uppercase;
-}
-
-.card__footer {
-  text-align: center;
-  margin-top: 25px;
+  &__title {
+    @include title;
+    text-align: center;
+    max-width: 240px;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+  }
 }

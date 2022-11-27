@@ -1,50 +1,34 @@
-@import '../../styles/variables';
-
 .layout {
+  display: flex;
   height: 100%;
   padding: 16px;
   position: relative;
-  z-index: 1;
-}
 
-.layout__back {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -10;
-
-  img {
+  &::before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background-image: url('../images/background_first.gif');
     width: 100%;
     height: 100%;
-    vertical-align: middle;
-    object-fit: cover;
   }
-}
 
-.layout__images {
-  position: absolute;
-  left: 50%;
-  top: 74px;
-  width: 100%;
-  height: 100%;
-  max-height: calc(100% - 148px);
-  transform: translateX(-50%);
-  z-index: -9;
-
-  img {
+  &::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    background-image: url('../images/asteroid_full.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     width: 100%;
     height: 100%;
-    vertical-align: middle;
-    object-fit: contain;
   }
-}
 
-.layout__login {
-  height: 100%;
-  padding: 200px 0 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  &__main {
+    margin: auto;
+    z-index: 1;
+  }
 }

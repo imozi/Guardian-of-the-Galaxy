@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react'
-import './Form.scss'
 import { Button } from '../UI/Button'
 
 type FormProps = {

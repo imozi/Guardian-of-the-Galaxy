@@ -1,5 +1,4 @@
 import React, { FC } from 'react'
-import './Field.scss'
 
 type FieldProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label: string

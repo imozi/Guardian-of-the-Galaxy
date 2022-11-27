@@ -1,5 +1,4 @@
 import React, { FC, ButtonHTMLAttributes } from 'react'
-import './Button.scss'
 
 type ButtonProps = {
   loading?: boolean
