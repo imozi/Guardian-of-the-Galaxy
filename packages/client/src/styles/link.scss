@@ -1,0 +1,8 @@
+@import '../styles/mixins';
+
+.link {
+  @include link;
+
+  color: $color-accent;
+  text-decoration: underline;
+}

@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'Minecraftia Regular';
+  src: url('../fonts/minecraftia_regular.eot'); /* IE 9 Compatibility Mode */
+  src: url('../fonts/minecraftia_regular.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE < 9 */ url('../fonts/minecraftia_regular.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('../fonts/minecraftia_regular.woff')
+      format('woff'),
+    /* Firefox >= 3.6, any other modern browser */
+      url('../fonts/minecraftia_regular.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+      url('../fonts/minecraftia_regular.svg#minecraftia_regular') format('svg'); /* Chrome < 4, Legacy iOS */
+}

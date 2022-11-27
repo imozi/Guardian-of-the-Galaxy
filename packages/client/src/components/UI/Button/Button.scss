@@ -1,0 +1,70 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.btn {
+  @include btn;
+
+  --height: 50px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--height);
+  min-width: 200px;
+  padding: 16px;
+  font-size: 16px;
+  border-radius: $border-radius;
+  background-color: $color-primary;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+  position: relative;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+.btn--loading {
+  pointer-events: none;
+
+  &::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: calc(var(--height) / 2);
+    height: calc(var(--height) / 2);
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    border: 3px solid $color-white;
+    border-color: $color-white transparent $color-white transparent;
+    animation: rotate 1.2s linear infinite;
+    z-index: 2;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: inherit;
+    border-radius: inherit;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

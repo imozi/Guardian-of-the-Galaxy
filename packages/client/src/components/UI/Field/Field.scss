@@ -1,0 +1,52 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.field {
+  display: block;
+}
+
+.field--error {
+  .field__input {
+    border-color: $color-danger;
+
+    &:active,
+    &:focus {
+      outline: none;
+      border-color: $color-danger;
+    }
+  }
+
+  .field__error {
+    display: block;
+  }
+}
+
+.field__label {
+  display: block;
+  color: $color-white;
+  margin: 0 0 10px;
+}
+
+.field__input {
+  display: block;
+  height: 50px;
+  width: 100%;
+  padding: 14px 18px;
+  border: 3px solid $color-primary;
+  border-radius: $border-radius;
+  background-color: $color-white;
+  color: $color-black;
+  font-size: 16px;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+.field__error {
+  display: none;
+  color: $color-danger;
+  font-size: 12px;
+  margin-top: 5px;
+}
