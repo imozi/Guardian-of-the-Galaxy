@@ -1,3 +1,4 @@
+import { Branch } from '../../pages/Branch'
 import { Forum } from '../../pages/Forum'
 import { Login } from '../../pages/Login'
 

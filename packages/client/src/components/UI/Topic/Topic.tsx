@@ -1,9 +1,9 @@
-import React, { FC, ButtonHTMLAttributes } from 'react'
+import React, { FC, AllHTMLAttributes } from 'react'
 
 type TopicProps = {
   topicName: string
   answers: string
-} & ButtonHTMLAttributes<HTMLDivElement>
+} & AllHTMLAttributes<HTMLDivElement>
 
 export const Topic: FC<TopicProps> = ({ ...props }) => {
   return (
