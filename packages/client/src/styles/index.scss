@@ -5,6 +5,7 @@
 @import 'mixins';
 @import 'base';
 @import 'link';
+@import 'form';
 
 @import '../components/Layout/Layout.scss';
 
@@ -12,6 +13,5 @@
 @import '../components/UI/Field/Field.scss';
 
 @import '../components/Card/Card.scss';
-@import '../components/Form/Form.scss';
 
 @import '../pages/Login/Login.scss';
