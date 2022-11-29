@@ -30,13 +30,13 @@ export const useForm = (config: FieldType[]) => {
   }
 
   const formValues = useCallback(() => {
-    const values: Record<string, string> = {}
-
-    for (const fieldName in formData) {
-      values[fieldName] = formData[fieldName].value
-    }
-
-    return values
+    return Object.entries(formData).reduce(
+      (acc: Record<string, string>, [field, fieldValue]) => {
+        acc[field] = fieldValue.value
+        return acc
+      },
+      {}
+    )
   }, [formData])
 
   const validateForm = () => {
