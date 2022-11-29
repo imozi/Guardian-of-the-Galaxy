@@ -18,6 +18,8 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/forum" element={<Forum />} />
+      <Route path="/branch" element={<Branch />} />
     </Routes>
   )
 }

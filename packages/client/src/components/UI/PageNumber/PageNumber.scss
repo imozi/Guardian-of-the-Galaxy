@@ -1,0 +1,18 @@
+.branch {
+  &__page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #FFFFFF;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    background: rgba(36, 29, 60, 0.85);
+    cursor: pointer;
+  }
+}

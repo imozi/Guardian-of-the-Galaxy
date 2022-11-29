@@ -8,7 +8,7 @@
   &__title {
     @include title_fz40;
     text-align: center;
-    max-width: 240px;
+    max-width: 390px;
     margin: 0;
     margin-bottom: 30px;
   }
@@ -24,6 +24,7 @@
     background-image: url('../images/background_second.png');
     min-height: 626px;
     gap: 15px;
+    justify-content: space-between;
   }
 
   &__names {
@@ -46,5 +47,24 @@
     align-items: flex-end;
     display: flex;
     flex-direction: column;
+  }
+
+  &__posts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  &__numbers {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  &__pages {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
   }
 }

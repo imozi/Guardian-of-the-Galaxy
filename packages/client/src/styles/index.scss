@@ -5,18 +5,18 @@
 @import 'mixins';
 @import 'base';
 @import 'link';
-<<<<<<< HEAD
-=======
+
 @import 'form';
->>>>>>> dev
+
 
 @import '../components/Layout/Layout.scss';
 
 @import '../components/UI/Button/Button.scss';
 @import '../components/UI/Field/Field.scss';
-<<<<<<< HEAD
+
 @import '../components/UI/Topic/Topic.scss';
 @import '../components/UI/Post/Post.scss';
+@import '../components/UI/PageNumber/PageNumber.scss';
 
 @import '../components/Card/Card.scss';
 @import '../components/Form/Form.scss';
@@ -24,9 +24,3 @@
 @import '../pages/Login/Login.scss';
 @import '../pages/Forum/Forum.scss';
 @import '../pages/Branch/Branch.scss';
-=======
-
-@import '../components/Card/Card.scss';
-
-@import '../pages/Login/Login.scss';
->>>>>>> dev
