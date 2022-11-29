@@ -2,9 +2,9 @@ import React, { useCallback, useState } from 'react'
 import { Field } from '../components/UI/Field'
 import { FieldType } from '../types/field'
 
-export const useForm = (config: FieldType[]): any[] => {
-  const initialData: Record<string, any> = {}
-  const initialValues: Record<string, any> = {}
+export const useForm = (config: FieldType[]) => {
+  const initialData: Record<string, FieldType> = {}
+  const initialValues: Record<string, string> = {}
   for (const field of config) {
     initialData[field.name] = field
     initialValues[field.name] = field.value
@@ -12,11 +12,10 @@ export const useForm = (config: FieldType[]): any[] => {
   const [formData, setFormData] = useState(initialData)
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const name = e.currentTarget.name
-    const value = e.currentTarget.value
+    const { value, name } = e.currentTarget
     const fieldData = { ...formData[name] }
 
-    if (!fieldData.isValid) {
+    if (!fieldData.isValid && fieldData.rule) {
       fieldData.isValid = fieldData.rule.test(fieldData.value)
     }
 
@@ -29,10 +28,9 @@ export const useForm = (config: FieldType[]): any[] => {
   }
 
   const formValues = useCallback(() => {
-    const values: Record<string, any> = {}
-    const fields = Object.keys(formData)
+    const values: Record<string, string> = {}
 
-    for (const i of fields) {
+    for (const i in formData) {
       values[i] = formData[i].value
     }
 
@@ -40,11 +38,10 @@ export const useForm = (config: FieldType[]): any[] => {
   }, [formData])
 
   const validateForm = () => {
-    const newFormData = {...formData}
-    const fields = Object.keys(newFormData)
+    const newFormData = { ...formData }
 
-    for (const i of fields) {
-      newFormData[i].isValid = newFormData[i].rule.test(newFormData[i].value)
+    for (const i in newFormData) {
+      newFormData[i].isValid = newFormData[i].rule?.test(newFormData[i].value)
     }
 
     setFormData(newFormData)
@@ -53,17 +50,9 @@ export const useForm = (config: FieldType[]): any[] => {
   const isFormValid = () => {
     validateForm()
 
-    let isValid = true
-    const fields = Object.keys(formData)
+    const fields = Object.values(formData)
 
-    for (const i of fields) {
-      if (!formData[i].isValid) {
-        isValid = false
-        break
-      }
-    }
-
-    return isValid
+    return !fields.some((field) => !field.isValid)
   }
 
   const FormFields = () => {

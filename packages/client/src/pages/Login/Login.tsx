@@ -5,6 +5,7 @@ import { useForm } from '../../hooks/useForm'
 import { Button } from '../../components/UI/Button'
 import { login } from '../../api/auth'
 import { isAxiosError } from 'axios'
+import { AuthDTO } from '../../api/types'
 
 const loginForm = [
   {
@@ -34,18 +35,22 @@ export const Login = () => {
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
+
     const isValid = isFormValid()
     const formData = formValues()
+
     if (isValid) {
       setLoading(true)
+
       try {
-        await login(formData)
+        await login(formData as AuthDTO)
         setError('')
       } catch (e) {
         if (isAxiosError(e)) {
           setError(e.response?.data?.reason)
         }
       }
+
       setLoading(false)
     }
   }
