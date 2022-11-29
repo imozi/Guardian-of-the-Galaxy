@@ -7,9 +7,9 @@ type CardProps = {
 }
 
 export const Card: FC<CardProps> = ({ children, title, className }) => {
-  let cardClass = 'card';
+  let cardClass = 'card'
   if (className) {
-    cardClass = ` ${className}`;
+    cardClass = ` ${className}`
   }
   return (
     <article className={cardClass}>

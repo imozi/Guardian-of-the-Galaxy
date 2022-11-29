@@ -13,22 +13,22 @@ export const Field: FC<FieldProps> = ({
   errorMessage,
   ...props
 }) => {
-  let fieldClass = 'field';
+  let fieldClass = 'field'
   if (!isValid) {
-    fieldClass += ' field--error';
+    fieldClass += ' field--error'
   }
   return (
     <label className={fieldClass}>
-      <p className='field__label'>{label}</p>
+      <p className="field__label">{label}</p>
       <input
-        className='field__input'
+        className="field__input"
         name={name}
         type={type}
         {...props}
         value={value}
         onChange={onChange}
       />
-      <span className='field__error'>{errorMessage}</span>
+      <span className="field__error">{errorMessage}</span>
     </label>
   )
 }

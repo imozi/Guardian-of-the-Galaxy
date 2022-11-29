@@ -5,10 +5,12 @@ import { FieldType } from '../types/field'
 export const useForm = (config: FieldType[]) => {
   const initialData: Record<string, FieldType> = {}
   const initialValues: Record<string, string> = {}
+
   for (const field of config) {
     initialData[field.name] = field
     initialValues[field.name] = field.value
   }
+
   const [formData, setFormData] = useState(initialData)
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -23,15 +25,15 @@ export const useForm = (config: FieldType[]) => {
 
     setFormData({
       ...formData,
-      [name]: fieldData
+      [name]: fieldData,
     })
   }
 
   const formValues = useCallback(() => {
     const values: Record<string, string> = {}
 
-    for (const i in formData) {
-      values[i] = formData[i].value
+    for (const fieldName in formData) {
+      values[fieldName] = formData[fieldName].value
     }
 
     return values
@@ -40,8 +42,10 @@ export const useForm = (config: FieldType[]) => {
   const validateForm = () => {
     const newFormData = { ...formData }
 
-    for (const i in newFormData) {
-      newFormData[i].isValid = newFormData[i].rule?.test(newFormData[i].value)
+    for (const fieldName in newFormData) {
+      newFormData[fieldName].isValid = newFormData[fieldName].rule?.test(
+        newFormData[fieldName].value
+      )
     }
 
     setFormData(newFormData)
@@ -52,12 +56,12 @@ export const useForm = (config: FieldType[]) => {
 
     const fields = Object.values(formData)
 
-    return !fields.some((field) => !field.isValid)
+    return !fields.some(field => !field.isValid)
   }
 
   const FormFields = () => {
-    return Object.values(formData).map((field) => (
-      <div className='form__item' key={field.name}>
+    return Object.values(formData).map(field => (
+      <div className="form__item" key={field.name}>
         <Field
           name={field.name}
           type={field.type}

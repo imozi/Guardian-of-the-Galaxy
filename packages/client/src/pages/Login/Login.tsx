@@ -15,7 +15,8 @@ const loginForm = [
     value: '',
     isValid: true,
     rule: /^(?!^\d+$)[\dA-Za-z-_]+$/,
-    errorMessage: 'Must consist of letters and numbers, no spaces, no special characters'
+    errorMessage:
+      'Must consist of letters and numbers, no spaces, no special characters',
   },
   {
     name: 'password',
@@ -24,8 +25,8 @@ const loginForm = [
     value: '',
     isValid: true,
     rule: /(?=.*\d)(?=.*[A-ZА-ЯЁ])/,
-    errorMessage: 'Must consist of at least one capital letter and number'
-  }
+    errorMessage: 'Must consist of at least one capital letter and number',
+  },
 ]
 
 export const Login = () => {
@@ -57,19 +58,19 @@ export const Login = () => {
 
   return (
     <Layout>
-      <div className='login'>
-        <Card title='Guardian of the Galaxy'>
-          <form className='form' onSubmit={onSubmit}>
+      <div className="login">
+        <Card title="Guardian of the Galaxy">
+          <form className="form" onSubmit={onSubmit}>
             <>{formInputs()}</>
-            {!!error &&
-              <div className='form__error'>{error}</div>
-            }
-            <div className='form__footer'>
-              <Button type='submit' loading={loading}>Sign in</Button>
+            {!!error && <div className="form__error">{error}</div>}
+            <div className="form__footer">
+              <Button type="submit" loading={loading}>
+                Sign in
+              </Button>
             </div>
           </form>
-          <div className='card__footer'>
-            <a href='#' className='link'>
+          <div className="card__footer">
+            <a href="#" className="link">
               Sign up
             </a>
           </div>
