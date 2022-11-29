@@ -2,6 +2,7 @@ import { Branch } from '../../pages/Branch'
 import { Forum } from '../../pages/Forum'
 import { Routes, Route } from 'react-router-dom'
 import { Login } from '../../pages/Login'
+import { NewMessage } from '../../pages/NewMessage'
 
 function App() {
   // useEffect(() => {
@@ -19,7 +20,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/forum" element={<Forum />} />
-      <Route path="/branch" element={<Branch />} />
+      <Route path="/forum-branch" element={<Branch />} />
+      <Route path="/forum-newmessage" element={<NewMessage />} />  
     </Routes>
   )
 }
