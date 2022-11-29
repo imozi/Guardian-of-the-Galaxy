@@ -5,6 +5,12 @@
   margin-bottom: 25px;
 
   &__item {
+    max-width: 270px;
+    margin-bottom: 30px;
+  }
+
+  &__error {
+    color: $color-danger;
     margin-bottom: 30px;
   }
 }
