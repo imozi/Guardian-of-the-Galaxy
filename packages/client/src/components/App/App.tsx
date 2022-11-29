@@ -1,5 +1,6 @@
 import { Branch } from '../../pages/Branch'
 import { Forum } from '../../pages/Forum'
+import { Routes, Route } from 'react-router-dom'
 import { Login } from '../../pages/Login'
 
 function App() {
@@ -14,7 +15,11 @@ function App() {
   //   fetchServerData()
   // }, [])
 
-  return <Login />
+  return (
+    <Routes>
+      <Route path="/" element={<Login />} />
+    </Routes>
+  )
 }
 
 export default App
