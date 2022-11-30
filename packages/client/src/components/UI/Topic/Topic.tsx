@@ -1,4 +1,4 @@
-import React, { FC, AllHTMLAttributes } from 'react'
+import React, { AllHTMLAttributes, FC } from 'react'
 
 type TopicProps = {
   topicName: string

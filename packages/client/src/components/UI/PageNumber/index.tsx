@@ -1,1 +1,1 @@
-export { Post } from './PageNumber'
+export { PageNumber } from './PageNumber'

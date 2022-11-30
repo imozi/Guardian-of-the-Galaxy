@@ -46,9 +46,9 @@
     margin-bottom: 40px;
     width: 545px;
     min-height: 171px;
-    background: #FFFFFF;
+    background: $color-white;
     border: 3px solid #4D65B4;
-    border-radius: 5px;
+    border-radius: $border-radius;
     resize: none;
     padding: 10px;
   }

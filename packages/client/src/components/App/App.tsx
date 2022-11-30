@@ -1,6 +1,6 @@
+import { Route, Routes } from 'react-router-dom'
 import { Branch } from '../../pages/Branch'
 import { Forum } from '../../pages/Forum'
-import { Routes, Route } from 'react-router-dom'
 import { Login } from '../../pages/Login'
 import { NewMessage } from '../../pages/NewMessage'
 

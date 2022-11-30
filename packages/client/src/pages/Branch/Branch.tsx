@@ -1,7 +1,9 @@
-import React from 'react'
 import { Layout } from '../../components/Layout'
+import { PageNumber } from '../../components/UI/PageNumber/PageNumber'
 import { Post } from '../../components/UI/Post'
-import { PaheNumber } from '../../components/UI/PageNumber/PageNumber'
+import React from 'react'
+
+
 
 export const Branch = () => {
   return (
@@ -27,10 +29,10 @@ export const Branch = () => {
               Back
             </a>
             <ul className="branch__pages">
-              <PaheNumber quantity='1'></PaheNumber>
-              <PaheNumber quantity='2'></PaheNumber>
-              <PaheNumber quantity='3'></PaheNumber>
-              <PaheNumber quantity='4'></PaheNumber>
+              <PageNumber quantity='1'></PageNumber>
+              <PageNumber quantity='2'></PageNumber>
+              <PageNumber quantity='3'></PageNumber>
+              <PageNumber quantity='4'></PageNumber>
             </ul>
             <a href="#" className="link">
               Next

@@ -1,5 +1,5 @@
-import React from 'react'
 import { Layout } from '../../components/Layout'
+import React from 'react'
 import { Topic } from '../../components/UI/Topic'
 
 export const Forum = () => {

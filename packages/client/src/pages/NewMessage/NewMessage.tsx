@@ -1,23 +1,27 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useCallback } from 'react'
+import { ANINAMTION_STUB_TIME } from '../../utils/consts'
 import { Button } from '../../components/UI/Button'
 import { Layout } from '../../components/Layout'
+import { useState } from 'react'
+
+
+
 
 export const NewMessage = () => {
   const [loading, setLoading] = useState(false)
   const [value, setValue] = useState('');
 	
-	function handleChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		setValue(e.target.value);
 	}
 
-  const onSubmit = (e: React.SyntheticEvent) => {
+  const onSubmit = useCallback((e: React.SyntheticEvent) => {
     e.preventDefault()
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    }, 2000)
-  }
+    }, ANINAMTION_STUB_TIME)
+  }, [])
 
   return (
     <Layout>
