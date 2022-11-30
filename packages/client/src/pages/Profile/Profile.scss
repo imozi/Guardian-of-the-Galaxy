@@ -1,0 +1,42 @@
+.profile {
+  position: relative;
+  display: grid;
+  grid-template-columns: 180px 1fr 180px;
+  column-gap: 30px;
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    & .link {
+      margin-bottom: 10px;
+    }
+  }
+
+  & .avatar {
+    margin-bottom: 30px;
+  }
+
+  & .card__title {
+    position: absolute;
+    font-size: 40px;
+    text-transform: none;
+    margin: 0;
+    top: -80px;
+  }
+
+  & .form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 60px;
+    margin-bottom: 0;
+  }
+
+  & .form__footer {
+    display: flex;
+    justify-content: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}

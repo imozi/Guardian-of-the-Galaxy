@@ -63,3 +63,15 @@
   vertical-align: middle;
   object-fit: cover;
 }
+
+@mixin visually-hidden {
+  position: absolute;
+  z-index: -1;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
