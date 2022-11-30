@@ -1,0 +1,22 @@
+.text {
+    color: $color-white;
+
+    &__400 {
+        font-weight: 400;
+        font-size: 96px;
+        line-height: 132px;
+        text-align: center;
+    }
+
+    &__error {
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 55px;
+    }
+}
+
+.button-back {
+    text-align: center;
+    margin-top: 20px;  
+}
+
