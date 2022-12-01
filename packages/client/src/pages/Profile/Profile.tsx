@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Layout } from '../../components/Layout'
-import { Card } from '../../components/Card'
-import { useForm } from '../../hooks/useForm'
-import { Button } from '../../components/UI/Button'
 import { Avatar } from '../../components/Avatar'
-import { updateAvatar } from '../../api/profile'
-import { isAxiosError } from 'axios'
+import { Button } from '../../components/UI/Button'
+import { Card } from '../../components/Card'
+import { Layout } from '../../components/Layout'
 import { Link } from 'react-router-dom'
+import { isAxiosError } from 'axios'
+import { updateAvatar } from '../../api/profile'
+import { useForm } from '../../hooks/useForm'
 
 const ProfileForm = [
   {
