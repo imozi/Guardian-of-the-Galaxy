@@ -1,8 +1,8 @@
 .profile {
   position: relative;
   display: grid;
-  grid-template-columns: 180px 1fr 180px;
-  column-gap: 30px;
+  grid-template-columns: $grid-template-profile;
+  column-gap: $grid-gap;
 
   &__nav {
     display: flex;
@@ -29,7 +29,7 @@
   & .form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 60px;
+    column-gap: calc($grid-gap * 2);
     margin-bottom: 0;
   }
 

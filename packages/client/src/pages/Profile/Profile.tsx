@@ -80,14 +80,15 @@ export const Profile = () => {
     e.preventDefault()
 
     const isValid = isFormValid()
+  
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const formData = formValues()
 
     if (isValid) {
       setLoading(true)
 
       try {
-        // Реализовать api обновление данных пользователя
-        formData
+        // TODO: Реализовать api обновление данных пользователя
         setError('')
       } catch (e) {
         if (isAxiosError(e)) {
@@ -110,8 +111,7 @@ export const Profile = () => {
     formData.append('avatar', files[0])
 
     try {
-      const { avatar } = await updateAvatar(formData)
-      avatar
+      await updateAvatar(formData)
     } catch (e) {
       if (isAxiosError(e)) {
         setError(e.response?.data?.reason)
