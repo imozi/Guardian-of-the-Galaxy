@@ -1,0 +1,44 @@
+$photo-size: 36px;
+
+.post {
+  width: 546px;
+  height: 78px;
+  display: flex;
+  justify-content: space-between;
+  background: $color-back-topic;
+  border-radius: $border-radius;
+  padding: 10px;
+  line-height: 14px;
+
+  &__author {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    align-items: center;
+    gap: 10px;
+    border-right: 1px solid #00FFD1;;
+
+    &-name {
+      font-weight: $font-weight;
+      font-size: $fz10;
+      line-height: 14px;
+      text-align: center;
+      color: $color-white;
+    }
+  }
+
+  &__photo {
+    width: $photo-size;
+    height: $photo-size;
+    border-radius: $border-radius-circle;
+  }
+
+  &__text {
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+
+}
