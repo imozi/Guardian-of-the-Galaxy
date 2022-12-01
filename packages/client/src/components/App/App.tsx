@@ -21,7 +21,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/forum" element={<Forum />} />
       <Route path="/forum-branch" element={<Branch />} />
-      <Route path="/forum-newmessage" element={<NewMessage />} />  
+      <Route path="/forum-newmessage" element={<NewMessage />} />
     </Routes>
   )
 }
