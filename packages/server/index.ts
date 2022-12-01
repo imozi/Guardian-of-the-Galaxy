@@ -5,7 +5,6 @@ dotenv.config()
 
 import express from 'express'
 
-
 const app = express()
 app.use(cors())
 const port = Number(process.env.SERVER_PORT) || 3001

@@ -40,18 +40,16 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   &__text {
     margin-top: 10px;
     margin-bottom: 40px;
     width: 545px;
     min-height: 171px;
     background: $color-white;
-    border: 3px solid #4D65B4;
+    border: 3px solid #4d65b4;
     border-radius: $border-radius;
     resize: none;
     padding: 10px;
   }
-
-  
 }
