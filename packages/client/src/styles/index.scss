@@ -8,7 +8,6 @@
 
 @import 'form';
 
-
 @import '../components/Layout/Layout.scss';
 @import '../components/Avatar/Avatar.scss';
 
@@ -20,9 +19,9 @@
 @import '../components/UI/PageNumber/PageNumber.scss';
 
 @import '../components/Card/Card.scss';
-@import '../components/Form/Form.scss';
 
 @import '../pages/Login/Login.scss';
+@import '../pages/Register/Register.scss';
 @import '../pages/Forum/Forum.scss';
 @import '../pages/Branch/Branch.scss';
 @import '../pages/NewMessage/NewMessage.scss';

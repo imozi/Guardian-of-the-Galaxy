@@ -16,7 +16,7 @@ $photo-size: 36px;
     width: 100px;
     align-items: center;
     gap: 10px;
-    border-right: 1px solid #00FFD1;;
+    border-right: 1px solid #00ffd1;
 
     &-name {
       font-weight: $font-weight;
@@ -39,6 +39,4 @@ $photo-size: 36px;
     display: flex;
     align-items: center;
   }
-
-
 }
