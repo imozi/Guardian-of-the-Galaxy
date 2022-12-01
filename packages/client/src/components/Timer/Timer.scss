@@ -1,0 +1,9 @@
+.timer {
+  margin: 0;
+  line-height: 256px;
+  font-size: $font-size-timer;
+
+  &__fz-text {
+    font-size: $fz40;
+  }
+}
