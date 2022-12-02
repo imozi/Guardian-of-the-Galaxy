@@ -1,0 +1,42 @@
+.profile {
+  position: relative;
+  display: grid;
+  grid-template-columns: $grid-template-profile;
+  column-gap: $grid-gap;
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    & .link {
+      margin-bottom: 10px;
+    }
+  }
+
+  & .avatar {
+    margin-bottom: 30px;
+  }
+
+  & .card__title {
+    position: absolute;
+    font-size: $fz40;
+    text-transform: none;
+    margin: 0;
+    top: -80px;
+  }
+
+  & .form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: calc($grid-gap * 2);
+    margin-bottom: 0;
+  }
+
+  & .form__footer {
+    display: flex;
+    justify-content: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}

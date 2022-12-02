@@ -1,6 +1,6 @@
-import axios from 'axios'
 import { API_URL } from '../utils/consts'
 import { AuthDTO } from './types'
+import axios from 'axios'
 
 export const register = (data: AuthDTO) => {
   return axios.post(`${API_URL}/auth/signup`, data)

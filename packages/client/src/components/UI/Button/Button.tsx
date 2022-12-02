@@ -1,4 +1,4 @@
-import React, { FC, ButtonHTMLAttributes } from 'react'
+import React, { ButtonHTMLAttributes, FC } from 'react'
 
 type ButtonProps = {
   loading?: boolean
