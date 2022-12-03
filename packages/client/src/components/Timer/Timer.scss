@@ -1,6 +1,6 @@
 .timer {
   margin: 0;
-  line-height: 256px;
+  line-height: $line-height-timer;
   font-size: $font-size-timer;
 
   &__fz-text {
