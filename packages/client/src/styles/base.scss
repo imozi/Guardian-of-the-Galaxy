@@ -2,6 +2,7 @@ html,
 body,
 #root {
   height: 100%;
+  min-height: 100%;
   width: 100%;
 }
 
@@ -12,7 +13,7 @@ body {
   background-color: $color-black;
   font-family: $font-family;
   font-size: $font-size;
-  font-weight: 400;
+  font-weight: $font-weight;
   line-height: $line-height;
 
   text-rendering: optimizeSpeed;
@@ -29,4 +30,13 @@ body {
 *::after {
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
+}
+
+h3,
+p {
+  margin: 0;
+}
+
+.visually-hidden {
+  @include visually-hidden;
 }

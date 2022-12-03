@@ -46,7 +46,7 @@
   font-family: $font-family;
   line-height: $line-height;
   color: $color-white;
-  font-weight: 400;
+  font-weight: $font-weight;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -57,9 +57,32 @@
   margin: 0;
   font-size: 24px;
 }
+
+@mixin title_fz16 {
+  font-size: 16px;
+  line-height: 22px;
+}
+
+@mixin title_fz40 {
+  font-size: 40px;
+  line-height: 55px;
+}
+
 @mixin img-cover {
   width: 100%;
   height: 100%;
   vertical-align: middle;
   object-fit: cover;
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  z-index: -1;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
 }

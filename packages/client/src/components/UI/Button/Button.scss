@@ -9,7 +9,7 @@
   height: var(--height);
   min-width: 200px;
   padding: 16px;
-  font-size: 16px;
+  font-size: $font-size;
   border-radius: $border-radius;
   background-color: $color-primary;
   text-transform: uppercase;
@@ -37,7 +37,7 @@
     height: calc(var(--height) / 2);
     top: 50%;
     left: 50%;
-    border-radius: 50%;
+    border-radius: $border-radius-circle;
     border: 3px solid $color-white;
     border-color: $color-white transparent $color-white transparent;
     animation: rotate 1.2s linear infinite;

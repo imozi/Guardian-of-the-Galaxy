@@ -9,6 +9,7 @@
     "dev": "lerna run dev",
     "test": "lerna run test",
     "lint": "lerna run lint",
+    "lint:fix": "eslint --fix --ext .js,.jsx .",
     "format": "lerna run format",
     "preview": "lerna run preview"
   },
@@ -23,6 +24,7 @@
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
     "@evilmartians/lefthook": "1.1.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "lerna": "5.4.3"
   }
 }
