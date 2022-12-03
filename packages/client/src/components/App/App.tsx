@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Branch } from '../../pages/Branch'
 import { ClientError } from '../../pages/Error/404'
 import { Forum } from '../../pages/Forum'
+import { Game } from '../../pages/Game'
 import { Login } from '../../pages/Login'
 import { NewMessage } from '../../pages/NewMessage'
 import { Profile } from '../../pages/Profile'
@@ -17,6 +18,7 @@ function App() {
       <Route path="/forum" element={<Forum />} />
       <Route path="/forum-branch" element={<Branch />} />
       <Route path="/forum-newmessage" element={<NewMessage />} />
+      <Route path="/game" element={<Game />} />
       <Route path="/server-error" element={<ServerError />} />
       <Route path='*' element={<ClientError />} />
     </Routes>
