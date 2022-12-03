@@ -1,20 +1,20 @@
-import React from 'react'
 import { Layout } from '../../../components/Layout'
+import { Link } from 'react-router-dom'
 
 export const ClientError = () => {
 
   return (
     <Layout>
-        <div className="text__400">
-              400
+        <div className="text__404">
+              404
           </div>
           <div className="text__error">
             Page not found
           </div>
           <div className="button-back">
-            <a href="#" className="link">
+          <Link className="link" to="/profile">
               Back
-            </a>
+          </Link>
         </div>
     </Layout>
   )

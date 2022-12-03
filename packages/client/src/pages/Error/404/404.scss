@@ -1,7 +1,7 @@
 .text {
     color: $color-white;
 
-    &__500 {
+    &__404 {
         @include title_fz96;
         font-weight: $font-weight;
         text-align: center;
@@ -14,5 +14,5 @@
 }
 
 .button-back {
-    @include btn-back; 
+    @include btn-back;
 }
