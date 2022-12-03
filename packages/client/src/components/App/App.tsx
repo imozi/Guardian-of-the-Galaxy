@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import { Branch } from '../../pages/Branch'
 import { Forum } from '../../pages/Forum'
+import { GameOver } from '../../pages/GameOver'
 import { Login } from '../../pages/Login'
 import { NewMessage } from '../../pages/NewMessage'
 import { Profile } from '../../pages/Profile'
@@ -12,6 +13,7 @@ function App() {
       <Route path="/" element={<Login />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/game-over" element={<GameOver />} />
       <Route path="/forum" element={<Forum />} />
       <Route path="/forum-branch" element={<Branch />} />
       <Route path="/forum-newmessage" element={<NewMessage />} />

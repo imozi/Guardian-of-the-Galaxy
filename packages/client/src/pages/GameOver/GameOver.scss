@@ -1,0 +1,60 @@
+.gameover {
+  &__wrapper {
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    flex-grow: 1;
+    position: relative;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  &__currentstat {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-size: 24px;
+  }
+  &__score {
+    font-size: 24px;
+    color: $color-accent;
+  }
+  &__numbers {
+    font-size: 20px;
+  }
+  &__title {
+    font-size: 96px;
+  }
+  &__highscore {
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+  &__central {
+    width: 700px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+  }
+  &__buttons {
+    display: flex;
+    font-size: 36px;
+    gap: 202px;
+    color: $color-accent;
+    &_wrapper {
+      border-bottom: 1px solid $color-accent;
+    }
+  }
+}
