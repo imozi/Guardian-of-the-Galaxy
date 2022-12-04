@@ -80,7 +80,7 @@ export const Profile = () => {
     e.preventDefault()
 
     const isValid = isFormValid()
-  
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const formData = formValues()
 
@@ -130,7 +130,7 @@ export const Profile = () => {
             Back
           </Link>
         </div>
-        <Card title="Profile">
+        <Card title="Password">
           <Avatar onChange={onChangeAvatar} />
           <form className="form" onSubmit={onSubmit}>
             <>{formInputs()}</>
