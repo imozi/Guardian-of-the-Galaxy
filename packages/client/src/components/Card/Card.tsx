@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 
 type CardProps = {
-  title: string
+  title?: string
   children: React.ReactNode
   className?: string
 }
@@ -13,7 +13,7 @@ export const Card: FC<CardProps> = ({ children, title, className }) => {
   }
   return (
     <article className={cardClass}>
-      <h2 className="card__title">{title}</h2>
+      {!!title && <h2 className="card__title">{title}</h2>}
       {children}
     </article>
   )
