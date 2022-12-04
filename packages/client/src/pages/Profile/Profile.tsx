@@ -130,7 +130,7 @@ export const Profile = () => {
             Back
           </Link>
         </div>
-        <Card title="Password">
+        <Card title="Profile">
           <Avatar onChange={onChangeAvatar} />
           <form className="form" onSubmit={onSubmit}>
             <>{formInputs()}</>
