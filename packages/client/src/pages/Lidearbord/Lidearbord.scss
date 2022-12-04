@@ -41,31 +41,18 @@
   
     &__links {
       position: absolute;
-      top: 30px;
-      left: -150px;
+      top: 0px;
+      left: -80px;
       gap: 20px;
       align-items: flex-end;
       display: flex;
       flex-direction: column;
     }
   
-    &__posts {
+    &__user-field {
       display: flex;
       flex-direction: column;
       gap: 15px;
-    }
-  
-    &__numbers {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-    }
-  
-    &__pages {
-      display: flex;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
     }
   }
   
