@@ -10,6 +10,8 @@
 
 @import '../components/Layout/Layout.scss';
 @import '../components/Avatar/Avatar.scss';
+@import '../components/Card/Card.scss';
+@import '../components/Timer/Timer.scss';
 
 @import '../components/UI/Button/Button.scss';
 @import '../components/UI/Field/Field.scss';
@@ -18,8 +20,6 @@
 @import '../components/UI/Post/Post.scss';
 @import '../components/UI/PageNumber/PageNumber.scss';
 
-@import '../components/Card/Card.scss';
-
 @import '../pages/Login/Login.scss';
 @import '../pages/Register/Register.scss';
 @import '../pages/Forum/Forum.scss';
@@ -27,3 +27,5 @@
 @import '../pages/NewMessage/NewMessage.scss';
 @import '../pages/Profile/Profile.scss';
 @import '../pages/GameOver/GameOver.scss';
+@import '../pages/Password/Password.scss';
+@import '../pages/Game/Game.scss';
