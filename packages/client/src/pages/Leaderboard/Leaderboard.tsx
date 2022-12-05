@@ -1,21 +1,24 @@
 import { Layout } from '../../components/Layout'
 import { UserField } from '../../components/UI/UserField'
+import { useNavigate } from 'react-router-dom';
 
-export const Lidearbord = () => {
+export const Leaderboard = () => {
+  const navigate = useNavigate();
+
   return (
     <Layout>
-      <div className="lidearbord">
-        <h2 className="lidearbord__title">Lidearbord</h2>
-        <div className="lidearbord__wrapper">
-          <div className="lidearbord__links">
-            <a href="#" className="link">
+      <div className="leaderboard">
+        <h2 className="leaderboard__title">Leaderboard</h2>
+        <div className="leaderboard__wrapper">
+          <div className="leaderboard__links">
+            <a className="link" onClick={() => navigate(-1)}>
               Back
             </a>
           </div>
-          <div className="lidearbord__user-field">
-            <div className="lidearbord__names">
-                <h3 className="lidearbord__name">USERS</h3>
-                <h3 className="lidearbord__name">SCORS</h3>
+          <div className="leaderboard__user-field">
+            <div className="leaderboard__names">
+                <h3 className="leaderboard__name">USERS</h3>
+                <h3 className="leaderboard__name">SCORS</h3>
             </div>
             <UserField
               number={1}

@@ -7,15 +7,15 @@ type UserFieldProps = {
   score: number
 } & AllHTMLAttributes<HTMLDivElement>
 
-export const UserField: FC<UserFieldProps> = ({ ...props }) => {
+export const UserField: FC<UserFieldProps> = ({ number, author, avatar, score }) => {
   return (
     <div className="user-field">
       <div className="user-field__number">
-        {props.number}
+        {number}
       </div>
-      <img src={props.avatar} alt="avatar" className="user-field__photo" />
-      <div className="user-field__name">{props.author}</div>
-      <p className="user-field__score">{props.score}</p>
+      <img src={avatar} alt="avatar" className="user-field__photo" />
+      <div className="user-field__name">{author}</div>
+      <p className="user-field__score">{score}</p>
     </div>
   )
 }

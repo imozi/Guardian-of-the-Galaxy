@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Branch } from '../../pages/Branch'
 import { Forum } from '../../pages/Forum'
 import { Game } from '../../pages/Game'
-import { Lidearbord } from '../../pages/Lidearbord'
+import { Leaderboard } from '../../pages/Leaderboard'
 import { Login } from '../../pages/Login'
 import { NewMessage } from '../../pages/NewMessage'
 import { Password } from '../../pages/Password'
@@ -20,7 +20,7 @@ function App() {
       <Route path="/forum-branch" element={<Branch />} />
       <Route path="/forum-newmessage" element={<NewMessage />} />
       <Route path="/game" element={<Game />} />
-      <Route path="/lidearbord" element={<Lidearbord />} />
+      <Route path="/leaderboard" element={<Leaderboard />} />
     </Routes>
   )
 }
