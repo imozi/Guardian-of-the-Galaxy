@@ -1,0 +1,18 @@
+.text {
+    color: $color-white;
+
+    &__404 {
+        @include title_fz96;
+        font-weight: $font-weight;
+        text-align: center;
+    }
+
+    &__error {
+        @include title_fz40;
+        font-weight: $font-weight;
+    }
+}
+
+.button-back {
+    @include btn-back;
+}

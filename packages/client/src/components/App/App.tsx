@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import { Branch } from '../../pages/Branch'
+import { ClientError } from '../../pages/Error/404'
 import { Forum } from '../../pages/Forum'
 import { Game } from '../../pages/Game'
 import { Leaderboard } from '../../pages/Leaderboard'
@@ -8,6 +9,7 @@ import { NewMessage } from '../../pages/NewMessage'
 import { Password } from '../../pages/Password'
 import { Profile } from '../../pages/Profile'
 import { Register } from '../../pages/Register'
+import { ServerError } from '../../pages/Error/500'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <Route path="/forum-branch" element={<Branch />} />
       <Route path="/forum-newmessage" element={<NewMessage />} />
       <Route path="/game" element={<Game />} />
+      <Route path="/server-error" element={<ServerError />} />
+      <Route path='*' element={<ClientError />} />
       <Route path="/leaderboard" element={<Leaderboard />} />
     </Routes>
   )
