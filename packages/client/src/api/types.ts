@@ -18,3 +18,8 @@ export type AuthDTO = {
   phone?: string
   email?: string
 }
+
+export type PasswordChange = {
+  oldPassword: string
+  newPassword: string
+}

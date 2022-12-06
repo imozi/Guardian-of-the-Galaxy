@@ -1,0 +1,46 @@
+$photo-size: 30px;
+
+.user-field {
+  width: 546px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  background: $color-back-topic;
+  border-radius: $border-radius;
+  padding: 10px;
+
+  &__number {
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 20px;
+    height: 22px;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid $color-white;
+  }
+
+  &__name {
+    font-weight: $font-weight;
+    font-size: $fz16;
+    line-height: 22px;
+    color: $color-white;
+    width: 137px;
+    height: 20px;
+    margin-top: 5px;
+  }
+
+  &__photo {
+    width: $photo-size;
+    height: $photo-size;
+    border-radius: $border-radius-circle;
+  }
+
+  &__score {
+    font-weight: $font-weight;
+    font-size: $fz16;
+    line-height: 22px;
+    color: $color-white;
+    margin-top: 5px;
+    margin-left: 225px;
+  }
+}

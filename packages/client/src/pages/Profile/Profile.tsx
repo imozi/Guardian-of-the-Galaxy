@@ -80,7 +80,7 @@ export const Profile = () => {
     e.preventDefault()
 
     const isValid = isFormValid()
-  
+
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const formData = formValues()
 

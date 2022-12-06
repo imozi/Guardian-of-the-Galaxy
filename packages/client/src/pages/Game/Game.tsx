@@ -7,7 +7,7 @@ export const Game = () => {
 
   return (
     <Layout>
-      <Timer value={count}/>
+      <Timer value={count} />
     </Layout>
   )
 }
