@@ -34,6 +34,11 @@
   }
 }
 
+@mixin btn-back {
+  text-align: center;
+  margin-top: 20px;
+}
+
 @mixin btn {
   display: inline-block;
   vertical-align: middle;
@@ -66,6 +71,11 @@
 @mixin title_fz40 {
   font-size: 40px;
   line-height: 55px;
+}
+
+@mixin title_fz96 {
+  font-size: 96px;
+  line-height: 132px;
 }
 
 @mixin img-cover {
