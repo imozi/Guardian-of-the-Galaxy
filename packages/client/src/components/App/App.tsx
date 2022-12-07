@@ -3,6 +3,7 @@ import { Branch } from '../../pages/Branch'
 import { ClientError } from '../../pages/Error/404'
 import { Forum } from '../../pages/Forum'
 import { Game } from '../../pages/Game'
+import { GameOver } from '../../pages/GameOver'
 import { Leaderboard } from '../../pages/Leaderboard'
 import { Login } from '../../pages/Login'
 import { NewMessage } from '../../pages/NewMessage'
@@ -18,6 +19,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/password" element={<Password />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/game-over" element={<GameOver />} />
       <Route path="/forum" element={<Forum />} />
       <Route path="/forum-branch" element={<Branch />} />
       <Route path="/forum-newmessage" element={<NewMessage />} />
