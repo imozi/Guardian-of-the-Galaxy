@@ -1,8 +1,10 @@
-export function fullscreenAPI() {document.addEventListener("keydown", (e) => {
-  if (e.key === "f") {
-    toggleFullScreen();
-  }
-}, false);}
+export function fullscreenAPI() {
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "f") {
+      toggleFullScreen();
+    }
+  }, false);
+}
 
 function toggleFullScreen() {
   if (!document.fullscreenElement) {
