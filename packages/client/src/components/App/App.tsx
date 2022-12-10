@@ -11,6 +11,9 @@ import { Password } from '../../pages/Password'
 import { Profile } from '../../pages/Profile'
 import { Register } from '../../pages/Register'
 import { ServerError } from '../../pages/Error/500'
+import { fullscreenAPI } from '../../webAPI/fullscreen'
+
+fullscreenAPI()
 
 function App() {
   return (
