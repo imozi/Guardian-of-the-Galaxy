@@ -1,9 +1,9 @@
 import { Layout } from '../../components/Layout'
 import { UserField } from '../../components/UI/UserField'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 export const Leaderboard = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
     <Layout>
@@ -17,8 +17,8 @@ export const Leaderboard = () => {
           </div>
           <div className="leaderboard__user-field">
             <div className="leaderboard__names">
-                <h3 className="leaderboard__name">USERS</h3>
-                <h3 className="leaderboard__name">SCORS</h3>
+              <h3 className="leaderboard__name">USERS</h3>
+              <h3 className="leaderboard__name">SCORS</h3>
             </div>
             <UserField
               number={1}

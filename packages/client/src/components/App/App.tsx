@@ -28,7 +28,7 @@ function App() {
       <Route path="/forum-newmessage" element={<NewMessage />} />
       <Route path="/game" element={<Game />} />
       <Route path="/server-error" element={<ServerError />} />
-      <Route path='*' element={<ClientError />} />
+      <Route path="*" element={<ClientError />} />
       <Route path="/leaderboard" element={<Leaderboard />} />
     </Routes>
   )
