@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
+import { Canvas } from '../../components/Canvas'
 import { Layout } from '../../components/Layout'
-import { Timer } from '../../components/Timer'
+import React from 'react'
 
 export const Game = () => {
-  const [count, setCount] = useState(5)
-
   return (
-    <Layout>
-      <Timer value={count} />
+    <Layout isGame={true}>
+      <Canvas id="game" />
     </Layout>
   )
 }
