@@ -40,79 +40,64 @@ export default class MainShip {
     this._move()
     this._checkWalls()
 
-    if (this._rightPressed) {
-      rotateObject(
-        ctx,
-        this._rotation,
-        this._x + this._width / 2,
-        this._y + this._height / 2
-      )
-      ctx.drawImage(
-        this._shipRight.image,
-        this._x,
-        this._y,
-        this._width,
-        this._height
-      )
-    } else if (this._leftPressed) {
-      rotateObject(
-        ctx,
-        -this._rotation,
-        this._x + this._width / 2,
-        this._y + this._height / 2
-      )
-      ctx.drawImage(
-        this._shipLeft.image,
-        this._x,
-        this._y,
-        this._width,
-        this._height
-      )
-    } else {
-      ctx.drawImage(
-        this._ship.image,
-        this._x,
-        this._y,
-        this._width,
-        this._height
-      )
-    }
+    const { _x, _y, _width, _height } = this
 
-    ctx.restore()
-    ctx.save()
+    const drawImageParams: [number, number, number, number] = [
+      _x,
+      _y,
+      _width,
+      _height,
+    ]
+    const rotateParams: [number, number] = [_x + _width / 2, _y + _height / 2]
+
+    if (this._rightPressed) {
+      rotateObject(ctx, this._rotation, ...rotateParams)
+      ctx.drawImage(this._shipRight.image, ...drawImageParams)
+    } else if (this._leftPressed) {
+      rotateObject(ctx, -this._rotation, ...rotateParams)
+      ctx.drawImage(this._shipLeft.image, ...drawImageParams)
+    } else {
+      ctx.drawImage(this._ship.image, ...drawImageParams)
+    }
   }
 
   private _checkWalls(): void {
-    //left
-    if (this._x < 0) {
-      this._x = 0
-    }
-
-    //up
-    if (this._y < 0) {
-      this._y = 0
-    }
-
-    //right
-    if (this._x > this._canvasWidth - this._width) {
-      this._x = this._canvasWidth - this._width
-    }
-
-    //down
-    if (this._y > this._canvasHeight - this._height) {
-      this._y = this._canvasHeight - this._height
+    const widthDiff = this._canvasWidth - this._width
+    const heightDiff = this._canvasHeight - this._height
+    switch (true) {
+      // left
+      case this._x < 0:
+        this._x = 0
+        break
+      // up
+      case this._y < 0:
+        this._y = 0
+        break
+      // right
+      case this._x > widthDiff:
+        this._x = widthDiff
+        break
+      // down
+      case this._y > heightDiff:
+        this._y = heightDiff
+        break
     }
   }
 
   private _move(): void {
-    if (this._rightPressed) {
-      this._x += this._velocity
-    } else if (this._leftPressed) {
-      this._x += -this._velocity
-    } else if (this._upPressed) {
-      this._y += -this._velocity
-    } else if (this._downPressed) {
-      this._y += this._velocity
+    switch (true) {
+      case this._rightPressed:
+        this._x += this._velocity
+        break
+      case this._leftPressed:
+        this._x += -this._velocity
+        break
+      case this._upPressed:
+        this._y += -this._velocity
+        break
+      case this._downPressed:
+        this._y += this._velocity
+        break
     }
   }
 
