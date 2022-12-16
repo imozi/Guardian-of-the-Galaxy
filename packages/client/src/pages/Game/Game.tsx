@@ -8,12 +8,10 @@ export const Game = () => {
   const boardWidth = window.innerWidth - boardIndent
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
   const mainShip = new MainShip(boardWidth, boardHeight)
-  const [context, setContext] = useState<CanvasRenderingContext2D | null>(null)
 
   useEffect(() => {
-    setContext(canvasRef.current && canvasRef.current.getContext('2d'))
     animate()
-  }, [context])
+  }, [])
 
   const animate = () => {
     if (!canvasRef.current) {
@@ -23,6 +21,7 @@ export const Game = () => {
     canvasRef.current.width = boardWidth
     canvasRef.current.height = boardHeight
 
+    const context = canvasRef.current && canvasRef.current.getContext('2d')
     if (context) {
       context.clearRect(0, 0, boardWidth, boardHeight)
       mainShip.draw(context)
