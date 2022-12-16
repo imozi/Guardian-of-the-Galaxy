@@ -5,6 +5,10 @@
   position: relative;
   overflow: hidden;
 
+  &.game {
+    height: 100%;
+  }
+
   &::before {
     position: absolute;
     content: '';
