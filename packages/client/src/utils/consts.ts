@@ -11,3 +11,9 @@ export const SHIP_ENTITY = {
   srcLeft: 'images/main_ship/main_ship_left.gif',
   srcRight: 'images/main_ship/main_ship_right.gif',
 }
+export const WEAPON_ENTITY = {
+  width: 48,
+  height: 48,
+  velocity: 4,
+  src: 'images/main_ship/weapon_rocket.gif',
+}
