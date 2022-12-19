@@ -9,26 +9,29 @@ export default class Weapon {
   private _y: number
   private _weapon: Gif
 
-  constructor(x: number, y: number) {
+  constructor(
+    x: number,
+    y: number,
+    velocity = WEAPON_ENTITY.velocity,
+    width = WEAPON_ENTITY.width,
+    height = WEAPON_ENTITY.height
+  ) {
     this._x = x
     this._y = y
-    this._velocity = WEAPON_ENTITY.velocity
-    this._width = WEAPON_ENTITY.width
-    this._height = WEAPON_ENTITY.height
+    this._velocity = velocity
+    this._width = width
+    this._height = height
     this._weapon = new Gif({ url: WEAPON_ENTITY.src })
   }
 
   private _draw(ctx: CanvasRenderingContext2D) {
-    const { _x, _y, _width, _height } = this
-
-    const drawImageParams: [number, number, number, number] = [
-      _x,
-      _y,
-      _width,
-      _height,
-    ]
-
-    ctx.drawImage(this._weapon.image, ...drawImageParams)
+    ctx.drawImage(
+      this._weapon.image,
+      this._x,
+      this._y,
+      this._width,
+      this._height
+    )
   }
 
   public update(ctx: CanvasRenderingContext2D) {
