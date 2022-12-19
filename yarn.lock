@@ -2243,7 +2243,7 @@
   resolved "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.1.tgz"
   integrity sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==
 
-"@types/omggif@^1.0.3":
+"@types/omggif@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@types/omggif/-/omggif-1.0.3.tgz#69fdf6fd8cb10cb2b223a52629947616f8eccd3b"
   integrity sha512-u6WxvVuUkf4S+93ovKXBWSKaxlkCo63l6wBEgphBiIlXEsUcNFrl0nE5NbQA5u2ffvk3xc+3aN/DfDPnmrKRlg==
@@ -7098,7 +7098,7 @@ object.assign@^4.1.4:
     has-symbols "^1.0.3"
     object-keys "^1.1.1"
 
-omggif@^1.0.10:
+omggif@1.0.10:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/omggif/-/omggif-1.0.10.tgz#ddaaf90d4a42f532e9e7cb3a95ecdd47f17c7b19"
   integrity sha512-LMJTtvgc/nugXj0Vcrrs68Mn2D1r0zf630VNtqtpI1FEO7e+O9FP4gqs9AcnBaSEeoHIPm28u6qgPR0oyEpGSw==
