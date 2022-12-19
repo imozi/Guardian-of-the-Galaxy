@@ -142,4 +142,12 @@ export default class MainShip {
         break
     }
   }
+
+  public getX() {
+    return this._x
+  }
+
+  public getY() {
+    return this._y
+  }
 }
