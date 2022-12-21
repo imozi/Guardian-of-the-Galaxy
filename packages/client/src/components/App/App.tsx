@@ -8,18 +8,29 @@ import { Leaderboard } from '../../pages/Leaderboard'
 import { Login } from '../../pages/Login'
 import { NewMessage } from '../../pages/NewMessage'
 import { Password } from '../../pages/Password'
+import { PrivateRoute } from '../../hoc/ProtectedRoute'
 import { Profile } from '../../pages/Profile'
 import { Register } from '../../pages/Register'
 import { ServerError } from '../../pages/Error/500'
 import { fullscreenAPI } from '../../webAPI/fullscreen'
+import { useState } from 'react'
 
 fullscreenAPI()
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false)
+
   return (
     <Routes>
       <Route path="/" element={<Login />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute isAuth={isAuth}>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
       <Route path="/password" element={<Password />} />
       <Route path="/register" element={<Register />} />
       <Route path="/game-over" element={<GameOver />} />
