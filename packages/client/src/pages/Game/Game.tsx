@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react'
+import { Health } from '../../components/HP'
 import { Layout } from '../../components/Layout'
 import MainShip from '../../model/MainShip'
 import Weapon from '../../model/Weapon'
@@ -61,6 +62,7 @@ export const Game = () => {
 
   return (
     <Layout isGame={true}>
+      <Health healths={3}></Health>
       <canvas ref={canvasRef} />
     </Layout>
   )
