@@ -24,7 +24,7 @@ export const CanvasBoard = () => {
     canvasRef.current.width = boardWidth
     canvasRef.current.height = boardHeight
 
-    const context = canvasRef.current && canvasRef.current.getContext('2d')
+    const context = canvasRef.current?.getContext('2d')
     if (context) {
       context.clearRect(0, 0, boardWidth, boardHeight)
       context.save()

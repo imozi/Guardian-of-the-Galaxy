@@ -9,15 +9,17 @@ export const GameStart = () => {
   const [isGameStart, setIsGameStart] = useState(false)
 
   useEffect(() => {
-    if (count === 0) {
-      setTimeout(() => {
-        setIsTimerStart(false)
-
-        setTimeout(() => {
-          setIsGameStart(true)
-        }, TIMER_TIME / 3)
-      }, TIMER_TIME)
+    if (count !== 0) {
+      return
     }
+
+    setTimeout(() => {
+      setIsGameStart(true)
+    }, TIMER_TIME + TIMER_TIME / 3)
+
+    setTimeout(() => {
+      setIsTimerStart(false)
+    }, TIMER_TIME)
   }, [count])
 
   return (
