@@ -8,6 +8,8 @@
 
 @import 'form';
 
+@import 'game';
+
 @import '../components/Layout/Layout.scss';
 @import '../components/Avatar/Avatar.scss';
 @import '../components/Card/Card.scss';
@@ -29,7 +31,5 @@
 @import '../pages/Branch/Branch.scss';
 @import '../pages/NewMessage/NewMessage.scss';
 @import '../pages/Profile/Profile.scss';
-@import '../pages/GameOver/GameOver.scss';
 @import '../pages/Password/Password.scss';
-@import '../pages/Game/Game.scss';
 @import '../pages/Leaderboard/Leaderboard.scss';

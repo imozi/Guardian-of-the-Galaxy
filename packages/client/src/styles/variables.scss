@@ -1,13 +1,14 @@
 $font-family: 'Minecraftia Regular', sans-serif;
 $font-size: 16px;
-$font-size-timer: 256px;
+$font-size-timer: 96px;
 $line-height: 1.4;
-$line-height-timer: 256px;
+$line-height-timer: 1;
 $border-radius: 5px;
 $font-weight: 400;
 $border-radius-circle: 50%;
 $grid-template-profile: 180px 1fr 180px;
 $grid-gap: 30px;
+$board-ident: 45px;
 
 // цвета
 $color-black: #000000;
@@ -22,4 +23,5 @@ $color-back-topic: rgba(36, 29, 60, 0.85);
 $fz10: 10px;
 $fz16: 16px;
 $fz40: 40px;
+$fz48: 48px;
 $fz96: 96px;

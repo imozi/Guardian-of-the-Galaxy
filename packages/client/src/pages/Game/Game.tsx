@@ -1,67 +1,47 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState } from 'react'
+import { GameStart } from '../../components/GameStart'
 import { Layout } from '../../components/Layout'
-import MainShip from '../../model/MainShip'
-import Weapon from '../../model/Weapon'
+import { Link } from 'react-router-dom'
+import { UserField } from '../../components/UI/UserField'
 
 export const Game = () => {
-  const boardIndent = 32
-  const boardHeight = window.innerHeight - boardIndent
-  const boardWidth = window.innerWidth - boardIndent
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const mainShip = new MainShip(boardWidth, boardHeight)
-  const weapons: Weapon[] = []
+  const [isGameStart, setIsGameStart] = useState(false)
 
-  const onKeydown = (event: KeyboardEvent) => {
-    if (event.code === 'Space') {
-      weapons.push(new Weapon(mainShip.getX(), mainShip.getY()))
-    }
-  }
-
-  useEffect(() => {
-    document.addEventListener('keydown', onKeydown)
-    animate()
-
-    return () => {
-      document.removeEventListener('keydown', onKeydown)
-    }
-  }, [])
-
-  const animate = () => {
-    if (!canvasRef.current) {
-      return
-    }
-
-    canvasRef.current.width = boardWidth
-    canvasRef.current.height = boardHeight
-
-    const context = canvasRef.current && canvasRef.current.getContext('2d')
-    if (context) {
-      context.clearRect(0, 0, boardWidth, boardHeight)
-      context.save()
-
-      mainShip.draw(context)
-      context.restore()
-      context.save()
-
-      weapons.forEach((weapon, index) => {
-        if (weapon.getY() <= 0) {
-          setTimeout(() => {
-            weapons.splice(index, 1)
-          }, 0)
-        } else {
-          weapon.update(context)
-        }
-      })
-      context.restore()
-      context.save()
-    }
-
-    requestAnimationFrame(animate)
+  const startGame = () => {
+    setIsGameStart(true)
   }
 
   return (
     <Layout isGame={true}>
-      <canvas ref={canvasRef} />
+      {isGameStart ? (
+        <GameStart />
+      ) : (
+        <>
+          <div className="game__ship"></div>
+          <div className="game__overlay"></div>
+          <div className="game__nav">
+            <UserField
+              author="IloveFronted"
+              avatar="https://n1s2.hsmedia.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0xac120003_4430520541578509619.jpg"
+            />
+            <Link className="link" to="/leaderboard">
+              Leaderboard
+            </Link>
+            <Link className="link" to="/profile">
+              Profile
+            </Link>
+            <Link className="link" to="/forum">
+              Forum
+            </Link>
+            <button className="link">Logout</button>
+          </div>
+          <div className="game__central">
+            <button className="game__start" onClick={startGame}>
+              Play
+            </button>
+          </div>
+        </>
+      )}
     </Layout>
   )
 }

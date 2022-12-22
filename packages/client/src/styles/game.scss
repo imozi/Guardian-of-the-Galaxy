@@ -1,0 +1,97 @@
+.game {
+  position: relative;
+  z-index: 1;
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+  &__ship {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 67px;
+    background-image: url('../images/main_ship/main_ship.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: -1;
+  }
+  &__header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: $board-ident;
+    z-index: 2;
+  }
+  &__nav {
+    position: absolute;
+    top: $board-ident;
+    left: $board-ident;
+    .link {
+      display: block;
+      margin-bottom: 10px;
+    }
+    .user-field {
+      margin-bottom: 20px;
+    }
+  }
+  &__currentstat {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-size: 24px;
+  }
+  &__score {
+    font-size: 24px;
+    color: $color-accent;
+  }
+  &__numbers {
+    font-size: 20px;
+  }
+  &__title {
+    font-size: $fz96;
+  }
+  &__start {
+    @include btn;
+    font-size: $fz48;
+  }
+  &__highscore {
+    width: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+  }
+  &__central {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+  }
+  &__buttons {
+    display: flex;
+    font-size: 36px;
+    gap: 202px;
+    color: $color-accent;
+    .link:after {
+      opacity: 1;
+    }
+  }
+}
