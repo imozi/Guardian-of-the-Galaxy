@@ -5,12 +5,11 @@ type HealthProps = {
 }
 
 export const Health: FC<HealthProps> = value => {
-  const res = []
+  const list = []
 
   for (let i = 0; i < value.healths; i++) {
-    console.log(i)
-    res.push(<li key={i} className="health"></li>)
+    list.push(<li key={i} className="health"/>)
   }
 
-  return <ul className="healths">{res}</ul>
+  return <ul className="healths">{list}</ul>
 }
