@@ -13,12 +13,12 @@ import { Profile } from '../../pages/Profile'
 import { Register } from '../../pages/Register'
 import { ServerError } from '../../pages/Error/500'
 import { fullscreenAPI } from '../../webAPI/fullscreen'
-import { useState } from 'react'
+import { useUserAuthQuery } from '../../store/user/user.api'
 
 fullscreenAPI()
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false)
+  const { isSuccess } = useUserAuthQuery('')
 
   return (
     <Routes>
@@ -26,7 +26,7 @@ function App() {
       <Route
         path="/profile"
         element={
-          <PrivateRoute isAuth={isAuth}>
+          <PrivateRoute isAuth={isSuccess}>
             <Profile />
           </PrivateRoute>
         }
