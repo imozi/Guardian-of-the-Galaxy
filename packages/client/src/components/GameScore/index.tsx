@@ -1,0 +1,1 @@
+export { GameScore } from './GameScore'

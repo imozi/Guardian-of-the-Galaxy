@@ -8,7 +8,7 @@ export const Health: FC<HealthProps> = value => {
   const list = []
 
   for (let i = 0; i < value.healths; i++) {
-    list.push(<li key={i} className="health"/>)
+    list.push(<li key={i} className="health" />)
   }
 
   return <ul className="healths">{list}</ul>

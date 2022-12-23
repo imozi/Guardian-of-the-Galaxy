@@ -24,7 +24,7 @@ export default class MainShip {
     this._canvasHeight = canvasHeight
     this._velocity = SHIP_ENTITY.velocity
 
-    this._x = this._canvasWidth / 2
+    this._x = this._canvasWidth / 2 - SHIP_ENTITY.width / 2
     this._y = this._canvasHeight - SHIP_ENTITY.bottomIdent
     this._width = SHIP_ENTITY.width
     this._height = SHIP_ENTITY.height
