@@ -1,6 +1,9 @@
+import 'whatwg-fetch'
 import { render, screen } from '@testing-library/react'
 import App from './App'
+import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom/server'
+import { store } from '../../store'
 
 const appContent = 'Guardian of the Galaxy'
 
@@ -12,9 +15,11 @@ global.fetch = jest.fn(() =>
 
 test('Example test', async () => {
   render(
-    <StaticRouter location="/">
-      <App />
-    </StaticRouter>
+    <Provider store={store}>
+      <StaticRouter location="/">
+        <App />
+      </StaticRouter>
+    </Provider>
   )
   expect(screen.findByText(appContent)).toBeDefined()
 })
