@@ -17,7 +17,17 @@ export const userApi = createApi({
         credentials: 'include',
       }),
     }),
+    userLogout: build.query<string | ErrorDTO, null>({
+      query: () => ({
+        url: `/auth/logout`,
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        credentials: 'include',
+      }),
+    }),
   }),
 })
 
-export const { useUserAuthQuery } = userApi
+export const { useUserAuthQuery, useUserLogoutQuery } = userApi
