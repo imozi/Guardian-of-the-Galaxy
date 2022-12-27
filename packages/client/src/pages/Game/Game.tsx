@@ -3,6 +3,7 @@ import { GameStart } from '../../components/GameStart'
 import { Layout } from '../../components/Layout'
 import { Link } from 'react-router-dom'
 import { UserField } from '../../components/UI/UserField'
+import { useUserLogoutQuery } from '../../store/user/user.api'
 
 export const Game = () => {
   const [isGameStart, setIsGameStart] = useState(false)
@@ -10,6 +11,12 @@ export const Game = () => {
   const startGame = () => {
     setIsGameStart(true)
   }
+
+  const [log, setLog] = useState(true)
+
+  const logout = useUserLogoutQuery(null, {
+    skip: log,
+  })
 
   return (
     <Layout isGame={true}>
@@ -33,7 +40,9 @@ export const Game = () => {
             <Link className="link" to="/forum">
               Forum
             </Link>
-            <button className="link">Logout</button>
+            <button className="link" onClick={() => setLog(false)}>
+              Logout
+            </button>
           </div>
           <div className="game__central">
             <button className="game__start" onClick={startGame}>
