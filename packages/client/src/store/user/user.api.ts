@@ -1,4 +1,4 @@
-import { ErrorDTO, UserTypeDTO } from '../../types/api'
+import { ErrorDTO, PasswordDTO, UserDTO } from '../../types/api'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../../utils/consts'
 import { UserType } from '../../types/user'
@@ -16,7 +16,7 @@ export const userApi = createApi({
         url: `/auth/user`,
         credentials: 'include',
       }),
-      transformResponse: (response: UserTypeDTO) => transformUser(response),
+      transformResponse: (response: UserDTO) => transformUser(response),
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
@@ -26,7 +26,7 @@ export const userApi = createApi({
         }
       },
     }),
-    updateUser: build.mutation<UserType | ErrorDTO, string>({
+    updateUser: build.mutation<UserType | ErrorDTO, UserDTO>({
       query: data => ({
         url: `/user/profile`,
         method: 'PUT',
@@ -36,7 +36,7 @@ export const userApi = createApi({
         },
         credentials: 'include',
       }),
-      transformResponse: (response: UserTypeDTO) => transformUser(response),
+      transformResponse: (response: UserDTO) => transformUser(response),
       transformErrorResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
@@ -54,7 +54,7 @@ export const userApi = createApi({
         body: data,
         credentials: 'include',
       }),
-      transformResponse: (response: UserTypeDTO) => transformUser(response),
+      transformResponse: (response: UserDTO) => transformUser(response),
       transformErrorResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
@@ -65,7 +65,7 @@ export const userApi = createApi({
         }
       },
     }),
-    updatePassword: build.mutation<string | ErrorDTO, string>({
+    updatePassword: build.mutation<string | ErrorDTO, PasswordDTO>({
       query: data => ({
         url: `/user/password`,
         method: 'PUT',

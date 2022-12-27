@@ -1,7 +1,7 @@
+import { ErrorDTO, PasswordDTO } from '../../types/api'
 import React, { useEffect, useState } from 'react'
 import { Button } from '../../components/UI/Button'
 import { Card } from '../../components/Card'
-import { ErrorDTO } from '../../types/api'
 import { Layout } from '../../components/Layout'
 import { Link } from 'react-router-dom'
 import { useForm } from '../../hooks/useForm'
@@ -42,7 +42,7 @@ export const Password = () => {
     if (isSuccess) {
       setIsEdit(false)
     }
-  }, [isLoading])
+  }, [isSuccess])
 
   const onEditHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -58,7 +58,7 @@ export const Password = () => {
     const formData = formValues()
 
     if (isValid) {
-      updatePassword(JSON.stringify(formData))
+      updatePassword(formData as PasswordDTO)
     }
   }
 
@@ -74,7 +74,7 @@ export const Password = () => {
           </div>
           <Card>
             <form
-              className={isEdit ? 'form' : 'form form--disabled'}
+              className={`form${isEdit ? '' : ' form--disabled'}`}
               onSubmit={onSubmit}>
               <>{formInputs()}</>
               {!!error && (

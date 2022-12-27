@@ -1,3 +1,4 @@
+import { ErrorDTO, UserDTO } from '../../types/api'
 import React, { useEffect, useState } from 'react'
 import {
   useUpdateAvatarMutation,
@@ -6,7 +7,6 @@ import {
 import { Avatar } from '../../components/Avatar'
 import { Button } from '../../components/UI/Button'
 import { Card } from '../../components/Card'
-import { ErrorDTO } from '../../types/api'
 import { Layout } from '../../components/Layout'
 import { Link } from 'react-router-dom'
 import { UserType } from '../../types/user'
@@ -101,7 +101,7 @@ export const Profile = () => {
     if (isSuccess) {
       setIsEdit(false)
     }
-  }, [isLoading])
+  }, [isSuccess])
 
   const onEditHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
@@ -117,7 +117,7 @@ export const Profile = () => {
     const formData = formValues()
 
     if (isValid) {
-      updateUser(JSON.stringify(formData))
+      updateUser(formData as unknown as UserDTO)
     }
   }
 
@@ -154,7 +154,7 @@ export const Profile = () => {
               onChange={onChangeAvatar}
             />
             <form
-              className={isEdit ? 'form' : 'form form--disabled'}
+              className={`form${isEdit ? '' : ' form--disabled'}`}
               onSubmit={onSubmit}>
               <>{formInputs()}</>
               {!!error && (

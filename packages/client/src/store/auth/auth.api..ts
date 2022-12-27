@@ -1,6 +1,6 @@
+import { AuthDTO, ErrorDTO } from '../../types/api'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../../utils/consts'
-import { ErrorDTO } from '../../types/api'
 import { userApi } from '../user/user.api'
 
 export const authApi = createApi({
@@ -9,11 +9,11 @@ export const authApi = createApi({
     baseUrl: API_URL,
   }),
   endpoints: build => ({
-    authLogin: build.mutation<string | ErrorDTO, string>({
+    authLogin: build.mutation<string | ErrorDTO, AuthDTO>({
       query: data => ({
         url: `/auth/signin`,
         method: 'POST',
-        body: data,
+        body: JSON.stringify(data),
         headers: {
           'content-type': 'application/json',
         },
@@ -30,11 +30,11 @@ export const authApi = createApi({
         }
       },
     }),
-    authRegister: build.mutation<string | ErrorDTO, string>({
+    authRegister: build.mutation<string | ErrorDTO, AuthDTO>({
       query: data => ({
         url: `/auth/signup`,
         method: 'POST',
-        body: data,
+        body: JSON.stringify(data),
         headers: {
           'content-type': 'application/json',
         },

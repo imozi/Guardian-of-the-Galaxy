@@ -1,8 +1,8 @@
+import { AuthDTO, ErrorDTO } from '../../types/api'
 import { Link, useNavigate } from 'react-router-dom'
 import React, { useEffect } from 'react'
 import { Button } from '../../components/UI/Button'
 import { Card } from '../../components/Card'
-import { ErrorDTO } from '../../types/api'
 import { Layout } from '../../components/Layout'
 import { useAuthRegisterMutation } from '../../store/auth/auth.api.'
 import { useForm } from '../../hooks/useForm'
@@ -82,7 +82,7 @@ export const Register = () => {
     if (isSuccess) {
       navigate('/game')
     }
-  }, [isLoading])
+  }, [isSuccess])
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -91,7 +91,7 @@ export const Register = () => {
     const formData = formValues()
 
     if (isValid) {
-      authRegister(JSON.stringify(formData))
+      authRegister(formData as AuthDTO)
     }
   }
 

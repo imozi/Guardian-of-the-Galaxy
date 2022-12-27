@@ -1,7 +1,7 @@
+import { UserDTO } from '../types/api'
 import { UserType } from '../types/user'
-import { UserTypeDTO } from '../types/api'
 
-export const transformUser = (data: UserTypeDTO): UserType => ({
+export const transformUser = (data: UserDTO): UserType => ({
   id: data.id,
   login: data.login,
   firstName: data.first_name,
@@ -10,5 +10,5 @@ export const transformUser = (data: UserTypeDTO): UserType => ({
   avatar: data.avatar,
   phone: data.phone,
   email: data.email,
-  role: data.role === 'admin' ? 'admin' : 'user',
+  role: data.role,
 })
