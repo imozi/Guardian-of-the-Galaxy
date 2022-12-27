@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import { AuthDTO } from '../../api/types'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { Button } from '../../components/UI/Button'
 import { Card } from '../../components/Card'
+import { ErrorDTO } from '../../types/api'
 import { Layout } from '../../components/Layout'
-import { Link } from 'react-router-dom'
-import { isAxiosError } from 'axios'
-import { login } from '../../api/auth'
+import { useAuthLoginMutation } from '../../store/auth/auth.api.'
 import { useForm } from '../../hooks/useForm'
 
 const loginForm = [
@@ -32,9 +31,17 @@ const loginForm = [
 ]
 
 export const Login = () => {
+  const navigate = useNavigate()
+
   const [formValues, isFormValid, formInputs] = useForm(loginForm)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+
+  const [authLogin, { isLoading, isSuccess, error }] = useAuthLoginMutation()
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/game')
+    }
+  }, [isLoading])
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -43,18 +50,7 @@ export const Login = () => {
     const formData = formValues()
 
     if (isValid) {
-      setLoading(true)
-
-      try {
-        await login(formData as AuthDTO)
-        setError('')
-      } catch (e) {
-        if (isAxiosError(e)) {
-          setError(e.response?.data?.reason)
-        }
-      }
-
-      setLoading(false)
+      authLogin(JSON.stringify(formData))
     }
   }
 
@@ -64,9 +60,11 @@ export const Login = () => {
         <Card title="Guardian of the Galaxy">
           <form className="form" onSubmit={onSubmit}>
             <>{formInputs()}</>
-            {!!error && <div className="form__error">{error}</div>}
+            {!!error && (
+              <div className="form__error">{(error as ErrorDTO).reason}</div>
+            )}
             <div className="form__footer">
-              <Button type="submit" loading={loading}>
+              <Button type="submit" loading={isLoading}>
                 Sign in
               </Button>
             </div>

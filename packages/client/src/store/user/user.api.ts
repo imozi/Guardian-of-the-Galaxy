@@ -1,6 +1,9 @@
-import { ErrorDTO, UserTypeDTO } from '../../types/user'
+import { ErrorDTO, UserTypeDTO } from '../../types/api'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../../utils/consts'
+import { UserType } from '../../types/user'
+import { setUser } from './userSlice'
+import { transformUser } from '../../utils/apiTransforms'
 
 export const userApi = createApi({
   reducerPath: 'user/api',
@@ -8,16 +11,79 @@ export const userApi = createApi({
     baseUrl: API_URL,
   }),
   endpoints: build => ({
-    userAuth: build.query<UserTypeDTO | ErrorDTO, string>({
+    getUser: build.query<UserType, void>({
       query: () => ({
         url: `/auth/user`,
+        credentials: 'include',
+      }),
+      transformResponse: (response: UserTypeDTO) => transformUser(response),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled
+          dispatch(setUser(data))
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    }),
+    updateUser: build.mutation<UserType | ErrorDTO, string>({
+      query: data => ({
+        url: `/user/profile`,
+        method: 'PUT',
+        body: data,
         headers: {
           'content-type': 'application/json',
         },
         credentials: 'include',
       }),
+      transformResponse: (response: UserTypeDTO) => transformUser(response),
+      transformErrorResponse: response => response.data,
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled
+          dispatch(setUser(data as UserType))
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    }),
+    updateAvatar: build.mutation<UserType | ErrorDTO, FormData>({
+      query: data => ({
+        url: `/user/profile/avatar`,
+        method: 'PUT',
+        body: data,
+        credentials: 'include',
+      }),
+      transformResponse: (response: UserTypeDTO) => transformUser(response),
+      transformErrorResponse: response => response.data,
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled
+          dispatch(setUser(data as UserType))
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    }),
+    updatePassword: build.mutation<string | ErrorDTO, string>({
+      query: data => ({
+        url: `/user/password`,
+        method: 'PUT',
+        body: data,
+        headers: {
+          'content-type': 'application/json',
+        },
+        credentials: 'include',
+        responseHandler: response => response.text(),
+      }),
+      transformErrorResponse: response => JSON.parse(response.data as string),
     }),
   }),
 })
 
-export const { useUserAuthQuery } = userApi
+export const {
+  useGetUserQuery,
+  useUpdateUserMutation,
+  useUpdatePasswordMutation,
+  useUpdateAvatarMutation,
+} = userApi

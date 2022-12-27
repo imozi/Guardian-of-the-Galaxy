@@ -8,7 +8,7 @@ interface PrivateRoute {
 
 export const PrivateRoute: FC<PrivateRoute> = ({ isAuth, children }) => {
   if (!isAuth) {
-    return <Navigate to="/" />
+    return <Navigate to="/login" />
   }
 
   return children

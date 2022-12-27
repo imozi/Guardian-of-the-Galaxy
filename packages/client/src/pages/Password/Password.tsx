@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button } from '../../components/UI/Button'
 import { Card } from '../../components/Card'
+import { ErrorDTO } from '../../types/api'
 import { Layout } from '../../components/Layout'
 import { Link } from 'react-router-dom'
-import { isAxiosError } from 'axios'
 import { useForm } from '../../hooks/useForm'
+import { useUpdatePasswordMutation } from '../../store/user/user.api'
 
 const PasswordForm = [
   {
@@ -30,31 +31,34 @@ const PasswordForm = [
 ]
 
 export const Password = () => {
+  const [isEdit, setIsEdit] = useState(false)
+
   const [formValues, isFormValid, formInputs] = useForm(PasswordForm)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+
+  const [updatePassword, { isLoading, isSuccess, error }] =
+    useUpdatePasswordMutation()
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsEdit(false)
+    }
+  }, [isLoading])
+
+  const onEditHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+
+    setIsEdit(true)
+  }
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
 
     const isValid = isFormValid()
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const formData = formValues()
 
     if (isValid) {
-      setLoading(true)
-
-      try {
-        // TODO: Добавить вызов api смены пароля после закрытия ПР#13
-        setError('')
-      } catch (e) {
-        if (isAxiosError(e)) {
-          setError(e.response?.data?.reason)
-        }
-      }
-
-      setLoading(false)
+      updatePassword(JSON.stringify(formData))
     }
   }
 
@@ -69,13 +73,23 @@ export const Password = () => {
             </Link>
           </div>
           <Card>
-            <form className="form" onSubmit={onSubmit}>
+            <form
+              className={isEdit ? 'form' : 'form form--disabled'}
+              onSubmit={onSubmit}>
               <>{formInputs()}</>
-              {!!error && <div className="form__error">{error}</div>}
+              {!!error && (
+                <div className="form__error">{(error as ErrorDTO).reason}</div>
+              )}
               <div className="form__footer">
-                <Button type="submit" loading={loading}>
-                  Save
-                </Button>
+                {isEdit ? (
+                  <Button green={true} type="submit" loading={isLoading}>
+                    Save
+                  </Button>
+                ) : (
+                  <Button type="button" onClick={onEditHandler}>
+                    Edit
+                  </Button>
+                )}
               </div>
             </form>
           </Card>

@@ -34,6 +34,7 @@ $photo-size: 30px;
     width: $photo-size;
     height: $photo-size;
     border-radius: $border-radius-circle;
+    object-fit: cover;
   }
 
   &__score {

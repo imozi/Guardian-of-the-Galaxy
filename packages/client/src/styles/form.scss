@@ -14,3 +14,9 @@
     margin-bottom: 30px;
   }
 }
+
+.form--disabled {
+  .form__item {
+    pointer-events: none;
+  }
+}

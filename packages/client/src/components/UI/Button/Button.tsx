@@ -2,13 +2,22 @@ import React, { ButtonHTMLAttributes, FC } from 'react'
 
 type ButtonProps = {
   loading?: boolean
-  onClick?: () => void
+  green?: boolean
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-export const Button: FC<ButtonProps> = ({ children, loading, ...props }) => {
+export const Button: FC<ButtonProps> = ({
+  children,
+  loading,
+  green,
+  ...props
+}) => {
   let className = 'btn'
   if (loading) {
     className += ' btn--loading'
+  }
+  if (green) {
+    className += ' btn--green'
   }
 
   return (
