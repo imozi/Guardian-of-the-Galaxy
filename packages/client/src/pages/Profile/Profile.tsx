@@ -92,7 +92,7 @@ export const Profile = () => {
       field.value = user[field.storeName as keyof UserType] as string
     }
   })
-  const [formValues, isFormValid, formInputs] = useForm(ProfileForm)
+  const [formValues, isFormValid, formInputs] = useForm<UserDTO>(ProfileForm)
 
   const [updateUser, { isLoading, isSuccess, error }] = useUpdateUserMutation()
   const [updateAvatar, { isLoading: avatarLoading }] = useUpdateAvatarMutation()
@@ -117,7 +117,7 @@ export const Profile = () => {
     const formData = formValues()
 
     if (isValid) {
-      updateUser(formData as unknown as UserDTO)
+      updateUser(formData)
     }
   }
 

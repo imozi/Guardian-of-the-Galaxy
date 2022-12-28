@@ -73,7 +73,7 @@ const registerForm = [
 export const Register = () => {
   const navigate = useNavigate()
 
-  const [formValues, isFormValid, formInputs] = useForm(registerForm)
+  const [formValues, isFormValid, formInputs] = useForm<AuthDTO>(registerForm)
 
   const [authRegister, { isLoading, isSuccess, error }] =
     useAuthRegisterMutation()
@@ -91,7 +91,7 @@ export const Register = () => {
     const formData = formValues()
 
     if (isValid) {
-      authRegister(formData as AuthDTO)
+      authRegister(formData)
     }
   }
 

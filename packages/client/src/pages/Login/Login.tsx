@@ -33,7 +33,7 @@ const loginForm = [
 export const Login = () => {
   const navigate = useNavigate()
 
-  const [formValues, isFormValid, formInputs] = useForm(loginForm)
+  const [formValues, isFormValid, formInputs] = useForm<AuthDTO>(loginForm)
 
   const [authLogin, { isLoading, isSuccess, error }] = useAuthLoginMutation()
 
@@ -50,7 +50,7 @@ export const Login = () => {
     const formData = formValues()
 
     if (isValid) {
-      authLogin(formData as AuthDTO)
+      authLogin(formData)
     }
   }
 

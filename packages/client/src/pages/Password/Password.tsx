@@ -33,7 +33,8 @@ const PasswordForm = [
 export const Password = () => {
   const [isEdit, setIsEdit] = useState(false)
 
-  const [formValues, isFormValid, formInputs] = useForm(PasswordForm)
+  const [formValues, isFormValid, formInputs] =
+    useForm<PasswordDTO>(PasswordForm)
 
   const [updatePassword, { isLoading, isSuccess, error }] =
     useUpdatePasswordMutation()
@@ -58,7 +59,7 @@ export const Password = () => {
     const formData = formValues()
 
     if (isValid) {
-      updatePassword(formData as PasswordDTO)
+      updatePassword(formData)
     }
   }
 
