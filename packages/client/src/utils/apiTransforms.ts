@@ -10,5 +10,4 @@ export const transformUser = (data: UserDTO): UserType => ({
   avatar: data.avatar,
   phone: data.phone,
   email: data.email,
-  role: data.role,
 })

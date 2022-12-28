@@ -7,5 +7,4 @@ export type UserType = {
   avatar: string
   phone: string
   email: string
-  role?: string
 }
