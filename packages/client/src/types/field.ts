@@ -1,5 +1,6 @@
 export type FieldType = {
   name: string
+  storeName?: string
   type: string
   label: string
   value: string

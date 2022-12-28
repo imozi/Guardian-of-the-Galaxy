@@ -1,16 +1,22 @@
-import React, { useState } from 'react'
+import { ErrorDTO, UserDTO } from '../../types/api'
+import React, { useEffect, useState } from 'react'
+import {
+  useUpdateAvatarMutation,
+  useUpdateUserMutation,
+} from '../../store/user/user.api'
 import { Avatar } from '../../components/Avatar'
 import { Button } from '../../components/UI/Button'
 import { Card } from '../../components/Card'
 import { Layout } from '../../components/Layout'
 import { Link } from 'react-router-dom'
-import { isAxiosError } from 'axios'
-import { updateAvatar } from '../../api/profile'
+import { UserType } from '../../types/user'
+import { useAppSelector } from '../../store'
 import { useForm } from '../../hooks/useForm'
 
 const ProfileForm = [
   {
     name: 'first_name',
+    storeName: 'firstName',
     type: 'text',
     label: 'First name',
     value: '',
@@ -21,6 +27,7 @@ const ProfileForm = [
   },
   {
     name: 'phone',
+    storeName: 'phone',
     type: 'text',
     label: 'Phone',
     value: '',
@@ -31,6 +38,7 @@ const ProfileForm = [
   },
   {
     name: 'second_name',
+    storeName: 'secondName',
     type: 'text',
     label: 'Second name',
     value: '',
@@ -41,6 +49,7 @@ const ProfileForm = [
   },
   {
     name: 'login',
+    storeName: 'login',
     type: 'text',
     label: 'Login',
     value: '',
@@ -51,6 +60,7 @@ const ProfileForm = [
   },
   {
     name: 'email',
+    storeName: 'email',
     type: 'email',
     label: 'Email',
     value: '',
@@ -60,43 +70,54 @@ const ProfileForm = [
       'Email must be in Latin, it can include numbers and special characters like a hyphen, there must be a “dog” (@) and a dot after it, but there must be letters before the dot',
   },
   {
-    name: 'password',
-    type: 'password',
-    label: 'Password',
+    name: 'display_name',
+    storeName: 'displayName',
+    type: 'text',
+    label: 'Display name',
     value: '',
     isValid: true,
-    rule: /^(?=.*[A-Z])(?=.*[a-z].*[a-z].*[a-z]).{8,40}$/,
+    rule: /^[А-ЯA-Z][а-яa-z-]+$/,
     errorMessage:
-      'Password must be between 8 and 40 characters, at least one uppercase letter and a number are required',
+      'Latin or Cyrillic alphabet is allowed, the first letter must be capital, without spaces and without numbers, without special characters (only a hyphen is allowed)',
   },
 ]
 
 export const Profile = () => {
-  const [formValues, isFormValid, formInputs] = useForm(ProfileForm)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const user = useAppSelector(state => state.userState.user)
+
+  const [isEdit, setIsEdit] = useState(false)
+
+  ProfileForm.forEach(field => {
+    if (user && field.storeName) {
+      field.value = user[field.storeName as keyof UserType] as string
+    }
+  })
+  const [formValues, isFormValid, formInputs] = useForm<UserDTO>(ProfileForm)
+
+  const [updateUser, { isLoading, isSuccess, error }] = useUpdateUserMutation()
+  const [updateAvatar, { isLoading: avatarLoading }] = useUpdateAvatarMutation()
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsEdit(false)
+    }
+  }, [isSuccess])
+
+  const onEditHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+
+    setIsEdit(true)
+  }
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
 
     const isValid = isFormValid()
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const formData = formValues()
 
     if (isValid) {
-      setLoading(true)
-
-      try {
-        // TODO: Реализовать api обновление данных пользователя
-        setError('')
-      } catch (e) {
-        if (isAxiosError(e)) {
-          setError(e.response?.data?.reason)
-        }
-      }
-
-      setLoading(false)
+      updateUser(formData)
     }
   }
 
@@ -110,38 +131,49 @@ export const Profile = () => {
     const formData = new FormData()
     formData.append('avatar', files[0])
 
-    try {
-      await updateAvatar(formData)
-    } catch (e) {
-      if (isAxiosError(e)) {
-        setError(e.response?.data?.reason)
-      }
-    }
+    updateAvatar(formData)
   }
 
   return (
     <Layout>
       <div className="profile">
-        <div className="profile__nav">
-          <Link className="link" to="/password">
-            Change password
-          </Link>
-          <Link className="link" to="/game">
-            Back
-          </Link>
+        <h2 className="profile__title">Profile</h2>
+        <div className="profile__wrapper">
+          <div className="profile__nav">
+            <Link className="link" to="/password">
+              Change password
+            </Link>
+            <Link className="link" to="/game">
+              Back
+            </Link>
+          </div>
+          <Card title="Profile">
+            <Avatar
+              loading={avatarLoading}
+              src={user?.avatar}
+              onChange={onChangeAvatar}
+            />
+            <form
+              className={`form${isEdit ? '' : ' form--disabled'}`}
+              onSubmit={onSubmit}>
+              <>{formInputs()}</>
+              {!!error && (
+                <div className="form__error">{(error as ErrorDTO).reason}</div>
+              )}
+              <div className="form__footer">
+                {isEdit ? (
+                  <Button green={true} type="submit" loading={isLoading}>
+                    Save
+                  </Button>
+                ) : (
+                  <Button type="button" onClick={onEditHandler}>
+                    Edit
+                  </Button>
+                )}
+              </div>
+            </form>
+          </Card>
         </div>
-        <Card title="Profile">
-          <Avatar onChange={onChangeAvatar} />
-          <form className="form" onSubmit={onSubmit}>
-            <>{formInputs()}</>
-            {!!error && <div className="form__error">{error}</div>}
-            <div className="form__footer">
-              <Button type="submit" loading={loading}>
-                Save
-              </Button>
-            </div>
-          </form>
-        </Card>
       </div>
     </Layout>
   )

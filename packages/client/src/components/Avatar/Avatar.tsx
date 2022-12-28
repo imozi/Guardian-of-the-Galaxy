@@ -1,20 +1,22 @@
 import React, { FC } from 'react'
+import { API_RESOURCES_URL } from '../../utils/consts'
 
 type AvatarProps = {
   src?: string
   onChange?: (e: React.FormEvent<HTMLInputElement>) => void
+  loading?: boolean
 }
 
-export const Avatar: FC<AvatarProps> = ({ src, onChange }) => {
+export const Avatar: FC<AvatarProps> = ({ src, onChange, loading }) => {
+  let className = 'avatar'
+  if (loading) {
+    className += ' avatar--loading'
+  }
   return (
-    <div className="avatar">
+    <div className={className}>
       <label htmlFor="avatar" className="avatar__img" data-loading="false">
         <img
-          src={
-            src
-              ? `https://ya-praktikum.tech/api/v2/resources/${src}`
-              : '/images/user-default.svg'
-          }
+          src={src ? `${API_RESOURCES_URL}/${src}` : '/images/user-default.svg'}
           alt="avatar"
         />
         <input

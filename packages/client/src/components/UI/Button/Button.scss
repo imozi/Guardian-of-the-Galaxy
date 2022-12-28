@@ -57,6 +57,14 @@
   }
 }
 
+.btn--green {
+  background-color: $color-green;
+
+  &:hover {
+    background-color: $color-green;
+  }
+}
+
 @keyframes rotate {
   0% {
     transform: translate(-50%, -50%) rotate(0deg);

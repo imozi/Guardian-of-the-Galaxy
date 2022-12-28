@@ -2,13 +2,11 @@ import React, { useCallback, useState } from 'react'
 import { Field } from '../components/UI/Field'
 import { FieldType } from '../types/field'
 
-export const useForm = (config: FieldType[]) => {
+export const useForm = <FormType,>(config: FieldType[]) => {
   const initialData: Record<string, FieldType> = {}
-  const initialValues: Record<string, string> = {}
 
   for (const field of config) {
     initialData[field.name] = field
-    initialValues[field.name] = field.value
   }
 
   const [formData, setFormData] = useState(initialData)
@@ -31,12 +29,12 @@ export const useForm = (config: FieldType[]) => {
 
   const formValues = useCallback(() => {
     return Object.entries(formData).reduce(
-      (acc: Record<string, string>, [field, fieldValue]) => {
+      (acc: Record<string, unknown>, [field, fieldValue]) => {
         acc[field] = fieldValue.value
         return acc
       },
       {}
-    )
+    ) as FormType
   }, [formData])
 
   const validateForm = () => {
@@ -75,5 +73,5 @@ export const useForm = (config: FieldType[]) => {
     ))
   }
 
-  return [formValues, isFormValid, FormFields]
+  return [formValues, isFormValid, FormFields] as const
 }

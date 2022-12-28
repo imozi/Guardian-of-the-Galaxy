@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
-import { AuthDTO } from '../../api/types'
+import { AuthDTO, ErrorDTO } from '../../types/api'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect } from 'react'
 import { Button } from '../../components/UI/Button'
 import { Card } from '../../components/Card'
 import { Layout } from '../../components/Layout'
-import { Link } from 'react-router-dom'
-import { isAxiosError } from 'axios'
-import { register } from '../../api/auth'
+import { useAuthRegisterMutation } from '../../store/auth/auth.api.'
 import { useForm } from '../../hooks/useForm'
 
 const registerForm = [
@@ -72,9 +71,18 @@ const registerForm = [
 ]
 
 export const Register = () => {
-  const [formValues, isFormValid, formInputs] = useForm(registerForm)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const navigate = useNavigate()
+
+  const [formValues, isFormValid, formInputs] = useForm<AuthDTO>(registerForm)
+
+  const [authRegister, { isLoading, isSuccess, error }] =
+    useAuthRegisterMutation()
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/game')
+    }
+  }, [isSuccess])
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -83,18 +91,7 @@ export const Register = () => {
     const formData = formValues()
 
     if (isValid) {
-      setLoading(true)
-
-      try {
-        await register(formData as AuthDTO)
-        setError('')
-      } catch (e) {
-        if (isAxiosError(e)) {
-          setError(e.response?.data?.reason)
-        }
-      }
-
-      setLoading(false)
+      authRegister(formData)
     }
   }
 
@@ -104,9 +101,11 @@ export const Register = () => {
         <Card title="Guardian of the Galaxy">
           <form className="form" onSubmit={onSubmit}>
             <>{formInputs()}</>
-            {!!error && <div className="form__error">{error}</div>}
+            {!!error && (
+              <div className="form__error">{(error as ErrorDTO).reason}</div>
+            )}
             <div className="form__footer">
-              <Button type="submit" loading={loading}>
+              <Button type="submit" loading={isLoading}>
                 Sign up
               </Button>
             </div>

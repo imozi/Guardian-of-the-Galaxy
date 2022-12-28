@@ -1,9 +1,4 @@
 .profile {
-  position: relative;
-  display: grid;
-  grid-template-columns: $grid-template-profile;
-  column-gap: $grid-gap;
-
   &__nav {
     display: flex;
     flex-direction: column;
@@ -12,6 +7,19 @@
     & .link {
       margin-bottom: 10px;
     }
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-columns: $grid-template-profile;
+    column-gap: $grid-gap;
+  }
+
+  &__title {
+    @include title_fz40;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 30px;
   }
 
   & .avatar {
