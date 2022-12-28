@@ -1,6 +1,7 @@
 import { AuthDTO, ErrorDTO } from '../../types/api'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { API_URL } from '../../utils/consts'
+import { resetUser } from '../user/userSlice'
 import { userApi } from '../user/user.api'
 
 export const authApi = createApi({
@@ -50,7 +51,27 @@ export const authApi = createApi({
         }
       },
     }),
+    authLogout: build.mutation<string | ErrorDTO, void>({
+      query: () => ({
+        url: `/auth/logout`,
+        method: 'POST',
+        credentials: 'include',
+        responseHandler: response => response.text(),
+      }),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled
+          dispatch(resetUser())
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    }),
   }),
 })
 
-export const { useAuthLoginMutation, useAuthRegisterMutation } = authApi
+export const {
+  useAuthLoginMutation,
+  useAuthRegisterMutation,
+  useAuthLogoutMutation,
+} = authApi

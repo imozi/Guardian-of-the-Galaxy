@@ -1,17 +1,32 @@
-import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
 import { GameStart } from '../../components/GameStart'
 import { Layout } from '../../components/Layout'
-import { Link } from 'react-router-dom'
 import { UserField } from '../../components/UI/UserField'
 import { useAppSelector } from '../../store'
+import { useAuthLogoutMutation } from '../../store/auth/auth.api.'
 
 export const Game = () => {
+  const navigate = useNavigate()
+
   const user = useAppSelector(state => state.userState.user)
 
   const [isGameStart, setIsGameStart] = useState(false)
 
+  const [authLogout, { isSuccess }] = useAuthLogoutMutation()
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/')
+    }
+  }, [isSuccess])
+
   const startGame = () => {
     setIsGameStart(true)
+  }
+
+  const onLogoutClick = () => {
+    authLogout()
   }
 
   return (
@@ -37,7 +52,9 @@ export const Game = () => {
               <Link className="link" to="/forum">
                 Forum
               </Link>
-              <button className="link">Logout</button>
+              <button className="link" onClick={onLogoutClick}>
+                Logout
+              </button>
             </div>
           )}
           <div className="game__central">
