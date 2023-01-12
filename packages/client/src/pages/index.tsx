@@ -1,5 +1,4 @@
 import { Route, Routes } from 'react-router-dom'
-import { PrivateRoute } from '@/hoc/ProtectedRoute'
 import { Front } from './Front'
 import { Login } from './Login'
 import { Register } from './Register'
@@ -14,6 +13,7 @@ import { GameOver } from './GameOver'
 import { ClientError } from './Error/404'
 import { ServerError } from './Error/500'
 import { useGetUserQuery } from '@/store/user/user.api'
+import { PrivateRoute } from '@/hoc/ProtectedRoute'
 
 export function Pages() {
   const { isSuccess, isLoading, isFetching } = useGetUserQuery()
