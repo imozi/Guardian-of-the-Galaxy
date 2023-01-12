@@ -1,0 +1,1 @@
+export { fullscreenAPI } from './fullscreen'

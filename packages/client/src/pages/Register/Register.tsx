@@ -1,11 +1,11 @@
-import { AuthDTO, ErrorDTO } from '../../types/api'
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import React, { useEffect } from 'react'
-import { Button } from '../../components/UI/Button'
-import { Card } from '../../components/Card'
-import { Layout } from '../../components/Layout'
-import { useAuthRegisterMutation } from '../../store/auth/auth.api.'
-import { useForm } from '../../hooks/useForm'
+import { Page } from '@/components/Page'
+import { useForm } from '@/hooks'
+import { Card } from '@/components/Card'
+import { Button } from '@/components/UI/Button'
+import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
+import { useAuthRegisterMutation } from '@/store/auth/auth.api.'
 
 const registerForm = [
   {
@@ -96,9 +96,9 @@ export const Register = () => {
   }
 
   return (
-    <Layout>
-      <div className="register">
-        <Card title="Guardian of the Galaxy">
+    <Page title="Registration">
+      <section className="register">
+        <Card title="Guardian of the Galaxy Registration">
           <form className="form" onSubmit={onSubmit}>
             <>{formInputs()}</>
             {!!error && (
@@ -116,7 +116,7 @@ export const Register = () => {
             </Link>
           </div>
         </Card>
-      </div>
-    </Layout>
+      </section>
+    </Page>
   )
 }

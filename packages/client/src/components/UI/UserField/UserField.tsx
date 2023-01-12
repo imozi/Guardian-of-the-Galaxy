@@ -1,19 +1,10 @@
-import React, { AllHTMLAttributes, FC } from 'react'
-import { API_RESOURCES_URL } from '../../../utils/consts'
+import { AllHTMLAttributes, FC } from 'react'
+import { API_RESOURCES_URL } from '@/core/consts'
+import { UserFieldProps } from '@/types/components/field'
 
-type UserFieldProps = {
-  number?: number
-  author: string
-  avatar: string
-  score?: number
-} & AllHTMLAttributes<HTMLDivElement>
-
-export const UserField: FC<UserFieldProps> = ({
-  number,
-  author,
-  avatar,
-  score,
-}) => {
+export const UserField: FC<
+  UserFieldProps & AllHTMLAttributes<HTMLDivElement>
+> = ({ number, author, avatar, score }) => {
   return (
     <div className="user-field">
       {number && <div className="user-field__number">{number}</div>}

@@ -1,9 +1,9 @@
-import { ErrorDTO, PasswordDTO, UserDTO } from '../../types/api'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { API_URL } from '../../utils/consts'
-import { UserType } from '../../types/user'
 import { setUser } from './userSlice'
-import { transformUser } from '../../utils/apiTransforms'
+import { API_URL } from '@/core/consts'
+import { transformUser } from '@/core/utils'
+import { UserType } from '@/types'
+import { ErrorDTO, PasswordDTO, UserDTO } from '@/types/api/ya.praktikum'
 
 export const userApi = createApi({
   reducerPath: 'user/api',

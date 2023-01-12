@@ -1,17 +1,17 @@
-import { ErrorDTO, UserDTO } from '../../types/api'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Page } from '@/components/Page'
+import { useForm } from '@/hooks'
+import { Avatar } from '@/components/Avatar'
+import { Card } from '@/components/Card'
+import { Button } from '@/components/UI/Button'
+import { UserType } from '@/types'
+import { ErrorDTO, UserDTO } from '@/types/api/ya.praktikum'
+import { useAppSelector } from '@/store'
 import {
   useUpdateAvatarMutation,
   useUpdateUserMutation,
-} from '../../store/user/user.api'
-import { Avatar } from '../../components/Avatar'
-import { Button } from '../../components/UI/Button'
-import { Card } from '../../components/Card'
-import { Layout } from '../../components/Layout'
-import { Link } from 'react-router-dom'
-import { UserType } from '../../types/user'
-import { useAppSelector } from '../../store'
-import { useForm } from '../../hooks/useForm'
+} from '@/store/user/user.api'
 
 const ProfileForm = [
   {
@@ -135,8 +135,8 @@ export const Profile = () => {
   }
 
   return (
-    <Layout>
-      <div className="profile">
+    <Page title="Profile">
+      <section className="profile">
         <h2 className="profile__title">Profile</h2>
         <div className="profile__wrapper">
           <div className="profile__nav">
@@ -147,7 +147,7 @@ export const Profile = () => {
               Back
             </Link>
           </div>
-          <Card title="Profile">
+          <Card>
             <Avatar
               loading={avatarLoading}
               src={user?.avatar}
@@ -174,7 +174,7 @@ export const Profile = () => {
             </form>
           </Card>
         </div>
-      </div>
-    </Layout>
+      </section>
+    </Page>
   )
 }

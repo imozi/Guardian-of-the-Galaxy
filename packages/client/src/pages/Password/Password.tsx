@@ -1,11 +1,11 @@
-import { ErrorDTO, PasswordDTO } from '../../types/api'
-import React, { useEffect, useState } from 'react'
-import { Button } from '../../components/UI/Button'
-import { Card } from '../../components/Card'
-import { Layout } from '../../components/Layout'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useForm } from '../../hooks/useForm'
-import { useUpdatePasswordMutation } from '../../store/user/user.api'
+import { Page } from '@/components/Page'
+import { Card } from '@/components/Card'
+import { Button } from '@/components/UI'
+import { useForm } from '@/hooks'
+import { useUpdatePasswordMutation } from '@/store/user/user.api'
+import { ErrorDTO, PasswordDTO } from '@/types/api/ya.praktikum'
 
 const PasswordForm = [
   {
@@ -64,8 +64,8 @@ export const Password = () => {
   }
 
   return (
-    <Layout>
-      <div className="password">
+    <Page title="Password">
+      <section className="password">
         <h2 className="password__title">Password</h2>
         <div className="password__wrapper">
           <div className="password__nav">
@@ -95,7 +95,7 @@ export const Password = () => {
             </form>
           </Card>
         </div>
-      </div>
-    </Layout>
+      </section>
+    </Page>
   )
 }

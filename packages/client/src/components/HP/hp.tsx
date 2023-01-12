@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 
 type HealthProps = {
   healths: 0 | 1 | 2 | 3

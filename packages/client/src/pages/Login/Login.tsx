@@ -1,11 +1,11 @@
-import { AuthDTO, ErrorDTO } from '../../types/api'
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import React, { useEffect } from 'react'
-import { Button } from '../../components/UI/Button'
-import { Card } from '../../components/Card'
-import { Layout } from '../../components/Layout'
-import { useAuthLoginMutation } from '../../store/auth/auth.api.'
-import { useForm } from '../../hooks/useForm'
+import { Page } from '@/components/Page'
+import { Card } from '@/components/Card'
+import { Button } from '@/components/UI'
+import { useForm } from '@/hooks'
+import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
+import { useAuthLoginMutation } from '@/store/auth/auth.api.'
 
 const loginForm = [
   {
@@ -41,7 +41,7 @@ export const Login = () => {
     if (isSuccess) {
       navigate('/game')
     }
-  }, [isSuccess])
+  }, [isSuccess, navigate])
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -55,9 +55,9 @@ export const Login = () => {
   }
 
   return (
-    <Layout>
-      <div className="login">
-        <Card title="Guardian of the Galaxy">
+    <Page title="Login">
+      <section className="login">
+        <Card title="Guardian of the Galaxy Login">
           <form className="form" onSubmit={onSubmit}>
             <>{formInputs()}</>
             {!!error && (
@@ -75,7 +75,7 @@ export const Login = () => {
             </Link>
           </div>
         </Card>
-      </div>
-    </Layout>
+      </section>
+    </Page>
   )
 }

@@ -1,9 +1,10 @@
 pre-commit:
   parallel: true
   commands:
+    format:
+      run: yarn format 
     lint:
-      glob: '*.{ts,tsx}'
-      run: yarn eslint {staged_files}
+      run: yarn lint
 commit-msg:
   commands:
     commitlint:

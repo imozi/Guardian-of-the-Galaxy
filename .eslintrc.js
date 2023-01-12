@@ -18,11 +18,11 @@ module.exports = {
   rules: {
     '@typescript-eslint/ban-ts-comment': 1,
     "sort-imports": ["error", {
-        "ignoreCase": false,
-        "ignoreDeclarationSort": false,
-        "ignoreMemberSort": false,
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": true,
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-        "allowSeparatedGroups": false
+        "allowSeparatedGroups": true,
     }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"

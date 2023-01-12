@@ -1,10 +1,12 @@
-import React, { useCallback } from 'react'
-import { ANINAMTION_STUB_TIME } from '../../utils/consts'
-import { Button } from '../../components/UI/Button'
-import { Layout } from '../../components/Layout'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ANIMATION_STUB_TIME } from '@/core/consts'
+import { Page } from '@/components/Page'
+import { Button } from '@/components/UI'
 
 export const NewMessage = () => {
+  const navigate = useNavigate()
+
   const [loading, setLoading] = useState(false)
   const [value, setValue] = useState('')
 
@@ -17,16 +19,16 @@ export const NewMessage = () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    }, ANINAMTION_STUB_TIME)
+    }, ANIMATION_STUB_TIME)
   }, [])
 
   return (
-    <Layout>
-      <div className="new-message">
+    <Page title="New message">
+      <section className="new-message">
         <h2 className="new-message__title">New message</h2>
         <div className="new-message__wrapper">
           <div className="new-message__links">
-            <a href="#" className="link">
+            <a className="link" onClick={() => navigate(-1)}>
               Back
             </a>
           </div>
@@ -42,7 +44,7 @@ export const NewMessage = () => {
             </Button>
           </form>
         </div>
-      </div>
-    </Layout>
+      </section>
+    </Page>
   )
 }
