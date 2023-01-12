@@ -1,8 +1,9 @@
-import { AuthDTO, ErrorDTO } from '../../types/api'
+import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
+import { API_URL } from '@/core/consts'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { API_URL } from '../../utils/consts'
-import { resetUser } from '../user/userSlice'
 import { userApi } from '../user/user.api'
+import { resetUser } from '../user/userSlice'
+
 
 export const authApi = createApi({
   reducerPath: 'auth/api',

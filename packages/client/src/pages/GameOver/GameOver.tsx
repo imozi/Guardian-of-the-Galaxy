@@ -1,9 +1,10 @@
-import { Layout } from '../../components/Layout'
 import { Link } from 'react-router-dom'
+import { Page } from '@/components/Page'
 
 export const GameOver = () => {
   return (
-    <Layout isGame={true}>
+    <Page title='GAME OVER' isGame={true}>
+      <section className='game_over'>
       <div className="game__header">
         <div className="game__currentstat">
           <div className="game__level">LEVEL 1</div>
@@ -28,6 +29,7 @@ export const GameOver = () => {
           </Link>
         </div>
       </div>
-    </Layout>
+      </section>
+    </Page>
   )
 }

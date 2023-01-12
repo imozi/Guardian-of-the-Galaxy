@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react'
-import { TIMER_TIME } from '../../utils/consts'
+import { TIMER_TIME } from '@/core/consts'
+import { FC, useState } from 'react'
 
 type TimerProps = {
   value: number | string

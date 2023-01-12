@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import dotenv from 'dotenv'
+import path from 'path'
 dotenv.config()
 import react from '@vitejs/plugin-react'
 
@@ -12,4 +13,9 @@ export default defineConfig({
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 })

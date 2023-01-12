@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import { API_RESOURCES_URL } from '../../utils/consts'
+import { FC } from 'react'
+import { API_RESOURCES_URL } from '@/core/consts'
 
 type AvatarProps = {
   src?: string

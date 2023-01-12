@@ -1,16 +1,18 @@
-import { Layout } from '../../../components/Layout'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { Page } from '@/components/Page'
 
 export const ClientError = () => {
+  const navigate = useNavigate()
+
   return (
-    <Layout>
-      <div className="text__404">404</div>
-      <div className="text__error">Page not found</div>
-      <div className="button-back">
-        <Link className="link" to="/profile">
+    <Page title="Page not found">
+      <section className="not-found">
+        <h1 className="not-found__status">404</h1>
+        <p className="not-found__text">Page not found</p>
+        <a className="link" onClick={() => navigate(-1)}>
           Back
-        </Link>
-      </div>
-    </Layout>
+        </a>
+      </section>
+    </Page>
   )
 }

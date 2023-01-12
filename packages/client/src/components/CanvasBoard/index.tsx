@@ -1,1 +1,0 @@
-export { CanvasBoard } from './CanvasBoard'

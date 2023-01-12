@@ -1,16 +1,18 @@
-import { Layout } from '../../../components/Layout'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { Page } from '@/components/Page'
 
 export const ServerError = () => {
+  const navigate = useNavigate()
+
   return (
-    <Layout>
-      <div className="text__500">500</div>
-      <div className="text__error">Oops! Server error</div>
-      <div className="button-back">
-        <Link className="link" to="/profile">
+    <Page title="Server Error">
+      <section className="server-error">
+        <h1 className="server-error__status">500</h1>
+        <p className="server-error__text">Oops! Server error</p>
+        <a className="link" onClick={() => navigate(-1)}>
           Back
-        </Link>
-      </div>
-    </Layout>
+        </a>
+      </section>
+    </Page>
   )
 }

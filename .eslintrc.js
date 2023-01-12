@@ -22,7 +22,8 @@ module.exports = {
         "ignoreDeclarationSort": false,
         "ignoreMemberSort": false,
         "memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-        "allowSeparatedGroups": false
+        "allowSeparatedGroups": false,
+        "sort-import": false
     }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"

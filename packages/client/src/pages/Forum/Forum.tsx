@@ -1,18 +1,21 @@
-import { Layout } from '../../components/Layout'
-import React from 'react'
-import { Topic } from '../../components/UI/Topic'
+import { useNavigate } from 'react-router-dom'
+import { Page } from '@/components/Page'
+import { Topic } from '@/components/UI'
+
 
 export const Forum = () => {
+  const navigate = useNavigate()
+  
   return (
-    <Layout>
-      <div className="forum">
+    <Page title='Forum'>
+      <section className="forum">
         <h2 className="forum__title">Forum</h2>
         <div className="forum__wrapper">
           <div className="forum__links">
             <a href="#" className="link">
               New Topic
             </a>
-            <a href="#" className="link">
+            <a className="link" onClick={() => navigate(-1)}>
               Back
             </a>
           </div>
@@ -22,7 +25,7 @@ export const Forum = () => {
           </div>
           <Topic topicName="game progress" answers="45"></Topic>
         </div>
-      </div>
-    </Layout>
+      </section>
+    </Page>
   )
 }

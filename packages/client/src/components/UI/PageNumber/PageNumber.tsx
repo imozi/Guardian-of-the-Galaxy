@@ -1,4 +1,4 @@
-import React, { FC, LiHTMLAttributes } from 'react'
+import { FC, LiHTMLAttributes } from 'react'
 
 type PageNumberProps = {
   quantity: string

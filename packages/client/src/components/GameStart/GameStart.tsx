@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { TIMER_START, TIMER_TIME } from '../../utils/consts'
+import { useEffect, useState } from 'react'
 import { GameBoard } from '../GameBoard'
-import { useCountdown } from '../../hooks/useCountdown'
+import { TIMER_START, TIMER_TIME } from '@/core/consts'
+import { useCountDown } from '@/hooks'
 
 export const GameStart = () => {
-  const count = useCountdown(TIMER_START)
+  const count = useCountDown(TIMER_START)
   const [isTimerStart, setIsTimerStart] = useState(true)
   const [isGameStart, setIsGameStart] = useState(false)
 

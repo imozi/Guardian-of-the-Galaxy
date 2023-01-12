@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
+import { FieldType } from '@/types/components'
 
-import { FieldType } from '../../../types/field'
 
 type FieldProps = React.InputHTMLAttributes<HTMLInputElement> & FieldType
 
