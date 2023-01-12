@@ -41,7 +41,7 @@ export const Login = () => {
     if (isSuccess) {
       navigate('/game')
     }
-  }, [isSuccess])
+  }, [isSuccess, navigate])
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()

@@ -19,7 +19,7 @@ export const Game = () => {
     if (isSuccess) {
       navigate('/')
     }
-  }, [isSuccess])
+  }, [isSuccess, navigate])
 
   const startGame = () => {
     setIsGameStart(true)

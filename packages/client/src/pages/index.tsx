@@ -21,11 +21,7 @@ export function Pages() {
 
   //TODO придумать лоадер
   if (loading) {
-    return (
-      <>
-        <p>loading</p>
-      </>
-    )
+    return <p>loading</p>
   }
 
   return (

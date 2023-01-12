@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ANINAMTION_STUB_TIME } from '@/core/consts'
+import { ANIMATION_STUB_TIME } from '@/core/consts'
 import { Page } from '@/components/Page'
 import { Button } from '@/components/UI'
 
@@ -19,7 +19,7 @@ export const NewMessage = () => {
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
-    }, ANINAMTION_STUB_TIME)
+    }, ANIMATION_STUB_TIME)
   }, [])
 
   return (
