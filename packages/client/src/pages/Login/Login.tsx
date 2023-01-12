@@ -55,7 +55,7 @@ export const Login = () => {
   }
 
   return (
-    <Page title='Login'>
+    <Page title="Login">
       <section className="login">
         <Card title="Guardian of the Galaxy Login">
           <form className="form" onSubmit={onSubmit}>

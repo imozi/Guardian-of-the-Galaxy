@@ -15,6 +15,9 @@ export const Page: FC<PageProps> = ({ title, children, isGame = false }) => {
 
   useDocumentTitle(`${prefix}${title}`)
 
-  return <main className="page" data-game={isGame}>{children}</main>
-
+  return (
+    <main className="page" data-game={isGame}>
+      {children}
+    </main>
+  )
 }

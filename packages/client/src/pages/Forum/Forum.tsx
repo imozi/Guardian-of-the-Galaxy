@@ -2,12 +2,11 @@ import { useNavigate } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { Topic } from '@/components/UI'
 
-
 export const Forum = () => {
   const navigate = useNavigate()
-  
+
   return (
-    <Page title='Forum'>
+    <Page title="Forum">
       <section className="forum">
         <h2 className="forum__title">Forum</h2>
         <div className="forum__wrapper">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { Card } from '@/components/Card'
@@ -6,8 +6,6 @@ import { Button } from '@/components/UI'
 import { useForm } from '@/hooks'
 import { useUpdatePasswordMutation } from '@/store/user/user.api'
 import { ErrorDTO, PasswordDTO } from '@/types/api/ya.praktikum'
-
-
 
 const PasswordForm = [
   {
@@ -66,7 +64,7 @@ export const Password = () => {
   }
 
   return (
-    <Page title='Password'>
+    <Page title="Password">
       <section className="password">
         <h2 className="password__title">Password</h2>
         <div className="password__wrapper">

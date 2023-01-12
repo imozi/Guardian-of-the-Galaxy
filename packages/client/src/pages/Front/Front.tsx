@@ -2,7 +2,6 @@ import { Page } from '@/components/Page'
 import { useAppSelector } from '@/store'
 import { Link } from 'react-router-dom'
 
-
 export const Front = () => {
   const user = useAppSelector(state => state.userState.user)
 

@@ -1,5 +1,5 @@
-import { UserDTO } from "@/types/api/ya.praktikum";
-import { UserType } from "@/types";
+import { UserDTO } from '@/types/api/ya.praktikum'
+import { UserType } from '@/types'
 
 export const transformUser = (data: UserDTO): UserType => ({
   id: data.id,

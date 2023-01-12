@@ -1,5 +1,5 @@
-import { GameScore } from "../GameScore"
-import { Health } from "../HP"
+import { GameScore } from '../GameScore'
+import { Health } from '../HP'
 
 export const GameBoard = () => {
   return (

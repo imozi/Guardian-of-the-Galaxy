@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { useForm } from '@/hooks'
@@ -6,8 +6,6 @@ import { Card } from '@/components/Card'
 import { Button } from '@/components/UI/Button'
 import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
 import { useAuthRegisterMutation } from '@/store/auth/auth.api.'
-
-
 
 const registerForm = [
   {
@@ -98,7 +96,7 @@ export const Register = () => {
   }
 
   return (
-    <Page title='Registration'>
+    <Page title="Registration">
       <section className="register">
         <Card title="Guardian of the Galaxy Registration">
           <form className="form" onSubmit={onSubmit}>

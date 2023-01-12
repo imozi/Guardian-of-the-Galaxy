@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import { FieldType } from '@/types/components'
 
-
 type FieldProps = React.InputHTMLAttributes<HTMLInputElement> & FieldType
 
 export const Field: FC<FieldProps> = ({

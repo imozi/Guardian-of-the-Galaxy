@@ -1,6 +1,6 @@
-import { Link, useNavigate } from "react-router-dom"
-import { Page } from "@/components/Page"
-import { PageNumber, Post } from "@/components/UI"
+import { Link, useNavigate } from 'react-router-dom'
+import { Page } from '@/components/Page'
+import { PageNumber, Post } from '@/components/UI'
 
 export const Branch = () => {
   const navigate = useNavigate()
@@ -11,7 +11,9 @@ export const Branch = () => {
         <h2 className="branch__title">Game progress</h2>
         <div className="branch__wrapper">
           <div className="branch__links">
-            <Link className="link" to={'/forum-message'}>New Message</Link>
+            <Link className="link" to={'/forum-message'}>
+              New Message
+            </Link>
             <a className="link" onClick={() => navigate(-1)}>
               Back
             </a>

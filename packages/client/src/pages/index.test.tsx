@@ -3,8 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom/server'
 import { store } from '@/store'
-import { Page } from '.'
-
+import { Pages } from '.'
 
 const appContent = 'Guardian of the Galaxy'
 
@@ -18,7 +17,7 @@ test('Example test', async () => {
   render(
     <Provider store={store}>
       <StaticRouter location="/">
-        <Page />
+        <Pages />
       </StaticRouter>
     </Provider>
   )

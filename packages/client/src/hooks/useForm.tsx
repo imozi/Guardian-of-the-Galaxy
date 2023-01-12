@@ -2,7 +2,6 @@ import { useCallback, useState } from 'react'
 import { Field } from '@/components/UI'
 import { FieldType } from '@/types/components'
 
-
 export const useForm = <FormType,>(config: FieldType[]) => {
   const initialData: Record<string, FieldType> = {}
 

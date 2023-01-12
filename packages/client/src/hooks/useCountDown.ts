@@ -1,7 +1,6 @@
 import { TIMER_TIME } from '@/core/consts'
 import { useEffect, useState } from 'react'
 
-
 export const useCountDown = (startValue: number) => {
   const [countDown, setCountDown] = useState(startValue)
 

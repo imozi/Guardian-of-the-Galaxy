@@ -5,7 +5,6 @@ import { transformUser } from '@/core/utils'
 import { UserType } from '@/types'
 import { ErrorDTO, PasswordDTO, UserDTO } from '@/types/api/ya.praktikum'
 
-
 export const userApi = createApi({
   reducerPath: 'user/api',
   baseQuery: fetchBaseQuery({

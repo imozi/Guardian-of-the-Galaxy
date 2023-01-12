@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ANINAMTION_STUB_TIME } from '@/core/consts'
 import { Page } from '@/components/Page'
@@ -23,7 +23,7 @@ export const NewMessage = () => {
   }, [])
 
   return (
-    <Page title='New message'>
+    <Page title="New message">
       <section className="new-message">
         <h2 className="new-message__title">New message</h2>
         <div className="new-message__wrapper">
