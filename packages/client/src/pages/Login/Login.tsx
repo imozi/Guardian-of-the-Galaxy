@@ -5,7 +5,7 @@ import { Card } from '@/components/Card'
 import { Button } from '@/components/UI'
 import { useForm } from '@/hooks'
 import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
-import { useAuthLoginMutation } from '@/store/auth/auth.api.'
+import { useAuthLoginMutation } from '@/store/auth/auth.api'
 
 const loginForm = [
   {

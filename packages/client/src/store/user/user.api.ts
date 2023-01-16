@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setUser } from './userSlice'
 import { API_URL } from '@/core/consts'
-import { transformUser } from '@/core/utils'
+import { apiDefaultHeaders, transformUser } from '@/core/utils'
 import { UserType } from '@/types'
 import { ErrorDTO, PasswordDTO, UserDTO } from '@/types/api/ya.praktikum'
 
@@ -9,12 +9,12 @@ export const userApi = createApi({
   reducerPath: 'user/api',
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
+    credentials: 'include',
   }),
   endpoints: build => ({
     getUser: build.query<UserType, void>({
       query: () => ({
         url: `/auth/user`,
-        credentials: 'include',
       }),
       transformResponse: (response: UserDTO) => transformUser(response),
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
@@ -28,13 +28,10 @@ export const userApi = createApi({
     }),
     updateUser: build.mutation<UserType | ErrorDTO, UserDTO>({
       query: data => ({
+        ...apiDefaultHeaders(),
         url: `/user/profile`,
         method: 'PUT',
         body: data,
-        headers: {
-          'content-type': 'application/json',
-        },
-        credentials: 'include',
       }),
       transformResponse: (response: UserDTO) => transformUser(response),
       transformErrorResponse: response => response.data,
@@ -52,7 +49,6 @@ export const userApi = createApi({
         url: `/user/profile/avatar`,
         method: 'PUT',
         body: data,
-        credentials: 'include',
       }),
       transformResponse: (response: UserDTO) => transformUser(response),
       transformErrorResponse: response => response.data,
@@ -67,13 +63,10 @@ export const userApi = createApi({
     }),
     updatePassword: build.mutation<string | ErrorDTO, PasswordDTO>({
       query: data => ({
+        ...apiDefaultHeaders(),
         url: `/user/password`,
         method: 'PUT',
         body: data,
-        headers: {
-          'content-type': 'application/json',
-        },
-        credentials: 'include',
         responseHandler: response => response.text(),
       }),
       transformErrorResponse: response => JSON.parse(response.data as string),

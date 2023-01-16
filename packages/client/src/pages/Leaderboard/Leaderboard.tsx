@@ -5,7 +5,7 @@ import { useAppSelector } from '@/store'
 import {
   useAddScoreMutation,
   useGetLeaderboardQuery,
-} from '@/store/leaderboard/leaderboard.api.'
+} from '@/store/leaderboard/leaderboard.api'
 import { UserType } from '@/types'
 import { TEAM_NAME } from '@/core/consts'
 import { Loader } from '@/components/UI/Loader'
@@ -26,10 +26,11 @@ export const Leaderboard = () => {
   const user = useAppSelector(state => state.userState.user) as UserType
   const [addScore] = useAddScoreMutation()
   const onAddClick = async () => {
+    const { displayName, firstName, avatar } = user
     await addScore({
       data: {
-        username: user.displayName || user.firstName,
-        avatar: user.avatar,
+        username: displayName || firstName,
+        avatar,
         score: 960,
       },
       teamName: TEAM_NAME,

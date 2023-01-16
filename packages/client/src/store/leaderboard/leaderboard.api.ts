@@ -12,11 +12,14 @@ import {
 } from '@/types/api/ya.praktikum'
 import { LeaderBoardItemType } from '@/types'
 import { transformLeaderboard } from '@/core/utils/apiTransforms'
+import { apiDefaultHeaders } from '@/core/utils'
 
 export const leaderboardApi = createApi({
   reducerPath: 'leaderboard/api',
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
+    ...apiDefaultHeaders(),
+    credentials: 'include',
   }),
   endpoints: build => ({
     getLeaderboard: build.query<LeaderBoardItemType[], void>({
@@ -28,10 +31,6 @@ export const leaderboardApi = createApi({
           cursor: LEADERBOARD_DEFAULT_PAGE,
           limit: LEADERBOARD_LIMIT_PAGE,
         },
-        headers: {
-          'content-type': 'application/json',
-        },
-        credentials: 'include',
       }),
       transformResponse: (response: LeaderboardDTO) =>
         transformLeaderboard(response),
@@ -42,10 +41,6 @@ export const leaderboardApi = createApi({
         url: `/leaderboard`,
         method: 'POST',
         body: data,
-        headers: {
-          'content-type': 'application/json',
-        },
-        credentials: 'include',
         responseHandler: response => response.text(),
       }),
       transformErrorResponse: response => JSON.parse(response.data as string),

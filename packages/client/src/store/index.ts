@@ -1,9 +1,9 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import { configureStore } from '@reduxjs/toolkit'
-import { authApi } from './auth/auth.api.'
+import { authApi } from './auth/auth.api'
 import { userApi } from './user/user.api'
 import userReducer from './user/userSlice'
-import { leaderboardApi } from '@/store/leaderboard/leaderboard.api.'
+import { leaderboardApi } from '@/store/leaderboard/leaderboard.api'
 
 export const store = configureStore({
   reducer: {
