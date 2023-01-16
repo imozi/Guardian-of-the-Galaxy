@@ -1,1 +1,1 @@
-export { EnemyController } from "./EnemyController";
+export { EnemyController } from './EnemyController'

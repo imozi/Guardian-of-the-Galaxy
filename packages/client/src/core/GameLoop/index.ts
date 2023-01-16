@@ -1,1 +1,1 @@
-export { GameLoop } from "./GameLoop";
+export { GameLoop } from './GameLoop'

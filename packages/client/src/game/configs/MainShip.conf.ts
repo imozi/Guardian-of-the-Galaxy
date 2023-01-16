@@ -13,36 +13,36 @@ export const MAIN_SHIP_CONFIG = {
   rotarion: 25,
   image: {
     full: {
-      src: "images/main_ship/main_ship_full.png",
+      src: 'images/main_ship/main_ship_full.png',
       sw: 30,
       sh: 33,
       frameRate: 6,
     },
     slightDamage: {
-      src: "images/main_ship/main_ship_slight_damage.png",
+      src: 'images/main_ship/main_ship_slight_damage.png',
       sw: 30,
       sh: 33,
       frameRate: 6,
     },
     damage: {
-      src: "images/main_ship/main_ship_damage.png",
+      src: 'images/main_ship/main_ship_damage.png',
       sw: 30,
       sh: 33,
       frameRate: 6,
     },
     veryDamage: {
-      src: "images/main_ship/main_ship_vary_damage.png",
+      src: 'images/main_ship/main_ship_vary_damage.png',
       sw: 30,
       sh: 33,
       frameRate: 6,
     },
     die: {
-      src: "images/main_ship/main_ship_die.png",
+      src: 'images/main_ship/main_ship_die.png',
       sw: 100,
       sh: 100,
       frameRate: 1,
     },
   },
-  weapon: "rocket",
+  weapon: 'rocket',
   maxAmmunition: 2,
-};
+}

@@ -1,1 +1,1 @@
-export { GuardianOfTheGalaxy } from "./Game"
+export { GuardianOfTheGalaxy } from './Game'

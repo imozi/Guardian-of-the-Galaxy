@@ -47,21 +47,21 @@ export const WEAPON_CONFIG = {
         vx: 1,
         vy: 1,
       },
-  },
-  bigSpaceGun: {
-    url: 'images/weapons/enemy/big_space_gun.png',
-    sw: 32,
-    sh: 32,
-    frameRate: 3,
-    damage: 100,
-    velocity: {
-      speedAdjustment: 100,
-      vx: 2,
-      vy: 2,
     },
-}, 
-},
-  
+    bigSpaceGun: {
+      url: 'images/weapons/enemy/big_space_gun.png',
+      sw: 32,
+      sh: 32,
+      frameRate: 3,
+      damage: 100,
+      velocity: {
+        speedAdjustment: 100,
+        vx: 2,
+        vy: 2,
+      },
+    },
+  },
+
   mainShip: {
     rocket: {
       url: 'images/weapons/main_ship/rocket.png',
@@ -74,6 +74,6 @@ export const WEAPON_CONFIG = {
         vx: 3,
         vy: 3,
       },
-    }, 
-  }
+    },
+  },
 }

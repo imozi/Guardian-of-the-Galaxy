@@ -32,7 +32,6 @@ export class GuardianOfTheGalaxy extends EventBus {
   public hightScore = 0
   public life = GAME_CONFIG.life
   public level = GAME_CONFIG.level
-  
 
   constructor(root: HTMLElement) {
     super()

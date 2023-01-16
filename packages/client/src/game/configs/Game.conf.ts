@@ -6,4 +6,4 @@ export const GAME_CONFIG = {
   },
   level: 1,
   life: 3,
-};
+}

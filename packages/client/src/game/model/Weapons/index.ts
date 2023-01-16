@@ -1,3 +1,2 @@
-export { Weapon } from "./Weapon";
-export { Weapons } from "./Weapons";
-
+export { Weapon } from './Weapon'
+export { Weapons } from './Weapons'

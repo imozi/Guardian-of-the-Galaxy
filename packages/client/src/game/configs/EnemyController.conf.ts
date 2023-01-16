@@ -11,4 +11,4 @@ export const ENEMY_CONTROLLER = {
     vx: 1,
     vy: 1,
   },
-};
+}

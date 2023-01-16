@@ -1,1 +1,1 @@
-export { MainShip } from "./MainShip";
+export { MainShip } from './MainShip'

@@ -1,1 +1,1 @@
-export { EnemyShip } from "./EnemyShip";
+export { EnemyShip } from './EnemyShip'
