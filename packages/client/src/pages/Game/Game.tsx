@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Page } from '@/components/Page'
 import { UserField } from '@/components/UI'
 import { useAppSelector } from '@/store'
-import { useAuthLogoutMutation } from '@/store/auth/auth.api.'
+import { useAuthLogoutMutation } from '@/store/auth/auth.api'
 import { GameStart } from '@/components/GameStart'
 
 export const Game = () => {

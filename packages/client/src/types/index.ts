@@ -9,6 +9,12 @@ export type UserType = {
   email: string
 }
 
+export type LeaderBoardItemType = {
+  username: string
+  avatar: string
+  score: number
+}
+
 export type PasswordChange = {
   oldPassword: string
   newPassword: string

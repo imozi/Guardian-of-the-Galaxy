@@ -3,22 +3,21 @@ import { API_URL } from '@/core/consts'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
 import { resetUser } from '../user/userSlice'
+import { apiDefaultHeaders } from '@/core/utils'
 
 export const authApi = createApi({
   reducerPath: 'auth/api',
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
+    credentials: 'include',
   }),
   endpoints: build => ({
     authLogin: build.mutation<string | ErrorDTO, AuthDTO>({
       query: data => ({
+        ...apiDefaultHeaders(),
         url: `/auth/signin`,
         method: 'POST',
         body: JSON.stringify(data),
-        headers: {
-          'content-type': 'application/json',
-        },
-        credentials: 'include',
         responseHandler: response => response.text(),
       }),
       transformErrorResponse: response => JSON.parse(response.data as string),
@@ -33,13 +32,10 @@ export const authApi = createApi({
     }),
     authRegister: build.mutation<string | ErrorDTO, AuthDTO>({
       query: data => ({
+        ...apiDefaultHeaders(),
         url: `/auth/signup`,
         method: 'POST',
         body: JSON.stringify(data),
-        headers: {
-          'content-type': 'application/json',
-        },
-        credentials: 'include',
       }),
       transformErrorResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
@@ -55,7 +51,6 @@ export const authApi = createApi({
       query: () => ({
         url: `/auth/logout`,
         method: 'POST',
-        credentials: 'include',
         responseHandler: response => response.text(),
       }),
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
