@@ -1,5 +1,5 @@
-import { UserDTO } from '@/types/api/ya.praktikum'
-import { UserType } from '@/types'
+import { LeaderboardDTO, UserDTO } from '@/types/api/ya.praktikum'
+import { LeaderBoardItemType, UserType } from '@/types'
 
 export const transformUser = (data: UserDTO): UserType => ({
   id: data.id,
@@ -11,3 +11,7 @@ export const transformUser = (data: UserDTO): UserType => ({
   phone: data.phone,
   email: data.email,
 })
+
+export const transformLeaderboard = (
+  leaderboard: LeaderboardDTO
+): LeaderBoardItemType[] => leaderboard.map(({ data }) => data)

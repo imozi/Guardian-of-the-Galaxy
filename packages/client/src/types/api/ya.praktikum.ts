@@ -1,3 +1,5 @@
+import { LeaderBoardItemType } from '@/types'
+
 export type AuthDTO = {
   login: string
   password: string
@@ -27,3 +29,11 @@ export type UserDTO = {
   email: string
   role?: string
 }
+
+export type LeaderboardItemDTO = {
+  data: LeaderBoardItemType
+  ratingFieldName: string
+  teamName: string
+}
+
+export type LeaderboardDTO = { data: LeaderBoardItemType }[]
