@@ -1,4 +1,5 @@
 import { Ship } from '../Abstract/Ship'
+import { GAME_CONFIG } from '@/game/configs/Game.conf'
 import { MAIN_SHIP_CONFIG } from '../../configs/MainShip.conf'
 import { Picture } from '@/core/Picture/Picture'
 import { Weapon } from '../Weapons'
@@ -33,7 +34,7 @@ export class MainShip extends Ship implements Ship {
   private _ship: ShipImage
   private _helthPoint = MAIN_SHIP_CONFIG.helthPoint
   private _typeWeapon: string
-  private _maxAmmunition = MAIN_SHIP_CONFIG.maxAmmunition
+  private _maxAmmunition = GAME_CONFIG.maxAmmunition
   public sizeSprite: SizeSprite
   public position: Position
   public ammunition: Weapon[] = []

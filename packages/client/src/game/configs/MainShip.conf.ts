@@ -44,5 +44,4 @@ export const MAIN_SHIP_CONFIG = {
     },
   },
   weapon: 'rocket',
-  maxAmmunition: 2,
 }

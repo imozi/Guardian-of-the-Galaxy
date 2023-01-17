@@ -3,7 +3,7 @@ import { Page } from '@/components/Page'
 
 export const GameOver = () => {
   return (
-    <Page title="GAME OVER" isGame={true}>
+    <Page title="Game Over" isGame={true}>
       <section className="game_over">
         <div className="game__header">
           <div className="game__currentstat">

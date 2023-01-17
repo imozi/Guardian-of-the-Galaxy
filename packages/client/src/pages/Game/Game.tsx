@@ -1,37 +1,69 @@
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { CurrentScore } from '@/components/CurrentScore'
 import { HightScore } from '@/components/HightScore'
 import { CurrentLevel } from '@/components/CurrentLevel'
 import { Page } from '@/components/Page'
 import { GuardianOfTheGalaxy } from '@/game'
-import { useEffect, useRef, useState } from 'react'
 import { Health } from '@/components/HP'
 import { GameStartTimer } from '@/components/GameStartTimer'
 import { Ammunition } from '@/components/Ammunition'
 
 export const Game = () => {
-  const [isStartGame, setIsGameStart] = useState(false)
+  const navigation = useNavigate()
+
   const gameContainer = useRef<HTMLDivElement | null>(null)
   const game = useRef<GuardianOfTheGalaxy | null>(null)
 
-  const navigation = useNavigate()
+  const [isStartGame, setIsGameStart] = useState(false)
+  const [currentScore, setCurrentScore] = useState(0)
+  const [currentLevel, setCurrentLevel] = useState(0)
+  const [currentLife, setCurrentLife] = useState(0)
+  const [currentAmmun, setCurrentAmmun] = useState(0)
+  const [currentHightScore, setHightScore] = useState(0)
 
   useEffect(() => {
     if (gameContainer.current) {
       game.current = new GuardianOfTheGalaxy(gameContainer.current)
-      game.current.on(GuardianOfTheGalaxy.EVENTS.UPDATE_SCORE, log)
-      game.current.on(GuardianOfTheGalaxy.EVENTS.UPDATE_LIVE, log)
-      game.current.on(GuardianOfTheGalaxy.EVENTS.UPDATE_LEVEL, log)
+
+      updateScore(game.current.score)
+      updateHightScore(game.current.hightScore)
+      updateLevel(game.current.level)
+      updateLife(game.current.life)
+      updateAmmun(game.current.mainShipAmmun)
+
+      game.current.on(GuardianOfTheGalaxy.EVENTS.UPDATE_LEVEL, updateLevel)
+      game.current.on(GuardianOfTheGalaxy.EVENTS.UPDATE_SCORE, updateScore)
+      game.current.on(GuardianOfTheGalaxy.EVENTS.UPDATE_LIVE, updateLife)
+      game.current.on(GuardianOfTheGalaxy.EVENTS.UPDATE_AMMUN, updateAmmun)
+      game.current.on(GuardianOfTheGalaxy.EVENTS.GAME_END, endGame)
     }
 
     return () => {
       game.current?.destroy()
       game.current = null
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [game])
 
-  const log = (a: number) => {
-    console.log(a)
+  const updateScore = (score: number) => {
+    setCurrentScore(score)
+  }
+
+  const updateHightScore = (score: number) => {
+    setHightScore(score)
+  }
+
+  const updateLevel = (level: number) => {
+    setCurrentLevel(level)
+  }
+
+  const updateLife = (life: number) => {
+    setCurrentLife(life)
+  }
+
+  const updateAmmun = (ammun: number) => {
+    setCurrentAmmun(ammun)
   }
 
   const startGame = () => {
@@ -39,12 +71,36 @@ export const Game = () => {
     game.current?.start()
   }
 
-  const onClickPause = () => {
-    game.current?.stop()
+  const endGame = () => {
+    navigation('/game-over', {
+      state: {
+        level: currentLevel,
+        score: currentScore,
+        hightScore: currentHightScore,
+      },
+    })
   }
 
-  const onClickResume = () => {
+  const onBlurElement = (elem: HTMLButtonElement) => {
+    elem.blur()
+  }
+
+  const onClickPause = (
+    evt: React.MouseEvent<HTMLButtonElement> & {
+      target: HTMLButtonElement
+    }
+  ) => {
+    game.current?.stop()
+    onBlurElement(evt.target)
+  }
+
+  const onClickResume = (
+    evt: React.MouseEvent<HTMLButtonElement> & {
+      target: HTMLButtonElement
+    }
+  ) => {
     game.current?.resume()
+    onBlurElement(evt.target)
   }
 
   return (
@@ -52,8 +108,8 @@ export const Game = () => {
       <GameStartTimer callback={startGame} />
       <section className="game" data-start={isStartGame}>
         <div className="game__current-stat">
-          <CurrentLevel level={1} />
-          <CurrentScore score={0} />
+          <CurrentLevel level={currentLevel} />
+          <CurrentScore score={currentScore} />
         </div>
         <ul className="game__menu">
           <li className="game__menu__item">
@@ -67,15 +123,15 @@ export const Game = () => {
             </button>
           </li>
           <li className="game__menu__item">
-            <a className="link" onClick={() => navigation(-1)}>
+            <Link className="link" to={'/'}>
               Quit
-            </a>
+            </Link>
           </li>
         </ul>
         <div className="game__container" ref={gameContainer}></div>
-        <HightScore score={0} />
-        <Health healths={3} />
-        <Ammunition ammun={2} />
+        <HightScore score={currentHightScore} />
+        <Health healths={currentLife} />
+        <Ammunition ammun={currentAmmun} />
       </section>
     </Page>
   )

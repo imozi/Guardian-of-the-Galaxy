@@ -2,7 +2,7 @@ import { EventBus } from '@/core/EventBus'
 import { GAME_CONFIG } from './configs/Game.conf'
 import { MainShip } from './model/MainShip'
 import { EnemyShip } from './model/EnemyShip'
-import { Weapon, Weapons } from './model/Weapons'
+import { Weapons } from './model/Weapons'
 import { СollisionController } from './model/СollisionController'
 import { EnemyController } from './model/EnemyController'
 import { GameLoop } from '@/core/GameLoop'
@@ -14,6 +14,7 @@ export class GuardianOfTheGalaxy extends EventBus {
     UPDATE_LEVEL: 'flow:update_level',
     UPDATE_SCORE: 'flow:update_score',
     UPDATE_LIVE: 'flow:update_live',
+    UPDATE_AMMUN: 'flow:update_ammun',
   }
 
   private _root: HTMLElement
@@ -25,11 +26,11 @@ export class GuardianOfTheGalaxy extends EventBus {
   private _canvasSize = { w: 0, h: 0 }
   private _loop: GameLoop
   private _weapons: Weapons
-  private _mainShipAmmun: Weapon[]
   private _isRunning = false
   private _isGameEnd = false
+  public mainShipAmmun = GAME_CONFIG.maxAmmunition
   public score = 0
-  public hightScore = 0
+  public hightScore = Number(localStorage.getItem('GOTG:hightScore')) || 0
   public life = GAME_CONFIG.life
   public level = GAME_CONFIG.level
 
@@ -57,8 +58,6 @@ export class GuardianOfTheGalaxy extends EventBus {
       ctx: this._ctx,
       weapons: this._weapons.main,
     })
-
-    this._mainShipAmmun = this._mainShip.ammunition
 
     this._collisionController = new СollisionController({
       mainShip: this._mainShip,
@@ -100,6 +99,16 @@ export class GuardianOfTheGalaxy extends EventBus {
     this.emit(GuardianOfTheGalaxy.EVENTS.UPDATE_SCORE, this.score)
   }
 
+  private _updateAmmun = () => {
+    this.mainShipAmmun = GAME_CONFIG.maxAmmunition
+
+    if (this._mainShip.ammunition.length !== 0) {
+      this.mainShipAmmun -= this._mainShip.ammunition.length
+    }
+
+    this.emit(GuardianOfTheGalaxy.EVENTS.UPDATE_AMMUN, this.mainShipAmmun)
+  }
+
   private _canvasResize = (): void => {
     this._canvasSize.w = this._canvas.width = this._root.clientWidth
     this._canvasSize.h = this._canvas.height = this._root.clientHeight
@@ -126,6 +135,7 @@ export class GuardianOfTheGalaxy extends EventBus {
       this._mainShip.update(ms)
       this._nextLevel()
       this._gameEnd()
+      this._updateAmmun()
     }
   }
 
@@ -134,12 +144,19 @@ export class GuardianOfTheGalaxy extends EventBus {
     this.emit(GuardianOfTheGalaxy.EVENTS.UPDATE_LIVE, this.life)
   }
 
+  private saveLocalStorage(): void {
+    if (this.score > this.hightScore) {
+      localStorage.setItem('GOTG:hightScore', this.score.toString())
+    }
+  }
+
   private _gameEnd(): void {
     if (this.life === 0) {
       this._isGameEnd = true
       this.stop()
       this._enemyController.reset()
       this._mainShip.destroy()
+      this.saveLocalStorage()
       this.emit(GuardianOfTheGalaxy.EVENTS.GAME_END)
     }
   }
