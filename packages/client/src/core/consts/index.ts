@@ -5,4 +5,4 @@ export const LEADERBOARD_DEFAULT_PAGE = 0
 export const LEADERBOARD_LIMIT_PAGE = 100
 export const ANIMATION_STUB_TIME = 2000
 export const TIMER_TIME = 1000
-export const TIMER_START = 5
+export const TIMER_START = 3

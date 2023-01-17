@@ -1,8 +1,8 @@
 export const MAIN_SHIP_CONFIG = {
   positionAdjustment: {
-    bottomIndent: 30,
+    bottomIndent: 0,
     adjustmentSize: 24,
-    topPositionLimit: 0.8,
+    topPositionLimit: 0.85,
   },
   helthPoint: 100,
   velocity: {
