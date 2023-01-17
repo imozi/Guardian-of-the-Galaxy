@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { GameBoard } from '../GameBoard'
 import { TIMER_START, TIMER_TIME } from '@/core/consts'
 import { useCountDown } from '@/hooks'
 
@@ -26,7 +25,7 @@ export const GameStart = () => {
     <>
       {isTimerStart && <div className="timer">{count ? count : 'GO'}</div>}
       {isGameStart ? (
-        <GameBoard />
+        <p>...</p>
       ) : (
         <>
           <div className="game__ship"></div>

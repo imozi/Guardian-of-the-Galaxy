@@ -143,7 +143,7 @@ export const Profile = () => {
             <Link className="link" to="/password">
               Change password
             </Link>
-            <Link className="link" to="/game">
+            <Link className="link" to="/user">
               Back
             </Link>
           </div>

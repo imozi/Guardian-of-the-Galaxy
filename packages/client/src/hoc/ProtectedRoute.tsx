@@ -1,3 +1,4 @@
+import { useAppSelector } from '@/store'
 import { FC } from 'react'
 import { Navigate } from 'react-router-dom'
 
@@ -8,8 +9,11 @@ interface PrivateRoute {
 
 export const PrivateRoute: FC<PrivateRoute> = ({ isAuth, children }) => {
   if (!isAuth) {
-    return <Navigate to="/login" />
+    return <Navigate to="/" />
   }
 
-  return children
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const user = useAppSelector(state => state.userState.user)
+
+  return user && children
 }
