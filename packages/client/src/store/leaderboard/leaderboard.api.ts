@@ -13,6 +13,7 @@ import {
 import { LeaderBoardItemType } from '@/types'
 import { transformLeaderboard } from '@/core/utils/apiTransforms'
 import { apiDefaultHeaders } from '@/core/utils'
+import fetch from 'cross-fetch'
 
 export const leaderboardApi = createApi({
   reducerPath: 'leaderboard/api',
@@ -20,6 +21,7 @@ export const leaderboardApi = createApi({
     baseUrl: API_URL,
     ...apiDefaultHeaders(),
     credentials: 'include',
+    fetchFn: fetch,
   }),
   endpoints: build => ({
     getLeaderboard: build.query<LeaderBoardItemType[], void>({
