@@ -1,0 +1,19 @@
+.current-score {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &__title,
+  &__number {
+    margin: 0;
+    font-size: $fz24;
+  }
+
+  &__title {
+    color: $color-accent;
+  }
+
+  &__number {
+    font-size: $fz20;
+  }
+}
