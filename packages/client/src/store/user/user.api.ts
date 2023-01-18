@@ -4,7 +4,7 @@ import { API_URL } from '@/core/consts'
 import { apiDefaultHeaders, transformUser } from '@/core/utils'
 import { UserType } from '@/types'
 import { ErrorDTO, PasswordDTO, UserDTO } from '@/types/api/ya.praktikum'
-import fetch from 'cross-fetch'
+import 'cross-fetch/polyfill'
 
 export const userApi = createApi({
   reducerPath: 'user/api',

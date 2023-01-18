@@ -4,7 +4,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
 import { resetUser } from '../user/userSlice'
 import { apiDefaultHeaders } from '@/core/utils'
-import fetch from 'cross-fetch'
+import 'cross-fetch/polyfill'
 
 export const authApi = createApi({
   reducerPath: 'auth/api',

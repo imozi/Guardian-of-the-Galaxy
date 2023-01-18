@@ -13,7 +13,7 @@ import {
 import { LeaderBoardItemType } from '@/types'
 import { transformLeaderboard } from '@/core/utils/apiTransforms'
 import { apiDefaultHeaders } from '@/core/utils'
-import fetch from 'cross-fetch'
+import 'cross-fetch/polyfill'
 
 export const leaderboardApi = createApi({
   reducerPath: 'leaderboard/api',
