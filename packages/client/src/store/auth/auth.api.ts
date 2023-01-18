@@ -4,12 +4,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
 import { resetUser } from '../user/userSlice'
 import { apiDefaultHeaders } from '@/core/utils'
+import fetch from 'cross-fetch'
 
 export const authApi = createApi({
   reducerPath: 'auth/api',
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
     credentials: 'include',
+    fetchFn: fetch,
   }),
   endpoints: build => ({
     authLogin: build.mutation<string | ErrorDTO, AuthDTO>({
