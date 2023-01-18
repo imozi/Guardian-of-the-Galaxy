@@ -1,6 +1,11 @@
 import { Weapon } from './Weapon'
 import { WEAPON_CONFIG } from '../../configs/Weapon.conf'
-import { WeaponCollection } from '@/types/game'
+import {
+  DirectionalShooting,
+  Position,
+  WeaponCollection,
+  WeaponConf,
+} from '@/types/game'
 
 type WeaponsProps = {
   ctx: CanvasRenderingContext2D
@@ -15,32 +20,33 @@ export class Weapons {
   }
 
   private _init(ctx: CanvasRenderingContext2D) {
-    Object.entries(WEAPON_CONFIG).forEach(([keyA, weapons]) => {
-      let whoseWeapon: WeaponCollection
+    const { enemy, mainShip } = WEAPON_CONFIG
 
-      if (keyA === 'enemy') {
-        whoseWeapon = this.emeny
-      } else {
-        whoseWeapon = this.main
-      }
+    for (const key in enemy) {
+      this.emeny[key] = this._getWeapon(ctx, enemy[key])
+    }
 
-      Object.entries(weapons).forEach(([keyB, weaponB]) => {
-        const { url, sw, sh, frameRate, damage, velocity } = weaponB
-        whoseWeapon[keyB] = (
-          position,
-          directionalShooting,
-          damageLimit = 1
-        ): Weapon => {
-          return new Weapon({
-            ctx,
-            image: { url, sw, sh, frameRate },
-            damage: damage * damageLimit,
-            velocity,
-            position,
-            directionalShooting,
-          })
-        }
+    for (const key in mainShip) {
+      this.main[key] = this._getWeapon(ctx, mainShip[key])
+    }
+  }
+
+  private _getWeapon(ctx: CanvasRenderingContext2D, config: WeaponConf) {
+    const { url, sw, sh, frameRate, damage, velocity } = config
+
+    return (
+      position: Position,
+      directionalShooting: DirectionalShooting,
+      damageLimit = 1
+    ): Weapon => {
+      return new Weapon({
+        ctx,
+        image: { url, sw, sh, frameRate },
+        damage: damage * damageLimit,
+        velocity,
+        position,
+        directionalShooting,
       })
-    })
+    }
   }
 }

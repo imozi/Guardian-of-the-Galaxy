@@ -1,4 +1,6 @@
-export const WEAPON_CONFIG = {
+import { WeaponsConf } from '@/types/game'
+
+export const WEAPON_CONFIG: WeaponsConf = {
   enemy: {
     greanBlast: {
       url: 'images/weapons/enemy/greanblast.png',

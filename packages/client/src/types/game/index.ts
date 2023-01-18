@@ -83,3 +83,17 @@ type GroupEnemies = Record<EnemyGroup, EnemiesConf>
 export interface IEnemyShipsConf extends GroupEnemies {
   die: PictureProps
 }
+
+export type WeaponConf = {
+  url: string
+  sw: number
+  sh: number
+  frameRate: number
+  damage: number
+  velocity: Velocity
+}
+
+export type WeaponsConf = {
+  enemy: Record<string, WeaponConf>
+  mainShip: Record<string, WeaponConf>
+}

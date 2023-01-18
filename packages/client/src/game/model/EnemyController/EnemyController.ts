@@ -135,7 +135,6 @@ export class EnemyController {
 
     if (row < centerElement) {
       this._positionEnemyMap.x += correctionPositionLeft
-      console.log(this._positionEnemyMap.x, row)
     } else if (row > centerElement) {
       this._positionEnemyMap.x += correctionPositionRight
     } else {
