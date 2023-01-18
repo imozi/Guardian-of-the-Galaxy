@@ -3,7 +3,7 @@ import { GAME_CONFIG } from './configs/Game.conf'
 import { MainShip } from './model/MainShip'
 import { EnemyShip } from './model/EnemyShip'
 import { Weapons } from './model/Weapons'
-import { СollisionController } from './model/СollisionController'
+import { CollisionController } from './model/CollisionController'
 import { EnemyController } from './model/EnemyController'
 import { GameLoop } from '@/core/GameLoop'
 
@@ -19,7 +19,7 @@ export class GuardianOfTheGalaxy extends EventBus {
 
   private _root: HTMLElement
   private _mainShip: MainShip
-  private _collisionController: СollisionController
+  private _collisionController: CollisionController
   private _enemyController: EnemyController
   private _canvas = document.createElement('canvas')
   private _ctx = this._canvas.getContext('2d') as CanvasRenderingContext2D
@@ -59,7 +59,7 @@ export class GuardianOfTheGalaxy extends EventBus {
       weapons: this._weapons.main,
     })
 
-    this._collisionController = new СollisionController({
+    this._collisionController = new CollisionController({
       mainShip: this._mainShip,
       enemyShips: this._enemyController.enemiesShips,
       enemyАmmunition: this._enemyController.enemyАmmunition,

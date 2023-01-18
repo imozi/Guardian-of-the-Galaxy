@@ -171,15 +171,17 @@ export class EnemyController {
   }
 
   public update(ms: number): void {
-    if (this.enemyАmmunition.length) {
-      this.enemyАmmunition.forEach((ammunition, i) => {
-        if (ammunition.position.y >= this._canvasSize.h) {
-          this.enemyАmmunition.splice(i, 1)
-        } else {
-          ammunition.update(ms)
-        }
-      })
+    if (!this.enemyАmmunition.length) {
+      return
     }
+
+    this.enemyАmmunition.forEach((ammunition, i) => {
+      if (ammunition.position.y >= this._canvasSize.h) {
+        this.enemyАmmunition.splice(i, 1)
+      } else {
+        ammunition.update(ms)
+      }
+    })
   }
 
   public draw(): void {

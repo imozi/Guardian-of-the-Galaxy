@@ -1,1 +1,0 @@
-export { СollisionController } from './СollisionController'
