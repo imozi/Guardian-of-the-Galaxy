@@ -1,17 +1,18 @@
 import { useRef, useEffect } from 'react'
+import { isBrowser } from '@/core/utils/isBrowser'
 
 export function useDocumentTitle(title: string, prevailOnUnmount = false) {
   const defaultTitle = useRef(document?.title)
 
   useEffect(() => {
-    if (document) {
+    if (isBrowser()) {
       document.title = title
     }
   }, [title])
 
   useEffect(
     () => () => {
-      if (!prevailOnUnmount && document) {
+      if (isBrowser() && !prevailOnUnmount) {
         document.title = defaultTitle.current
       }
     },

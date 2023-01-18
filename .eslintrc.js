@@ -27,5 +27,5 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   },
-  ignorePatterns: ['**/client/dist', '**/server/dist'],
+  ignorePatterns: ['dist'],
 }
