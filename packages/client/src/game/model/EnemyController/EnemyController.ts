@@ -4,16 +4,18 @@ import { ENEMY_CONTROLLER } from '@/game/configs/EnemyController.conf'
 import { Weapon } from '../Weapons'
 import {
   CanvasSize,
+  EnemyConf,
   EnemyGroup,
-  EnemyType,
+  EnemyTypeArray,
   MainSettingsProps,
   Position,
   Velocity,
   WeaponCollection,
+  EnemyTypeStrings,
 } from '@/types/game'
 
 export class EnemyController {
-  private _enemyMap = [
+  private _enemyMap: EnemyTypeArray[] = [
     ['battlecruiser', 'dreadnought', 'battlecruiser'],
     [...Array(5).fill('torpedo')],
     [...Array(9).fill('frigate')],
@@ -26,6 +28,7 @@ export class EnemyController {
   private _ctx: CanvasRenderingContext2D
   private _weapons: WeaponCollection
   private _position: Position
+  private _positionEnemyMap = { x: 0, y: 0, prevSize: 0 }
   private _velocity: Velocity
   private _defaultPosition = { x: 0, y: 0 }
   public enemiesShips: EnemyShip[] = []
@@ -51,91 +54,110 @@ export class EnemyController {
   }
 
   public generateEnemiesShips(): void {
-    const indxGroup = Math.floor(Math.random() * ENEMY_SHIPS.enemyType.length)
-    const groupEnemy = ENEMY_SHIPS.enemyType[indxGroup] as EnemyGroup
+    const enemyGroups = Object.keys(EnemyGroup)
+    const indxGroup = Math.floor(Math.random() * enemyGroups.length)
+    const enemyGroup = enemyGroups[indxGroup] as EnemyGroup
 
-    let prevHeight = ENEMY_SHIPS[groupEnemy].maxEnemyImageSizeHeight / 2
+    this._positionEnemyMap.prevSize =
+      ENEMY_SHIPS[enemyGroup].maxEnemyImageSizeHeight / 2
 
     this._enemyMap.forEach((map, columns) => {
-      const centerElenemt = Math.floor(map.length / 2)
+      this._positionEnemyMap.x = this._canvasSize.w / 2
+      this._positionEnemyMap.y = 0
 
-      let positionX = this._canvasSize.w / 2
-      let positionY = 0
+      map.forEach((shipName: EnemyTypeStrings, row) => {
+        const enemyConf = ENEMY_SHIPS[enemyGroup].ship[shipName]
+        const centerEnemyMap = Math.floor(this._enemyMap.length / 2)
+        const centerCurrentMap = Math.floor(map.length / 2)
+        const { indentRowEnemy } = ENEMY_CONTROLLER.positionAdjustment
+        const indentRow = enemyConf.image.sh + indentRowEnemy
 
-      map.forEach((e: EnemyType, row) => {
-        if (e) {
-          const enemyConf = ENEMY_SHIPS[groupEnemy].ship[e]
+        this._setPositionX(row, columns, enemyConf.image.sw)
+        this._setPositionY(columns, enemyConf.image.sh)
 
-          if (columns === 0) {
-            positionY = ENEMY_CONTROLLER.positionAdjustment.topIndent
-          }
+        const enemy = this._getEnemyShip(enemyConf, {
+          ...this._positionEnemyMap,
+        })
 
-          if (columns > 0) {
-            positionY =
-              prevHeight +
-              enemyConf.image.sh / 2 +
-              ENEMY_CONTROLLER.positionAdjustment.topIndent +
-              ENEMY_CONTROLLER.positionAdjustment.indentRowEnemy
-          }
+        this.enemiesShips.push(enemy)
 
-          if (row < centerElenemt) {
-            positionX +=
-              -enemyConf.image.sw -
-              ENEMY_CONTROLLER.positionAdjustment.indentColumnsEnemy
-          } else if (row > centerElenemt) {
-            positionX +=
-              enemyConf.image.sw +
-              ENEMY_CONTROLLER.positionAdjustment.indentColumnsEnemy
-          } else {
-            positionX = this._canvasSize.w / 2
-          }
+        if (row === map.length - 1 && columns !== 0) {
+          this._positionEnemyMap.prevSize += indentRow
+        }
 
-          const enemy = new EnemyShip({
-            canvasSize: this._canvasSize,
-            ctx: this._ctx,
-            weapons: this._weapons,
-            position: { x: positionX, y: positionY },
-            velocity: enemyConf.velocity,
-            image: {
-              ship: {
-                url: enemyConf.image.url,
-                sw: enemyConf.image.sw,
-                sh: enemyConf.image.sh,
-                frameRate: enemyConf.image.frameRate,
-              },
-              die: {
-                url: ENEMY_SHIPS.die.url,
-                sw: ENEMY_SHIPS.die.sw,
-                sh: ENEMY_SHIPS.die.sh,
-                frameRate: ENEMY_SHIPS.die.frameRate,
-                loop: ENEMY_SHIPS.die.loop,
-              },
-            },
-            damageLimit: enemyConf.damageLimit,
-            typeWeapon: enemyConf.weapon,
-            ammunition: this.enemyАmmunition,
-            helthPoint: enemyConf.helthPoint,
-            score: enemyConf.score,
-          })
-
-          if (row === map.length - 1 && columns !== 0) {
-            prevHeight +=
-              enemyConf.image.sh +
-              ENEMY_CONTROLLER.positionAdjustment.indentRowEnemy
-          }
-
-          if (
-            columns === Math.floor(this._enemyMap.length / 2) &&
-            row === Math.floor(map.length / 2)
-          ) {
-            this._position.y = positionY
-            this._defaultPosition = { ...this._position }
-          }
-
-          this.enemiesShips.push(enemy)
+        if (columns === centerEnemyMap && row === centerCurrentMap) {
+          this._position.y = this._positionEnemyMap.y
+          this._defaultPosition = { ...this._position }
         }
       })
     })
+  }
+
+  private _getEnemyShip(config: EnemyConf, position: Position): EnemyShip {
+    return new EnemyShip({
+      canvasSize: this._canvasSize,
+      ctx: this._ctx,
+      weapons: this._weapons,
+      position: position,
+      velocity: config.velocity,
+      image: {
+        ship: {
+          url: config.image.url,
+          sw: config.image.sw,
+          sh: config.image.sh,
+          frameRate: config.image.frameRate,
+        },
+        die: {
+          url: ENEMY_SHIPS.die.url,
+          sw: ENEMY_SHIPS.die.sw,
+          sh: ENEMY_SHIPS.die.sh,
+          frameRate: ENEMY_SHIPS.die.frameRate,
+          loop: ENEMY_SHIPS.die.loop,
+        },
+      },
+      damageLimit: config.damageLimit,
+      typeWeapon: config.weapon,
+      ammunition: this.enemyАmmunition,
+      helthPoint: config.helthPoint,
+      score: config.score,
+    })
+  }
+
+  private _setPositionX(
+    row: number,
+    columns: number,
+    spriteWidth: number
+  ): void {
+    const centerElement = Math.floor(this._enemyMap[columns].length / 2)
+    const { indentColumnsEnemy } = ENEMY_CONTROLLER.positionAdjustment
+    const correctionPositionLeft = -spriteWidth - indentColumnsEnemy
+    const correctionPositionRight = spriteWidth + indentColumnsEnemy
+
+    if (row < centerElement) {
+      this._positionEnemyMap.x += correctionPositionLeft
+      console.log(this._positionEnemyMap.x, row)
+    } else if (row > centerElement) {
+      this._positionEnemyMap.x += correctionPositionRight
+    } else {
+      this._positionEnemyMap.x = this._canvasSize.w / 2
+    }
+  }
+
+  private _setPositionY(columns: number, sizeSprite: number): void {
+    const correctionPositionTop = ENEMY_CONTROLLER.positionAdjustment.topIndent
+    const indent = ENEMY_CONTROLLER.positionAdjustment.indentRowEnemy
+
+    if (columns === 0) {
+      this._positionEnemyMap.y = ENEMY_CONTROLLER.positionAdjustment.topIndent
+    }
+
+    if (columns > 0) {
+      this._positionEnemyMap.y =
+        this._positionEnemyMap.prevSize +
+        sizeSprite / 2 +
+        correctionPositionTop +
+        indent
+    }
   }
 
   public reset(): void {

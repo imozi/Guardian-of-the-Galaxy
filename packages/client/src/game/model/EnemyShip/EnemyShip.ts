@@ -2,27 +2,12 @@ import { Picture } from '@/core/Picture/Picture'
 import { Ship } from '../Abstract/Ship'
 import { Weapon } from '../Weapons'
 import {
-  MainSettingsProps,
+  IEnemyShipProps,
   PictureCollection,
   Position,
   SizeSprite,
   Velocity,
 } from '@/types/game'
-import { PictureProps } from '@/types/core'
-
-interface IEnemyShipProps extends MainSettingsProps {
-  position: Position
-  velocity: Velocity
-  image: {
-    ship: PictureProps
-    die: PictureProps
-  }
-  damageLimit: number
-  typeWeapon: string
-  ammunition: Weapon[]
-  score: number
-  helthPoint: number
-}
 
 export class EnemyShip extends Ship implements Ship {
   static EVENTS = { INIT: 'flow:init', DIE: 'flow:die', HIT: 'flow:hit' }

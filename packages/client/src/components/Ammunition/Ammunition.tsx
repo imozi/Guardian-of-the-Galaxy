@@ -4,12 +4,14 @@ type AmmunitionProps = {
   ammun: number
 }
 
-export const Ammunition: FC<AmmunitionProps> = value => {
-  const list = []
+export const Ammunition: FC<AmmunitionProps> = ({ ammun }) => {
+  const list = [...Array(ammun).keys()]
 
-  for (let i = 0; i < value.ammun; i++) {
-    list.push(<li key={i} className="ammunition__item" />)
-  }
-
-  return <ul className="ammunition">{list}</ul>
+  return (
+    <ul className="ammunition">
+      {list.map(el => (
+        <li key={el} className="ammunition__item" />
+      ))}
+    </ul>
+  )
 }

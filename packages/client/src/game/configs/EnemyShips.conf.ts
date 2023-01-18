@@ -1,5 +1,6 @@
-export const ENEMY_SHIPS = {
-  enemyType: ['klaed', 'nairan', 'nautolan'],
+import { IEnemyShipsConf } from '@/types/game'
+
+export const ENEMY_SHIPS: IEnemyShipsConf = {
   klaed: {
     maxEnemyImageSizeHeight: 103,
     ship: {
