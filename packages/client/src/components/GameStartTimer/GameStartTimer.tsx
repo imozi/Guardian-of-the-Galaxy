@@ -19,7 +19,8 @@ export const GameStartTimer: FC<GameStartProps> = ({ callback }) => {
       setIsTimerStart(false)
       callback()
     }, TIMER_TIME)
-  }, [callback, count])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [count])
 
   return (
     <>

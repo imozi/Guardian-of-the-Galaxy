@@ -178,6 +178,7 @@ export class GuardianOfTheGalaxy extends EventBus {
     }
 
     this._isRunning = false
+    this._mainShip.destroy()
     this._loop.stop()
   }
 
@@ -188,6 +189,7 @@ export class GuardianOfTheGalaxy extends EventBus {
 
     this._loop.restart()
     this._isRunning = true
+    this._mainShip.emit(MainShip.EVENTS.INIT)
   }
 
   public restart(): void {
@@ -225,6 +227,7 @@ export class GuardianOfTheGalaxy extends EventBus {
   public destroy(): void {
     this._loop.destroy()
     this._mainShip.destroy()
+    this._mainShip.ammunition.length = 0
     this._enemyController.destroy()
     this._canvas.remove()
     window.removeEventListener('resize', this._canvasResize)
