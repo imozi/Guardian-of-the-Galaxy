@@ -1,3 +1,7 @@
 export const isBrowser = () => {
-  return typeof window !== 'undefined'
+  return (
+    typeof window !== 'undefined' &&
+    window.document &&
+    window.document.createElement
+  )
 }

@@ -16,13 +16,7 @@ import { useGetUserQuery } from '@/store/user/user.api'
 import { PrivateRoute } from '@/hoc/ProtectedRoute'
 
 export function Pages() {
-  const { isSuccess, isLoading, isFetching } = useGetUserQuery()
-  const loading = isLoading || isFetching
-
-  //TODO придумать лоадер
-  if (loading) {
-    return <p>loading</p>
-  }
+  const { isSuccess } = useGetUserQuery()
 
   return (
     <Routes>
