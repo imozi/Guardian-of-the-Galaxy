@@ -46,11 +46,7 @@ export class CollisionController {
       enemy.position.y <
       this._mainShip.position.y + this._mainShip.sizeSprite.h - 10
 
-    if (isCollidRight && isCollidLeft && isCollidTop && isCollidBottom) {
-      return true
-    } else {
-      return false
-    }
+    return isCollidRight && isCollidLeft && isCollidTop && isCollidBottom
   }
 
   private _hittingEnemy(ammun: Weapon, enemy: EnemyShip): boolean {
@@ -66,11 +62,7 @@ export class CollisionController {
       ammun.position.y + ammun.sizeSprite.h / 2 <
       enemy.position.y + enemy.sizeSprite.h / 2 + 15
 
-    if (isCollidRight && isCollidLeft && isCollidTop && isCollidBottom) {
-      return true
-    } else {
-      return false
-    }
+    return isCollidRight && isCollidLeft && isCollidTop && isCollidBottom
   }
 
   private _hittingMainShip(ammun: Weapon, mainShip: MainShip): boolean {
@@ -85,11 +77,7 @@ export class CollisionController {
     const isCollidBottom =
       ammun.position.y < mainShip.position.y + mainShip.sizeSprite.h / 2
 
-    if (isCollidRight && isCollidLeft && isCollidTop && isCollidBottom) {
-      return true
-    } else {
-      return false
-    }
+    return isCollidRight && isCollidLeft && isCollidTop && isCollidBottom
   }
 
   public _mainShipAmmunitionCollisionDetection(): void {

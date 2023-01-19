@@ -87,12 +87,14 @@ export class EnemyShip extends Ship implements Ship {
   }
 
   public shoot(): void {
+    const {
+      position: { x, y },
+      _typeWeapon,
+      _damageLimit,
+    } = this
+
     this._ammunition.push(
-      this._weapons[this._typeWeapon](
-        { x: this.position.x, y: this.position.y },
-        'topY',
-        this._damageLimit
-      )
+      this._weapons[_typeWeapon]({ x, y }, 'topY', _damageLimit)
     )
   }
 

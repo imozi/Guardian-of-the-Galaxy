@@ -22,16 +22,10 @@ export const GameStartTimer: FC<GameStartProps> = ({ callback }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [count])
 
-  return (
-    <>
-      {isTimerStart && (
-        <div className="game-start-timer">
-          <span className="game-start-timer__count">
-            {count ? count : 'GO'}
-          </span>
-          <div className="game-start-timer__overlay"></div>
-        </div>
-      )}
-    </>
-  )
+  return isTimerStart ? (
+    <div className="game-start-timer">
+      <span className="game-start-timer__count">{count ? count : 'GO'}</span>
+      <div className="game-start-timer__overlay"></div>
+    </div>
+  ) : null
 }

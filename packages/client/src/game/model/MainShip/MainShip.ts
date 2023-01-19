@@ -233,14 +233,18 @@ export class MainShip extends Ship implements Ship {
 
   private _shoot = (): void => {
     if (this.ammunition.length < this._maxAmmunition) {
-      const projectile = this._weapons[this._typeWeapon](
-        {
-          x: this.position.x,
-          y: this.position.y - this._ship.full.view.height / 2,
-        },
-        'bottomY'
+      const {
+        position: { x, y },
+        _typeWeapon,
+        _ship,
+      } = this
+
+      this.ammunition.push(
+        this._weapons[_typeWeapon](
+          { x, y: y - _ship.full.view.height / 2 },
+          'bottomY'
+        )
       )
-      this.ammunition.push(projectile)
     }
   }
 
@@ -352,7 +356,6 @@ export class MainShip extends Ship implements Ship {
   }
 
   public destroy(): void {
-    this.ammunition.length = 0
     document.removeEventListener('keydown', this._onKeydown)
     document.removeEventListener('keyup', this._onKeyup)
   }

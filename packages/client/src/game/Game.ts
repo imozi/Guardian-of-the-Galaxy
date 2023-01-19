@@ -163,6 +163,7 @@ export class GuardianOfTheGalaxy extends EventBus {
 
   private _draw = (): void => {
     this._ctx.clearRect(0, 0, this._canvasSize.w, this._canvasSize.h)
+
     if (!this._isGameEnd) {
       this._enemyController.draw()
       this._mainShip.draw()

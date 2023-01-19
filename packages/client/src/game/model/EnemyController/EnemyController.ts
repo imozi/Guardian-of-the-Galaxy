@@ -12,17 +12,18 @@ import {
   Velocity,
   WeaponCollection,
   EnemyTypeStrings,
+  EnemyType,
 } from '@/types/game'
 
 export class EnemyController {
   private _enemyMap: EnemyTypeArray[] = [
-    ['battlecruiser', 'dreadnought', 'battlecruiser'],
-    [...Array(5).fill('torpedo')],
-    [...Array(9).fill('frigate')],
-    [...Array(13).fill('bomber')],
-    [...Array(13).fill('support')],
-    [...Array(13).fill('fighter')],
-    [...Array(15).fill('scout')],
+    [EnemyType.battlecruiser, EnemyType.dreadnought, EnemyType.battlecruiser],
+    [...Array(5).fill(EnemyType.torpedo)],
+    [...Array(9).fill(EnemyType.frigate)],
+    [...Array(13).fill(EnemyType.bomber)],
+    [...Array(13).fill(EnemyType.support)],
+    [...Array(13).fill(EnemyType.fighter)],
+    [...Array(15).fill(EnemyType.scout)],
   ]
   private _canvasSize: CanvasSize
   private _ctx: CanvasRenderingContext2D

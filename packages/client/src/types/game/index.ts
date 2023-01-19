@@ -48,7 +48,7 @@ export enum EnemyGroup {
   nautolan = 'nautolan',
 }
 
-enum EnemyType {
+export enum EnemyType {
   dreadnought = 'dreadnought',
   battlecruiser = 'battlecruiser',
   torpedo = 'torpedo',
