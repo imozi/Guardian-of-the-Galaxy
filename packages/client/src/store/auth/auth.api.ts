@@ -6,6 +6,7 @@ import { resetUser, setUser } from '../user/userSlice'
 import { apiDefaultHeaders } from '@/core/utils'
 import fetch from 'cross-fetch'
 import { UserType } from '@/types'
+import 'cross-fetch/polyfill'
 
 export const authApi = createApi({
   reducerPath: 'auth/api',
