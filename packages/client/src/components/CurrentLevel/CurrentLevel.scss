@@ -1,0 +1,9 @@
+.current-level {
+  display: flex;
+  gap: 10px;
+
+  &__titile,
+  &__number {
+    margin: 0;
+  }
+}

@@ -1,20 +1,15 @@
-.health {
-  position: relative;
-  width: $hp-size;
-  height: $hp-size;
-  background-image: url('../images/life/main_ship_full.gif');
-  background-size: 100% 100%;
-  list-style-type: none;
-  margin: 0;
-}
-
 .healths {
-  position: absolute;
-  z-index: 2;
-  bottom: 25px;
-  left: 25px;
   display: flex;
-  justify-content: start;
+  align-items: center;
   margin: 0;
   padding: 0;
+
+  &__item {
+    width: $hp-size;
+    height: $hp-size;
+    background-image: url('../images/life/life.gif');
+    background-size: 100% 100%;
+    list-style-type: none;
+    margin: 0;
+  }
 }

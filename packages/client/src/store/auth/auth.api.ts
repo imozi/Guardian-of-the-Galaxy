@@ -2,8 +2,10 @@ import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
 import { API_URL } from '@/core/consts'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
-import { resetUser } from '../user/userSlice'
+import { resetUser, setUser } from '../user/userSlice'
 import { apiDefaultHeaders } from '@/core/utils'
+import fetch from 'cross-fetch'
+import { UserType } from '@/types'
 import 'cross-fetch/polyfill'
 
 export const authApi = createApi({
@@ -26,7 +28,8 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          await dispatch(userApi.endpoints.getUser.initiate())
+          const { data } = await dispatch(userApi.endpoints.getUser.initiate())
+          dispatch(setUser(data as UserType))
         } catch (error) {
           console.log(error)
         }

@@ -1,6 +1,6 @@
+import { Link } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { useAppSelector } from '@/store'
-import { Link } from 'react-router-dom'
 
 export const Front = () => {
   const user = useAppSelector(state => state.userState.user)
@@ -16,7 +16,11 @@ export const Front = () => {
             <Link className="btn" to="/game">
               Start
             </Link>
-            {!user && (
+            {user ? (
+              <Link className="btn" to="/user">
+                Home
+              </Link>
+            ) : (
               <Link className="btn" to="/login">
                 Login
               </Link>

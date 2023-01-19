@@ -39,7 +39,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate('/game')
+      navigate('/user')
     }
   }, [isSuccess, navigate])
 

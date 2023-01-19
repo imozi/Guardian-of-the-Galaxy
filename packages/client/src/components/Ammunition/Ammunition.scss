@@ -1,0 +1,14 @@
+.ammunition {
+  display: flex;
+  align-items: center;
+  @include list;
+
+  &__item {
+    width: $hp-size;
+    height: $hp-size;
+    background-image: url('../images/weapons/weapon_rocket.gif');
+    background-size: 100% 100%;
+    list-style-type: none;
+    margin: 0;
+  }
+}

@@ -14,15 +14,29 @@ import { ClientError } from './Error/404'
 import { ServerError } from './Error/500'
 import { useGetUserQuery } from '@/store/user/user.api'
 import { PrivateRoute } from '@/hoc/ProtectedRoute'
+import { User } from './User'
 
 export function Pages() {
-  const { isSuccess } = useGetUserQuery()
+  const { isSuccess, isLoading, isFetching } = useGetUserQuery()
+  const loading = isLoading || isFetching
+
+  if (loading) {
+    return <p>loading</p>
+  }
 
   return (
     <Routes>
       <Route path="/" element={<Front />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route
+        path="/user"
+        element={
+          <PrivateRoute isAuth={isSuccess}>
+            <User />
+          </PrivateRoute>
+        }
+      />
       <Route path="/game" element={<Game />} />
       <Route path="/game-over" element={<GameOver />} />
       <Route

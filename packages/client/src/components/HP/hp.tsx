@@ -1,15 +1,17 @@
 import { FC } from 'react'
 
 type HealthProps = {
-  healths: 0 | 1 | 2 | 3
+  healths: number
 }
 
-export const Health: FC<HealthProps> = value => {
-  const list = []
+export const Health: FC<HealthProps> = ({ healths }) => {
+  const list = [...Array(healths).keys()]
 
-  for (let i = 0; i < value.healths; i++) {
-    list.push(<li key={i} className="health" />)
-  }
-
-  return <ul className="healths">{list}</ul>
+  return (
+    <ul className="healths">
+      {list.map(el => (
+        <li key={el} className="healths__item" />
+      ))}
+    </ul>
+  )
 }
