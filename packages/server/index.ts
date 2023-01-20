@@ -80,7 +80,9 @@ async function startServer() {
           .render
       }
 
-      const stateMarkup = `<script>window.__PRELOADED_STATE__=${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}</script>`;
+      const stateMarkup = `<script>window.__PRELOADED_STATE__=${JSON.stringify(
+        store.getState()
+      ).replace(/</g, '\\u003c')}</script>`
 
       const appHtml = await render(url, store)
 

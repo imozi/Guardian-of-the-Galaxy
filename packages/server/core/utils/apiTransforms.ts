@@ -1,4 +1,4 @@
-import type  { LeaderboardDTO, UserDTO } from '../../types/api/ya.praktikum'
+import type { LeaderboardDTO, UserDTO } from '../../types/api/ya.praktikum'
 import type { LeaderBoardItemType, UserType } from '../../types'
 
 export const transformUser = (data: UserDTO): UserType => ({

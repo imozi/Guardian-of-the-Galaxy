@@ -20,19 +20,19 @@ export const store = configureStore({
     ])
   },
   preloadedState: {
-    "userState" : {
-        user: {
-          id: 3797,
-          login: "Qwerty131313",
-          firstName: "Qwerty131313",
-          secondName: "Qwerty131313",
-          displayName: 'Alex',
-          avatar: 'asd',
-          phone: "8888888888",
-          email: "Qwerty131313@asd.ret"
-        }
-    },  
-  }
+    userState: {
+      user: {
+        id: 3797,
+        login: 'Qwerty131313',
+        firstName: 'Qwerty131313',
+        secondName: 'Qwerty131313',
+        displayName: 'Alex',
+        avatar: 'asd',
+        phone: '8888888888',
+        email: 'Qwerty131313@asd.ret',
+      },
+    },
+  },
 })
 
 export type RootState = ReturnType<typeof store.getState>
