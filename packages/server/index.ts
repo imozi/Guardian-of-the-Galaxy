@@ -8,6 +8,8 @@ dotenv.config()
 import express from 'express'
 import * as fs from 'fs'
 import * as path from 'path'
+import { store } from './store'
+import type { Store } from '@reduxjs/toolkit'
 
 const isDev = () => process.env.NODE_ENV === 'development'
 
@@ -69,7 +71,7 @@ async function startServer() {
         template = await vite!.transformIndexHtml(url, template)
       }
 
-      let render: (url: string) => Promise<string>
+      let render: (url: string, store: Store) => Promise<string>
 
       if (!isDev()) {
         render = (await import(ssrClientPath)).render
@@ -78,9 +80,11 @@ async function startServer() {
           .render
       }
 
-      const appHtml = await render(url)
+      const stateMarkup = `<script>window.__PRELOADED_STATE__=${JSON.stringify(store.getState()).replace(/</g, '\\u003c')}</script>`;
 
-      const html = template.replace(`<!--ssr-outlet-->`, appHtml)
+      const appHtml = await render(url, store)
+
+      const html = template.replace(`<!--ssr-outlet-->`, stateMarkup + appHtml)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e) {
