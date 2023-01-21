@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { useAppSelector } from '@/store'
+import { Audioplayer } from '@/components/AudioPlayer/AudioPlayer'
 
 export const Front = () => {
   const user = useAppSelector(state => state.userState.user)
@@ -27,6 +28,7 @@ export const Front = () => {
             )}
           </div>
         </div>
+        <Audioplayer />
       </section>
     </Page>
   )
