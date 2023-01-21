@@ -1,3 +1,5 @@
+import { AudioContext } from 'standardized-audio-context-mock'
+
 const audioContext = new AudioContext()
 const audio = new Audio('a31df44c3944ea6.mp3')
 
