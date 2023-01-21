@@ -71,12 +71,12 @@ export const Game = () => {
     game.current?.start()
   }
 
-  const endGame = () => {
+  const endGame = (level: number, score: number, hightScore: number) => {
     navigation('/game-over', {
       state: {
-        level: currentLevel,
-        score: currentScore,
-        hightScore: currentHightScore,
+        level,
+        score,
+        hightScore,
       },
     })
   }
