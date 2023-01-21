@@ -20,13 +20,19 @@ const reducers = combineReducers({
 })
 
 //@ts-ignore
-const storeServer = configureStore({ reducer: reducers }, window.__PRELOADED_STATE__)
+const storeServer = configureStore(
+  { reducer: reducers },
+  window.__PRELOADED_STATE__
+)
+
+delete window.__PRELOADED_STATE__
 
 ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,
   <React.StrictMode>
     <ErrorBoundary>
-      <Provider store={process.env.NODE_ENV === 'production' ? storeServer : store}>
+      <Provider
+        store={process.env.NODE_ENV === 'production' ? storeServer : store}>
         <BrowserRouter>
           <Pages />
         </BrowserRouter>
