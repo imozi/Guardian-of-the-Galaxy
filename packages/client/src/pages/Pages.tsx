@@ -15,6 +15,9 @@ import { ServerError } from './Error/500'
 import { useGetUserQuery } from '@/store/user/user.api'
 import { PrivateRoute } from '@/hoc/ProtectedRoute'
 import { User } from './User'
+import { authorizeWithYaOAuth, getLocationOrigin } from '@/api/oauth'
+import { useEffect } from 'react'
+
 
 export function Pages() {
   const { isSuccess, isLoading, isFetching } = useGetUserQuery()
@@ -23,6 +26,17 @@ export function Pages() {
   if (loading) {
     return <p>loading</p>
   }
+
+  // useEffect(() => {
+  //   const OAuthParams = new URLSearchParams(location.search)
+  //   const code = OAuthParams.get('code')?.toString()
+  //   const yandexOAuth = async (code: string) => {
+  //     const redirect_uri = getLocationOrigin()
+  //     const res = await authorizeWithYaOAuth({ code, redirect_uri })
+  //   }
+  //   if (code) yandexOAuth(code)
+  // }, [])
+
 
   return (
     <Routes>
