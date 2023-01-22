@@ -1,8 +1,10 @@
 import { FC } from 'react'
 import { Button } from '../UI'
-import { audioPause, audioPlay, audioStop } from '@/core/utils/webAPI/audio'
+import { useAudioPLayer } from '@/core/utils/webAPI/audio'
 
 export const Audioplayer: FC = () => {
+  const { audioPlay, audioStop, audioPause } = useAudioPLayer()
+
   return (
     <div className="audio-player">
       Sound

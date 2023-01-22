@@ -19,13 +19,11 @@ const reducers = combineReducers({
   userState: userReducer,
 })
 
-//@ts-ignore
 const storeServer = configureStore(
   { reducer: reducers },
+  //@ts-expect-error
   window.__PRELOADED_STATE__
 )
-
-delete window.__PRELOADED_STATE__
 
 ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,

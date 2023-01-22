@@ -1,1 +1,1 @@
-export { Card } from './AudioPlayer'
+export { Audioplayer } from './AudioPlayer'
