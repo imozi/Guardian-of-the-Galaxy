@@ -1,9 +1,13 @@
 import { FC } from 'react'
 import { Button } from '../UI'
 import { useAudioPLayer } from '@/core/utils/webAPI/audio'
+import { AudioContextMock } from 'standardized-audio-context-mock/build/es2019/audio-context-mock'
 
 export const Audioplayer: FC = () => {
-  const { audioPlay, audioStop, audioPause } = useAudioPLayer()
+  const audioContext = new AudioContextMock()
+  const audio = new Audio('sounds/a31df44c3944ea6.mp3')
+
+  const { audioPlay, audioStop, audioPause } = useAudioPLayer(audioContext, audio)
 
   return (
     <div className="audio-player">
