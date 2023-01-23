@@ -19,9 +19,9 @@ const reducers = combineReducers({
   userState: userReducer,
 })
 
-//@ts-ignore
 const storeServer = configureStore(
   { reducer: reducers },
+  //@ts-expect-error
   window.__PRELOADED_STATE__
 )
 

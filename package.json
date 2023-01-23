@@ -33,6 +33,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "react-redux": "^8.0.5",
+    "standardized-audio-context": "^25.3.37",
     "whatwg-fetch": "^3.6.2"
   }
 }
