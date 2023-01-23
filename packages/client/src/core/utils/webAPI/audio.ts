@@ -1,7 +1,9 @@
 import { AudioContext } from 'standardized-audio-context-mock'
 
-export const useAudioPLayer = (audioContext: AudioContext, audio: HTMLAudioElement) => {
-  
+export const useAudioPLayer = (
+  audioContext: AudioContext,
+  audio: HTMLAudioElement
+) => {
   const source = audioContext.createMediaElementSource(audio)
   source.connect(audioContext.destination)
 

@@ -157,7 +157,12 @@ export class GuardianOfTheGalaxy extends EventBus {
       this._enemyController.reset()
       this._mainShip.destroy()
       this.saveLocalStorage()
-      this.emit(GuardianOfTheGalaxy.EVENTS.GAME_END)
+      this.emit(
+        GuardianOfTheGalaxy.EVENTS.GAME_END,
+        this.level,
+        this.score,
+        localStorage.getItem('GOTG:hightScore')
+      )
     }
   }
 

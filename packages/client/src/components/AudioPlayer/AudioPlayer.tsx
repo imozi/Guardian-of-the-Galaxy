@@ -7,7 +7,10 @@ export const Audioplayer: FC = () => {
   const audioContext = new AudioContext()
   const audio = new Audio('sounds/a31df44c3944ea6.mp3')
 
-  const { audioPlay, audioStop, audioPause } = useAudioPLayer(audioContext, audio)
+  const { audioPlay, audioStop, audioPause } = useAudioPLayer(
+    audioContext,
+    audio
+  )
 
   return (
     <div className="audio-player">
