@@ -1,0 +1,15 @@
+.audio-player {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+
+  &__btns {
+    display: flex;
+    gap: 5px;
+  }
+}

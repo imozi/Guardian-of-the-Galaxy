@@ -1,0 +1,40 @@
+.game-over {
+  padding: 8px 60px;
+
+  &__stat {
+    display: flex;
+    gap: 28px;
+  }
+
+  & .current-score {
+    align-self: flex-start;
+  }
+
+  & .hight-score {
+    margin-left: auto;
+  }
+
+  &__wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__title {
+    margin: 0;
+    font-size: $fz96;
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+  }
+
+  & .link {
+    font-size: $fz36;
+  }
+}

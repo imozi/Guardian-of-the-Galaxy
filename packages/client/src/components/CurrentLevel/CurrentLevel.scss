@@ -1,5 +1,7 @@
 .current-level {
   display: flex;
+  text-transform: uppercase;
+  font-size: $fz24;
   gap: 10px;
 
   &__titile,
