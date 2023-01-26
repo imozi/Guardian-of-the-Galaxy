@@ -11,13 +11,22 @@
     "test": "jest ."
   },
   "dependencies": {
+    "@reduxjs/toolkit": "1.9.1",
     "cors": "2.8.5",
     "cross-env": "7.0.3",
+    "cross-fetch": "3.1.5",
     "dotenv": "16.0.2",
     "eslint-config-prettier": "8.5.0",
     "express": "4.18.1",
     "pg": "8.8.0",
-    "prettier": "2.7.1"
+    "prettier": "2.7.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-redux": "8.0.5",
+    "reflect-metadata": "0.1.13",
+    "sequelize": "6.28.0",
+    "sequelize-typescript": "2.1.5",
+    "vite": "3.0.7"
   },
   "devDependencies": {
     "@types/cors": "2.8.12",
