@@ -47,16 +47,16 @@ export class GuardianOfTheGalaxy extends EventBus {
 
     this._weapons = new Weapons({ ctx: this._ctx })
 
-    this._enemyController = new EnemyController({
-      canvasSize: this._canvasSize,
-      ctx: this._ctx,
-      weapons: this._weapons.emeny,
-    })
-
     this._mainShip = new MainShip({
       canvasSize: this._canvasSize,
       ctx: this._ctx,
       weapons: this._weapons.main,
+    })
+
+    this._enemyController = new EnemyController({
+      canvasSize: this._canvasSize,
+      ctx: this._ctx,
+      weapons: this._weapons.emeny,
     })
 
     this._collisionController = new CollisionController({
@@ -115,7 +115,10 @@ export class GuardianOfTheGalaxy extends EventBus {
   }
 
   private _nextLevel(): void {
-    if (!this._enemyController.enemiesShips.length) {
+    if (
+      !this._enemyController.enemiesShips.length &&
+      !this._mainShip.ammunition.length
+    ) {
       this._enemyController.generateEnemiesShips()
       this._enemyController.enemiesShips.forEach(enemy => {
         enemy.on(EnemyShip.EVENTS.HIT, this._updateScore.bind(this))
