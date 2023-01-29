@@ -1,30 +1,20 @@
 import { DataType, Model } from 'sequelize-typescript'
 import type { ModelAttributes } from 'sequelize/types'
 
-type UserAttributes = {
+type MessageAttributes = {
   id: number
-  externalId: number
-  name: string
-  avatar: string
+  text: string
 }
 
-export const userModel: ModelAttributes<Model, UserAttributes> = {
+export const messageModel: ModelAttributes<Model, MessageAttributes> = {
   id: {
     type: DataType.INTEGER,
     primaryKey: true,
     unique: true,
     autoIncrement: true,
   },
-  externalId: {
-    type: DataType.INTEGER,
-    unique: true,
-    allowNull: false,
-  },
-  name: {
+  text: {
     type: DataType.STRING,
     allowNull: false,
-  },
-  avatar: {
-    type: DataType.STRING,
   },
 }
