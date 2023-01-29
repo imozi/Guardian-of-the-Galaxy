@@ -29,7 +29,7 @@ export const Front = () => {
           </div>
         </div>
       </section>
-      {<Audioplayer />}
+      {/* {<Audioplayer />} */}
     </Page>
   )
 }

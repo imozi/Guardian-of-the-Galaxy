@@ -9,8 +9,11 @@ export default defineConfig({
   server: {
     port: Number(process.env.CLIENT_PORT) || 3000,
   },
-  define: {
-    __SERVER_PORT__: process.env.SERVER_PORT || 3001,
+  build: {
+    emptyOutDir: false,
+  },
+  ssr: {
+    format: 'cjs',
   },
   plugins: [react()],
   resolve: {

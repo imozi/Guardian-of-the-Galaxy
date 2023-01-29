@@ -19,19 +19,17 @@ const reducers = combineReducers({
   userState: userReducer,
 })
 
-const storeServer = configureStore(
-  {
-    reducer: reducers,
-    middleware: getDefaultMiddleware => {
-      return getDefaultMiddleware({}).concat([
-        authApi.middleware,
-        userApi.middleware,
-        leaderboardApi.middleware,
-      ])
-    },
-    preloadedState: window.__PRELOADED_STATE__,
-  }
-)
+const storeServer = configureStore({
+  reducer: reducers,
+  middleware: getDefaultMiddleware => {
+    return getDefaultMiddleware({}).concat([
+      authApi.middleware,
+      userApi.middleware,
+      leaderboardApi.middleware,
+    ])
+  },
+  preloadedState: window.__PRELOADED_STATE__,
+})
 
 ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,
