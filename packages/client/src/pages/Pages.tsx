@@ -15,14 +15,10 @@ import { ServerError } from './Error/500'
 import { useGetUserQuery } from '@/store/user/user.api'
 import { PrivateRoute } from '@/hoc/ProtectedRoute'
 import { User } from './User'
+import { NewTopic } from '@/pages/NewTopic'
 
 export function Pages() {
-  const { isSuccess, isLoading, isFetching } = useGetUserQuery()
-  const loading = isLoading || isFetching
-
-  if (loading) {
-    return <p>loading</p>
-  }
+  const { isSuccess } = useGetUserQuery()
 
   return (
     <Routes>
@@ -72,10 +68,18 @@ export function Pages() {
         }
       />
       <Route
-        path="/forum-branch"
+        path="/forum/:id"
         element={
           <PrivateRoute isAuth={isSuccess}>
             <Branch />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/forum-add"
+        element={
+          <PrivateRoute isAuth={isSuccess}>
+            <NewTopic />
           </PrivateRoute>
         }
       />

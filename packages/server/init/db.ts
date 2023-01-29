@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize-typescript'
 import type { SequelizeOptions } from 'sequelize-typescript'
 import { themeModel } from '../models/theme'
+import { topicModel } from '../models/topic'
 
 const {
   POSTGRES_USER,
@@ -22,10 +23,7 @@ const sequelizeOptions: SequelizeOptions = {
 export const sequelize = new Sequelize(sequelizeOptions)
 
 export const Theme = sequelize.define('Theme', themeModel)
-
-export async function getThemeById(id: number) {
-  return Theme.findOne({ where: { id } })
-}
+export const Topic = sequelize.define('Topic', topicModel)
 
 export async function dbConnect() {
   try {

@@ -11,6 +11,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 import { store } from './store'
 import type { Store } from '@reduxjs/toolkit'
+import router from './routes'
+import errorHandler from './middleware/ErrorHandlingMiddleware'
 
 const isDev = () => process.env.NODE_ENV === 'development'
 
@@ -31,6 +33,8 @@ async function startServer() {
 
     app.use(cors(corsOptions))
 
+    app.use(express.json())
+
     let vite: ViteDevServer | undefined
 
     const distPath = path.resolve('../client/dist/')
@@ -47,9 +51,8 @@ async function startServer() {
       app.use(vite.middlewares)
     }
 
-    app.get('/api', (_, res) => {
-      res.json('👋 Howdy from the server :)')
-    })
+    app.use('/api/v1', router)
+    app.use(errorHandler)
 
     if (!isDev()) {
       app.use('/assets', express.static(path.resolve(distPath, 'assets')))
