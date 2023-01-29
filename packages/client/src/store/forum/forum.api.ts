@@ -42,8 +42,8 @@ export const forumApi = createApi({
       }),
     }),
     updateUser: build.mutation<ForumUserDTO | ForumErrorDTO, ForumUserDTO>({
-      query: ({id, ...payload}) => ({
-        url: `/user/${id}`,
+      query: ({externalId, ...payload}) => ({
+        url: `/user/${externalId}`,
         method: 'PUT',
         body: payload,
       }),

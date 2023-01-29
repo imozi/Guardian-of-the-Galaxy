@@ -17,9 +17,9 @@ export type TopicInputDTO = {
 }
 
 export type ForumUserDTO = {
-  id: number
+  externalId: number
   name: string
-  avatar?: string
+  avatar?: string | null
 }
 
 export type ForumErrorDTO = {

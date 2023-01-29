@@ -4,7 +4,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
 import { resetUser, setUser } from '../user/userSlice'
 import { apiDefaultHeaders } from '@/core/utils'
-import fetch from 'cross-fetch'
 import { UserType } from '@/types'
 import 'cross-fetch/polyfill'
 import { forumApi } from '@/store/forum/forum.api'
@@ -29,7 +28,7 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          const { data } = await dispatch(userApi.endpoints.getUser.initiate())
+          const { data } = await dispatch(userApi.endpoints.getUser.initiate(undefined, { forceRefetch: true }))
           dispatch(setUser(data as UserType))
         } catch (error) {
           console.log(error)
@@ -47,11 +46,11 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          const { data } = await dispatch(userApi.endpoints.getUser.initiate())
-          const { id, firstName, displayName, avatar } = data as UserType
-          await dispatch(forumApi.endpoints.addUser.initiate({
-            id,
-            name: displayName || firstName,
+          const { data } = await dispatch(userApi.endpoints.getUser.initiate(undefined, { forceRefetch: true }))
+          const { id, firstName, avatar } = data as UserType
+          dispatch(forumApi.endpoints.addUser.initiate({
+            externalId: id,
+            name: firstName,
             avatar,
           }))
         } catch (error) {

@@ -4,7 +4,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
 import { resetUser, setUser } from '../user/userSlice'
 import { apiDefaultHeaders } from '../../core/utils'
-import fetch from 'cross-fetch'
 import type { UserType } from '../../types'
 import 'cross-fetch/polyfill'
 

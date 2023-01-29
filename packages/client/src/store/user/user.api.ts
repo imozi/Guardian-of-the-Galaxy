@@ -5,6 +5,7 @@ import { apiDefaultHeaders, transformUser } from '@/core/utils'
 import { UserType } from '@/types'
 import { ErrorDTO, PasswordDTO, UserDTO } from '@/types/api/ya.praktikum'
 import 'cross-fetch/polyfill'
+import { forumApi } from '@/store/forum/forum.api'
 
 export const userApi = createApi({
   reducerPath: 'user/api',
@@ -40,7 +41,13 @@ export const userApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
+          const { id, firstName, displayName, avatar } = data as UserType
           dispatch(setUser(data as UserType))
+          dispatch(forumApi.endpoints.updateUser.initiate({
+            externalId: id,
+            name: displayName || firstName,
+            avatar,
+          }))
         } catch (error) {
           console.log(error)
         }
@@ -57,7 +64,13 @@ export const userApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
+          const { id, firstName, displayName, avatar } = data as UserType
           dispatch(setUser(data as UserType))
+          dispatch(forumApi.endpoints.updateUser.initiate({
+            externalId: id,
+            name: displayName || firstName,
+            avatar,
+          }))
         } catch (error) {
           console.log(error)
         }
