@@ -9,7 +9,7 @@ export const Forum = () => {
     data: topics,
     isLoading,
     isFetching,
-  } = useGetTopicsQuery(undefined, {refetchOnMountOrArgChange: true})
+  } = useGetTopicsQuery(undefined, { refetchOnMountOrArgChange: true })
   const loading = isLoading || isFetching
 
   return (

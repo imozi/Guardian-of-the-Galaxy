@@ -4,13 +4,13 @@ import ApiError from '../error/ApiError'
 
 export class ThemeController {
   async create(req: Request, res: Response, next: NextFunction) {
-    const {name} = req.body
+    const { name } = req.body
     if (!name) {
       return next(ApiError.internal('Name is required'))
     }
 
     try {
-      const theme = await Theme.create({name})
+      const theme = await Theme.create({ name })
       return res.json(theme)
     } catch (e) {
       if (e instanceof Error) {
@@ -26,4 +26,3 @@ export class ThemeController {
     return res.json(themes)
   }
 }
-

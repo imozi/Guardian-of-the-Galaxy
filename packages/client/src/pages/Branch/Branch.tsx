@@ -5,13 +5,13 @@ import { useGetTopicQuery } from '@/store/forum/forum.api'
 
 export const Branch = () => {
   const navigate = useNavigate()
-  const {id} = useParams()
+  const { id } = useParams()
 
   const {
     data: topic,
     isLoading,
     isFetching,
-  } = useGetTopicQuery(id, {refetchOnMountOrArgChange: true})
+  } = useGetTopicQuery(id, { refetchOnMountOrArgChange: true })
   const loading = isLoading || isFetching
 
   return (

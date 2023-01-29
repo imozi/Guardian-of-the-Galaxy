@@ -13,7 +13,7 @@ const TopicForm = [
     label: 'Topic name',
     value: '',
     isValid: true,
-    errorMessage: 'Name is required'
+    errorMessage: 'Name is required',
   },
 ]
 

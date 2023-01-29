@@ -20,7 +20,7 @@ export const forumApi = createApi({
       transformErrorResponse: response => response.data,
     }),
     getTopic: build.query<TopicDTO[], string | undefined>({
-      query: (id) => ({
+      query: id => ({
         url: `/topic/${id}`,
         method: 'GET',
       }),
@@ -37,4 +37,5 @@ export const forumApi = createApi({
   }),
 })
 
-export const { useGetTopicsQuery, useGetTopicQuery, useAddTopicMutation } = forumApi
+export const { useGetTopicsQuery, useGetTopicQuery, useAddTopicMutation } =
+  forumApi
