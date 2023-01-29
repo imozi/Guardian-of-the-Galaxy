@@ -10,8 +10,8 @@ export class TopicController {
     }
 
     try {
-      const theme = await Topic.create({ name })
-      return res.json(theme)
+      const topic = await Topic.create({ name })
+      return res.json(topic)
     } catch (e) {
       if (e instanceof Error) {
         return next(ApiError.badRequest(e.message))
@@ -22,8 +22,8 @@ export class TopicController {
   }
 
   async getAll(req: Request, res: Response) {
-    const themes = await Topic.findAll()
-    return res.json(themes)
+    const topics = await Topic.findAll()
+    return res.json(topics)
   }
 
   async getOne(req: Request, res: Response) {

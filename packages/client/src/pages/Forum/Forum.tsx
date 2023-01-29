@@ -36,7 +36,7 @@ export const Forum = () => {
           )}
           {topics &&
             topics.map(({ id, name }) => (
-              <Link className="forum__topic" to={`/forum/${id}`}>
+              <Link key={id} className="forum__topic" to={`/forum/${id}`}>
                 <Topic topicName={name} answers="45"></Topic>
               </Link>
             ))}

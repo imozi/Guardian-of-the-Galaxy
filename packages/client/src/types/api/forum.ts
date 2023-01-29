@@ -15,3 +15,13 @@ export type TopicDTO = {
 export type TopicInputDTO = {
   name: string
 }
+
+export type ForumUserDTO = {
+  id: number
+  name: string
+  avatar?: string
+}
+
+export type ForumErrorDTO = {
+  message: string
+}

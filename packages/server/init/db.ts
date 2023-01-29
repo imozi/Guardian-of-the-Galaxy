@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize-typescript'
 import type { SequelizeOptions } from 'sequelize-typescript'
 import { themeModel } from '../models/theme'
 import { topicModel } from '../models/topic'
+import { userModel } from '../models/user'
 
 const {
   POSTGRES_USER,
@@ -24,6 +25,7 @@ export const sequelize = new Sequelize(sequelizeOptions)
 
 export const Theme = sequelize.define('Theme', themeModel)
 export const Topic = sequelize.define('Topic', topicModel)
+export const User = sequelize.define('User', userModel)
 
 export async function dbConnect() {
   try {

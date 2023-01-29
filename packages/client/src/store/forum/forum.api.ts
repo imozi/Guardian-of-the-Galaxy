@@ -2,7 +2,7 @@ import { API_SERVER_URL } from '@/core/consts'
 import { apiDefaultHeaders } from '@/core/utils'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import 'cross-fetch/polyfill'
-import { TopicDTO, TopicInputDTO } from '@/types/api/forum'
+import { ForumErrorDTO, ForumUserDTO, TopicDTO, TopicInputDTO } from '@/types/api/forum'
 
 export const forumApi = createApi({
   reducerPath: 'forum/api',
@@ -19,14 +19,14 @@ export const forumApi = createApi({
       }),
       transformErrorResponse: response => response.data,
     }),
-    getTopic: build.query<TopicDTO[], string | undefined>({
+    getTopic: build.query<TopicDTO, string | undefined>({
       query: id => ({
         url: `/topic/${id}`,
         method: 'GET',
       }),
       transformErrorResponse: response => response.data,
     }),
-    addTopic: build.mutation<TopicDTO, TopicInputDTO>({
+    addTopic: build.mutation<TopicDTO | ForumErrorDTO, TopicInputDTO>({
       query: data => ({
         url: `/topic`,
         method: 'POST',
@@ -34,8 +34,22 @@ export const forumApi = createApi({
       }),
       transformErrorResponse: response => response.data,
     }),
+    addUser: build.mutation<ForumUserDTO | ForumErrorDTO, ForumUserDTO>({
+      query: data => ({
+        url: `/user`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+    updateUser: build.mutation<ForumUserDTO | ForumErrorDTO, ForumUserDTO>({
+      query: ({id, ...payload}) => ({
+        url: `/user/${id}`,
+        method: 'PUT',
+        body: payload,
+      }),
+    }),
   }),
 })
 
-export const { useGetTopicsQuery, useGetTopicQuery, useAddTopicMutation } =
+export const { useGetTopicsQuery, useGetTopicQuery, useAddTopicMutation, useAddUserMutation, useUpdateUserMutation } =
   forumApi

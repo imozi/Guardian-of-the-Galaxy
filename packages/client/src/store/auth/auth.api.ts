@@ -7,6 +7,7 @@ import { apiDefaultHeaders } from '@/core/utils'
 import fetch from 'cross-fetch'
 import { UserType } from '@/types'
 import 'cross-fetch/polyfill'
+import { forumApi } from '@/store/forum/forum.api'
 
 export const authApi = createApi({
   reducerPath: 'auth/api',
@@ -46,7 +47,13 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          await dispatch(userApi.endpoints.getUser.initiate())
+          const { data } = await dispatch(userApi.endpoints.getUser.initiate())
+          const { id, firstName, displayName, avatar } = data as UserType
+          await dispatch(forumApi.endpoints.addUser.initiate({
+            id,
+            name: displayName || firstName,
+            avatar,
+          }))
         } catch (error) {
           console.log(error)
         }
