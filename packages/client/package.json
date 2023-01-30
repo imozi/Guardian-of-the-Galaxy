@@ -4,13 +4,12 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --watch ssr.ts --watch src/server --exec 'ts-node ssr.ts'",
-    "build": "yarn clear && yarn run build:client && yarn run build:server && yarn build:ssr",
+    "build": "yarn clear && yarn run build:client && yarn run build:ssr && yarn build:server",
     "build:client": "vite build --ssrManifest",
-    "build:server": "vite build --ssr src/entry-server.tsx",
-    "build:ssr": "tsc -p tsconfig.server.json",
+    "build:ssr": "vite build --ssr src/entry-server.tsx",
+    "build:server": "tsc -p tsconfig.server.json",
     "serve": "cross-env NODE_ENV=production node dist/ssr.js",
     "clear": "yarn rimraf ./dist",
-    "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
     "test": "jest ./"

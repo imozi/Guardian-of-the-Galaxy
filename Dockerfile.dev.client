@@ -1,0 +1,29 @@
+ARG NODE_VERSION=16
+ARG CLIENT_PORT=3000
+ARG SERVER_PORT=3001
+ARG HMR_PORT=24678
+
+FROM node:$NODE_VERSION-alpine as builder
+
+# RUN apk update --no-cache && apk add yarn --no-cache
+# RUN export PATH="$(yarn global bin):$PATH" && yarn global add lerna
+
+WORKDIR /app
+
+COPY ["yarn.lock", "package.json", "./"]
+
+RUN yarn --pure-lockfile --force && yarn cache clean
+
+# RUN lerna bootstrap
+
+# FROM node:$NODE_VERSION-alpine as development
+
+# VOLUME /app
+
+# WORKDIR /app
+
+# COPY --from=builder /app/node_module /app
+
+EXPOSE $CLIENT_PORT
+EXPOSE $SERVER_PORT
+EXPOSE $HMR_PORT

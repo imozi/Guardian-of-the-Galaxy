@@ -4,7 +4,6 @@ import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
 import type { ViteDevServer } from 'vite'
-import type { AppStore } from './src/store'
 
 dotenv.config()
 
@@ -51,7 +50,11 @@ app.use('*', async (req, res) => {
     }: {
       url: string
       ssrManifest: string | undefined
-    }) => Promise<{ head: string; html: string; state: AppStore }>
+    }) => Promise<{
+      head: string
+      html: string
+      state: Record<string, unknown>
+    }>
 
     if (!isProduction) {
       template = await fs.readFile(resolve('index.html'), 'utf-8')
@@ -79,5 +82,5 @@ app.use('*', async (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`🤟 Server started at http://localhost:${port}`)
+  console.log(`  ➜ 🤟 Frontend started at http://localhost:${port}`)
 })

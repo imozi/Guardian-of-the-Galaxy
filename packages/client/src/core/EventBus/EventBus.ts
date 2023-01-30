@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { Listener } from '@/types/core'
+import { Listener } from '@/types/core'
 
 export class EventBus<
   E extends string = string,

@@ -15,13 +15,8 @@
     "noImplicitOverride": true,
     "noFallthroughCasesInSwitch": true,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error",
     "lib": ["DOM", "es2019", "esnext.asynciterable"],
     "types": ["node", "jest"],
-    "baseUrl": ".",
-    "paths": {
-      "*": ["types/*"]
-    },
     "outDir": "dist"
   }
 }

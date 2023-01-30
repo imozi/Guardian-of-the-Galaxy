@@ -5,12 +5,12 @@ import {
   TEAM_NAME,
 } from '@/core/consts'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type {
+import {
   ErrorDTO,
   LeaderboardDTO,
   LeaderboardItemDTO,
 } from '@/types/api/ya.praktikum'
-import type { LeaderBoardItemType } from '@/types'
+import { LeaderBoardItemType } from '@/types'
 import { transformLeaderboard } from '@/core/utils/apiTransforms'
 import { apiDefaultHeaders } from '@/core/utils'
 import 'cross-fetch/polyfill'

@@ -1,5 +1,5 @@
 import { EventBus } from '../EventBus'
-import type { PictureProps } from '@/types/core'
+import { PictureProps } from '@/types/core'
 
 export class Picture extends EventBus {
   static EVENTS = {
