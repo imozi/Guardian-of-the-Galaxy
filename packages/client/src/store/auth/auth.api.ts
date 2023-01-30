@@ -28,7 +28,11 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          const { data } = await dispatch(userApi.endpoints.getUser.initiate(undefined, { forceRefetch: true }))
+          const { data } = await dispatch(
+            userApi.endpoints.getUser.initiate(undefined, {
+              forceRefetch: true,
+            })
+          )
           dispatch(setUser(data as UserType))
         } catch (error) {
           console.log(error)
@@ -46,13 +50,19 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          const { data } = await dispatch(userApi.endpoints.getUser.initiate(undefined, { forceRefetch: true }))
+          const { data } = await dispatch(
+            userApi.endpoints.getUser.initiate(undefined, {
+              forceRefetch: true,
+            })
+          )
           const { id, firstName, avatar } = data as UserType
-          dispatch(forumApi.endpoints.addUser.initiate({
-            externalId: id,
-            name: firstName,
-            avatar,
-          }))
+          dispatch(
+            forumApi.endpoints.addUser.initiate({
+              externalId: id,
+              name: firstName,
+              avatar,
+            })
+          )
         } catch (error) {
           console.log(error)
         }

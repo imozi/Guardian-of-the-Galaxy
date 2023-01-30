@@ -26,7 +26,7 @@ export class UserController {
     }
   }
 
-  async update(req: Request, res: Response,  next: NextFunction) {
+  async update(req: Request, res: Response, next: NextFunction) {
     const externalId = Number(req.params.id)
 
     try {

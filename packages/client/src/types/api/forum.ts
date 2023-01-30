@@ -8,6 +8,7 @@ export type ThemeDTO = {
 export type TopicDTO = {
   id: number
   name: string
+  messagesCount?: string
   createdAt?: string
   updatedAt?: string
 }

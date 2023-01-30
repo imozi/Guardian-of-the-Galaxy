@@ -1,4 +1,4 @@
-import { Topic } from '../init/db'
+import { Message, sequelize, Topic } from '../init/db'
 import type { Request, Response, NextFunction } from 'express'
 import ApiError from '../error/ApiError'
 
@@ -22,7 +22,23 @@ export class TopicController {
   }
 
   async getAll(req: Request, res: Response) {
-    const topics = await Topic.findAll()
+    const topics = await Topic.findAll({
+      attributes: {
+        include: [
+          [
+            sequelize.fn('COUNT', sequelize.col('Messages.id')),
+            'messagesCount',
+          ],
+        ],
+      },
+      include: [
+        {
+          model: Message,
+          attributes: [],
+        },
+      ],
+      group: ['Topic.id'],
+    })
     return res.json(topics)
   }
 

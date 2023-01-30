@@ -43,11 +43,13 @@ export const userApi = createApi({
           const { data } = await queryFulfilled
           const { id, firstName, displayName, avatar } = data as UserType
           dispatch(setUser(data as UserType))
-          dispatch(forumApi.endpoints.updateUser.initiate({
-            externalId: id,
-            name: displayName || firstName,
-            avatar,
-          }))
+          dispatch(
+            forumApi.endpoints.updateUser.initiate({
+              externalId: id,
+              name: displayName || firstName,
+              avatar,
+            })
+          )
         } catch (error) {
           console.log(error)
         }
@@ -66,11 +68,13 @@ export const userApi = createApi({
           const { data } = await queryFulfilled
           const { id, firstName, displayName, avatar } = data as UserType
           dispatch(setUser(data as UserType))
-          dispatch(forumApi.endpoints.updateUser.initiate({
-            externalId: id,
-            name: displayName || firstName,
-            avatar,
-          }))
+          dispatch(
+            forumApi.endpoints.updateUser.initiate({
+              externalId: id,
+              name: displayName || firstName,
+              avatar,
+            })
+          )
         } catch (error) {
           console.log(error)
         }

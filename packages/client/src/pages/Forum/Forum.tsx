@@ -27,7 +27,7 @@ export const Forum = () => {
           </div>
           <div className="forum__names">
             <h3 className="forum__name">Topic</h3>
-            <h3 className="forum__name">Answers</h3>
+            <h3 className="forum__name">Messages</h3>
           </div>
           {loading && (
             <div className="forum__loader">
@@ -35,9 +35,9 @@ export const Forum = () => {
             </div>
           )}
           {topics &&
-            topics.map(({ id, name }) => (
+            topics.map(({ id, name, messagesCount }) => (
               <Link key={id} className="forum__topic" to={`/forum/${id}`}>
-                <Topic topicName={name} answers="45"></Topic>
+                <Topic topicName={name} answers={messagesCount || '0'}></Topic>
               </Link>
             ))}
         </div>

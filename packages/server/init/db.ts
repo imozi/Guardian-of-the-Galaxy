@@ -31,18 +31,18 @@ export const Message = sequelize.define('Message', messageModel)
 
 User.hasMany(Message, {
   sourceKey: 'externalId',
-  foreignKey: 'userId'
+  foreignKey: 'userId',
 })
 Message.belongsTo(User, {
   targetKey: 'externalId',
-  foreignKey: 'userId'
+  foreignKey: 'userId',
 })
 
 Topic.hasMany(Message, {
-  foreignKey: 'topicId'
+  foreignKey: 'topicId',
 })
 Message.belongsTo(Topic, {
-  foreignKey: 'topicId'
+  foreignKey: 'topicId',
 })
 
 export async function dbConnect() {
