@@ -7,9 +7,12 @@
     <title>GOTG | Loading...</title>
     <!--head-outlet-->
   </head>
+
   <body>
     <div id="root"><!--ssr-outlet--></div>
-    <!--store-outlet-->
+    <script>
+      window.__PRELOADED_STATE__ = '<!--state-outlet-->'
+    </script>
     <script type="module" src="/src/entry-client.tsx"></script>
   </body>
 </html>

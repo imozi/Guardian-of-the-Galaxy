@@ -1,19 +1,19 @@
 import fs from 'node:fs/promises'
+import { fileURLToPath } from 'node:url'
+import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
 import type { ViteDevServer } from 'vite'
-import path from 'path'
-import { fileURLToPath } from 'node:url'
+import type { AppStore } from './src/store'
+
 dotenv.config()
 
-// Constants
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const resolve = (p: string) => path.resolve(__dirname, p)
 const isProduction = process.env.NODE_ENV === 'production'
-const port = process.env.PORT || 5500
+const port = process.env.CLIENT_PORT || 5500
 const base = process.env.BASE || '/'
 
-// Cached production assets
 const templateHtml = isProduction
   ? await fs.readFile(resolve('index.html'), 'utf-8')
   : ''
@@ -21,10 +21,8 @@ const ssrManifest = isProduction
   ? await fs.readFile(resolve('ssr-manifest.json'), 'utf-8')
   : undefined
 
-// Create http server
 const app = express()
 
-// Add Vite or respective production middlewares
 let vite: ViteDevServer
 
 if (!isProduction) {
@@ -42,16 +40,20 @@ if (!isProduction) {
   app.use(base, sirv(resolve('./'), { extensions: [] }))
 }
 
-// Serve HTML
 app.use('*', async (req, res) => {
   try {
     const url = req.originalUrl
 
-    let template
-    let render
+    let template: string
+    let render: ({
+      url,
+      ssrManifest,
+    }: {
+      url: string
+      ssrManifest: string | undefined
+    }) => Promise<{ head: string; html: string; state: AppStore }>
 
     if (!isProduction) {
-      // Always read fresh template in development
       template = await fs.readFile(resolve('index.html'), 'utf-8')
       template = await vite.transformIndexHtml(url, template)
       render = (await vite.ssrLoadModule(resolve('/src/entry-server.tsx')))
@@ -61,22 +63,21 @@ app.use('*', async (req, res) => {
       render = (await import(resolve('./entry-server.cjs'))).render
     }
 
-    const rendered = await render(url, ssrManifest)
+    const rendered = await render({ url, ssrManifest })
 
     const html = template
       .replace(`<!--head-outlet-->`, rendered.head ?? '')
       .replace(`<!--ssr-outlet-->`, rendered.html ?? '')
-      .replace(`<!--store-outlet-->`, rendered.store ?? '')
+      .replace(`<!--state-outlet-->`, JSON.stringify(rendered.state) ?? '')
 
     res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
-  } catch (e: any) {
-    vite?.ssrFixStacktrace(e)
-    console.log(e.stack)
-    res.status(500).end(e.stack)
+  } catch (e) {
+    vite?.ssrFixStacktrace(e as Error)
+    console.log(e)
+    res.status(500).end(e)
   }
 })
 
-// Start http server
 app.listen(port, () => {
-  console.log(`Server started at http://localhost:${port}`)
+  console.log(`🤟 Server started at http://localhost:${port}`)
 })

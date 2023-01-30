@@ -9,7 +9,10 @@
     "importsNotUsedAsValues": "error",
     "lib": ["DOM", "ESNext", "esnext.asynciterable"],
     "types": ["node"],
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["ssr.ts"]
 }

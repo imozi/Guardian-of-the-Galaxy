@@ -3,18 +3,24 @@ import { renderToString } from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router-dom/server'
 import { Pages } from './pages'
-import { store } from './store'
+import { setupStore } from './store'
 
-export function render(location: string) {
+const store = setupStore()
+
+type RenderProps = {
+  url: string
+}
+
+export function render({ url }: RenderProps) {
   const html = renderToString(
     <React.StrictMode>
       <Provider store={store}>
-        <StaticRouter location={location}>
+        <StaticRouter location={url}>
           <Pages />
         </StaticRouter>
       </Provider>
     </React.StrictMode>
   )
 
-  return { html: html, store: '' }
+  return { html: html, state: store.getState() }
 }

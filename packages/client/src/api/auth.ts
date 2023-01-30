@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { API_URL } from '@/core/consts'
-import { AuthDTO } from '@/types/api/ya.praktikum'
+import type { AuthDTO } from '@/types/api/ya.praktikum'
 
 export const register = (data: AuthDTO) => {
   return axios.post(`${API_URL}/auth/signup`, data)

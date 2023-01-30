@@ -21,7 +21,7 @@ export function Pages() {
 
   return (
     <Routes>
-      <Route path="/" element={<Front />} />
+      <Route index element={<Front />} />
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
       <Route

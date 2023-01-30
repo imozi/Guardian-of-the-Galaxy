@@ -2,8 +2,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setUser } from './userSlice'
 import { API_URL } from '@/core/consts'
 import { apiDefaultHeaders, transformUser } from '@/core/utils'
-import { UserType } from '@/types'
-import { ErrorDTO, PasswordDTO, UserDTO } from '@/types/api/ya.praktikum'
+import type { UserType } from '@/types'
+import type { ErrorDTO, PasswordDTO, UserDTO } from '@/types/api/ya.praktikum'
 import 'cross-fetch/polyfill'
 
 export const userApi = createApi({
