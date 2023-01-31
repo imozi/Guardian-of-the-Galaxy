@@ -1,5 +1,5 @@
-import type { LeaderboardDTO, UserDTO } from '@/types/api/ya.praktikum'
-import type { LeaderBoardItemType, UserType } from '@/types'
+import { LeaderboardDTO, UserDTO } from '@/types/api/ya.praktikum'
+import { LeaderBoardItemType, UserType } from '@/types'
 
 export const transformUser = (data: UserDTO): UserType => ({
   id: data.id,

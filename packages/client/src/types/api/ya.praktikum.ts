@@ -1,4 +1,4 @@
-import type { LeaderBoardItemType } from '@/types'
+import { LeaderBoardItemType } from '@/types'
 
 export type AuthDTO = {
   login: string
