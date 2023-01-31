@@ -2,7 +2,7 @@ import { API_SERVER_URL } from '@/core/consts'
 import { apiDefaultHeaders } from '@/core/utils'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import 'cross-fetch/polyfill'
-import { ForumErrorDTO, ForumUserDTO, TopicDTO, TopicInputDTO } from '@/types/api/forum'
+import { ForumErrorDTO, ForumUserDTO, MessageDTO, MessageInputDTO, TopicDTO, TopicInputDTO } from '@/types/api/forum'
 
 export const forumApi = createApi({
   reducerPath: 'forum/api',
@@ -48,8 +48,23 @@ export const forumApi = createApi({
         body: payload,
       }),
     }),
+    getMessages: build.query<MessageDTO, string | undefined>({
+      query: (topicId) => ({
+        url: `/message/${topicId}`,
+        method: 'GET'
+      }),
+      transformErrorResponse: response => response.data
+    }),
+    addMessage: build.mutation<MessageDTO | ForumErrorDTO, MessageInputDTO>({
+      query: data => ({
+        url: `/message`,
+        method: 'POST',
+        body: data,
+      }),
+      transformErrorResponse: response => response.data,
+    }), 
   }),
 })
 
-export const { useGetTopicsQuery, useGetTopicQuery, useAddTopicMutation, useAddUserMutation, useUpdateUserMutation } =
+export const { useGetTopicsQuery, useGetTopicQuery, useAddTopicMutation, useAddUserMutation, useUpdateUserMutation, useGetMessagesQuery, useAddMessageMutation } =
   forumApi

@@ -5,6 +5,6 @@ const messageRouter = Router()
 const messageController = new MessageController()
 
 messageRouter.post('/', messageController.create)
-messageRouter.get('/', messageController.getAll)
+messageRouter.get('/:topicId', messageController.getAll)
 
 export default messageRouter

@@ -32,25 +32,15 @@ export class MessageController {
   async getAll(req: Request, res: Response) {
     const page: number = Number(req.query.page) || 1
     const limit: number =  Number(req.query.limit) || 5
-    const topicId: number =  Number(req.query.topicId)
     const offset = page * limit - limit
-    let messages
+    const { topicId } = req.params
 
-    if (topicId) {
-      messages = await Message.findAndCountAll({
-        where: {topicId},
+    const messages = await Message.findAndCountAll({
+        where: { topicId: topicId },
         include: User,
         offset,
         limit,
       })
-    } else {
-      messages = await Message.findAndCountAll({
-        include: User,
-        offset,
-        limit,
-      })
-    }
-
-    return res.json(messages)
+      return res.json(messages)
   }
 }

@@ -1,26 +1,33 @@
-import { useCallback, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { ANIMATION_STUB_TIME } from '@/core/consts'
+import { useCallback, useEffect, useState } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { Button } from '@/components/UI'
+import { useAddMessageMutation } from '@/store/forum/forum.api'
+import { useGetUserQuery } from '@/store/user/user.api'
 
 export const NewMessage = () => {
   const navigate = useNavigate()
 
-  const [loading, setLoading] = useState(false)
+  const [createMessage, { isLoading, isSuccess }] = useAddMessageMutation()
+  const { data } = useGetUserQuery()
+  const {state} = useLocation()
+
+  useEffect(() => {
+    if (isSuccess) {
+      navigate(`/forum/${state.topicId}`)
+    }
+  }, [isSuccess])
+
   const [value, setValue] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value)
   }
-
+  
   const onSubmit = useCallback((e: React.SyntheticEvent) => {
     e.preventDefault()
-    setLoading(true)
-    setTimeout(() => {
-      setLoading(false)
-    }, ANIMATION_STUB_TIME)
-  }, [])
+    createMessage({text: value, userId: data!.id, topicId: state.topicId})
+  }, [value])
 
   return (
     <Page title="New message">
@@ -39,7 +46,7 @@ export const NewMessage = () => {
               value={value}
               onChange={handleChange}
             />
-            <Button type="submit" loading={loading}>
+            <Button type="submit" loading={isLoading}>
               Send
             </Button>
           </form>
