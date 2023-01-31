@@ -31,8 +31,8 @@ export async function dbConnect() {
   try {
     await sequelize.authenticate()
     await sequelize.sync()
-    console.log('➜ 🐘 Connected to the database.')
+    console.log('  ➜ 🐘 Connected to the database.')
   } catch (error) {
-    console.error('Unable to connect to the database:', error)
+    console.error('  ➜ 😨 Unable to connect to the database:', error)
   }
 }

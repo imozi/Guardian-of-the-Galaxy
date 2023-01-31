@@ -17,6 +17,10 @@ const corsOptions = {
 
 app.use(cors(corsOptions))
 
+app.get('/', (req, res) => {
+  res.status(200).send('work')
+})
+
 dbConnect().then(() => {
   app.listen(serverPort, () => {
     console.log(`  ➜ 🥳 Backend started at http://localhost:${serverPort}`)

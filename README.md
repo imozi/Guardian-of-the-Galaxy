@@ -22,10 +22,11 @@
 И для клиента и для сервера
 ```yarn lerna add {your_dep}```
 
-
 Если вы хотите добавить dev зависимость, проделайте то же самое, но с флагом `dev`
 ```yarn lerna add {your_dep} --dev --scope server```
 
+Если вы хотите удалить зависимость
+``` yarn lerna exec --scope=(client/server) yarn remove {your_dep}```
 
 ### Тесты
 
