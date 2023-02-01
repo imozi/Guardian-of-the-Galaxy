@@ -59,7 +59,7 @@ app.use('*', async (req, res) => {
     if (!isProduction) {
       template = await fs.readFile(resolve('index.html'), 'utf-8')
       template = await vite.transformIndexHtml(url, template)
-      render = (await vite.ssrLoadModule(resolve('/src/entry-server.tsx')))
+      render = (await vite.ssrLoadModule(resolve('./src/entry-server.tsx')))
         .render
     } else {
       template = templateHtml

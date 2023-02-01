@@ -1,19 +1,19 @@
 import { DataType, Model } from 'sequelize-typescript'
 import type { ModelAttributes } from 'sequelize/types'
 
-type ThemeAttributes = {
+type MessageAttributes = {
   id: number
-  name: string
+  text: string
 }
 
-export const themeModel: ModelAttributes<Model, ThemeAttributes> = {
+export const messageModel: ModelAttributes<Model, MessageAttributes> = {
   id: {
     type: DataType.INTEGER,
     primaryKey: true,
     unique: true,
     autoIncrement: true,
   },
-  name: {
+  text: {
     type: DataType.STRING,
     allowNull: false,
   },
