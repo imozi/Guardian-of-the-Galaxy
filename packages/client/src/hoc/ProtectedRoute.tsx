@@ -9,7 +9,7 @@ interface PrivateRoute {
 
 export const PrivateRoute: FC<PrivateRoute> = ({ isAuth, children }) => {
   if (!isAuth) {
-    return <Navigate to="/" />
+    return <Navigate to="/" replace />
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
