@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "nodemon --watch ssr.ts --exec 'ts-node ssr.ts'",
+    "dev": "nodemon --watch ssr.ts --exec ts-node ssr.ts",
     "build": "yarn clear && yarn run build:client && yarn run build:client-ssr && yarn build:ssr-server",
     "build:client": "vite build --ssrManifest",
     "build:client-ssr": "vite build --ssr src/entry-server.tsx",
