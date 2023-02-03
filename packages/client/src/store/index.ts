@@ -4,11 +4,13 @@ import { authApi } from './auth/auth.api'
 import { userApi } from './user/user.api'
 import userReducer from './user/userSlice'
 import { leaderboardApi } from '@/store/leaderboard/leaderboard.api'
+import { forumApi } from '@/store/forum/forum.api'
 
 const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [leaderboardApi.reducerPath]: leaderboardApi.reducer,
+  [forumApi.reducerPath]: forumApi.reducer,
   userState: userReducer,
 })
 
@@ -20,6 +22,7 @@ export const setupStore = (initialState = {}) =>
         authApi.middleware,
         userApi.middleware,
         leaderboardApi.middleware,
+        forumApi.middleware,
       ])
     },
     preloadedState: initialState,

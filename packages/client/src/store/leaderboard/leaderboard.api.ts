@@ -19,7 +19,7 @@ export const leaderboardApi = createApi({
   reducerPath: 'leaderboard/api',
   baseQuery: fetchBaseQuery({
     baseUrl: API_URL,
-    ...apiDefaultHeaders(),
+    ...apiDefaultHeaders,
     credentials: 'include',
     fetchFn: fetch,
   }),
