@@ -18,7 +18,6 @@ import { User } from './User'
 import { authorizeWithYaOAuth, getLocationOrigin } from '@/api/oauth'
 import { useEffect } from 'react'
 
-
 export function Pages() {
   const { isSuccess, isLoading, isFetching } = useGetUserQuery()
   const loading = isLoading || isFetching
@@ -36,7 +35,6 @@ export function Pages() {
   //   }
   //   if (code) yandexOAuth(code)
   // }, [])
-
 
   return (
     <Routes>

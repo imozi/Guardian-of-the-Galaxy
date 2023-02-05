@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-import type { 
+import type {
   IYandexSigninModel,
-  IGetYandexServiceIDModel
+  IGetYandexServiceIDModel,
 } from '../types/api/ya.praktikum'
 
 const YandexAuth = {
@@ -11,8 +11,7 @@ const YandexAuth = {
   },
   getServiceID(params: IGetYandexServiceIDModel) {
     return axios.get('/oauth/yandex/service-id', { params })
-  }
+  },
 }
 
-export default YandexAuth;
-
+export default YandexAuth

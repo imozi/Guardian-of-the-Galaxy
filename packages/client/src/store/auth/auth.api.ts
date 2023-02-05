@@ -70,7 +70,7 @@ export const authApi = createApi({
     }),
     getOAuthYandexServiceId: build.mutation<string | ErrorDTO, void>({
       query: () => ({
-        url: `/auth/yandexOAuthServiceId`
+        url: `/auth/yandexOAuthServiceId`,
       }),
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
@@ -94,7 +94,7 @@ export const authApi = createApi({
           console.log(error)
         }
       },
-    })
+    }),
   }),
 })
 
@@ -103,5 +103,5 @@ export const {
   useAuthRegisterMutation,
   useAuthLogoutMutation,
   useGetOAuthYandexServiceIdMutation,
-  useSigninWithOAuthYandexMutation
+  useSigninWithOAuthYandexMutation,
 } = authApi
