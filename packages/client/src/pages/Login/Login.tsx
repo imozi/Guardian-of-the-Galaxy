@@ -6,7 +6,7 @@ import { Button } from '@/components/UI'
 import { useForm } from '@/hooks'
 import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
 import { useAuthLoginMutation } from '@/store/auth/auth.api'
-import { getServiceId } from '@/api/oauth'
+import Oauth from '@/components/Oauth/Oauth'
 
 const loginForm = [
   {
@@ -37,16 +37,6 @@ export const Login = () => {
   const [formValues, isFormValid, formInputs] = useForm<AuthDTO>(loginForm)
 
   const [authLogin, { isLoading, isSuccess, error }] = useAuthLoginMutation()
-
-  const handleSubmitOAuth = async () => {
-    const res = await getServiceId()
-    const { service_id } = res
-    if (service_id) {
-      window.location.replace(
-        `https://oauth.yandex.ru/authorize?response_type=code&client_id=${service_id}&redirect_uri=${getLocationOrigin()}`
-      )
-    }
-  }
 
   useEffect(() => {
     if (isSuccess) {
@@ -85,12 +75,7 @@ export const Login = () => {
               Sign up
             </Link>
           </div>
-          <Button
-            className="yaOAuth"
-            onClick={handleSubmitOAuth}
-            type="submit">
-              Яндекс
-          </Button>
+          <Oauth />
         </Card>
       </section>
     </Page>
@@ -99,4 +84,3 @@ export const Login = () => {
 function getLocationOrigin() {
   throw new Error('Function not implemented.')
 }
-

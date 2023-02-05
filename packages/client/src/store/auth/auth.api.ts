@@ -7,6 +7,7 @@ import { apiDefaultHeaders } from '@/core/utils'
 import fetch from 'cross-fetch'
 import { UserType } from '@/types'
 import 'cross-fetch/polyfill'
+import YandexAuth from '@/api/oauth'
 
 export const authApi = createApi({
   reducerPath: 'auth/api',
@@ -67,6 +68,33 @@ export const authApi = createApi({
         }
       },
     }),
+    getOAuthYandexServiceId: build.mutation<string | ErrorDTO, void>({
+      query: () => ({
+        url: `/auth/yandexOAuthServiceId`
+      }),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await YandexAuth.getServiceID({ redirect_uri })
+          return data
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    }),
+    signinWithOAuthYandex: build.mutation<string | ErrorDTO, void>({
+      query: () => ({
+        url: `/auth/siginWithYandexOAuth`,
+        method: 'POST',
+      }),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await YandexAuth.signin(params)
+          return data
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    })
   }),
 })
 
@@ -74,4 +102,6 @@ export const {
   useAuthLoginMutation,
   useAuthRegisterMutation,
   useAuthLogoutMutation,
+  useGetOAuthYandexServiceIdMutation,
+  useSigninWithOAuthYandexMutation
 } = authApi

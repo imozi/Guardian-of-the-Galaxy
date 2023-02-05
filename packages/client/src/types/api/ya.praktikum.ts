@@ -37,3 +37,12 @@ export type LeaderboardItemDTO = {
 }
 
 export type LeaderboardDTO = { data: LeaderBoardItemType }[]
+
+export interface IYandexSigninModel {
+  code: string
+  redirect_uri: string
+}
+
+export interface IGetYandexServiceIDModel {
+  redirect_uri: string
+}

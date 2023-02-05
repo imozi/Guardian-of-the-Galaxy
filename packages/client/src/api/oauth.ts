@@ -1,29 +1,18 @@
 import axios from 'axios'
 
-export const isClient = () => typeof window !== 'undefined'
+import type { 
+  IYandexSigninModel,
+  IGetYandexServiceIDModel
+} from '../types/api/ya.praktikum'
 
-export const getLocationOrigin = (): string => location.origin
-
-export const getServiceId = async () => {
-  try {
-    const result = await axios.get('/api/v2/oauth/yandex/service-id', {
-      params: { redirect_uri: isClient() ? getLocationOrigin() : '' },
-    })
-    return result.data
-  } catch (error) {
-    console.log(error)
+const YandexAuth = {
+  signin(data: IYandexSigninModel) {
+    return axios.post('/oauth/yandex', data)
+  },
+  getServiceID(params: IGetYandexServiceIDModel) {
+    return axios.get('/oauth/yandex/service-id', { params })
   }
 }
 
-export const authorizeWithYaOAuth = async (
-  data: any
-): Promise<any> => {
-  try {
-    const result = await axios.post<any>('/api/v2/oauth/yandex', {
-      data,
-    })
-    return result.data
-  } catch (error) {
-    console.log(error)
-  }
-}
+export default YandexAuth;
+
