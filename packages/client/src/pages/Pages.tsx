@@ -15,16 +15,11 @@ import { ServerError } from './Error/500'
 import { useGetUserQuery } from '@/store/user/user.api'
 import { PrivateRoute } from '@/hoc/ProtectedRoute'
 import { User } from './User'
-import { authorizeWithYaOAuth, getLocationOrigin } from '@/api/oauth'
 import { useEffect } from 'react'
+import { NewTopic } from '@/pages/NewTopic'
 
 export function Pages() {
-  const { isSuccess, isLoading, isFetching } = useGetUserQuery()
-  const loading = isLoading || isFetching
-
-  if (loading) {
-    return <p>loading</p>
-  }
+  const { isSuccess } = useGetUserQuery()
 
   // useEffect(() => {
   //   const OAuthParams = new URLSearchParams(location.search)
@@ -38,21 +33,21 @@ export function Pages() {
 
   return (
     <Routes>
-      <Route path="/" element={<Front />} />
+      <Route index element={<Front />} />
       <Route path="login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      <Route path="register" element={<Register />} />
       <Route
-        path="/user"
+        path="user"
         element={
           <PrivateRoute isAuth={isSuccess}>
             <User />
           </PrivateRoute>
         }
       />
-      <Route path="/game" element={<Game />} />
-      <Route path="/game-over" element={<GameOver />} />
+      <Route path="game" element={<Game />} />
+      <Route path="game-over" element={<GameOver />} />
       <Route
-        path="/leaderboard"
+        path="leaderboard"
         element={
           <PrivateRoute isAuth={isSuccess}>
             <Leaderboard />
@@ -60,7 +55,7 @@ export function Pages() {
         }
       />
       <Route
-        path="/profile"
+        path="profile"
         element={
           <PrivateRoute isAuth={isSuccess}>
             <Profile />
@@ -68,7 +63,7 @@ export function Pages() {
         }
       />
       <Route
-        path="/password"
+        path="password"
         element={
           <PrivateRoute isAuth={isSuccess}>
             <Password />
@@ -76,7 +71,7 @@ export function Pages() {
         }
       />
       <Route
-        path="/forum"
+        path="forum"
         element={
           <PrivateRoute isAuth={isSuccess}>
             <Forum />
@@ -84,7 +79,7 @@ export function Pages() {
         }
       />
       <Route
-        path="/forum-branch"
+        path="/forum/:id"
         element={
           <PrivateRoute isAuth={isSuccess}>
             <Branch />
@@ -92,14 +87,22 @@ export function Pages() {
         }
       />
       <Route
-        path="/forum-message"
+        path="/forum-add"
+        element={
+          <PrivateRoute isAuth={isSuccess}>
+            <NewTopic />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="forum-message"
         element={
           <PrivateRoute isAuth={isSuccess}>
             <NewMessage />
           </PrivateRoute>
         }
       />
-      <Route path="/server-error" element={<ServerError />} />
+      <Route path="server-error" element={<ServerError />} />
       <Route path="*" element={<ClientError />} />
     </Routes>
   )

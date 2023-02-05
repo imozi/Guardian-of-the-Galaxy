@@ -18,10 +18,12 @@
 @import '../components/HightScore/HightScore.scss';
 @import '../components/HP/hp.scss';
 @import '../components/Ammunition/Ammunition.scss';
+@import '../components/AudioPlayer/AudioPlayer.scss';
 
 @import '../components/UI/Button/Button.scss';
 @import '../components/UI/Field/Field.scss';
 @import '../components/UI/UserField/UserField.scss';
+@import '../components/UI/Loader/Loader.scss';
 
 @import '../components/UI/Topic/Topic.scss';
 @import '../components/UI/Post/Post.scss';
@@ -31,6 +33,7 @@
 @import '../pages/Login/Login.scss';
 @import '../pages/User/User.scss';
 @import '../pages/Game/Game.scss';
+@import '../pages/GameOver/GameOver.scss';
 @import '../pages/Error/500/500.scss';
 @import '../pages/Error/404/404.scss';
 @import '../pages/Register/Register.scss';

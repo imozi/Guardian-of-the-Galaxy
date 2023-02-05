@@ -23,6 +23,13 @@
     border-radius: $border-radius;
     background-image: url('../images/background_second.png');
     min-height: 626px;
+    width: 100%;
+    max-width: 626px;
+  }
+
+  &__form {
+    width: unset;
+    min-height: unset;
   }
 
   &__names {
@@ -45,5 +52,20 @@
     align-items: flex-end;
     display: flex;
     flex-direction: column;
+  }
+
+  &__loader {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__topic {
+    color: $color-white;
+    text-decoration: none;
+    margin-bottom: 8px;
+
+    &:hover {
+      color: $color-primary;
+    }
   }
 }

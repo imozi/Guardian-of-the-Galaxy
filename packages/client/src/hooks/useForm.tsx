@@ -41,9 +41,13 @@ export const useForm = <FormType,>(config: FieldType[]) => {
     const newFormData = { ...formData }
 
     for (const fieldName in newFormData) {
-      newFormData[fieldName].isValid = newFormData[fieldName].rule?.test(
-        newFormData[fieldName].value
-      )
+      if (newFormData[fieldName].rule) {
+        newFormData[fieldName].isValid = newFormData[fieldName].rule!.test(
+          newFormData[fieldName].value
+        )
+      } else {
+        newFormData[fieldName].isValid = !!newFormData[fieldName].value
+      }
     }
 
     setFormData(newFormData)

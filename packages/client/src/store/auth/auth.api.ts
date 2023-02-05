@@ -1,13 +1,13 @@
-import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
 import { API_URL } from '@/core/consts'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
 import { resetUser, setUser } from '../user/userSlice'
 import { apiDefaultHeaders } from '@/core/utils'
-import fetch from 'cross-fetch'
 import { UserType } from '@/types'
+import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
 import 'cross-fetch/polyfill'
 import YandexAuth from '@/api/oauth'
+import { forumApi } from '@/store/forum/forum.api'
 
 export const authApi = createApi({
   reducerPath: 'auth/api',
@@ -19,7 +19,7 @@ export const authApi = createApi({
   endpoints: build => ({
     authLogin: build.mutation<string | ErrorDTO, AuthDTO>({
       query: data => ({
-        ...apiDefaultHeaders(),
+        ...apiDefaultHeaders,
         url: `/auth/signin`,
         method: 'POST',
         body: JSON.stringify(data),
@@ -38,7 +38,7 @@ export const authApi = createApi({
     }),
     authRegister: build.mutation<string | ErrorDTO, AuthDTO>({
       query: data => ({
-        ...apiDefaultHeaders(),
+        ...apiDefaultHeaders,
         url: `/auth/signup`,
         method: 'POST',
         body: JSON.stringify(data),
@@ -47,7 +47,19 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          await dispatch(userApi.endpoints.getUser.initiate())
+          const { data } = await dispatch(
+            userApi.endpoints.getUser.initiate(undefined, {
+              forceRefetch: true,
+            })
+          )
+          const { id, firstName, avatar } = data as UserType
+          dispatch(
+            forumApi.endpoints.addUser.initiate({
+              externalId: id,
+              name: firstName,
+              avatar,
+            })
+          )
         } catch (error) {
           console.log(error)
         }
