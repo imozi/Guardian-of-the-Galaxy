@@ -22,7 +22,7 @@ export const userSlice = createSlice({
 })
 
 export default userSlice.reducer
-
+//TODO appState.service_id
 export const selectServiceId = (state: RootState) =>
   state.userState.appState.service_id
 

@@ -4,11 +4,11 @@ import {
   useSigninWithOAuthYandexMutation,
 } from '../../store/auth/auth.api'
 import { useGetUserQuery } from '../../store/user/user.api'
-// import { selectServiceId } from '../../../redux/user/user.slice'
+import { selectServiceId } from '../../store/user/userSlice'
 import { useLocation } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/store'
 
-const REDIRECT_URI = 'http://localhost:3000/'
+const REDIRECT_URI = 'http://localhost:3000/login'
 
 const renderOAuthLink = (service_id: string, redirect_uri: string): string => {
   if (typeof service_id !== 'string') {
@@ -21,6 +21,9 @@ const OAuthPanel: React.FC = () => {
   const location = useLocation()
   const dispatch = useAppDispatch()
   const service_id = useAppSelector(selectServiceId)
+
+  const [getOAuthYandexServiceId] = useGetOAuthYandexServiceIdMutation()
+  const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
 
   const getAuthCode = () => {
     const code = location.search

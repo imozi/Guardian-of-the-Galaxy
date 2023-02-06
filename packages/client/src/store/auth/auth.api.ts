@@ -80,20 +80,20 @@ export const authApi = createApi({
         }
       },
     }),
-    getOAuthYandexServiceId: build.mutation<string | ErrorDTO, void>({
-      query: () => ({
+    getOAuthYandexServiceId: build.mutation<string, string>({
+      query: redirect_uri => ({
         url: `/auth/yandexOAuthServiceId`,
       }),
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
-          const { data } = await YandexAuth.getServiceID({ redirect_uri })
+          const { data } = await YandexAuth.getServiceID(redirect_uri)
           return data
         } catch (error) {
           console.log(error)
         }
       },
     }),
-    signinWithOAuthYandex: build.mutation<string | ErrorDTO, void>({
+    signinWithOAuthYandex: build.mutation<string, string>({
       query: () => ({
         url: `/auth/siginWithYandexOAuth`,
         method: 'POST',
