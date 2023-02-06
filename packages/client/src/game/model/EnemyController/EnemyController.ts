@@ -152,6 +152,26 @@ export class EnemyController {
     }
   }
 
+  private _setCenterPosition(row: number, columns: number, indentRow: number) {
+    const centerEnemyMap = Math.floor(this._enemyMap.length / 2)
+    const { initialIndent } = ENEMY_CONTROLLER.positionAdjustment
+    const centerMapLength = this._enemyMap[columns].length - 1
+    const centerCurrentMap = Math.floor(this._enemyMap[columns].length / 2)
+
+    if (row === centerMapLength && columns !== 0) {
+      this._positionEnemyMap.prevSize += indentRow
+    }
+
+    if (columns === centerEnemyMap && row === centerCurrentMap) {
+      this._position.y = this._positionEnemyMap.y
+
+      this._defaultPosition = {
+        x: this._position.x,
+        y: this._position.y + initialIndent,
+      }
+    }
+  }
+
   public generateEnemiesShips(): void {
     const enemyGroups = Object.keys(EnemyGroup)
     const indxGroup = Math.floor(Math.random() * enemyGroups.length)
@@ -165,10 +185,7 @@ export class EnemyController {
 
       map.forEach((shipName: EnemyTypeStrings, row) => {
         const enemyConf = ENEMY_SHIPS[enemyGroup].ship[shipName]
-        const centerEnemyMap = Math.floor(this._enemyMap.length / 2)
-        const centerCurrentMap = Math.floor(map.length / 2)
-        const { indentRowEnemy, initialIndent } =
-          ENEMY_CONTROLLER.positionAdjustment
+        const { indentRowEnemy } = ENEMY_CONTROLLER.positionAdjustment
         const indentRow = enemyConf.image.sh + indentRowEnemy
 
         this._setPositionX(row, columns, enemyConf.image.sw)
@@ -180,18 +197,7 @@ export class EnemyController {
 
         this.enemiesShips.push(enemy)
 
-        if (row === map.length - 1 && columns !== 0) {
-          this._positionEnemyMap.prevSize += indentRow
-        }
-
-        if (columns === centerEnemyMap && row === centerCurrentMap) {
-          this._position.y = this._positionEnemyMap.y
-
-          this._defaultPosition = {
-            x: this._position.x,
-            y: this._position.y + initialIndent,
-          }
-        }
+        this._setCenterPosition(row, columns, indentRow)
       })
     })
   }
