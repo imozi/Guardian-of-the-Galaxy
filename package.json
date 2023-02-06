@@ -13,7 +13,9 @@
     "test": "lerna run test",
     "lint": "lerna run lint",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
-    "format": "lerna run format"
+    "format": "lerna run format",
+    "docker up": "docker compose -f docker-compose.dev.yml up -d",
+    "docker down": "docker compose -f docker-compose.dev.yml down"
   },
   "license": "MIT",
   "workspaces": [

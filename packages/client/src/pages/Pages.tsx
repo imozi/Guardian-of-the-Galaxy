@@ -15,6 +15,7 @@ import { ServerError } from './Error/500'
 import { useGetUserQuery } from '@/store/user/user.api'
 import { PrivateRoute } from '@/hoc/ProtectedRoute'
 import { User } from './User'
+import { NewTopic } from '@/pages/NewTopic'
 
 export function Pages() {
   const { isSuccess } = useGetUserQuery()
@@ -67,10 +68,18 @@ export function Pages() {
         }
       />
       <Route
-        path="forum-branch"
+        path="/forum/:id"
         element={
           <PrivateRoute isAuth={isSuccess}>
             <Branch />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/forum-add"
+        element={
+          <PrivateRoute isAuth={isSuccess}>
+            <NewTopic />
           </PrivateRoute>
         }
       />

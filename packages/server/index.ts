@@ -2,6 +2,8 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 import express from 'express'
 import { dbConnect } from './src/database/db'
+import router from './src/routes'
+import errorHandler from './src/middleware/ErrorHandlingMiddleware'
 
 dotenv.config()
 
@@ -16,6 +18,9 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
+app.use(express.json())
+app.use('/api/v1', router)
+app.use(errorHandler)
 
 app.get('/', (req, res) => {
   res.status(200).send('work')

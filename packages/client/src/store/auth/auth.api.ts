@@ -6,6 +6,7 @@ import { apiDefaultHeaders } from '@/core/utils'
 import { UserType } from '@/types'
 import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
 import 'cross-fetch/polyfill'
+import { forumApi } from '@/store/forum/forum.api'
 
 export const authApi = createApi({
   reducerPath: 'auth/api',
@@ -17,7 +18,7 @@ export const authApi = createApi({
   endpoints: build => ({
     authLogin: build.mutation<string | ErrorDTO, AuthDTO>({
       query: data => ({
-        ...apiDefaultHeaders(),
+        ...apiDefaultHeaders,
         url: `/auth/signin`,
         method: 'POST',
         body: JSON.stringify(data),
@@ -36,7 +37,7 @@ export const authApi = createApi({
     }),
     authRegister: build.mutation<string | ErrorDTO, AuthDTO>({
       query: data => ({
-        ...apiDefaultHeaders(),
+        ...apiDefaultHeaders,
         url: `/auth/signup`,
         method: 'POST',
         body: JSON.stringify(data),
@@ -45,7 +46,19 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          await dispatch(userApi.endpoints.getUser.initiate())
+          const { data } = await dispatch(
+            userApi.endpoints.getUser.initiate(undefined, {
+              forceRefetch: true,
+            })
+          )
+          const { id, firstName, avatar } = data as UserType
+          dispatch(
+            forumApi.endpoints.addUser.initiate({
+              externalId: id,
+              name: firstName,
+              avatar,
+            })
+          )
         } catch (error) {
           console.log(error)
         }
