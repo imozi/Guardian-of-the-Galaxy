@@ -30,7 +30,7 @@ export const Front = () => {
           </div>
         </div>
       </section>
-      <Audioplayer />
+      <Audioplayer url="sounds/a31df44c3944ea6.mp3" />
     </Page>
   )
 }

@@ -4,9 +4,13 @@ import { useAudioPLayer } from '@/core/utils/webAPI/audio'
 import { AudioContext } from 'standardized-audio-context-mock'
 import { isBrowser } from '@/core/utils/isBrowser'
 
-export const Audioplayer: FC = () => {
+type AudioPlayerProps = {
+  url: string
+}
+
+export const Audioplayer: FC<AudioPlayerProps> = ({ url }) => {
   const audioContext = new AudioContext()
-  const audio = isBrowser() ? new Audio('sounds/a31df44c3944ea6.mp3') : null
+  const audio = isBrowser() ? new Audio(url) : null
 
   const { audioPlay, audioStop, audioPause } = useAudioPLayer(
     audioContext,

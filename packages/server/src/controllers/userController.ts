@@ -46,7 +46,7 @@ export class UserController {
     const user = await User.findOne({ where: { externalId } })
 
     if (user) {
-      // @ts-expect-error
+      // @ts-expect-error Property 'themeName' does not exist on type 'Model'
       return res.json(user.themeName)
     } else {
       return res.json('space')
