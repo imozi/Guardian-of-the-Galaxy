@@ -19,7 +19,7 @@
     flex-direction: column;
     align-items: center;
     padding: 40px;
-    border: 2px solid $color-primary;
+    border: 2px solid var(--color-primary);
     border-radius: $border-radius;
     background-image: url('../images/background_second.png');
     min-height: 626px;

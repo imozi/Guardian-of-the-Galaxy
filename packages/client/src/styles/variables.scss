@@ -1,3 +1,8 @@
+:root {
+  --color-primary: #4d9be6;
+  --color-accent: #00ffd1;
+}
+
 $font-family: 'Minecraftia Regular', sans-serif;
 $font-size: 16px;
 $font-size-timer: 96px;
@@ -14,8 +19,6 @@ $board-ident: 45px;
 $color-black: #000000;
 $color-black-50: rgba(0, 0, 0, 0.5);
 $color-white: #ffffff;
-$color-primary: #4d9be6;
-$color-accent: #00ffd1;
 $color-green: #6cc824;
 $color-danger: #ff6370;
 $color-hover-button: #4187c8;

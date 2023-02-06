@@ -30,7 +30,7 @@ export const Front = () => {
           </div>
         </div>
       </section>
-      {isBrowser() && <Audioplayer />}
+      <Audioplayer />
     </Page>
   )
 }

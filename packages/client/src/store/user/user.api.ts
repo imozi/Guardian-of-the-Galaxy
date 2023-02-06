@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { setUser } from './userSlice'
-import { API_URL } from '@/core/consts'
+import { setUser, setUserTheme } from './userSlice'
+import { API_URL, USER_THEME_DEFAULT } from '@/core/consts'
 import { apiDefaultHeaders, transformUser } from '@/core/utils'
 import { UserType } from '@/types'
 import { ErrorDTO, PasswordDTO, UserDTO } from '@/types/api/ya.praktikum'
 import 'cross-fetch/polyfill'
 import { forumApi } from '@/store/forum/forum.api'
+import { themeApi } from '@/store/theme/theme.api'
 
 export const userApi = createApi({
   reducerPath: 'user/api',
@@ -24,6 +25,12 @@ export const userApi = createApi({
         try {
           const { data } = await queryFulfilled
           dispatch(setUser(data))
+          const theme = await dispatch(
+            themeApi.endpoints.getTheme.initiate(data.id, {
+              forceRefetch: true,
+            })
+          )
+          dispatch(setUserTheme(theme.data || USER_THEME_DEFAULT))
         } catch (error) {
           console.log(error)
         }
