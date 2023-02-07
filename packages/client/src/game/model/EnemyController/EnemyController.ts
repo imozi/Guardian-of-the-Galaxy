@@ -33,6 +33,9 @@ export class EnemyController {
   private _velocity: Velocity
   private _defaultPosition = { x: 0, y: 0 }
   private _isDefaultPosition = false
+  private _isMoveRight = true
+  private _isMoveLeft = false
+  private _isAttacke = false
   public enemiesShips: EnemyShip[] = []
   public enemyАmmunition: Weapon[] = []
 
@@ -45,25 +48,6 @@ export class EnemyController {
       y: 0,
     }
     this._velocity = ENEMY_CONTROLLER.velocity
-  }
-
-  private _enemiesMovement(ms: number): void {
-    if (!this._isDefaultPosition) {
-      return
-    }
-
-    if (this._position.x >= this._canvasSize.w) {
-      this._velocity.vx = -this._velocity.vx
-    } else if (this._position.x <= 0) {
-      this._velocity.vx = -this._velocity.vx
-    }
-
-    this._position.x += this._velocity.vx * this._velocity.speedAdjustment * ms
-
-    this.enemiesShips.forEach(enemy => {
-      enemy.position.x +=
-        this._velocity.vx * this._velocity.speedAdjustment * ms
-    })
   }
 
   private _goAttack(): void {
@@ -170,6 +154,36 @@ export class EnemyController {
         y: this._position.y + initialIndent,
       }
     }
+  }
+
+  private _enemiesMovement(ms: number): void {
+    const directionX = this._velocity.vx * this._velocity.speedAdjustment * ms
+
+    if (!this._isDefaultPosition) {
+      return
+    }
+
+    if (this._isMoveRight) {
+      this._position.x += directionX
+    } else if (this._isMoveLeft) {
+      this._position.x += -directionX
+    }
+
+    this.enemiesShips.forEach(enemy => {
+      if (this._isMoveRight) {
+        enemy.position.x += directionX
+      } else if (this._isMoveLeft) {
+        enemy.position.x += -directionX
+      }
+
+      if (enemy.position.x >= this._canvasSize.w - enemy.sizeSprite.w / 2) {
+        this._isMoveRight = false
+        this._isMoveLeft = true
+      } else if (enemy.position.x <= 0 + enemy.sizeSprite.w / 2) {
+        this._isMoveRight = true
+        this._isMoveLeft = false
+      }
+    })
   }
 
   public generateEnemiesShips(): void {
