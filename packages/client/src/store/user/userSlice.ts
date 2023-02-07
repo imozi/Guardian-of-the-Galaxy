@@ -3,10 +3,12 @@ import { UserType } from '@/types'
 
 type UserState = {
   user: UserType | null
+  theme: string
 }
 
 const initialState: UserState = {
   user: null,
+  theme: 'space',
 }
 
 export const userSlice = createSlice({
@@ -17,9 +19,12 @@ export const userSlice = createSlice({
       state.user = action.payload
     },
     resetUser: () => initialState,
+    setUserTheme: (state, action: PayloadAction<string>) => {
+      state.theme = action.payload
+    },
   },
 })
 
 export default userSlice.reducer
 
-export const { setUser, resetUser } = userSlice.actions
+export const { setUser, resetUser, setUserTheme } = userSlice.actions

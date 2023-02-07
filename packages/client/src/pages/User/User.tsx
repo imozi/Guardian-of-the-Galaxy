@@ -4,6 +4,7 @@ import { UserField } from '@/components/UI'
 import { useAppSelector } from '@/store'
 import { UserNav } from '@/components/UserNav'
 import { UserType } from '@/types'
+import { ThemeToggle } from '@/components/ThemeToggle'
 
 export const User = () => {
   const user = useAppSelector(state => state.userState.user) as UserType
@@ -23,6 +24,8 @@ export const User = () => {
           />
           <UserNav />
         </div>
+
+        <ThemeToggle />
 
         <Link className="user__play-link" to="/game">
           Play

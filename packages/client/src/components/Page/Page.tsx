@@ -2,6 +2,7 @@ import { FC, useEffect } from 'react'
 import { fullscreenAPI } from '@/core/utils/webAPI'
 import { useDocumentTitle } from '@/hooks'
 import { isBrowser } from '@/core/utils/isBrowser'
+import { useAppSelector } from '@/store'
 
 type PageProps = {
   title: string
@@ -11,6 +12,7 @@ type PageProps = {
 
 export const Page: FC<PageProps> = ({ title, children, isGame = false }) => {
   const prefix = 'GOTG | '
+  const theme = useAppSelector(state => state.userState.theme)
 
   useDocumentTitle(`${prefix}${title}`)
 
@@ -21,7 +23,7 @@ export const Page: FC<PageProps> = ({ title, children, isGame = false }) => {
   }, [])
 
   return (
-    <main className="page" data-game={isGame}>
+    <main className={`page page--${theme}`} data-game={isGame}>
       {children}
     </main>
   )

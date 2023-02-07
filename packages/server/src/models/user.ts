@@ -6,6 +6,7 @@ type UserAttributes = {
   externalId: number
   name: string
   avatar: string
+  themeName: string
 }
 
 export const userModel: ModelAttributes<Model, UserAttributes> = {
@@ -26,5 +27,9 @@ export const userModel: ModelAttributes<Model, UserAttributes> = {
   },
   avatar: {
     type: DataType.STRING,
+  },
+  themeName: {
+    type: DataType.STRING,
+    defaultValue: 'space',
   },
 }
