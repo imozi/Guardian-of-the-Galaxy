@@ -8,6 +8,7 @@ import {
   SizeSprite,
   Velocity,
 } from '@/types/game'
+import { throttle } from '@/core/utils'
 
 export class EnemyShip extends Ship implements Ship {
   static EVENTS = { INIT: 'flow:init', DIE: 'flow:die', HIT: 'flow:hit' }
@@ -24,6 +25,7 @@ export class EnemyShip extends Ship implements Ship {
   public sizeSprite: SizeSprite
   public isHit = false
   public isDie = false
+  public isAttacke = false
 
   constructor({
     canvasSize,
@@ -37,6 +39,7 @@ export class EnemyShip extends Ship implements Ship {
     ammunition,
     score,
     helthPoint,
+    mainShipPosition,
   }: IEnemyShipProps) {
     super({ ctx, canvasSize, weapons })
     this.position = position
@@ -55,7 +58,9 @@ export class EnemyShip extends Ship implements Ship {
     this._score = score
     this._helthPoint = helthPoint
     this._ammunition = ammunition
+    this._mainPosition = mainShipPosition
 
+    this.shoot = throttle(this.shoot.bind(this), 2500)
     this._offEvents()
     this._onEvents()
   }
@@ -75,6 +80,7 @@ export class EnemyShip extends Ship implements Ship {
 
   private _hit(damage: number): void {
     this.isHit = true
+    this.isAttacke = false
     this._helthPoint -= damage
 
     if (this._helthPoint <= 0) {
@@ -87,6 +93,10 @@ export class EnemyShip extends Ship implements Ship {
   }
 
   public shoot(): void {
+    if (this.isHit) {
+      return
+    }
+
     const {
       position: { x, y },
       _typeWeapon,
@@ -102,10 +112,35 @@ export class EnemyShip extends Ship implements Ship {
     this._hit(damage)
   }
 
-  public positionUpdate(): void {
-    if (this._helthPoint <= 0) {
+  private _attacke(): void {
+    if (!this.isAttacke) {
       return
     }
+
+    const dx = this._mainPosition.x - this.position.x
+    const dy = this._mainPosition.y - this.position.x
+
+    this._rotate(dx, dy)
+
+    this.position.x += dx / 200
+    this.position.y += dy / 300
+
+    if (this.position.y > this._canvasSize.h) {
+      this.position.y = -100
+    }
+  }
+
+  public attacke(): void {
+    this.isAttacke = true
+  }
+
+  public stopAttacke(): void {
+    this.isAttacke = false
+  }
+
+  private _rotate(x: number, y: number) {
+    const deg = -Math.atan2(x, y) * (360 / (Math.PI * 2))
+    this._image.ship.rotation = deg
   }
 
   public destroy(): void {
@@ -113,7 +148,7 @@ export class EnemyShip extends Ship implements Ship {
   }
 
   public update(): void {
-    this.positionUpdate()
+    this._attacke()
   }
 
   public draw(): void {

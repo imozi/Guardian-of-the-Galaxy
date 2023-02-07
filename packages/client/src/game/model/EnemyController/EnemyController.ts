@@ -15,6 +15,10 @@ import {
   EnemyType,
 } from '@/types/game'
 
+interface EnemyControllerProps extends MainSettingsProps {
+  mainShipPosition: Position
+}
+
 export class EnemyController {
   private _enemyMap: EnemyTypeArray[] = [
     [EnemyType.battlecruiser, EnemyType.dreadnought, EnemyType.battlecruiser],
@@ -35,11 +39,16 @@ export class EnemyController {
   private _isDefaultPosition = false
   private _isMoveRight = true
   private _isMoveLeft = false
-  private _isAttacke = false
+  private _mainShipPosition: Position
   public enemiesShips: EnemyShip[] = []
   public enemyАmmunition: Weapon[] = []
 
-  constructor({ canvasSize, ctx, weapons }: MainSettingsProps) {
+  constructor({
+    canvasSize,
+    ctx,
+    weapons,
+    mainShipPosition,
+  }: EnemyControllerProps) {
     this._canvasSize = canvasSize
     this._ctx = ctx
     this._weapons = weapons
@@ -48,10 +57,7 @@ export class EnemyController {
       y: 0,
     }
     this._velocity = ENEMY_CONTROLLER.velocity
-  }
-
-  private _goAttack(): void {
-    //TODO: Реализовать атаку
+    this._mainShipPosition = mainShipPosition
   }
 
   private _goToDefaultPosition(ms: number): void {
@@ -96,6 +102,7 @@ export class EnemyController {
       ammunition: this.enemyАmmunition,
       helthPoint: config.helthPoint,
       score: config.score,
+      mainShipPosition: this._mainShipPosition,
     })
   }
 
@@ -165,14 +172,22 @@ export class EnemyController {
 
     if (this._isMoveRight) {
       this._position.x += directionX
-    } else if (this._isMoveLeft) {
+    }
+
+    if (this._isMoveLeft) {
       this._position.x += -directionX
     }
 
     this.enemiesShips.forEach(enemy => {
+      if (enemy.isHit || enemy.isAttacke) {
+        return
+      }
+
       if (this._isMoveRight) {
         enemy.position.x += directionX
-      } else if (this._isMoveLeft) {
+      }
+
+      if (this._isMoveLeft) {
         enemy.position.x += -directionX
       }
 
@@ -216,6 +231,11 @@ export class EnemyController {
     })
   }
 
+  public goAttack(): void {
+    const indxEnemy = Math.floor(Math.random() * this.enemiesShips.length)
+    this.enemiesShips[indxEnemy].attacke()
+  }
+
   public reset(): void {
     this.enemiesShips.length = 0
     this.enemyАmmunition.length = 0
@@ -230,6 +250,14 @@ export class EnemyController {
   public update(ms: number): void {
     this._goToDefaultPosition(ms)
     this._enemiesMovement(ms)
+
+    this.enemiesShips.forEach(enemy => {
+      enemy.update()
+
+      if (enemy.isAttacke) {
+        enemy.shoot()
+      }
+    })
 
     if (!this.enemyАmmunition.length) {
       return

@@ -57,6 +57,7 @@ export class GuardianOfTheGalaxy extends EventBus {
       canvasSize: this._canvasSize,
       ctx: this._ctx,
       weapons: this._weapons.emeny,
+      mainShipPosition: this._mainShip.position,
     })
 
     this._collisionController = new CollisionController({

@@ -10,8 +10,8 @@ export const WEAPON_CONFIG: WeaponsConf = {
       damage: 100,
       velocity: {
         speedAdjustment: 100,
-        vx: 1,
-        vy: 1,
+        vx: 2,
+        vy: 2,
       },
     },
     orangeBlast: {
@@ -23,7 +23,7 @@ export const WEAPON_CONFIG: WeaponsConf = {
       velocity: {
         speedAdjustment: 100,
         vx: 2,
-        vy: 1,
+        vy: 2,
       },
     },
     cannonBullet: {
@@ -35,7 +35,7 @@ export const WEAPON_CONFIG: WeaponsConf = {
       velocity: {
         speedAdjustment: 100,
         vx: 2,
-        vy: 1,
+        vy: 2,
       },
     },
     rocket: {
@@ -46,8 +46,8 @@ export const WEAPON_CONFIG: WeaponsConf = {
       damage: 100,
       velocity: {
         speedAdjustment: 100,
-        vx: 1,
-        vy: 1,
+        vx: 2,
+        vy: 2,
       },
     },
     bigSpaceGun: {
