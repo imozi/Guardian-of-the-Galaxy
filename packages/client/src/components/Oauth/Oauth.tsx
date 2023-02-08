@@ -21,6 +21,7 @@ const OAuthPanel: React.FC = () => {
   const location = useLocation()
   const dispatch = useAppDispatch()
   const service_id = useAppSelector(selectServiceId)
+  const isAuth = useAppSelector(state => state.userState.user)
 
   const [getOAuthYandexServiceId] = useGetOAuthYandexServiceIdMutation()
   const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()

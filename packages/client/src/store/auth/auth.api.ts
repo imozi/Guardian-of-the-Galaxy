@@ -81,12 +81,15 @@ export const authApi = createApi({
       },
     }),
     getOAuthYandexServiceId: build.mutation<string, string>({
-      query: redirect_uri => ({
+      query: data => ({
         url: `/auth/yandexOAuthServiceId`,
       }),
+      // ransformErrorResponse: response => JSON.parse(response.data as string),
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
-          const { data } = await YandexAuth.getServiceID(redirect_uri)
+          // const { data } = await queryFulfilled
+          // const { id, firstName, displayName, avatar } = data as UserType
+          const { data } = await YandexAuth.getServiceID({redirect_uri: 'http://localhost:3000/login'})
           return data
         } catch (error) {
           console.log(error)
