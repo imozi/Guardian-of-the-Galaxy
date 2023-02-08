@@ -4,7 +4,7 @@ import { userApi } from '../user/user.api'
 import { resetUser, setUser } from '../user/userSlice'
 import { apiDefaultHeaders } from '@/core/utils'
 import { UserType } from '@/types'
-import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
+import { AuthDTO, ErrorDTO, LeaderboardItemDTO } from '@/types/api/ya.praktikum'
 import 'cross-fetch/polyfill'
 import YandexAuth from '@/api/oauth'
 import { forumApi } from '@/store/forum/forum.api'
@@ -80,37 +80,43 @@ export const authApi = createApi({
         }
       },
     }),
-    getOAuthYandexServiceId: build.mutation<string, string>({
+    getOAuthYandexServiceId: build.mutation<string, {}>({
       query: data => ({
-        url: `/auth/yandexOAuthServiceId`,
+        url: `/oauth/yandex/service-id`,
       }),
-      // ransformErrorResponse: response => JSON.parse(response.data as string),
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        try {
-          // const { data } = await queryFulfilled
-          // const { id, firstName, displayName, avatar } = data as UserType
-          const { data } = await YandexAuth.getServiceID({
-            redirect_uri: 'http://localhost:3000/login',
-          })
-          return data
-        } catch (error) {
-          console.log(error)
-        }
-      },
+      transformErrorResponse: response => JSON.parse(response.data as string),
+      // async onQueryStarted(args, { dispatch, queryFulfilled }) {
+      //   try {
+      //     const { data } = await queryFulfilled
+
+      //     return data
+      //   } catch (error) {
+      //     console.log(error)
+      //   }
+      // },
     }),
-    signinWithOAuthYandex: build.mutation<string, string>({
-      query: () => ({
-        url: `/auth/siginWithYandexOAuth`,
+    // signinWithOAuthYandex: build.mutation<string, string>({
+    //   query: () => ({
+    //     url: `/auth/siginWithYandexOAuth`,
+    //     method: 'POST',
+    //   }),
+    //   async onQueryStarted(args, { dispatch, queryFulfilled }) {
+    //     try {
+    //       const { data } = await YandexAuth.signin(params)
+    //       return data
+    //     } catch (error) {
+    //       console.log(error)
+    //     }
+    //   },
+    // }),
+    signinWithOAuthYandex: build.mutation<string, {}>({
+      query: data => ({
+        url: `/oauth/yandex`,
         method: 'POST',
+        body: data,
+        responseHandler: response => response.text(),
       }),
-      async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await YandexAuth.signin(params)
-          return data
-        } catch (error) {
-          console.log(error)
-        }
-      },
+      transformErrorResponse: response => JSON.parse(response.data as string),
     }),
   }),
 })
