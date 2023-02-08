@@ -11,13 +11,13 @@
   padding: 16px;
   font-size: $font-size;
   border-radius: $border-radius;
-  background-color: $color-primary;
+  background-color: var(--color-primary);
   text-transform: uppercase;
   transition: background-color 0.2s ease-in-out;
   position: relative;
 
   &:hover {
-    background-color: $color-hover-button;
+    opacity: 0.8;
   }
 
   &[disabled] {

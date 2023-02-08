@@ -42,9 +42,14 @@ export class TopicController {
     return res.json(topics)
   }
 
-  async getOne(req: Request, res: Response) {
+  async getOne(req: Request, res: Response, next: NextFunction) {
     const { id } = req.params
     const topic = await Topic.findOne({ where: { id } })
-    return res.json(topic)
+
+    if (topic) {
+      return res.json(topic)
+    } else {
+      return next(ApiError.badRequest('Not found'))
+    }
   }
 }

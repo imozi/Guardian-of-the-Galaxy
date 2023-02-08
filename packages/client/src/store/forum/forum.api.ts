@@ -53,6 +53,13 @@ export const forumApi = createApi({
         body: payload,
       }),
     }),
+    updateTheme: build.mutation<ForumUserDTO | ForumErrorDTO, ForumUserDTO>({
+      query: ({ externalId, ...payload }) => ({
+        url: `/user/${externalId}/theme`,
+        method: 'PUT',
+        body: payload,
+      }),
+    }),
   }),
 })
 

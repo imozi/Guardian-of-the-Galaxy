@@ -54,7 +54,7 @@
   }
   &__score {
     font-size: 24px;
-    color: $color-accent;
+    color: var(--color-accent);
   }
   &__numbers {
     font-size: 20px;
@@ -89,7 +89,7 @@
     display: flex;
     font-size: 36px;
     gap: 202px;
-    color: $color-accent;
+    color: var(--color-accent);
     .link:after {
       opacity: 1;
     }

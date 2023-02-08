@@ -31,4 +31,49 @@
     height: 100%;
     z-index: 1;
   }
+
+  &--saturn {
+    --color-primary: #800080;
+    --color-accent: #6495ed;
+
+    &::before {
+      background-image: url('../images/background_saturn.gif');
+      background-position: top;
+      background-size: cover;
+    }
+
+    &:not([data-game='true']):after {
+      display: none;
+    }
+  }
+
+  &--mars {
+    --color-primary: #e49b0f;
+    --color-accent: #fdda0d;
+
+    &::before {
+      background-image: url('../images/background_mars.gif');
+      background-position: center;
+      background-size: cover;
+    }
+
+    &:not([data-game='true']):after {
+      display: none;
+    }
+  }
+
+  &--uranus {
+    --color-primary: #c3b1e1;
+    --color-accent: #cf9fff;
+
+    &::before {
+      background-image: url('../images/background_uranus.gif');
+      background-position: center;
+      background-size: cover;
+    }
+
+    &:not([data-game='true']):after {
+      display: none;
+    }
+  }
 }

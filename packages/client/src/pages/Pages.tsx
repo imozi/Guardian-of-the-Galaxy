@@ -12,11 +12,11 @@ import { NewMessage } from './NewMessage'
 import { GameOver } from './GameOver'
 import { ClientError } from './Error/404'
 import { ServerError } from './Error/500'
-import { useGetUserQuery } from '@/store/user/user.api'
 import { PrivateRoute } from '@/hoc/ProtectedRoute'
 import { User } from './User'
 import { useEffect } from 'react'
 import { NewTopic } from '@/pages/NewTopic'
+import { useGetUserQuery } from '@/store/user/user.api'
 
 export function Pages() {
   const { isSuccess } = useGetUserQuery()
