@@ -23,10 +23,10 @@ export const userSlice = createSlice({
     setUserTheme: (state, action: PayloadAction<string>) => {
       state.theme = action.payload
     },
-    setServiceIdUser: (state, action: PayloadAction<{}>) => {
-      console.log('setServiceIdUser', action.payload)
-      // state.user= action.payload
-    },
+    // setServiceIdUser: (state, action: PayloadAction<{}>) => {
+    //   console.log('setServiceIdUser', action.payload)
+    //   // state.user= action.payload
+    // },
   },
   // extraReducers: builder => {
   //   builder.addCase(getOAuthYandexServiceId.fulfilled, (state, action) => {
@@ -40,5 +40,5 @@ export default userSlice.reducer
 export const selectServiceId = (state: RootState) =>
   state.userState.user?.service_id
 
-export const { setUser, resetUser, setUserTheme, setServiceIdUser } =
+export const { setUser, resetUser, setUserTheme } =
   userSlice.actions

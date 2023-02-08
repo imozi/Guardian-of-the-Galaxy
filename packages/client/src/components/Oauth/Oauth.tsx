@@ -1,20 +1,20 @@
 import React from 'react'
-import {
-  useGetOAuthYandexServiceIdMutation,
-  useSigninWithOAuthYandexMutation,
-} from '../../store/auth/auth.api'
+// import {
+//   useGetOAuthYandexServiceIdMutation,
+//   useSigninWithOAuthYandexMutation,
+// } from '../../store/auth/auth.api'
 import { useGetUserQuery } from '../../store/user/user.api'
-import { selectServiceId, setServiceIdUser } from '../../store/user/userSlice'
+import { selectServiceId } from '../../store/user/userSlice'
 import { Link, useLocation } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '@/store'
 
 const REDIRECT_URI = 'http://localhost:3000/profile'
 
 const renderOAuthLink = (service_id: string, redirect_uri: string): string => {
-  console.log(service_id, redirect_uri)
-  if (typeof service_id !== 'string') {
-    return '#'
-  }
+  // console.log(service_id, redirect_uri)
+  // if (typeof service_id !== 'string') {
+  //   return '#'
+  // }
   // return `https://oauth.yandex.ru/authorize?response_type=code&client_id=${service_id}&redirect_uri=${redirect_uri}`
   return `https://oauth.yandex.ru/authorize?response_type=code&client_id=87f0d0cea14b4eb6966b52299714ac0e&redirect_uri=http://localhost:3000/profile`
 }
@@ -25,8 +25,8 @@ const OAuthPanel: React.FC = () => {
   const service_id = useAppSelector(selectServiceId)
   const isAuth = useAppSelector(state => state.userState.user)
 
-  const [getOAuthYandexServiceId] = useGetOAuthYandexServiceIdMutation()
-  const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
+  // const [getOAuthYandexServiceId] = useGetOAuthYandexServiceIdMutation()
+  // const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
 
   const getAuthCode = () => {
     const code = location.search
@@ -42,14 +42,14 @@ const OAuthPanel: React.FC = () => {
     // const statusAction = await dispatch(
     // signinWithOAuthYandex({ code, redirect_uri })
     console.log(2)
-    const t = await signinWithOAuthYandex({
-      data: {
-        code: code,
-        redirect_uri: redirect_uri,
-      },
-    })
-    console.log('signinWithOAuthYandex', t)
-    return t
+    // const t = await signinWithOAuthYandex({
+    //   data: {
+    //     code: code,
+    //     redirect_uri: redirect_uri,
+    //   },
+    // })
+    // console.log('signinWithOAuthYandex', t)
+    // return t
     // )
     // if (statusAction.payload) {
     //   dispatch(getProfile())
@@ -59,16 +59,17 @@ const OAuthPanel: React.FC = () => {
   }
 
   const yandex = async () => {
-    const t = await getOAuthYandexServiceId({
-      data: {
-        REDIRECT_URI,
-      },
-    })
-    setServiceIdUser(t)
-    console.log(t)
-    return t
+    // const t = await getOAuthYandexServiceId({
+    //   data: {
+    //     REDIRECT_URI,
+    //   },
+    // // })
+    // setServiceIdUser(t)
+    // console.log(t)
+    // return t
   }
   React.useEffect(() => {
+    console.log('OAuthYandexLink', OAuthYandexLink)
     console.log(1)
     const oauthCode = getAuthCode()
     console.log(oauthCode)
@@ -82,10 +83,8 @@ const OAuthPanel: React.FC = () => {
     // dispatch(t)
   }, [])
 
-  const OAuthYandexLink = `https://oauth.yandex.ru/authorize?response_type=code&client_id=87f0d0cea14b4eb6966b52299714ac0e&redirect_uri=http://localhost:3000/profile` //renderOAuthLink(service_id, REDIRECT_URI)
-  const callLink = () => {
-    return OAuthYandexLink
-  }
+  const OAuthYandexLink = renderOAuthLink(service_id, REDIRECT_URI)
+ 
   return (
     //TODO ссылка
     // <Link className="link" to=`${OAuthYandexLink}`>

@@ -80,44 +80,21 @@ export const authApi = createApi({
         }
       },
     }),
-    getOAuthYandexServiceId: build.mutation<string, {}>({
-      query: data => ({
-        url: `/oauth/yandex/service-id`,
-      }),
-      transformErrorResponse: response => JSON.parse(response.data as string),
-      // async onQueryStarted(args, { dispatch, queryFulfilled }) {
-      //   try {
-      //     const { data } = await queryFulfilled
-
-      //     return data
-      //   } catch (error) {
-      //     console.log(error)
-      //   }
-      // },
-    }),
-    // signinWithOAuthYandex: build.mutation<string, string>({
-    //   query: () => ({
-    //     url: `/auth/siginWithYandexOAuth`,
-    //     method: 'POST',
+    // getOAuthYandexServiceId: build.mutation<string, {}>({
+    //   query: data => ({
+    //     url: `/oauth/yandex/service-id`,
     //   }),
-    //   async onQueryStarted(args, { dispatch, queryFulfilled }) {
-    //     try {
-    //       const { data } = await YandexAuth.signin(params)
-    //       return data
-    //     } catch (error) {
-    //       console.log(error)
-    //     }
-    //   },
+    //   transformErrorResponse: response => JSON.parse(response.data as string),
     // }),
-    signinWithOAuthYandex: build.mutation<string, {}>({
-      query: data => ({
-        url: `/oauth/yandex`,
-        method: 'POST',
-        body: data,
-        responseHandler: response => response.text(),
-      }),
-      transformErrorResponse: response => JSON.parse(response.data as string),
-    }),
+    // signinWithOAuthYandex: build.mutation<string, {}>({
+    //   query: data => ({
+    //     url: `/oauth/yandex`,
+    //     method: 'POST',
+    //     body: data,
+    //     responseHandler: response => response.text(),
+    //   }),
+    //   transformErrorResponse: response => JSON.parse(response.data as string),
+    // }),
   }),
 })
 
@@ -125,6 +102,6 @@ export const {
   useAuthLoginMutation,
   useAuthRegisterMutation,
   useAuthLogoutMutation,
-  useGetOAuthYandexServiceIdMutation,
-  useSigninWithOAuthYandexMutation,
+  // useGetOAuthYandexServiceIdMutation,
+  // useSigninWithOAuthYandexMutation,
 } = authApi
