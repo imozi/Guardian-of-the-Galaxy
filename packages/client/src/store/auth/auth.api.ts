@@ -89,7 +89,9 @@ export const authApi = createApi({
         try {
           // const { data } = await queryFulfilled
           // const { id, firstName, displayName, avatar } = data as UserType
-          const { data } = await YandexAuth.getServiceID({redirect_uri: 'http://localhost:3000/login'})
+          const { data } = await YandexAuth.getServiceID({
+            redirect_uri: 'http://localhost:3000/login',
+          })
           return data
         } catch (error) {
           console.log(error)
