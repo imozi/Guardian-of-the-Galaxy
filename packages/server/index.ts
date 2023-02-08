@@ -1,30 +1,18 @@
 import dotenv from 'dotenv'
-// import cors from 'cors'
 import express from 'express'
 import { dbConnect } from './src/database/db'
 import router from './src/routes'
 import errorHandler from './src/middleware/ErrorHandlingMiddleware'
 import { cors } from './src/middleware/cors'
 import { logger } from './src/middleware/logger'
-import { cfg } from '@/cfg'
+import { cfg } from './src/cfg'
 
 dotenv.config()
 
-dbConnect()
-
 const app = express()
-
-const clientPort = Number(process.env.CLIENT_PORT) || 3000
-const serverPort = Number(process.env.SERVER_PORT) || 3001
-
-// const corsOptions = {
-//   credentials: true,
-//   origin: [`http://127.0.0.1:${clientPort}`, `http://localhost:${clientPort}`],
-// }
 
 app.use(cors)
 app.use(logger)
-// app.use(cors(corsOptions))
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
@@ -40,7 +28,3 @@ dbConnect().then(() => {
     console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
   })
 })
-
-// app.listen(serverPort , () => {
-//   console.log(`  ➜ 🥳 Backend started at ${serverPort }`)
-// })

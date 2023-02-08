@@ -1,4 +1,3 @@
-//TODO
 import { join } from 'path'
 import type { AppConfig } from '../types'
 import { defaultPresets } from './csp/default'
