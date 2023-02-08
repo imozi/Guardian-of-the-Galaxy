@@ -1,6 +1,6 @@
 //TODO
 import { join } from 'path'
-import type { AppConfig } from '@/types'
+import type { AppConfig } from '../types'
 import { defaultPresets } from './csp/default'
 import {
   POSTGRES_DB,
@@ -9,7 +9,7 @@ import {
   POSTGRES_PORT,
   POSTGRES_USER,
   SERVER_PORT,
-} from '@/constants/main'
+} from '../constants/main'
 
 export const defaultConfig: AppConfig = {
   csp: {

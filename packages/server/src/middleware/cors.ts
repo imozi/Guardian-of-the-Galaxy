@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'express'
 import corsMiddleware from 'cors'
-import { cfg } from '@/cfg'
+import { cfg } from '../cfg'
 
 const options = {
   ...cfg.cors,

@@ -1,6 +1,6 @@
 import { EVAL, INLINE, SELF, CSPDirectives, BLOB } from 'csp-header'
 
-import { YANDEX_API_URL } from '@/constants/main'
+import { YANDEX_API_URL } from '../../../constants/main'
 
 export const corePolicies: Partial<CSPDirectives> = {
   'connect-src': [SELF],

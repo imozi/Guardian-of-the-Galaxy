@@ -1,7 +1,7 @@
 import { getCSP, CSPHeaderParams } from 'csp-header'
 import { parse as pslParse } from 'psl'
 import type { RequestHandler, Request, Response } from 'express'
-import { TLD, CSP_HEADER, CSP_REPORT_ONLY_HEADER } from '@/constants/csp'
+import { TLD, CSP_HEADER, CSP_REPORT_ONLY_HEADER } from '../constants/csp'
 
 interface ParseOptions {
   customTlds?: string[] | RegExp

@@ -14,8 +14,8 @@ dbConnect()
 
 const app = express()
 
-// const clientPort = Number(process.env.CLIENT_PORT) || 3000
-// const serverPort = Number(process.env.SERVER_PORT) || 3001
+const clientPort = Number(process.env.CLIENT_PORT) || 3000
+const serverPort = Number(process.env.SERVER_PORT) || 3001
 
 // const corsOptions = {
 //   credentials: true,
@@ -35,12 +35,12 @@ app.get('/', (req, res) => {
   res.status(200).send('work')
 })
 
-// dbConnect().then(() => {
-//   app.listen(cfg.server.port, () => {
-//     console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
-//   })
-// })
-
-app.listen(cfg.server.port, () => {
-  console.log(`  ➜ 🎸 Server is listening on port: ${cfg.server.port}`)
+dbConnect().then(() => {
+  app.listen(cfg.server.port, () => {
+    console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
+  })
 })
+
+// app.listen(serverPort , () => {
+//   console.log(`  ➜ 🥳 Backend started at ${serverPort }`)
+// })

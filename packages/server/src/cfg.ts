@@ -1,9 +1,9 @@
 import mergeOptions from 'merge-options'
-import { defaultConfig } from '@/configs/default'
-import { developmentConfig } from '@/configs/development'
-import { productionConfig } from '@/configs/production'
-import type { AppConfig, Config } from '@/types'
-import { NODE_ENV } from '@/constants/main'
+import { defaultConfig } from './configs/default'
+import { developmentConfig } from './configs/development'
+import { productionConfig } from './configs/production'
+import type { AppConfig, Config } from './types'
+import { NODE_ENV } from './constants/main'
 
 let config: AppConfig = {}
 

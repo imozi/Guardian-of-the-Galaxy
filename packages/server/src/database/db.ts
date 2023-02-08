@@ -4,7 +4,7 @@ import { topicModel } from '../models/topic'
 import { userModel } from '../models/user'
 import { messageModel } from '../models/message'
 import { themeModel } from '../models/theme'
-import { cfg } from '@/cfg'
+import { cfg } from '../cfg'
 
 const {
   POSTGRES_USER,
@@ -14,25 +14,25 @@ const {
   DB_HOST,
 } = process.env
 
-const { host, port, user, password, database } = cfg.database
-
-// const sequelizeOptions: SequelizeOptions = {
-//   host: DB_HOST,
-//   port: Number(POSTGRES_PORT),
-//   username: POSTGRES_USER,
-//   password: POSTGRES_PASSWORD,
-//   database: POSTGRES_DB,
-//   dialect: 'postgres',
-// }
+// const { host, port, user, password, database } = cfg.database
 
 const sequelizeOptions: SequelizeOptions = {
-  host,
-  port,
-  username: user,
-  password,
-  database,
+  host: DB_HOST,
+  port: Number(POSTGRES_PORT),
+  username: POSTGRES_USER,
+  password: POSTGRES_PASSWORD,
+  database: POSTGRES_DB,
   dialect: 'postgres',
 }
+
+// const sequelizeOptions: SequelizeOptions = {
+//   host,
+//   port,
+//   username: user,
+//   password,
+//   database,
+//   dialect: 'postgres',
+// }
 
 export const sequelize = new Sequelize(sequelizeOptions)
 
