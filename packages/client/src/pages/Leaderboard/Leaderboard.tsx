@@ -54,28 +54,28 @@ export const Leaderboard = () => {
               Add
             </a>
           </div>
-         <Card>
-           <div className="leaderboard__user-field">
-             <div className="leaderboard__names">
-               <h3 className="leaderboard__name">USERS</h3>
-               <h3 className="leaderboard__name">SCORES</h3>
-             </div>
-             {loading && (
-               <div className="leaderboard__loader">
-                 <Loader />
-               </div>
-             )}
-             {leaderboard &&
-               leaderboard.map(({ username, avatar, score }, i) => (
-                 <UserField
-                   key={i}
-                   number={i + 1}
-                   author={username}
-                   avatar={avatar}
-                   score={score}></UserField>
-               ))}
-           </div>
-         </Card>
+          <Card>
+            <div className="leaderboard__user-field">
+              <div className="leaderboard__names">
+                <h3 className="leaderboard__name">USERS</h3>
+                <h3 className="leaderboard__name">SCORES</h3>
+              </div>
+              {loading && (
+                <div className="leaderboard__loader">
+                  <Loader />
+                </div>
+              )}
+              {leaderboard &&
+                leaderboard.map(({ username, avatar, score }, i) => (
+                  <UserField
+                    key={i}
+                    number={i + 1}
+                    author={username}
+                    avatar={avatar}
+                    score={score}></UserField>
+                ))}
+            </div>
+          </Card>
         </div>
       </section>
     </Page>

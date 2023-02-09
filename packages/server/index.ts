@@ -15,9 +15,9 @@ const app = express()
 app.use(cors)
 app.use(logger)
 app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
 
 app.use('/api/ya', proxyMiddleware)
+app.use(express.json())
 app.use('/api', router)
 app.use(errorHandler)
 

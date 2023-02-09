@@ -39,7 +39,9 @@ export const Forum = () => {
             {topics &&
               topics.map(({ id, name, messagesCount }) => (
                 <Link key={id} className="forum__topic" to={`/forum/${id}`}>
-                  <Topic topicName={name} answers={messagesCount || '0'}></Topic>
+                  <Topic
+                    topicName={name}
+                    answers={messagesCount || '0'}></Topic>
                 </Link>
               ))}
           </Card>

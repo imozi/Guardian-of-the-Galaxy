@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setUser, setUserTheme } from './userSlice'
-import { API_URL, USER_THEME_DEFAULT } from '@/core/consts'
+import { USER_THEME_DEFAULT, YA_API_URL } from '@/core/consts'
 import { apiDefaultHeaders, transformUser } from '@/core/utils'
 import { UserType } from '@/types'
 import { ErrorDTO, PasswordDTO, UserDTO } from '@/types/api/ya.praktikum'
@@ -11,7 +11,7 @@ import { themeApi } from '@/store/theme/theme.api'
 export const userApi = createApi({
   reducerPath: 'user/api',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${API_URL}/ya`,
+    baseUrl: YA_API_URL,
     credentials: 'include',
     fetchFn: fetch,
   }),
