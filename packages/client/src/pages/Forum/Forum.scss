@@ -1,37 +1,4 @@
 .forum {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-
-  &__title {
-    @include title_fz40;
-    text-align: center;
-    max-width: 240px;
-    margin: 0;
-    margin-bottom: 30px;
-  }
-
-  &__wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
-    border: 2px solid var(--color-primary);
-    border-radius: $border-radius;
-    background-image: url('../images/background_second.png');
-    min-height: 626px;
-    width: 100%;
-    max-width: 626px;
-  }
-
-  &__form {
-    width: unset;
-    min-height: unset;
-  }
-
   &__names {
     width: 100%;
     display: flex;
@@ -60,6 +27,7 @@
   }
 
   &__topic {
+    width: 100%;
     color: $color-white;
     text-decoration: none;
     margin-bottom: 8px;
@@ -67,5 +35,9 @@
     &:hover {
       color: var(--color-primary);
     }
+  }
+
+  & .profile__wrapper {
+    grid-template-columns: $grid-template-forum;
   }
 }

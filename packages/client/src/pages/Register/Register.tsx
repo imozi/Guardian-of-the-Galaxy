@@ -111,7 +111,7 @@ export const Register = () => {
             </div>
           </form>
           <div className="card__footer">
-            <Link className="link" to="/">
+            <Link className="link" to="/login">
               Sign in
             </Link>
           </div>
