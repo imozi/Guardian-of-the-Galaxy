@@ -7,12 +7,13 @@ import {
   TopicDTO,
   TopicInputDTO,
 } from '@/types/api/forum'
-import { API_SERVER_URL } from '@/core/consts'
+import { API_URL } from '@/core/consts'
 
 export const forumApi = createApi({
   reducerPath: 'forum/api',
   baseQuery: fetchBaseQuery({
-    baseUrl: API_SERVER_URL,
+    baseUrl: API_URL,
+    credentials: 'include',
     ...apiDefaultHeaders,
     fetchFn: fetch,
   }),
