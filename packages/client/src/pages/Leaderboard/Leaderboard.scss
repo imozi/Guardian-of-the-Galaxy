@@ -1,36 +1,10 @@
 .leaderboard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  &__title {
-    @include title_fz40;
-    text-align: center;
-    max-width: 390px;
-    margin: 0;
-    margin-bottom: 30px;
-  }
-
-  &__wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px;
-    border: 2px solid var(--color-primary);
-    border-radius: $border-radius;
-    background-image: url('../images/background_second.png');
-    min-height: 626px;
-    gap: 15px;
-    justify-content: space-between;
-  }
-
   &__names {
     width: 100%;
     display: flex;
     justify-content: space-between;
     margin-bottom: 15px;
+    gap: 24px;
   }
 
   &__name {
@@ -40,7 +14,7 @@
 
   &__links {
     position: absolute;
-    top: 0px;
+    top: 0;
     left: -80px;
     gap: 20px;
     align-items: flex-end;
@@ -49,14 +23,18 @@
   }
 
   &__user-field {
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 500px;
   }
 
   &__loader {
     width: 100%;
     text-align: center;
+  }
+
+  & .profile__wrapper {
+    grid-template-columns: $grid-template-forum;
   }
 }

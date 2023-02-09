@@ -6,6 +6,24 @@
   border: 2px solid var(--color-primary);
   border-radius: $border-radius;
   background-image: url('../images/background_second.png');
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: $color-white transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-white;
+    border-radius: 20px;
+  }
 
   &__title {
     @include title;

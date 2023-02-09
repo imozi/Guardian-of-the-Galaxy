@@ -1,7 +1,7 @@
 .audio-player {
   position: absolute;
-  right: 10px;
-  bottom: 10px;
+  right: 20px;
+  top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,6 +10,6 @@
 
   &__btns {
     display: flex;
-    gap: 5px;
+    gap: 16px;
   }
 }
