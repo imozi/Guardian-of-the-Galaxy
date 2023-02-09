@@ -1,7 +1,7 @@
-import { API_URL } from '@/core/consts'
+import { YA_API_URL } from '@/core/consts'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
-import { resetUser, setUser } from '../user/userSlice'
+import { resetUser } from '../user/userSlice'
 import { apiDefaultHeaders } from '@/core/utils'
 import { UserType } from '@/types'
 import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
@@ -11,7 +11,7 @@ import { forumApi } from '@/store/forum/forum.api'
 export const authApi = createApi({
   reducerPath: 'auth/api',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${API_URL}/ya`,
+    baseUrl: YA_API_URL,
     credentials: 'include',
     fetchFn: fetch,
   }),

@@ -1,8 +1,8 @@
 import {
-  API_URL,
   LEADERBOARD_DEFAULT_PAGE,
   LEADERBOARD_LIMIT_PAGE,
   TEAM_NAME,
+  YA_API_URL,
 } from '@/core/consts'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import {
@@ -18,7 +18,7 @@ import 'cross-fetch/polyfill'
 export const leaderboardApi = createApi({
   reducerPath: 'leaderboard/api',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${API_URL}/ya`,
+    baseUrl: YA_API_URL,
     ...apiDefaultHeaders,
     credentials: 'include',
     fetchFn: fetch,
