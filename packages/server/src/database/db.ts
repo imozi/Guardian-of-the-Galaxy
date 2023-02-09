@@ -50,6 +50,11 @@ export async function dbConnect() {
     await sequelize.authenticate()
     await sequelize.sync()
     console.log('  ➜ 🐘 Connected to the database.')
+
+    await Theme.findOrCreate({ where: { name: 'space' } })
+    await Theme.findOrCreate({ where: { name: 'mars' } })
+    await Theme.findOrCreate({ where: { name: 'saturn' } })
+    await Theme.findOrCreate({ where: { name: 'uranus' } })
   } catch (error) {
     console.error('  ➜ 😨 Unable to connect to the database:', error)
   }

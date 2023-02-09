@@ -4,6 +4,7 @@ import express from 'express'
 import { dbConnect } from './src/database/db'
 import router from './src/routes'
 import errorHandler from './src/middleware/ErrorHandlingMiddleware'
+import proxyMiddleware from './src/middleware/proxy'
 
 dotenv.config()
 
@@ -18,8 +19,9 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions))
+app.use('/api/ya', proxyMiddleware)
 app.use(express.json())
-app.use('/api/v1', router)
+app.use('/api', router)
 app.use(errorHandler)
 
 app.get('/', (req, res) => {
