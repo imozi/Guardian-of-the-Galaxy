@@ -11,7 +11,7 @@ import { themeApi } from '@/store/theme/theme.api'
 export const userApi = createApi({
   reducerPath: 'user/api',
   baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
+    baseUrl: `${API_URL}/ya`,
     credentials: 'include',
     fetchFn: fetch,
   }),

@@ -18,7 +18,7 @@ import 'cross-fetch/polyfill'
 export const leaderboardApi = createApi({
   reducerPath: 'leaderboard/api',
   baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
+    baseUrl: `${API_URL}/ya`,
     ...apiDefaultHeaders,
     credentials: 'include',
     fetchFn: fetch,

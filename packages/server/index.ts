@@ -6,6 +6,7 @@ import errorHandler from './src/middleware/ErrorHandlingMiddleware'
 import { cors } from './src/middleware/cors'
 import { logger } from './src/middleware/logger'
 import { cfg } from './src/cfg'
+import proxyMiddleware from './src/middleware/proxy'
 
 dotenv.config()
 
@@ -16,7 +17,10 @@ app.use(logger)
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
-app.use('/api/v1', router)
+// app.use('/api/v1', router)
+
+app.use('/api/ya', proxyMiddleware)
+app.use('/api', router)
 app.use(errorHandler)
 
 app.get('/', (req, res) => {

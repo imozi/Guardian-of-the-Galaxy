@@ -11,7 +11,7 @@ import { forumApi } from '@/store/forum/forum.api'
 export const authApi = createApi({
   reducerPath: 'auth/api',
   baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
+    baseUrl: `${API_URL}/ya`,
     credentials: 'include',
     fetchFn: fetch,
   }),
@@ -28,8 +28,11 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          const { data } = await dispatch(userApi.endpoints.getUser.initiate())
-          dispatch(setUser(data as UserType))
+          dispatch(
+            userApi.endpoints.getUser.initiate(undefined, {
+              forceRefetch: true,
+            })
+          )
         } catch (error) {
           console.log(error)
         }
