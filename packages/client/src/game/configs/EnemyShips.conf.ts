@@ -14,7 +14,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         weapon: 'bigSpaceGun',
         damageLimit: 1,
         helthPoint: 100,
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 400,
       },
       bomber: {
@@ -27,7 +27,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.25,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 200,
       },
       dreadnought: {
@@ -40,7 +40,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 1,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 500,
       },
       fighter: {
@@ -53,7 +53,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.5,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 150,
       },
       frigate: {
@@ -66,7 +66,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.75,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 200,
       },
       scout: {
@@ -79,7 +79,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.25,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 100,
       },
       support: {
@@ -92,7 +92,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.25,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 100,
       },
       torpedo: {
@@ -105,7 +105,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.75,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 300,
       },
     },
@@ -123,7 +123,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         weapon: 'bigSpaceGun',
         damageLimit: 1,
         helthPoint: 100,
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 400,
       },
       bomber: {
@@ -136,7 +136,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.25,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 200,
       },
       dreadnought: {
@@ -149,7 +149,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 1,
         helthPoint: 100,
         weapon: 'bigSpaceGun',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 500,
       },
       fighter: {
@@ -162,7 +162,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.5,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 150,
       },
       frigate: {
@@ -175,7 +175,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.75,
         helthPoint: 100,
         weapon: 'cannonBullet',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 200,
       },
       scout: {
@@ -188,7 +188,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.25,
         helthPoint: 100,
         weapon: 'greanBlast',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 100,
       },
       support: {
@@ -201,7 +201,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.25,
         helthPoint: 100,
         weapon: 'orangeBlast',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 100,
       },
       torpedo: {
@@ -214,7 +214,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.75,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 300,
       },
     },
@@ -232,7 +232,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         weapon: 'bigSpaceGun',
         damageLimit: 1,
         helthPoint: 100,
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 400,
       },
       bomber: {
@@ -245,7 +245,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.25,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 200,
       },
       dreadnought: {
@@ -258,7 +258,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 1,
         helthPoint: 100,
         weapon: 'bigSpaceGun',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 500,
       },
       fighter: {
@@ -271,7 +271,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.5,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 150,
       },
       frigate: {
@@ -284,7 +284,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.75,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 200,
       },
       scout: {
@@ -297,7 +297,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.25,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 100,
       },
       support: {
@@ -310,7 +310,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.25,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 100,
       },
       torpedo: {
@@ -323,7 +323,7 @@ export const ENEMY_SHIPS: IEnemyShipsConf = {
         damageLimit: 0.75,
         helthPoint: 100,
         weapon: 'rocket',
-        velocity: { vx: 3, vy: 3, speedAdjustment: 100 },
+        velocity: { vx: 1, vy: 1, speedAdjustment: 100 },
         score: 300,
       },
     },

@@ -11,7 +11,11 @@ import {
 import { throttle } from '@/core/utils'
 
 export class EnemyShip extends Ship implements Ship {
-  static EVENTS = { INIT: 'flow:init', DIE: 'flow:die', HIT: 'flow:hit' }
+  static EVENTS = {
+    INIT: 'flow:init',
+    DIE: 'flow:die',
+    HIT: 'flow:hit',
+  }
 
   private _mainPosition: Position
   private _velocity: Velocity
@@ -60,7 +64,8 @@ export class EnemyShip extends Ship implements Ship {
     this._ammunition = ammunition
     this._mainPosition = mainShipPosition
 
-    this.shoot = throttle(this.shoot.bind(this), 2500)
+    this.shoot = throttle(this.shoot, 2500)
+
     this._offEvents()
     this._onEvents()
   }
@@ -92,7 +97,7 @@ export class EnemyShip extends Ship implements Ship {
     }
   }
 
-  public shoot(): void {
+  public shoot = (): void => {
     if (this.isHit) {
       return
     }
@@ -112,18 +117,16 @@ export class EnemyShip extends Ship implements Ship {
     this._hit(damage)
   }
 
-  private _attacke(): void {
+  private _attacke(ms: number): void {
     if (!this.isAttacke) {
       return
     }
 
     const dx = this._mainPosition.x - this.position.x
-    const dy = this._mainPosition.y - this.position.x
+    // const dy = this._mainPosition.y - this.position.x
 
-    this._rotate(dx, dy)
-
-    this.position.x += dx / 200
-    this.position.y += dy / 300
+    this.position.x += dx / 100
+    this.position.y += this._velocity.vy * this._velocity.speedAdjustment * ms
 
     if (this.position.y > this._canvasSize.h) {
       this.position.y = -100
@@ -134,21 +137,12 @@ export class EnemyShip extends Ship implements Ship {
     this.isAttacke = true
   }
 
-  public stopAttacke(): void {
-    this.isAttacke = false
-  }
-
-  private _rotate(x: number, y: number) {
-    const deg = -Math.atan2(x, y) * (360 / (Math.PI * 2))
-    this._image.ship.rotation = deg
-  }
-
   public destroy(): void {
     this._offEvents()
   }
 
-  public update(): void {
-    this._attacke()
+  public update(ms: number): void {
+    this._attacke(ms)
   }
 
   public draw(): void {

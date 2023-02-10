@@ -225,10 +225,8 @@ export class MainShip extends Ship implements Ship {
   }
 
   private _resetPosition(): void {
-    this.position = {
-      x: this._canvasSize.w / 2,
-      y: this._canvasSize.h,
-    }
+    this.position.x = this._canvasSize.w / 2
+    this.position.y = this._canvasSize.h
   }
 
   private _shoot = (): void => {

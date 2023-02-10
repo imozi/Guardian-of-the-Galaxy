@@ -1,6 +1,7 @@
 import { EnemyShip } from '../EnemyShip'
 import { ENEMY_SHIPS } from '@/game/configs/EnemyShips.conf'
 import { ENEMY_CONTROLLER } from '@/game/configs/EnemyController.conf'
+import { getRandomArrayElement } from '@/core/utils'
 import { Weapon } from '../Weapons'
 import {
   CanvasSize,
@@ -40,6 +41,9 @@ export class EnemyController {
   private _isMoveRight = true
   private _isMoveLeft = false
   private _mainShipPosition: Position
+  private _countEnemiesAttack = 0
+  private _quantityEnemy = 0
+  private _randomEnemyShip: () => EnemyShip
   public enemiesShips: EnemyShip[] = []
   public enemyАmmunition: Weapon[] = []
 
@@ -229,11 +233,48 @@ export class EnemyController {
         this._setCenterPosition(row, columns, indentRow)
       })
     })
+
+    this._quantityEnemy = this.enemiesShips.length
+    this._randomEnemyShip = getRandomArrayElement(this.enemiesShips)
   }
 
-  public goAttack(): void {
-    const indxEnemy = Math.floor(Math.random() * this.enemiesShips.length)
-    this.enemiesShips[indxEnemy].attacke()
+  public attacke = (
+    percent: number,
+    maxEnemyShoot: number,
+    maxEnemyAttack: number
+  ): void => {
+    const { enemiesShips, _quantityEnemy, _randomEnemyShip, enemyАmmunition } =
+      this
+    const quantity = _quantityEnemy - Math.floor(_quantityEnemy * percent)
+    const isAttack = enemiesShips.length <= quantity
+    const isShoot = enemyАmmunition.length < maxEnemyShoot
+
+    if (!enemiesShips.length || !isAttack) {
+      return
+    }
+
+    const enemy = _randomEnemyShip()
+
+    if (this._countEnemiesAttack === 0) {
+      for (let i = 0; i < maxEnemyAttack; i++) {
+        const enemy = this._randomEnemyShip()
+
+        enemy.attacke()
+        enemy.off(EnemyShip.EVENTS.DIE, this._decrementEnemyAttack.bind(this))
+        enemy.on(EnemyShip.EVENTS.DIE, this._decrementEnemyAttack.bind(this))
+      }
+
+      this._countEnemiesAttack = maxEnemyAttack
+    }
+
+    if (!enemy.isAttacke && isShoot) {
+      enemy.shoot()
+    }
+  }
+
+  private _decrementEnemyAttack() {
+    this._countEnemiesAttack--
+    console.log(this._countEnemiesAttack)
   }
 
   public reset(): void {
@@ -252,7 +293,7 @@ export class EnemyController {
     this._enemiesMovement(ms)
 
     this.enemiesShips.forEach(enemy => {
-      enemy.update()
+      enemy.update(ms)
 
       if (enemy.isAttacke) {
         enemy.shoot()

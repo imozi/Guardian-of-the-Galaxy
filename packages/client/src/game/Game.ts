@@ -131,6 +131,8 @@ export class GuardianOfTheGalaxy extends EventBus {
   }
 
   private _update = (ms: number): void => {
+    const difficulty = GAME_CONFIG.difficulty(this.level)
+
     if (!this._isGameEnd) {
       this._enemyController.update(ms)
       this._collisionController.update()
@@ -140,6 +142,11 @@ export class GuardianOfTheGalaxy extends EventBus {
       this._nextLevel()
       this._gameEnd()
       this._updateAmmun()
+      this._enemyController.attacke(
+        difficulty.minPercent,
+        difficulty.maxEnemyShoot,
+        difficulty.maxEnemyAttack
+      )
     }
   }
 
