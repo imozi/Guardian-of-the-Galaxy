@@ -154,7 +154,7 @@ export const Profile = () => {
               onChange={onChangeAvatar}
             />
             <form
-              className={`form${isEdit ? '' : ' form--disabled'}`}
+              className={`profile__form form${isEdit ? '' : ' form--disabled'}`}
               onSubmit={onSubmit}>
               <>{formInputs()}</>
               {!!error && (

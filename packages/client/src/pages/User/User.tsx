@@ -5,6 +5,7 @@ import { useAppSelector } from '@/store'
 import { UserNav } from '@/components/UserNav'
 import { UserType } from '@/types'
 import { ThemeToggle } from '@/components/ThemeToggle'
+import { Audioplayer } from '@/components/AudioPlayer'
 
 export const User = () => {
   const user = useAppSelector(state => state.userState.user) as UserType
@@ -24,6 +25,8 @@ export const User = () => {
           />
           <UserNav />
         </div>
+
+        <Audioplayer url="sounds/a31df44c3944ea6.mp3" />
 
         <ThemeToggle />
 

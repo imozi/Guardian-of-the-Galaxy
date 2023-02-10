@@ -11,7 +11,8 @@ $line-height-timer: 1;
 $border-radius: 5px;
 $font-weight: 400;
 $border-radius-circle: 50%;
-$grid-template-profile: 180px 1fr 180px;
+$grid-template-profile: 180px minmax(350px, 1fr) 180px;
+$grid-template-forum: 180px minmax(550px, 1fr) 180px;
 $grid-gap: 30px;
 $board-ident: 45px;
 

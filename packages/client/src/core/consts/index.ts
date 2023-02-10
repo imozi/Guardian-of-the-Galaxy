@@ -1,5 +1,5 @@
-export const API_URL = 'https://ya-praktikum.tech/api/v2'
-export const API_SERVER_URL = 'http://localhost:3001/api/v1/'
+export const API_URL = 'http://localhost:3001/api'
+export const YA_API_URL = 'http://localhost:3001/api/ya'
 export const API_RESOURCES_URL = 'https://ya-praktikum.tech/api/v2/resources'
 export const TEAM_NAME = 'web2rists'
 export const LEADERBOARD_DEFAULT_PAGE = 0

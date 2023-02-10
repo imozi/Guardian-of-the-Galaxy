@@ -19,16 +19,15 @@ export const Audioplayer: FC<AudioPlayerProps> = ({ url }) => {
 
   return (
     <div className="audio-player">
-      Sound
       <div className="audio-player__btns">
         <Button className="btn-audio" onClick={audioPlay}>
-          PLay
+          <img src="/images/sound.svg" width="24" height="24" />
         </Button>
         <Button className="btn-audio" onClick={audioPause}>
-          Pause
+          <img src="/images/pause.svg" width="24" height="24" />
         </Button>
         <Button className="btn-audio" onClick={audioStop}>
-          Stop
+          <img src="/images/sound-stop.svg" width="24" height="24" />
         </Button>
       </div>
     </div>
