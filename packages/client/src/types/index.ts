@@ -7,8 +7,6 @@ export type UserType = {
   avatar: string
   phone: string
   email: string
-  isAuth: boolean
-  service_id: string
 }
 
 export type LeaderBoardItemType = {
