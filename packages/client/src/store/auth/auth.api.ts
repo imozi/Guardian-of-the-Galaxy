@@ -1,4 +1,4 @@
-import { API_URL } from '@/core/consts'
+import { YA_API_URL } from '@/core/consts'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
 import {
@@ -21,7 +21,7 @@ import { forumApi } from '../forum/forum.api'
 export const authApi = createApi({
   reducerPath: 'auth/api',
   baseQuery: fetchBaseQuery({
-    baseUrl: API_URL,
+    baseUrl: YA_API_URL,
     credentials: 'include',
     fetchFn: fetch,
   }),
@@ -38,8 +38,11 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          const { data } = await dispatch(userApi.endpoints.getUser.initiate())
-          dispatch(setUser(data as UserType))
+          dispatch(
+            userApi.endpoints.getUser.initiate(undefined, {
+              forceRefetch: true,
+            })
+          )
         } catch (error) {
           console.log(error)
         }

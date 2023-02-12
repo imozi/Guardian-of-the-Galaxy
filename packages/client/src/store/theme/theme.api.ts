@@ -1,14 +1,15 @@
 import { apiDefaultHeaders } from '@/core/utils'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import 'cross-fetch/polyfill'
-import { API_SERVER_URL } from '@/core/consts'
+import { API_URL } from '@/core/consts'
 import { UserThemeDTO } from '@/types/api/theme'
 import { setUserTheme } from '@/store/user/userSlice'
 
 export const themeApi = createApi({
   reducerPath: 'theme/api',
   baseQuery: fetchBaseQuery({
-    baseUrl: API_SERVER_URL,
+    baseUrl: API_URL,
+    credentials: 'include',
     ...apiDefaultHeaders,
     fetchFn: fetch,
   }),

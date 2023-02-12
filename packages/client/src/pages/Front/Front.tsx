@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { useAppSelector } from '@/store'
-import { Audioplayer } from '@/components/AudioPlayer/AudioPlayer'
-import { isBrowser } from '@/core/utils/isBrowser'
 
 export const Front = () => {
   const user = useAppSelector(state => state.userState.user)
@@ -30,7 +28,6 @@ export const Front = () => {
           </div>
         </div>
       </section>
-      <Audioplayer url="sounds/a31df44c3944ea6.mp3" />
     </Page>
   )
 }

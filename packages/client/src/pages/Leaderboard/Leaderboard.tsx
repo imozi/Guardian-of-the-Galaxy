@@ -9,6 +9,7 @@ import {
 import { UserType } from '@/types'
 import { TEAM_NAME } from '@/core/consts'
 import { Loader } from '@/components/UI/Loader'
+import { Card } from '@/components/Card'
 
 export const Leaderboard = () => {
   const navigate = useNavigate()
@@ -42,10 +43,10 @@ export const Leaderboard = () => {
 
   return (
     <Page title="Leaderboard">
-      <section className="leaderboard">
-        <h2 className="leaderboard__title">Leaderboard</h2>
-        <div className="leaderboard__wrapper">
-          <div className="leaderboard__links">
+      <section className="profile leaderboard">
+        <h2 className="profile__title">Leaderboard</h2>
+        <div className="profile__wrapper">
+          <div className="profile__nav">
             <a className="link" onClick={() => navigate(-1)}>
               Back
             </a>
@@ -53,26 +54,28 @@ export const Leaderboard = () => {
               Add
             </a>
           </div>
-          <div className="leaderboard__user-field">
-            <div className="leaderboard__names">
-              <h3 className="leaderboard__name">USERS</h3>
-              <h3 className="leaderboard__name">SCORES</h3>
-            </div>
-            {loading && (
-              <div className="leaderboard__loader">
-                <Loader />
+          <Card>
+            <div className="leaderboard__user-field">
+              <div className="leaderboard__names">
+                <h3 className="leaderboard__name">USERS</h3>
+                <h3 className="leaderboard__name">SCORES</h3>
               </div>
-            )}
-            {leaderboard &&
-              leaderboard.map(({ username, avatar, score }, i) => (
-                <UserField
-                  key={i}
-                  number={i + 1}
-                  author={username}
-                  avatar={avatar}
-                  score={score}></UserField>
-              ))}
-          </div>
+              {loading && (
+                <div className="leaderboard__loader">
+                  <Loader />
+                </div>
+              )}
+              {leaderboard &&
+                leaderboard.map(({ username, avatar, score }, i) => (
+                  <UserField
+                    key={i}
+                    number={i + 1}
+                    author={username}
+                    avatar={avatar}
+                    score={score}></UserField>
+                ))}
+            </div>
+          </Card>
         </div>
       </section>
     </Page>

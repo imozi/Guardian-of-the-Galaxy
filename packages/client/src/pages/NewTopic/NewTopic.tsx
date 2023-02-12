@@ -5,6 +5,7 @@ import { useForm } from '@/hooks'
 import { TopicDTO } from '@/types/api/forum'
 import { useAddTopicMutation } from '@/store/forum/forum.api'
 import { useEffect } from 'react'
+import { Card } from '@/components/Card'
 
 const TopicForm = [
   {
@@ -43,20 +44,22 @@ export const NewTopic = () => {
 
   return (
     <Page title="New message">
-      <section className="forum">
-        <h2 className="forum__title">New topic</h2>
-        <div className="forum__wrapper forum__form">
-          <div className="forum__links">
+      <section className="forum profile">
+        <h2 className="profile__title">New topic</h2>
+        <div className="profile__wrapper">
+          <div className="profile__nav">
             <Link className="link" to="/forum">
               Back
             </Link>
           </div>
-          <form className="form" onSubmit={onSubmit}>
-            <>{formInputs()}</>
-            <Button type="submit" loading={isLoading}>
-              Send
-            </Button>
-          </form>
+          <Card>
+            <form className="form forum__form" onSubmit={onSubmit}>
+              <>{formInputs()}</>
+              <Button type="submit" loading={isLoading}>
+                Send
+              </Button>
+            </form>
+          </Card>
         </div>
       </section>
     </Page>
