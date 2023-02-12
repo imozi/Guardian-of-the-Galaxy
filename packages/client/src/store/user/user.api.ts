@@ -24,6 +24,7 @@ export const userApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled
+          console.log(data)
           dispatch(setUser(data))
           const theme = await dispatch(
             themeApi.endpoints.getTheme.initiate(data.id, {

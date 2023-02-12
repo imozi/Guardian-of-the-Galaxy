@@ -17,19 +17,36 @@ import { User } from './User'
 import { useEffect } from 'react'
 import { NewTopic } from '@/pages/NewTopic'
 import { useGetUserQuery } from '@/store/user/user.api'
+import {
+  useGetOAuthYandexServiceIdMutation,
+  useSigninWithOAuthYandexMutation,
+} from '../store/auth/auth.api'
 
 export function Pages() {
   const { isSuccess } = useGetUserQuery()
+  const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
 
-  // useEffect(() => {
-  //   const OAuthParams = new URLSearchParams(location.search)
-  //   const code = OAuthParams.get('code')?.toString()
-  //   const yandexOAuth = async (code: string) => {
-  //     const redirect_uri = getLocationOrigin()
-  //     const res = await authorizeWithYaOAuth({ code, redirect_uri })
-  //   }
-  //   if (code) yandexOAuth(code)
-  // }, [])
+  const yandexWithOauth = async (code) => {
+    const redirect_uri = 'http://localhost:3000'
+    // alert(code)
+    // alert(redirect_uri)
+    const res = await signinWithOAuthYandex({ code: code, redirect_uri: redirect_uri })
+    return res
+  }
+  
+  useEffect(() => {
+    const OAuthParams = new URLSearchParams(location.search)
+    const code = OAuthParams.get('code')?.toString()
+    const yandexOAuth = (code: string) => {
+      // const redirect_uri = getLocationOrigin()
+      // const redirect_uri = 'http://localhost:3000/user'
+      // const res = await signinWithOAuthYandex({ code, redirect_uri })
+      yandexWithOauth(code)
+      // alert(res)
+    }
+    // alert(code)
+    if (code) yandexOAuth(code)
+  }, [])
 
   return (
     <Routes>

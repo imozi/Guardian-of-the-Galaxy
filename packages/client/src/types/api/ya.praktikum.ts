@@ -43,6 +43,6 @@ export interface IYandexSigninModel {
   redirect_uri: string
 }
 
-export interface IGetYandexServiceIDModel {
+export type IGetYandexServiceIDModel = {
   redirect_uri: string
 }
