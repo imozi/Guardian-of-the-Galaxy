@@ -25,7 +25,7 @@ export function Pages() {
   const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
   const { isAuth } = useAppSelector(state => state.userState)
 
-  const yandexWithOauth = async code => {
+  const yandexWithOauth = async (code) => {
     const redirect_uri = 'http://localhost:3000'
     return await signinWithOAuthYandex({
       code: code,
