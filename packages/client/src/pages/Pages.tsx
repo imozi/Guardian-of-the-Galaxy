@@ -25,13 +25,13 @@ export function Pages() {
   const { isSuccess } = useGetUserQuery()
   const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
   const { isAuth } = useAppSelector(state => state.userState)
+  const redirectUri = DEV_API_URL
 
   useEffect(() => {
     const OAuthParams = new URLSearchParams(location.search)
     const code = OAuthParams.get('code')?.toString()
 
     const yandexOAuth = async (code: string) => {
-      const redirectUri = DEV_API_URL
       return await signinWithOAuthYandex({
         code: code,
         redirect_uri: redirectUri,
