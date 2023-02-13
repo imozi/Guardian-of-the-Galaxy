@@ -2,24 +2,25 @@ import React, { useEffect } from 'react'
 import { useGetOAuthYandexServiceIdMutation } from '../../store/auth/auth.api'
 import { selectServiceId } from '../../store/user/userSlice'
 import { useAppSelector } from '@/store'
+import { DEV_API_URL } from '../../core/consts'
 
-const REDIRECT_URI = 'http://localhost:3000'
+const redirectUri = DEV_API_URL
 
-const renderOAuthLink = (service_id: string, redirect_uri: string): string => {
-  if (typeof service_id !== 'string') {
+const renderOAuthLink = (serviceId: string, redirectUri: string): string => {
+  if (typeof serviceId !== 'string') {
     return '#'
   }
 
-  return `https://oauth.yandex.ru/authorize?response_type=code&client_id=${service_id}&redirect_uri=${redirect_uri}`
+  return `https://oauth.yandex.ru/authorize?response_type=code&client_id=${serviceId}&redirect_uri=${redirectUri}`
 }
 
 const OAuthPanel: React.FC = () => {
-  const service_id = useAppSelector(selectServiceId)
+  const serviceId = useAppSelector(selectServiceId)
   const [getOAuthYandexServiceId] = useGetOAuthYandexServiceIdMutation()
 
   const yandexServiceId = async () => {
     return await getOAuthYandexServiceId({
-      redirect_uri: REDIRECT_URI,
+      redirect_uri: redirectUri,
     })
   }
 
@@ -27,7 +28,7 @@ const OAuthPanel: React.FC = () => {
     void yandexServiceId()
   }, [])
 
-  const OAuthYandexLink = renderOAuthLink(service_id, REDIRECT_URI)
+  const OAuthYandexLink = renderOAuthLink(serviceId, redirectUri)
 
   return (
     <a href={OAuthYandexLink}>

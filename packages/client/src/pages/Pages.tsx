@@ -19,25 +19,26 @@ import { NewTopic } from '@/pages/NewTopic'
 import { useGetUserQuery } from '@/store/user/user.api'
 import { useSigninWithOAuthYandexMutation } from '../store/auth/auth.api'
 import { useAppSelector } from '@/store'
+import { DEV_API_URL } from '../core/consts'
 
 export function Pages() {
   const { isSuccess } = useGetUserQuery()
   const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
   const { isAuth } = useAppSelector(state => state.userState)
 
-  const yandexWithOauth = async (code: string) => {
-    const redirect_uri = 'http://localhost:3000'
-    return await signinWithOAuthYandex({
-      code: code,
-      redirect_uri: redirect_uri,
-    })
-  }
-
   useEffect(() => {
     const OAuthParams = new URLSearchParams(location.search)
     const code = OAuthParams.get('code')?.toString()
 
-    !isAuth && code && yandexWithOauth(code)
+    const yandexOAuth = async (code: string) => {
+      const redirectUri = DEV_API_URL
+      return await signinWithOAuthYandex({
+        code: code,
+        redirect_uri: redirectUri,
+      })
+    }
+
+    !isAuth && code && yandexOAuth(code)
   }, [])
 
   return (
