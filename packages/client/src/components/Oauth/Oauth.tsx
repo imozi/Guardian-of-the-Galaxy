@@ -24,7 +24,7 @@ const OAuthPanel: React.FC = () => {
   }
 
   useEffect(() => {
-    yandexServiceId()
+    void yandexServiceId()
   }, [])
 
   const OAuthYandexLink = renderOAuthLink(service_id, REDIRECT_URI)
