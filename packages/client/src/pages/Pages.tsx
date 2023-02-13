@@ -37,11 +37,7 @@ export function Pages() {
     const OAuthParams = new URLSearchParams(location.search)
     const code = OAuthParams.get('code')?.toString()
 
-    const yandexOAuth = (code: string) => {
-      yandexWithOauth(code)
-    }
-
-    if (!isAuth && code) yandexOAuth(code)
+    !isAuth && code && yandexWithOauth(code)
   }, [])
 
   return (
