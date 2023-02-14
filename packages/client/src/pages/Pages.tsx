@@ -14,11 +14,32 @@ import { ClientError } from './Error/404'
 import { ServerError } from './Error/500'
 import { PrivateRoute } from '@/hoc/ProtectedRoute'
 import { User } from './User'
+import { useEffect } from 'react'
 import { NewTopic } from '@/pages/NewTopic'
 import { useGetUserQuery } from '@/store/user/user.api'
+import { useSigninWithOAuthYandexMutation } from '@/store/auth/auth.api'
+import { useAppSelector } from '@/store'
+import { DEV_API_URL } from '@/core/consts'
 
 export function Pages() {
   const { isSuccess } = useGetUserQuery()
+  const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
+  const { isAuth } = useAppSelector(state => state.userState)
+  const redirectUri = DEV_API_URL
+
+  useEffect(() => {
+    const OAuthParams = new URLSearchParams(location.search)
+    const code = OAuthParams.get('code')?.toString()
+
+    const yandexOAuth = async (code: string) => {
+      return await signinWithOAuthYandex({
+        code: code,
+        redirect_uri: redirectUri,
+      })
+    }
+
+    !isAuth && code && yandexOAuth(code)
+  }, [])
 
   return (
     <Routes>
