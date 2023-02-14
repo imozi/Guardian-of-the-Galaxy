@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises'
-import { fileURLToPath } from 'node:url'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
@@ -63,7 +63,7 @@ app.use('*', async (req, res) => {
         .render
     } else {
       template = templateHtml
-      render = (await import(resolve('./entry-server.cjs'))).render
+      render = (await import(pathToFileURL(resolve('./entry-server.cjs')).toString())).render
     }
 
     const rendered = await render({ url, ssrManifest })
