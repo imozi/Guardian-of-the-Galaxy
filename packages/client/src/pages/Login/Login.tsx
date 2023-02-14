@@ -6,6 +6,7 @@ import { Button } from '@/components/UI'
 import { useForm } from '@/hooks'
 import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
 import { useAuthLoginMutation } from '@/store/auth/auth.api'
+import OAuthPanel from '@/components/Oauth/Oauth'
 
 const loginForm = [
   {
@@ -74,8 +75,12 @@ export const Login = () => {
               Sign up
             </Link>
           </div>
+          <OAuthPanel />
         </Card>
       </section>
     </Page>
   )
+}
+function getLocationOrigin() {
+  throw new Error('Function not implemented.')
 }
