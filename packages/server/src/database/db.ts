@@ -1,3 +1,4 @@
+import mongoose from 'mongoose'
 import { Sequelize } from 'sequelize-typescript'
 import type { SequelizeOptions } from 'sequelize-typescript'
 import { topicModel } from '../models/topic'
@@ -11,6 +12,10 @@ const {
   POSTGRES_DB,
   POSTGRES_PORT,
   DB_HOST,
+  MONGO_USERNAME,
+  MONGO_PASSWORD,
+  MONGO_HOST,
+  MONGO_DB
 } = process.env
 
 const sequelizeOptions: SequelizeOptions = {
@@ -59,3 +64,18 @@ export async function dbConnect() {
     console.error('  ➜ 😨 Unable to connect to the database:', error)
   }
 }
+
+export const initMongoDBConnection = async (): Promise<void> => {
+  try {
+    mongoose.set('strictQuery', false);
+    await mongoose.connect(`mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/${MONGO_DB}`);
+
+    console.log('  ➜ 🎸 Connected to the Mongo database');
+  } catch (e) {
+    if (e instanceof Error) {
+      console.error(`Mongo DB connect error: ${e.message}`);
+    } else {
+      console.error(e);
+    }
+  }
+};

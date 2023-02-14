@@ -15,7 +15,8 @@
     "lint:fix": "eslint --fix --ext .js,.jsx .",
     "format": "lerna run format",
     "docker up": "docker compose -f docker-compose.dev.yml up -d",
-    "docker down": "docker compose -f docker-compose.dev.yml down"
+    "docker down": "docker compose -f docker-compose.dev.yml down",
+    "docker:mongo": "docker-compose up mongo-express -d"
   },
   "license": "MIT",
   "workspaces": [

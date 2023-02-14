@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import express from 'express'
-import { dbConnect } from './src/database/db'
+import { dbConnect, initMongoDBConnection } from './src/database/db'
 import router from './src/routes'
 import errorHandler from './src/middleware/ErrorHandlingMiddleware'
 import { cors } from './src/middleware/cors'
@@ -26,7 +26,9 @@ app.get('/', (req, res) => {
 })
 
 dbConnect().then(() => {
-  app.listen(cfg.server.port, () => {
-    console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
+  initMongoDBConnection().then(() => {
+    app.listen(cfg.server.port, () => {
+      console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
+    })
   })
 })
