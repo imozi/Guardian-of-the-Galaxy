@@ -43,7 +43,7 @@ export class EnemyController {
   private _mainShipPosition: Position
   private _countEnemiesAttack = 0
   private _quantityEnemy = 0
-  private _randomEnemyShip: () => EnemyShip | null = null
+  private _randomEnemyShip: () => EnemyShip | null = () => null
   public enemiesShips: EnemyShip[] = []
   public enemyАmmunition: Weapon[] = []
 
@@ -206,7 +206,7 @@ export class EnemyController {
   }
 
   private _sendRandomEnemyToAttack(ms: number) {
-    const enemy = this._randomEnemyShip()
+    const enemy = this._randomEnemyShip() as EnemyShip
 
     setTimeout(() => {
       if (enemy.isHit) {
@@ -275,7 +275,7 @@ export class EnemyController {
       return
     }
 
-    const enemy = _randomEnemyShip()
+    const enemy = _randomEnemyShip() as EnemyShip
 
     if (this._countEnemiesAttack === 0) {
       for (let i = 0; i < maxEnemyAttack; i++) {
