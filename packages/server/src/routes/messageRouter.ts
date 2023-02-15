@@ -1,6 +1,6 @@
-import checkAuth from '@/middleware/checkAuth'
 import { Router } from 'express'
 import { MessageController } from '../controllers/messageController'
+import checkAuth from '../middleware/checkAuth'
 
 const messageRouter = Router()
 const messageController = new MessageController()
