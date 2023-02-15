@@ -1,12 +1,22 @@
 import { YA_API_URL } from '@/core/consts'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { userApi } from '../user/user.api'
-import { resetUser } from '../user/userSlice'
+import {
+  resetUser,
+  setUser,
+  setServiceIdUser,
+  setIsAuthUser,
+} from '../user/userSlice'
 import { apiDefaultHeaders } from '@/core/utils'
 import { UserType } from '@/types'
-import { AuthDTO, ErrorDTO } from '@/types/api/ya.praktikum'
+import {
+  AuthDTO,
+  ErrorDTO,
+  IGetYandexServiceIDModel,
+  IYandexSigninModel,
+} from '@/types/api/ya.praktikum'
 import 'cross-fetch/polyfill'
-import { forumApi } from '@/store/forum/forum.api'
+import { forumApi } from '../forum/forum.api'
 
 export const authApi = createApi({
   reducerPath: 'auth/api',
@@ -43,7 +53,7 @@ export const authApi = createApi({
         ...apiDefaultHeaders,
         url: `/auth/signup`,
         method: 'POST',
-        body: JSON.stringify(data),
+        query: JSON.stringify(data),
       }),
       transformErrorResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
@@ -82,6 +92,45 @@ export const authApi = createApi({
         }
       },
     }),
+    getOAuthYandexServiceId: build.mutation<string, IGetYandexServiceIDModel>({
+      query: data => {
+        const { redirect_uri } = data
+        return {
+          ...apiDefaultHeaders,
+          url: `/oauth/yandex/service-id`,
+          params: { redirect_uri },
+        }
+      },
+      transformErrorResponse: response => JSON.parse(response.data as string),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled
+          dispatch(setServiceIdUser(data))
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    }),
+    signinWithOAuthYandex: build.mutation<string, IYandexSigninModel>({
+      query: data => ({
+        ...apiDefaultHeaders,
+        url: `/oauth/yandex`,
+        method: 'POST',
+        body: JSON.stringify(data),
+        responseHandler: response => response.text(),
+      }),
+      transformErrorResponse: response => JSON.parse(response.data as string),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled
+          const { data } = await dispatch(userApi.endpoints.getUser.initiate())
+          dispatch(setUser(data as UserType))
+          dispatch(setIsAuthUser({ isAuth: true }))
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    }),
   }),
 })
 
@@ -89,4 +138,6 @@ export const {
   useAuthLoginMutation,
   useAuthRegisterMutation,
   useAuthLogoutMutation,
+  useGetOAuthYandexServiceIdMutation,
+  useSigninWithOAuthYandexMutation,
 } = authApi

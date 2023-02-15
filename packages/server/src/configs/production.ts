@@ -1,5 +1,5 @@
 import type { AppConfig } from '../types'
-import { YANDEX_API_URL } from '../constants/main'
+import { CLIENT_PORT, SERVER_PORT, YANDEX_API_URL } from '../constants/main'
 import { productionPresets } from './csp/production'
 
 export const productionConfig: AppConfig = {
@@ -7,6 +7,10 @@ export const productionConfig: AppConfig = {
     presets: productionPresets,
   },
   cors: {
-    allowedOrigins: [YANDEX_API_URL],
+    allowedOrigins: [
+      `http://localhost:${SERVER_PORT}`,
+      `http://localhost:${CLIENT_PORT}`,
+      YANDEX_API_URL,
+    ],
   },
 }
