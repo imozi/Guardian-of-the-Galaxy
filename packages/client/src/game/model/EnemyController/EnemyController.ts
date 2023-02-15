@@ -43,7 +43,7 @@ export class EnemyController {
   private _mainShipPosition: Position
   private _countEnemiesAttack = 0
   private _quantityEnemy = 0
-  private _randomEnemyShip: () => EnemyShip
+  private _randomEnemyShip: () => EnemyShip = null
   public enemiesShips: EnemyShip[] = []
   public enemyАmmunition: Weapon[] = []
 
