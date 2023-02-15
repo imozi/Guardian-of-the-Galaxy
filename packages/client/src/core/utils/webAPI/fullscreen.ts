@@ -2,7 +2,7 @@ export function fullscreenAPI() {
   document.addEventListener(
     'keydown',
     e => {
-      if (e.key === 'f') {
+      if (e.key === 'g' && e.altKey) {
         toggleFullScreen()
       }
     },
