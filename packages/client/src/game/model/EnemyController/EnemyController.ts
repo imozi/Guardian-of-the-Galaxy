@@ -183,7 +183,7 @@ export class EnemyController {
     }
 
     this.enemiesShips.forEach(enemy => {
-      if (enemy.isHit || enemy.isAttacke) {
+      if ((enemy.isHit && enemy.helthPoint <= 0) || enemy.isAttacke) {
         return
       }
 
@@ -203,6 +203,27 @@ export class EnemyController {
         this._isMoveLeft = false
       }
     })
+  }
+
+  private _sendRandomEnemyToAttack(ms: number) {
+    const enemy = this._randomEnemyShip()
+
+    setTimeout(() => {
+      if (enemy.isHit) {
+        this._decrementEnemyAttack()
+        return
+      }
+
+      enemy.attacke()
+      enemy.off(EnemyShip.EVENTS.DIE, this._decrementEnemyAttack.bind(this))
+      enemy.on(EnemyShip.EVENTS.DIE, this._decrementEnemyAttack.bind(this))
+    }, ms)
+  }
+
+  private _decrementEnemyAttack() {
+    setTimeout(() => {
+      this._countEnemiesAttack--
+    }, 0)
   }
 
   public generateEnemiesShips(): void {
@@ -235,14 +256,15 @@ export class EnemyController {
     })
 
     this._quantityEnemy = this.enemiesShips.length
+    this._countEnemiesAttack = 0
     this._randomEnemyShip = getRandomArrayElement(this.enemiesShips)
   }
 
-  public attacke = (
+  public startAttacking(
     percent: number,
     maxEnemyShoot: number,
     maxEnemyAttack: number
-  ): void => {
+  ): void {
     const { enemiesShips, _quantityEnemy, _randomEnemyShip, enemyАmmunition } =
       this
     const quantity = _quantityEnemy - Math.floor(_quantityEnemy * percent)
@@ -257,11 +279,7 @@ export class EnemyController {
 
     if (this._countEnemiesAttack === 0) {
       for (let i = 0; i < maxEnemyAttack; i++) {
-        const enemy = this._randomEnemyShip()
-
-        enemy.attacke()
-        enemy.off(EnemyShip.EVENTS.DIE, this._decrementEnemyAttack.bind(this))
-        enemy.on(EnemyShip.EVENTS.DIE, this._decrementEnemyAttack.bind(this))
+        this._sendRandomEnemyToAttack(i * 1000)
       }
 
       this._countEnemiesAttack = maxEnemyAttack
@@ -270,11 +288,6 @@ export class EnemyController {
     if (!enemy.isAttacke && isShoot) {
       enemy.shoot()
     }
-  }
-
-  private _decrementEnemyAttack() {
-    this._countEnemiesAttack--
-    console.log(this._countEnemiesAttack)
   }
 
   public reset(): void {

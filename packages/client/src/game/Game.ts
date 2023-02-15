@@ -142,7 +142,7 @@ export class GuardianOfTheGalaxy extends EventBus {
       this._nextLevel()
       this._gameEnd()
       this._updateAmmun()
-      this._enemyController.attacke(
+      this._enemyController.startAttacking(
         difficulty.minPercent,
         difficulty.maxEnemyShoot,
         difficulty.maxEnemyAttack
@@ -155,7 +155,7 @@ export class GuardianOfTheGalaxy extends EventBus {
     this.emit(GuardianOfTheGalaxy.EVENTS.UPDATE_LIVE, this.life)
   }
 
-  private saveLocalStorage(): void {
+  private _saveLocalStorage(): void {
     if (this.score > this.hightScore) {
       localStorage.setItem('GOTG:hightScore', this.score.toString())
     }
@@ -167,7 +167,7 @@ export class GuardianOfTheGalaxy extends EventBus {
       this.stop()
       this._enemyController.reset()
       this._mainShip.destroy()
-      this.saveLocalStorage()
+      this._saveLocalStorage()
       this.emit(
         GuardianOfTheGalaxy.EVENTS.GAME_END,
         this.level,

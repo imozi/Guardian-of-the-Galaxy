@@ -35,6 +35,8 @@ export class MainShip extends Ship implements Ship {
   private _helthPoint = MAIN_SHIP_CONFIG.helthPoint
   private _typeWeapon: string
   private _maxAmmunition = GAME_CONFIG.maxAmmunition
+  public isCollision = false
+  public isReady = true
   public sizeSprite: SizeSprite
   public position: Position
   public ammunition: Weapon[] = []
@@ -251,10 +253,20 @@ export class MainShip extends Ship implements Ship {
     this._helthPoint = MAIN_SHIP_CONFIG.helthPoint
     this._resetPosition()
     this._ship.die.reset()
+    this.isCollision = false
+
+    setTimeout(() => {
+      this.isReady = true
+    }, 1000)
   }
 
   private _hit(damage: number): void {
     this._helthPoint -= damage
+
+    if (this._helthPoint <= 0) {
+      this.isCollision = true
+      this.isReady = false
+    }
   }
 
   public hit(damage: number): void {

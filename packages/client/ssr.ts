@@ -63,7 +63,9 @@ app.use('*', async (req, res) => {
         .render
     } else {
       template = templateHtml
-      render = (await import(pathToFileURL(resolve('./entry-server.cjs')).toString())).render
+      render = (
+        await import(pathToFileURL(resolve('./entry-server.cjs')).toString())
+      ).render
     }
 
     const rendered = await render({ url, ssrManifest })
