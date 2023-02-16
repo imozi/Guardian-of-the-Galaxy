@@ -43,20 +43,14 @@ export const Post: FC<PostProps> = ({ answers, ...props }) => {
   const refAnswer: any = useRef<HTMLDivElement>(null)
 
   const onClick = () => {
-    if (newPost) {
-      if (refAnswer.current.textContent != '') {
-        createAnswer({
-          userId: data!.id,
-          text: refAnswer.current.textContent,
-          messageId: props.postId,
-        })
-        setNewPost(!newPost)
-      } else {
-        setNewPost(!newPost)
-      }
-    } else {
-      setNewPost(!newPost)
+    if (newPost && refAnswer.current.textContent != '') {
+      createAnswer({
+        userId: data!.id,
+        text: refAnswer.current.textContent,
+        messageId: props.postId,
+      })
     }
+    setNewPost(!newPost)
     refAnswer.current.textContent = ''
   }
 
@@ -88,17 +82,15 @@ export const Post: FC<PostProps> = ({ answers, ...props }) => {
         </div>
         <ReactionCounter
           reactions={
-            reactions
-              ? reactions.rows.map(({ label }) => ({
-                  label: label,
-                  node: <img height={15} src={REACTIONS[label].srcImg} />,
-                  by: '',
-                }))
-              : []
+            reactions?.rows.map(({ label }) => ({
+              label: label,
+              node: <img height={15} src={REACTIONS[label].srcImg} />,
+              by: '',
+            })) || []
           }
-          style={!reactions ? { display: 'none' } : { display: 'flex' }}
+          style={{ display: !reactions ? 'none' : 'flex' }}
           showTotalOnly={true}
-          showReactsOnly={reactions && reactions.rows.length > 0 ? false : true}
+          showReactsOnly={reactions?.rows.length > 0 ? false : true}
           className="reaction-count"
           iconSize={19}
           bg="#AAA"
