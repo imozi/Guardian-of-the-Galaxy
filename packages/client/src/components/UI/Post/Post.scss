@@ -1,14 +1,49 @@
 $photo-size: 36px;
 
 .post {
-  width: 100%;
+  position: relative;
+  width: 546px;
   height: 78px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background: $color-back-topic;
+  border: none;
   border-radius: $border-radius;
   padding: 10px;
   line-height: 14px;
+  color: $color-white;
+  cursor: pointer;
+
+  &__answer {
+    margin-top: 8px;
+    margin-left: 16px;
+    background-color: rgba(63, 40, 139, 0.85);
+    width: calc(100% - 26px);
+  }
+
+  &__field {
+    width: 0;
+    height: 0;
+    transition: all 1s;
+
+    &-active {
+      width: 80%;
+      padding: 5px;
+      height: 80px;
+      background-color: $color-white;
+      color: $color-black;
+      margin-top: 10px;
+      border: 2px solid #666;
+      border-radius: 4px;
+      overflow: auto;
+      transition: all 1s;
+    }
+  }
+
+  &__form {
+    margin-bottom: 0;
+  }
 
   &__author {
     display: flex;
@@ -38,5 +73,48 @@ $photo-size: 36px;
     margin-left: 10px;
     display: flex;
     align-items: center;
+  }
+
+  &__btn {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: $fz10;
+  }
+}
+
+.post:hover {
+  .reaction-wrapper {
+    transition: 1s all;
+    display: block;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-name: slidegdz;
+    animation-fill-mode: forwards;
+  }
+}
+
+@keyframes slidegdz {
+  0% {
+    width: 30%;
+  }
+  100% {
+    width: 30%;
+  }
+}
+
+.reaction-count {
+  position: absolute;
+  right: 0;
+  top: -5px;
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+
+  div {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 24px;
   }
 }

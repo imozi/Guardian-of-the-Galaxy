@@ -1,4 +1,22 @@
 .branch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    @include title_fz40;
+    text-align: center;
+    max-width: 390px;
+    margin: 0;
+    margin-bottom: 30px;
+  }
+
+  &__wrapper {
+    grid-template-columns: $grid-template-forum;
+  }
+
   &__names {
     width: 100%;
     display: flex;
@@ -22,7 +40,6 @@
   }
 
   &__posts {
-    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -32,7 +49,8 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    margin-top: 40px;
+    align-items: end;
+    margin-top: 30px;
   }
 
   &__pages {
