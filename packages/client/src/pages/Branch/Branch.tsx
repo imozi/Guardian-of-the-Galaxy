@@ -94,22 +94,21 @@ export const Branch = () => {
                 Back
               </a>
               <ul className="branch__pages">
-                {pagesArray &&
-                  pagesArray.map((value, index) => (
-                    <PageNumber
-                      key={index}
-                      className={
-                        value === currentPage
-                          ? 'branch__page branch__page-active'
-                          : 'branch__page'
-                      }
-                      quantity={Number(value)}
-                      onSelect={() => {
-                        setCurrentPage(value)
-                        setLastMessagePage(value * limitPosts)
-                        setFirstMessagePage(value * limitPosts - 4)
-                      }}></PageNumber>
-                  ))}
+                {pagesArray?.map((value, index) => (
+                  <PageNumber
+                    key={index}
+                    className={
+                      value === currentPage
+                        ? 'branch__page branch__page-active'
+                        : 'branch__page'
+                    }
+                    quantity={Number(value)}
+                    onSelect={() => {
+                      setCurrentPage(value)
+                      setLastMessagePage(value * limitPosts)
+                      setFirstMessagePage(value * limitPosts - 4)
+                    }}></PageNumber>
+                ))}
               </ul>
               <a
                 style={

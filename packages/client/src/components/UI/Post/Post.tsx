@@ -90,7 +90,9 @@ export const Post: FC<PostProps> = ({ answers, ...props }) => {
           }
           style={{ display: !reactions ? 'none' : 'flex' }}
           showTotalOnly={true}
-          showReactsOnly={reactions?.rows.length < 1}
+          showReactsOnly={
+            reactions && reactions?.rows.length > 0 ? false : true
+          }
           className="reaction-count"
           iconSize={19}
           bg="#AAA"
@@ -105,14 +107,13 @@ export const Post: FC<PostProps> = ({ answers, ...props }) => {
           className={!newPost ? 'post__field' : 'post__field-active'}></div>
       </form>
 
-      {answers &&
-        answers.map(({ text, id }) => {
-          return (
-            <div key={id} className="post post__answer">
-              <p className="post__text">{text}</p>
-            </div>
-          )
-        })}
+      {answers?.map(({ text, id }) => {
+        return (
+          <div key={id} className="post post__answer">
+            <p className="post__text">{text}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }
