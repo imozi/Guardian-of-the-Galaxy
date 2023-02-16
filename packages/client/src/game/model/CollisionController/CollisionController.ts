@@ -25,7 +25,12 @@ export class CollisionController {
 
   private _collisionDetection(): void {
     this._enemyShips.forEach(enemy => {
-      if (this._isCollid(enemy) && !enemy.isHit) {
+      if (
+        this._isCollid(enemy) &&
+        !enemy.isHit &&
+        !this._mainShip.isCollision &&
+        this._mainShip.isReady
+      ) {
         enemy.hit(1000)
         this._mainShip.hit(1000)
       }
@@ -105,7 +110,10 @@ export class CollisionController {
     }
 
     this._enemyАmmunition.forEach((ammun, i) => {
-      if (this._hittingMainShip(ammun, this._mainShip)) {
+      if (
+        this._hittingMainShip(ammun, this._mainShip) &&
+        this._mainShip.isReady
+      ) {
         this._enemyАmmunition.splice(i, 1)
         this._mainShip.hit(ammun.damage)
       }
