@@ -13,8 +13,8 @@ export function getRandomArrayElement<T>(array: T[]): () => T {
     }
 
     randomIndex = Math.floor(Math.random() * remainingElements.length)
-    randomElement = remainingElements[randomIndex]
-    remainingElements.splice(randomIndex, 1)
+    randomElement = remainingElements.splice(randomIndex, 1)[0]
+
     return randomElement
   }
 }
