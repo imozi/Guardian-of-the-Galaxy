@@ -63,10 +63,12 @@ export const Feedback = () => {
           <Card>
             <form className="form forum__form" onSubmit={onSubmit}>
               <>{formInputs()}</>
-              <div>Also, we will be glad if you give us access to geolocation so that we understand from which city or country users are playing. This will help us improve the game!</div>
-              <Button >
-                Geolocation
-              </Button>
+              <div>
+                Also, we will be glad if you give us access to geolocation so
+                that we understand from which city or country users are playing.
+                This will help us improve the game!
+              </div>
+              <Button>Geolocation</Button>
               <Button type="submit" loading={isLoading}>
                 Send
               </Button>

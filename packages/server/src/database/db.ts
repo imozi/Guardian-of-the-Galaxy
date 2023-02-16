@@ -15,7 +15,7 @@ const {
   MONGO_USERNAME,
   MONGO_PASSWORD,
   MONGO_HOST,
-  MONGO_DB
+  MONGO_DB,
 } = process.env
 
 const sequelizeOptions: SequelizeOptions = {
@@ -67,15 +67,17 @@ export async function dbConnect() {
 
 export const initMongoDBConnection = async (): Promise<void> => {
   try {
-    mongoose.set('strictQuery', false);
-    await mongoose.connect(`mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/${MONGO_DB}`);
+    mongoose.set('strictQuery', false)
+    await mongoose.connect(
+      `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/${MONGO_DB}`
+    )
 
-    console.log('  ➜ 🎸 Connected to the Mongo database');
+    console.log('  ➜ 🎸 Connected to the Mongo database')
   } catch (e) {
     if (e instanceof Error) {
-      console.error(`Mongo DB connect error: ${e.message}`);
+      console.error(`Mongo DB connect error: ${e.message}`)
     } else {
-      console.error(e);
+      console.error(e)
     }
   }
-};
+}
