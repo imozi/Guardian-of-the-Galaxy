@@ -6,7 +6,10 @@ import ErrorBoundary from './hoc/ErrorBoundary'
 import { Provider } from 'react-redux'
 import { Pages } from './pages'
 import { setupStore } from './store'
-import { startServiceWorker, unregisterServiceWorker } from '@/core/utils/serviceWorker'
+import {
+  startServiceWorker,
+  unregisterServiceWorker,
+} from '@/core/utils/serviceWorker'
 
 if (import.meta.env.PROD) {
   startServiceWorker()

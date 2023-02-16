@@ -40,6 +40,7 @@ export interface IEnemyShipProps extends MainSettingsProps {
   ammunition: Weapon[]
   score: number
   helthPoint: number
+  mainShipPosition: Position
 }
 
 export enum EnemyGroup {
