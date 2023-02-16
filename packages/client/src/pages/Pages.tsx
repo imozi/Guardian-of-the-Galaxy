@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Front } from './Front'
 import { Login } from './Login'
 import { Register } from './Register'
+import { Feedback } from './Feedback/Feedback'
 import { Game } from './Game'
 import { Leaderboard } from './Leaderboard'
 import { Profile } from './Profile'
@@ -64,6 +65,8 @@ export function Pages() {
           </PrivateRoute>
         }
       />
+      {/* <Route path="forum" element={<Forum />} /> */}
+      <Route path="feedback" element={<Feedback />} />
       <Route
         path="profile"
         element={

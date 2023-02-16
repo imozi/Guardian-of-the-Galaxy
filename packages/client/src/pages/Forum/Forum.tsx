@@ -17,6 +17,9 @@ export const Forum = () => {
     <Page title="Forum">
       <section className="profile forum">
         <h2 className="profile__title">Forum</h2>
+        <Link className="link" to="/feedback">
+              Feedback
+          </Link>
         <div className="profile__wrapper">
           <div className="profile__nav">
             <Link className="link" to="/forum-add">
