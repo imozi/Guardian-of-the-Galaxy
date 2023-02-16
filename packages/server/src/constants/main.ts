@@ -1,7 +1,6 @@
 export const NODE_ENV = process.env.NODE_ENV || ''
 
-export const YANDEX_API_URL =
-  process.env.VITE_YANDEX_API_URL || 'https://ya-praktikum.tech'
+export const YANDEX_API_URL = 'https://ya-praktikum.tech/api/v2'
 
 export const CLIENT_PORT = Number(process.env.CLIENT_PORT) || 3000
 export const SERVER_PORT = Number(process.env.SERVER_PORT) || 3001
