@@ -90,7 +90,7 @@ export const Post: FC<PostProps> = ({ answers, ...props }) => {
           }
           style={{ display: !reactions ? 'none' : 'flex' }}
           showTotalOnly={true}
-          showReactsOnly={reactions?.rows.length > 0 ? false : true}
+          showReactsOnly={reactions?.rows.length < 1}
           className="reaction-count"
           iconSize={19}
           bg="#AAA"
