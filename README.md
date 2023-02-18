@@ -4,7 +4,6 @@
 
 ![Guardian of the Galaxy - Game Page](https://user-images.githubusercontent.com/29326762/215745611-67c20a1c-e649-4bf0-ae15-fe7eece1b6ad.png)
 
-
 ## Используемый стек технологий
 
 > JavaScript-библиотека - [ReactJS](https://reactjs.org/)
@@ -49,27 +48,27 @@
 
 ### Добавление зависимостей
 
-```yarn lerna add {your_dep} --scope client``` - Чтобы добавить зависимость для клиента
+`yarn lerna add {your_dep} --scope client` - Чтобы добавить зависимость для клиента
 
-```yarn lerna add {your_dep} --scope server``` - Чтобы добавить зависимость для сервера
+`yarn lerna add {your_dep} --scope server` - Чтобы добавить зависимость для сервера
 
-```yarn lerna add {your_dep}``` - Чтобы добавить зависимость и для клиента и для сервера
+`yarn lerna add {your_dep}` - Чтобы добавить зависимость и для клиента и для сервера
 
-```yarn lerna add {your_dep} -D --scope={client || server}``` - Чтобы добавить dev зависимость, проделайте то же самое, но с флагом `dev`
+`yarn lerna add {your_dep} -D --scope={client || server}` - Чтобы добавить dev зависимость, проделайте то же самое, но с флагом `dev`
 
-``` yarn lerna exec --scope={client || server} yarn remove {your_dep}``` - Чтобы удалить зависимость
+` yarn lerna exec --scope={client || server} yarn remove {your_dep}` - Чтобы удалить зависимость
 
 ### Тесты
 
-```yarn test``` - запускает тесты для клиента
+`yarn test` - запускает тесты для клиента
 
 ### Линтинг
 
-```yarn lint``` - анализирует код на ошибки
+`yarn lint` - анализирует код на ошибки
 
 ### Форматирование prettier
 
-```yarn format``` - форматирует код
+`yarn format` - форматирует код
 
 ### Как правильно писать коммиты?
 
@@ -80,15 +79,15 @@
 **Должен быть установлен `nodejs >= v16` и `docker` (docker должен быть запущен)**
 
     git clone https://github.com/imozi/Guardian-of-the-Galaxy.git
-    
+
     cd Guardian-of-the-Galaxy
-    
+
     yarn bootstrap - (это обязательный шаг, без него ничего работать не будет)
-    
+
     Скопируйте и переименуйте файл .env.sample в .env в корне проекта
-    
+
     docker compose -f docker-compose.dev.yml up -d или docker-compose -f docker-compose.dev.yml up -d (в зависимости на какой OS запускаете)
-    
+
     yarn dev
 
 1. Клонирует репозиторий
@@ -107,17 +106,17 @@
 **Должен быть установлен `nodejs >= v16` и `docker` (docker должен быть запущен)**
 
     git clone https://github.com/imozi/Guardian-of-the-Galaxy.git
-    
+
     cd Guardian-of-the-Galaxy
-    
+
     yarn bootstrap - (это обязательный шаг, без него ничего работать не будет)
-    
+
     Скопируйте и переименуйте файл .env.sample в .env в корне проекта
-    
+
     docker compose -f docker-compose.dev.yml up -d или docker-compose -f docker-compose.dev.yml up -d (в зависимости на какой OS запускаете)
-    
+
     yarn build
-    
+
     yarn serve
 
 1. Клонирует репозиторий
@@ -146,3 +145,20 @@
 В качестве `root directory` укажите `packages/client`
 
 Все ваши PR будут автоматически деплоиться на vercel. URL вам предоставит деплоящий бот
+
+## Анализ утечек памяти
+
+1. Запуск игры
+
+Видим большой рост потребления памяти и создания нод
+После инициализации приходят в норму
+
+![Запуск игры](https://user-images.githubusercontent.com/40211507/219857875-95e8aed1-5399-42f2-9eca-0abe6a31fd6f.png)
+
+2. Игра
+
+При уничтожении количество нод уменьшается
+Повторный рост нод происходит в связи началом атаки врагов
+
+![Игра1](https://user-images.githubusercontent.com/40211507/219859626-4b172998-0a40-40f6-a777-7aa2f2521da0.png)
+![Игра2](https://user-images.githubusercontent.com/40211507/219858084-1ccc3daf-5c39-49b5-85e7-73d8f602c0cd.png)
