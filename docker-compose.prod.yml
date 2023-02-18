@@ -36,7 +36,7 @@ services:
           POSTGRES_DB: ${POSTGRES_DB}
           POSTGRES_PORT: ${POSTGRES_PORT}
           POSTGRES_HOST: ${POSTGRES_HOST}
-        depends_on:
+        depends_on: 
             gotg_db:
               condition: service_healthy
         
@@ -54,4 +54,26 @@ services:
         interval: 5s
         timeout: 5s
         retries: 5
+      depends_on:
+            - nginx
 
+    nginx:
+      container_name: reverse-proxy
+      image: nginx:alpine
+      restart: unless-stopped
+      volumes:
+        - ./reverse-proxy/data/nginx:/etc/nginx/conf.d
+        - ./reverse-proxy/data/certbot/conf:/etc/letsencrypt
+        - ./reverse-proxy/data/certbot/www:/var/www/certbot
+      ports:
+        - "80:80"
+        - "443:443"
+      command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    certbot:
+      container_name: certbot
+      image: certbot/certbot
+      restart: unless-stopped
+      volumes:
+        - ./reverse-proxy/data/certbot/conf:/etc/letsencrypt
+        - ./reverse-proxy/data/certbot/www:/var/www/certbot
+      entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
