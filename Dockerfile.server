@@ -1,19 +1,25 @@
 ARG NODE_VERSION=16
-ARG SERVER_PORT=3001
+ARG CLIENT_PORT=3001
 
-FROM node:$NODE_VERSION-alpine
+FROM node:$NODE_VERSION-alpine as builder
 
 WORKDIR /app
 
-COPY package.json yarn.lock
-
-RUN yarn yarn install --frozen-lockfile && yarn cache clean
-
 COPY . .
 
-RUN yarn lerna bootstrap && yarn cache clean
-RUN yarn build:server
+RUN apk add yarn && yarn build:prod-server && rm -rf /usr/local/share/.cache
 
-EXPOSE $SERVER_PORT
+FROM node:$NODE_VERSION-alpine as production
 
-CMD [ "yarn serve --scope=server", './']
+WORKDIR /app
+
+COPY --from=builder /app/packages/server/dist/ /app/
+COPY --from=builder /app/packages/server/package.json /app/package.json
+COPY --from=builder /app/yarn.lock /app/yarn.lock
+COPY --from=builder /app/.env /app/.env
+
+RUN apk add yarn && yarn install --frozen-lockfile --production && rm -rf /usr/local/share/.cache
+
+EXPOSE $CLIENT_PORT
+
+CMD ["yarn", "serve:prod"]
