@@ -10,6 +10,8 @@ services:
             args:
               CLIENT_PORT: ${CLIENT_PORT}
         restart: always
+        ports: 
+          - ${CLIENT_PORT}:3000
         environment:
           - CLIENT_PORT=${CLIENT_PORT}
           - SERVER_PORT=${SERVER_PORT}
@@ -25,6 +27,8 @@ services:
             args:
               SERVER_PORT: ${SERVER_PORT}
         restart: always
+        ports: 
+          - ${SERVER_PORT}:3001
         environment:
           SERVER_PORT: ${SERVER_PORT}
           POSTGRES_USER: ${POSTGRES_USER}
