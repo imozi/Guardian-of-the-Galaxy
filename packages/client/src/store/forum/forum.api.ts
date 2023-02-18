@@ -1,13 +1,19 @@
+import { API_URL } from '@/core/consts'
 import { apiDefaultHeaders } from '@/core/utils'
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import 'cross-fetch/polyfill'
 import {
+  AnswerDTO,
+  AnswerInputDTO,
   ForumErrorDTO,
   ForumUserDTO,
+  MessageDTO,
+  MessageInputDTO,
+  ReactionDTO,
+  ReactionInputDTO,
   TopicDTO,
   TopicInputDTO,
 } from '@/types/api/forum'
-import { API_URL } from '@/core/consts'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import 'cross-fetch/polyfill'
 
 export const forumApi = createApi({
   reducerPath: 'forum/api',
@@ -61,6 +67,51 @@ export const forumApi = createApi({
         body: payload,
       }),
     }),
+    getMessages: build.query<MessageDTO, string | undefined>({
+      query: topicId => ({
+        url: `/message/${topicId}`,
+        method: 'GET',
+      }),
+      transformErrorResponse: response => response.data,
+    }),
+    addMessage: build.mutation<MessageDTO | ForumErrorDTO, MessageInputDTO>({
+      query: data => ({
+        url: `/message`,
+        method: 'POST',
+        body: data,
+      }),
+      transformErrorResponse: response => response.data,
+    }),
+    getReactions: build.query<ReactionDTO, string | undefined>({
+      query: messageId => ({
+        url: `/reaction/${messageId}`,
+        method: 'GET',
+      }),
+      transformErrorResponse: response => response.data,
+    }),
+    addReaction: build.mutation<ReactionDTO | ForumErrorDTO, ReactionInputDTO>({
+      query: data => ({
+        url: `/reaction`,
+        method: 'POST',
+        body: data,
+      }),
+      transformErrorResponse: response => response.data,
+    }),
+    getAnswer: build.query<AnswerDTO, string | undefined>({
+      query: messageId => ({
+        url: `/answer/${messageId}`,
+        method: 'GET',
+      }),
+      transformErrorResponse: response => response.data,
+    }),
+    addAnswer: build.mutation<AnswerDTO | ForumErrorDTO, AnswerInputDTO>({
+      query: data => ({
+        url: `/answer`,
+        method: 'POST',
+        body: data,
+      }),
+      transformErrorResponse: response => response.data,
+    }),
   }),
 })
 
@@ -70,4 +121,10 @@ export const {
   useAddTopicMutation,
   useAddUserMutation,
   useUpdateUserMutation,
+  useGetMessagesQuery,
+  useAddMessageMutation,
+  useGetReactionsQuery,
+  useAddReactionMutation,
+  useAddAnswerMutation,
+  useGetAnswerQuery,
 } = forumApi

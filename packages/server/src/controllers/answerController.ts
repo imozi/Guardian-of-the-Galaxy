@@ -1,10 +1,10 @@
 import type { NextFunction, Request, Response } from 'express'
-import { Answer, Message, User } from '../database/db'
+import { Answer, User } from '../database/db'
 import ApiError from '../error/ApiError'
 
-export class MessageController {
+export class AnswerController {
   async create(req: Request, res: Response, next: NextFunction) {
-    const { userId, topicId, text } = req.body
+    const { userId, messageId, text } = req.body
     if (!text) {
       return next(ApiError.internal('text is required'))
     }
@@ -13,13 +13,13 @@ export class MessageController {
       return next(ApiError.internal('userId is required'))
     }
 
-    if (!topicId) {
-      return next(ApiError.internal('topicId is required'))
+    if (!messageId) {
+      return next(ApiError.internal('messageId is required'))
     }
 
     try {
-      const message = await Message.create({ userId, topicId, text })
-      return res.json(message)
+      const answer = await Answer.create({ userId, messageId, text })
+      return res.json(answer)
     } catch (e) {
       if (e instanceof Error) {
         return next(ApiError.badRequest(e.message))
@@ -30,21 +30,18 @@ export class MessageController {
   }
 
   async getAll(req: Request, res: Response) {
-    const { topicId } = req.params
+    const { messageId } = req.params
 
-    const messages = await Message.findAndCountAll({
-      where: { topicId: topicId },
+    const answers = await Answer.findAll({
+      where: { messageId: messageId },
       include: [
         {
           model: User,
-        },
-        {
-          model: Answer,
         },
       ],
       order: ['id'],
     })
 
-    return res.json(messages)
+    return res.json(answers)
   }
 }
