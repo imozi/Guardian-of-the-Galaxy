@@ -50,7 +50,7 @@ Message.belongsTo(Topic, {
   foreignKey: 'topicId',
 })
 
-export async function dbConnect() {
+export async function initPostgresConnection() {
   try {
     await sequelize.authenticate()
     await sequelize.sync()
