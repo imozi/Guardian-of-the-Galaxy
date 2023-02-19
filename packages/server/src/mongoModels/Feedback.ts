@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import { model, Schema } from 'mongoose'
 
 type Coords = {
   longitude: number | string
@@ -6,18 +6,18 @@ type Coords = {
 }
 
 type FeedbackModel = {
-  message: string;
-  coords?: Coords;
-};
+  message: string
+  coords?: Coords
+}
 
 const feedbackSchema = new Schema<FeedbackModel>(
   {
     message: String,
-    coords: Object
+    coords: Object,
   },
   {
     strict: true,
   }
-);
+)
 
-export const Feedback = model<FeedbackModel>('feedback', feedbackSchema);
+export const Feedback = model<FeedbackModel>('feedback', feedbackSchema)

@@ -13,17 +13,15 @@ export const feedbackApi = createApi({
     fetchFn: fetch,
   }),
   endpoints: build => ({
-    addFeedback: build.mutation<FeedbackInputDTO, FeedbackErrorDTO >({
+    addFeedback: build.mutation<FeedbackInputDTO, FeedbackErrorDTO>({
       query: data => ({
         url: `/feedback`,
         method: 'POST',
         body: data,
       }),
       transformErrorResponse: response => response.data,
-    })
-})
+    }),
+  }),
 })
 
-export const {
-  useAddFeedbackMutation,
-} = feedbackApi
+export const { useAddFeedbackMutation } = feedbackApi

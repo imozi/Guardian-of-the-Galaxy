@@ -28,7 +28,7 @@ export const setupStore = (initialState = {}) =>
         leaderboardApi.middleware,
         forumApi.middleware,
         themeApi.middleware,
-        feedbackApi.middleware
+        feedbackApi.middleware,
       ])
     },
     preloadedState: initialState,

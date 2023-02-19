@@ -15,12 +15,12 @@ const FeedbackForm = [
     value: '',
     isValid: true,
     errorMessage: 'Name is required',
-  }
+  },
 ]
 
-let coords = null;
+let coords = null
 
-export const getCoords = (value) => {
+export const getCoords = value => {
   coords = value
   alert('Thank you!')
 }
@@ -30,8 +30,8 @@ const onGeolocation = () => {
 }
 
 export const Feedback = () => {
-
-  const [formValues, isFormValid, formInputs] = useForm<FeedbackInputDTO>(FeedbackForm)
+  const [formValues, isFormValid, formInputs] =
+    useForm<FeedbackInputDTO>(FeedbackForm)
   const [addFeedback, { isLoading }] = useAddFeedbackMutation()
 
   const onSubmit = async (e: React.SyntheticEvent) => {
@@ -61,12 +61,16 @@ export const Feedback = () => {
           <Card>
             <form className="form" onSubmit={onSubmit}>
               <>{formInputs()}</>
-              <div className='feedback__text'>
+              <div className="feedback__text">
                 Also, we will be glad if you give us access to geolocation so
                 that we understand from which city or country users are playing.
                 This will help us improve the game!
               </div>
-              <Button onClick={onGeolocation} className='feedback__button_geolocation'>Geolocation</Button>
+              <Button
+                onClick={onGeolocation}
+                className="feedback__button_geolocation">
+                Geolocation
+              </Button>
               <Button type="submit" loading={isLoading}>
                 Send
               </Button>

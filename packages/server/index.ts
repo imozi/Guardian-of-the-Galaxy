@@ -29,8 +29,8 @@ initMongoDBConnection()
 
 dbConnect().then(() => {
   // initMongoDBConnection().then(() => {
-    app.listen(cfg.server.port, () => {
-      console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
-    })
+  app.listen(cfg.server.port, () => {
+    console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
+  })
   // })
 })

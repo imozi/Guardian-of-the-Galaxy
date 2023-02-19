@@ -1,4 +1,4 @@
-import { Feedback } from '../mongoModels/Feedback';
+import { Feedback } from '../mongoModels/Feedback'
 import type { Request, Response, NextFunction } from 'express'
 import ApiError from '../error/ApiError'
 
@@ -10,9 +10,9 @@ export class FeedbackController {
 
     try {
       console.log(req.body)
-      const feedback = new Feedback(req.body);
+      const feedback = new Feedback(req.body)
       console.log(feedback)
-      await feedback.save();
+      await feedback.save()
       return res.json(feedback)
     } catch (e) {
       if (e instanceof Error) {
@@ -22,5 +22,4 @@ export class FeedbackController {
       return next(ApiError.badRequest('Unexpected error'))
     }
   }
-
 }

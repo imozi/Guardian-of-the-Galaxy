@@ -7,5 +7,4 @@ const feedbackController = new FeedbackController()
 
 feedbackRouter.post('/', checkAuth, feedbackController.create)
 
-
 export default feedbackRouter
