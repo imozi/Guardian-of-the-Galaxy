@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { Button } from '@/components/UI'
 import { useForm } from '@/hooks'
@@ -30,6 +30,7 @@ const onGeolocation = () => {
 }
 
 export const Feedback = () => {
+  const navigate = useNavigate()
   const [formValues, isFormValid, formInputs] =
     useForm<FeedbackInputDTO>(FeedbackForm)
   const [addFeedback, { isLoading }] = useAddFeedbackMutation()
@@ -54,9 +55,9 @@ export const Feedback = () => {
         <h2 className="profile__title">Feedback</h2>
         <div className="profile__wrapper">
           <div className="profile__nav">
-            <Link className="link" to="/forum">
+            <a className="link" onClick={() => navigate(-1)}>
               Back
-            </Link>
+            </a>
           </div>
           <Card>
             <form className="form" onSubmit={onSubmit}>

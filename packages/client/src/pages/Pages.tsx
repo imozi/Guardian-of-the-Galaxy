@@ -65,8 +65,14 @@ export function Pages() {
           </PrivateRoute>
         }
       />
-      {/* <Route path="forum" element={<Forum />} /> */}
-      <Route path="feedback" element={<Feedback />} />
+      <Route
+        path="feedback"
+        element={
+          <PrivateRoute isAuth={isSuccess}>
+            <Feedback />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="profile"
         element={
