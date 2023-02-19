@@ -1,10 +1,12 @@
 import mongoose from 'mongoose'
 import { Sequelize } from 'sequelize-typescript'
 import type { SequelizeOptions } from 'sequelize-typescript'
+import { answerModel } from '../models/answer'
+import { messageModel } from '../models/message'
+import { reactionModel } from '../models/reaction'
+import { themeModel } from '../models/theme'
 import { topicModel } from '../models/topic'
 import { userModel } from '../models/user'
-import { messageModel } from '../models/message'
-import { themeModel } from '../models/theme'
 
 const {
   POSTGRES_USER,
@@ -33,6 +35,38 @@ export const Theme = sequelize.define('theme', themeModel)
 export const Topic = sequelize.define('topic', topicModel)
 export const User = sequelize.define('user', userModel)
 export const Message = sequelize.define('message', messageModel)
+export const Reaction = sequelize.define('reaction', reactionModel)
+export const Answer = sequelize.define('answer', answerModel)
+
+Message.hasMany(Answer, {
+  sourceKey: 'id',
+  foreignKey: 'messageId',
+})
+
+Answer.belongsTo(Message, {
+  targetKey: 'id',
+  foreignKey: 'messageId',
+})
+
+User.hasMany(Answer, {
+  sourceKey: 'externalId',
+  foreignKey: 'userId',
+})
+
+Answer.belongsTo(User, {
+  targetKey: 'externalId',
+  foreignKey: 'userId',
+})
+
+Message.hasMany(Reaction, {
+  sourceKey: 'id',
+  foreignKey: 'messageId',
+})
+
+Reaction.belongsTo(Message, {
+  targetKey: 'id',
+  foreignKey: 'messageId',
+})
 
 User.hasMany(Message, {
   sourceKey: 'externalId',

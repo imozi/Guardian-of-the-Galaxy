@@ -13,7 +13,7 @@
     "test": "lerna run test",
     "lint": "lerna run lint",
     "lint:fix": "eslint --fix --ext .js,.jsx .",
-    "format": "lerna run format",
+    "format": "lerna run format && git add .",
     "docker up": "docker compose -f docker-compose.dev.yml up -d",
     "docker down": "docker compose -f docker-compose.dev.yml down",
     "docker:mongo": "docker-compose up mongo-express -d"
@@ -36,6 +36,7 @@
     "lerna": "5.4.3"
   },
   "dependencies": {
+    "@charkour/react-reactions": "^0.11.0",
     "@reduxjs/toolkit": "^1.9.1",
     "react-redux": "^8.0.5",
     "standardized-audio-context": "^25.3.37",

@@ -18,9 +18,9 @@ import { User } from './User'
 import { useEffect } from 'react'
 import { NewTopic } from '@/pages/NewTopic'
 import { useGetUserQuery } from '@/store/user/user.api'
-import { useSigninWithOAuthYandexMutation } from '../store/auth/auth.api'
+import { useSigninWithOAuthYandexMutation } from '@/store/auth/auth.api'
 import { useAppSelector } from '@/store'
-import { DEV_API_URL } from '../core/consts'
+import { DEV_API_URL } from '@/core/consts'
 
 export function Pages() {
   const { isSuccess } = useGetUserQuery()

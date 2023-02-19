@@ -47,16 +47,17 @@ export class GuardianOfTheGalaxy extends EventBus {
 
     this._weapons = new Weapons({ ctx: this._ctx })
 
-    this._enemyController = new EnemyController({
-      canvasSize: this._canvasSize,
-      ctx: this._ctx,
-      weapons: this._weapons.emeny,
-    })
-
     this._mainShip = new MainShip({
       canvasSize: this._canvasSize,
       ctx: this._ctx,
       weapons: this._weapons.main,
+    })
+
+    this._enemyController = new EnemyController({
+      canvasSize: this._canvasSize,
+      ctx: this._ctx,
+      weapons: this._weapons.emeny,
+      mainShipPosition: this._mainShip.position,
     })
 
     this._collisionController = new CollisionController({
@@ -115,7 +116,10 @@ export class GuardianOfTheGalaxy extends EventBus {
   }
 
   private _nextLevel(): void {
-    if (!this._enemyController.enemiesShips.length) {
+    if (
+      !this._enemyController.enemiesShips.length &&
+      !this._mainShip.ammunition.length
+    ) {
       this._enemyController.generateEnemiesShips()
       this._enemyController.enemiesShips.forEach(enemy => {
         enemy.on(EnemyShip.EVENTS.HIT, this._updateScore.bind(this))
@@ -127,6 +131,8 @@ export class GuardianOfTheGalaxy extends EventBus {
   }
 
   private _update = (ms: number): void => {
+    const difficulty = GAME_CONFIG.difficulty(this.level)
+
     if (!this._isGameEnd) {
       this._enemyController.update(ms)
       this._collisionController.update()
@@ -136,6 +142,11 @@ export class GuardianOfTheGalaxy extends EventBus {
       this._nextLevel()
       this._gameEnd()
       this._updateAmmun()
+      this._enemyController.startAttacking(
+        difficulty.minPercent,
+        difficulty.maxEnemyShoot,
+        difficulty.maxEnemyAttack
+      )
     }
   }
 
@@ -144,7 +155,7 @@ export class GuardianOfTheGalaxy extends EventBus {
     this.emit(GuardianOfTheGalaxy.EVENTS.UPDATE_LIVE, this.life)
   }
 
-  private saveLocalStorage(): void {
+  private _saveLocalStorage(): void {
     if (this.score > this.hightScore) {
       localStorage.setItem('GOTG:hightScore', this.score.toString())
     }
@@ -156,7 +167,7 @@ export class GuardianOfTheGalaxy extends EventBus {
       this.stop()
       this._enemyController.reset()
       this._mainShip.destroy()
-      this.saveLocalStorage()
+      this._saveLocalStorage()
       this.emit(
         GuardianOfTheGalaxy.EVENTS.GAME_END,
         this.level,

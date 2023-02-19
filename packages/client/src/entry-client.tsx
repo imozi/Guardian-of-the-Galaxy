@@ -6,6 +6,16 @@ import ErrorBoundary from './hoc/ErrorBoundary'
 import { Provider } from 'react-redux'
 import { Pages } from './pages'
 import { setupStore } from './store'
+import {
+  startServiceWorker,
+  unregisterServiceWorker,
+} from '@/core/utils/serviceWorker'
+
+if (import.meta.env.PROD) {
+  startServiceWorker()
+} else {
+  unregisterServiceWorker()
+}
 
 const preloadState = window.__PRELOADED_STATE__ as unknown
 const store = setupStore(JSON.parse(preloadState as string))

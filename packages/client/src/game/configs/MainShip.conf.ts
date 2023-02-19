@@ -1,6 +1,6 @@
 export const MAIN_SHIP_CONFIG = {
   positionAdjustment: {
-    bottomIndent: 0,
+    bottomIndent: 25,
     adjustmentSize: 24,
     topPositionLimit: 0.85,
   },

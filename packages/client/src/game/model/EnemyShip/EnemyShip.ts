@@ -8,22 +8,28 @@ import {
   SizeSprite,
   Velocity,
 } from '@/types/game'
+import { throttle } from '@/core/utils'
 
 export class EnemyShip extends Ship implements Ship {
-  static EVENTS = { INIT: 'flow:init', DIE: 'flow:die', HIT: 'flow:hit' }
+  static EVENTS = {
+    INIT: 'flow:init',
+    DIE: 'flow:die',
+    HIT: 'flow:hit',
+  }
 
   private _mainPosition: Position
   private _velocity: Velocity
   private _image: PictureCollection
   private _damageLimit: number
-  private _helthPoint: number
   private _typeWeapon: string
   private _ammunition: Weapon[]
   private _score: number
+  public helthPoint: number
   public position: Position
   public sizeSprite: SizeSprite
   public isHit = false
   public isDie = false
+  public isAttacke = false
 
   constructor({
     canvasSize,
@@ -37,6 +43,7 @@ export class EnemyShip extends Ship implements Ship {
     ammunition,
     score,
     helthPoint,
+    mainShipPosition,
   }: IEnemyShipProps) {
     super({ ctx, canvasSize, weapons })
     this.position = position
@@ -53,8 +60,11 @@ export class EnemyShip extends Ship implements Ship {
     this._damageLimit = damageLimit
     this._typeWeapon = typeWeapon
     this._score = score
-    this._helthPoint = helthPoint
+    this.helthPoint = helthPoint
     this._ammunition = ammunition
+    this._mainPosition = mainShipPosition
+
+    this.shoot = throttle(this.shoot, 2500)
 
     this._offEvents()
     this._onEvents()
@@ -75,18 +85,23 @@ export class EnemyShip extends Ship implements Ship {
 
   private _hit(damage: number): void {
     this.isHit = true
-    this._helthPoint -= damage
+    this.helthPoint -= damage
 
-    if (this._helthPoint <= 0) {
+    if (this.helthPoint <= 0) {
+      this.isAttacke = false
       this.emit(EnemyShip.EVENTS.HIT, this._score)
     }
 
-    if (this._helthPoint > 0) {
+    if (this.helthPoint > 0) {
       this.isHit = false
     }
   }
 
-  public shoot(): void {
+  public shoot = (): void => {
+    if (this.isHit) {
+      return
+    }
+
     const {
       position: { x, y },
       _typeWeapon,
@@ -102,18 +117,31 @@ export class EnemyShip extends Ship implements Ship {
     this._hit(damage)
   }
 
-  public positionUpdate(): void {
-    if (this._helthPoint <= 0) {
+  private _attacke(ms: number): void {
+    if (!this.isAttacke) {
       return
     }
+
+    const dx = this._mainPosition.x - this.position.x
+
+    this.position.x += dx / 100
+    this.position.y += this._velocity.vy * this._velocity.speedAdjustment * ms
+
+    if (this.position.y > this._canvasSize.h) {
+      this.position.y = -100
+    }
+  }
+
+  public attacke(): void {
+    this.isAttacke = true
   }
 
   public destroy(): void {
     this._offEvents()
   }
 
-  public update(): void {
-    this.positionUpdate()
+  public update(ms: number): void {
+    this._attacke(ms)
   }
 
   public draw(): void {
@@ -136,7 +164,7 @@ export class EnemyShip extends Ship implements Ship {
       )
     }
 
-    if (this._helthPoint <= 0) {
+    if (this.helthPoint <= 0) {
       drawDie()
       return
     }
