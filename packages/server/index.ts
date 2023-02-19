@@ -25,10 +25,12 @@ app.get('/', (req, res) => {
   res.status(200).send('work')
 })
 
+initMongoDBConnection()
+
 dbConnect().then(() => {
-  initMongoDBConnection().then(() => {
+  // initMongoDBConnection().then(() => {
     app.listen(cfg.server.port, () => {
       console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
     })
-  })
+  // })
 })

@@ -6,6 +6,7 @@ import userReducer from './user/userSlice'
 import { leaderboardApi } from '@/store/leaderboard/leaderboard.api'
 import { forumApi } from '@/store/forum/forum.api'
 import { themeApi } from '@/store/theme/theme.api'
+import { feedbackApi } from './feedback/feedback.api'
 
 const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   [leaderboardApi.reducerPath]: leaderboardApi.reducer,
   [forumApi.reducerPath]: forumApi.reducer,
   [themeApi.reducerPath]: themeApi.reducer,
+  [feedbackApi.reducerPath]: feedbackApi.reducer,
   userState: userReducer,
 })
 
@@ -26,6 +28,7 @@ export const setupStore = (initialState = {}) =>
         leaderboardApi.middleware,
         forumApi.middleware,
         themeApi.middleware,
+        feedbackApi.middleware
       ])
     },
     preloadedState: initialState,

@@ -1,1 +1,1 @@
-export { NewTopic } from './Feedback'
+export { Feedback } from './Feedback'

@@ -1,36 +1,38 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { Button } from '@/components/UI'
 import { useForm } from '@/hooks'
-import { TopicDTO } from '@/types/api/forum'
-import { useAddTopicMutation } from '@/store/forum/forum.api'
-import { useEffect } from 'react'
+import { findLocation } from '@/core/utils/webAPI/geolocation'
 import { Card } from '@/components/Card'
+import { useAddFeedbackMutation } from '@/store/feedback/feedback.api'
+import { FeedbackInputDTO } from '@/types/api/feedback'
 
 const FeedbackForm = [
   {
-    name: 'name',
+    name: 'message',
     type: 'text',
     label: 'Input message',
     value: '',
     isValid: true,
     errorMessage: 'Name is required',
-  },
-  // {
-  //   name: 'name1',
-  //   type: 'label',
-  //   label: 'Input message',
-  //   value: '',
-  //   isValid: true,
-  //   errorMessage: 'Name is required',
-  // },
+  }
 ]
 
-export const Feedback = () => {
-  const navigate = useNavigate()
+let coords = null;
 
-  const [formValues, isFormValid, formInputs] = useForm<TopicDTO>(FeedbackForm)
-  const [createTopic, { isLoading, isSuccess }] = useAddTopicMutation()
+export const getCoords = (value) => {
+  coords = value
+  alert('Thank you!')
+}
+
+const onGeolocation = () => {
+  findLocation()
+}
+
+export const Feedback = () => {
+
+  const [formValues, isFormValid, formInputs] = useForm<FeedbackInputDTO>(FeedbackForm)
+  const [addFeedback, { isLoading }] = useAddFeedbackMutation()
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -38,21 +40,17 @@ export const Feedback = () => {
     const isValid = isFormValid()
 
     const formData = formValues()
+    formData['coords'] = coords
+    console.log(formData)
 
     if (isValid) {
-      createTopic(formData)
+      addFeedback(formData)
     }
   }
 
-  useEffect(() => {
-    if (isSuccess) {
-      navigate('/forum')
-    }
-  }, [isSuccess])
-
   return (
     <Page title="New message">
-      <section className="forum profile">
+      <section className="feedback profile">
         <h2 className="profile__title">Feedback</h2>
         <div className="profile__wrapper">
           <div className="profile__nav">
@@ -61,14 +59,14 @@ export const Feedback = () => {
             </Link>
           </div>
           <Card>
-            <form className="form forum__form" onSubmit={onSubmit}>
+            <form className="form" onSubmit={onSubmit}>
               <>{formInputs()}</>
-              <div>
+              <div className='feedback__text'>
                 Also, we will be glad if you give us access to geolocation so
                 that we understand from which city or country users are playing.
                 This will help us improve the game!
               </div>
-              <Button>Geolocation</Button>
+              <Button onClick={onGeolocation} className='feedback__button_geolocation'>Geolocation</Button>
               <Button type="submit" loading={isLoading}>
                 Send
               </Button>
