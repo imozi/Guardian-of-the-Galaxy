@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { useGetOAuthYandexServiceIdMutation } from '../../store/auth/auth.api'
-import { selectServiceId } from '../../store/user/userSlice'
+import { useGetOAuthYandexServiceIdMutation } from '@/store/auth/auth.api'
+import { selectServiceId } from '@/store/user/userSlice'
 import { useAppSelector } from '@/store'
-import { DEV_API_URL } from '../../core/consts'
+import { DEV_API_URL } from '@/core/consts'
 
 const redirectUri = DEV_API_URL
 

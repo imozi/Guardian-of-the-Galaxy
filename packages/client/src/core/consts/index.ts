@@ -9,6 +9,8 @@ export const ANIMATION_STUB_TIME = 2000
 export const TIMER_TIME = 1000
 export const TIMER_START = 3
 export const USER_THEME_DEFAULT = 'space'
+export const USER_AVATAR_DEFAULT = '/images/user-default.svg'
+export const REACTIONS_ICON_SIZE = 18
 export const REACTIONS: Record<string, any> = {
   jupiter: {
     label: 'jupiter',

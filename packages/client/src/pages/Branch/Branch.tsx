@@ -5,6 +5,7 @@ import { Loader } from '@/components/UI/Loader'
 import { useGetMessagesQuery, useGetTopicQuery } from '@/store/forum/forum.api'
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { USER_AVATAR_DEFAULT } from '@/core/consts'
 
 export const Branch = () => {
   const navigate = useNavigate()
@@ -61,7 +62,7 @@ export const Branch = () => {
               )}
               {message?.rows
                 .slice(fisrtMessagePage - 1, lastMessagePage)
-                .map(({ id, user, text, answers, topicId }) => {
+                .map(({ id, user, text, answers, reactions, topicId }) => {
                   return (
                     <Post
                       postId={id}
@@ -69,11 +70,11 @@ export const Branch = () => {
                       key={id}
                       author={user.name}
                       avatar={
-                        user.avatar ||
-                        'https://n1s2.hsmedia.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/480x496_0xac120003_4430520541578509619.jpg'
+                        user.avatar || USER_AVATAR_DEFAULT
                       }
                       text={text}
-                      answers={answers}></Post>
+                      answers={answers}
+                      reactions={reactions}></Post>
                   )
                 })}
             </div>
