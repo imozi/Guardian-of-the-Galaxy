@@ -1,9 +1,14 @@
 import { ReactionBar } from '@/components/ReactionBar/ReactionBar'
-import { API_RESOURCES_URL, REACTIONS, REACTIONS_ICON_SIZE, USER_AVATAR_DEFAULT } from '@/core/consts'
+import {
+  API_RESOURCES_URL,
+  REACTIONS,
+  REACTIONS_ICON_SIZE,
+  USER_AVATAR_DEFAULT,
+} from '@/core/consts'
 import {
   useAddAnswerMutation,
   useAddReactionMutation,
-  useGetMessagesQuery
+  useGetMessagesQuery,
 } from '@/store/forum/forum.api'
 import { useGetUserQuery } from '@/store/user/user.api'
 import { ReactionCounter } from '@charkour/react-reactions'
@@ -21,24 +26,31 @@ type PostProps = {
   reactions?: ReactionDTO
 } & AllHTMLAttributes<HTMLDivElement>
 
-export const Post: FC<PostProps> = ({ answers= [], reactions= [], ...props }) => {
+export const Post: FC<PostProps> = ({
+                                      answers = [],
+                                      reactions = [],
+                                      ...props
+                                    }) => {
   const { data } = useGetUserQuery()
 
-  const [createAnswer, { isSuccess: isSuccessAddAnswer, isLoading: isAddAnswerLoading }] =
-    useAddAnswerMutation()
+  const [
+    createAnswer,
+    { isSuccess: isSuccessAddAnswer, isLoading: isAddAnswerLoading },
+  ] = useAddAnswerMutation()
 
-  const [createReaction, { isSuccess: isSuccessAddReaction }] = useAddReactionMutation()
+  const [createReaction, { isSuccess: isSuccessAddReaction }] =
+    useAddReactionMutation()
 
   const [newPost, setNewPost] = useState(false)
 
-  const { data: message,
+  const {
+    data: message,
     isLoading: isMessageLoading,
     isFetching: isMessageFetching,
-    refetch: refetchGetMessage
-  } = useGetMessagesQuery(
-    `${props.topicId}`,
-    { refetchOnMountOrArgChange: true }
-  )
+    refetch: refetchGetMessage,
+  } = useGetMessagesQuery(`${props.topicId}`, {
+    refetchOnMountOrArgChange: true,
+  })
 
   const refAnswer: any = useRef<HTMLDivElement>(null)
 
@@ -47,7 +59,7 @@ export const Post: FC<PostProps> = ({ answers= [], reactions= [], ...props }) =>
       await createAnswer({
         userId: data!.id,
         text: refAnswer.current.textContent,
-        messageId: props.postId
+        messageId: props.postId,
       })
     }
     setNewPost(!newPost)
@@ -63,25 +75,28 @@ export const Post: FC<PostProps> = ({ answers= [], reactions= [], ...props }) =>
   }
 
   return (
-    <div className='post-wrapper'>
-      <div className='post'>
-        <div className='post__author'>
-          <img src={props.avatar} alt='avatar' className='post__photo' />
-          <div className='post__author-name'>{props.author}</div>
+    <div className="post-wrapper">
+      <div className="post">
+        <div className="post__author">
+          <img src={props.avatar} alt="avatar" className="post__photo" />
+          <div className="post__author-name">{props.author}</div>
         </div>
-        <p className='post__text'>{props.text}</p>
-        {
-          newPost ?
-            <Button
-              small={true}
-              loading={isAddAnswerLoading || isMessageLoading || isMessageFetching}
-              onClick={onClick}>
-              Send
-            </Button>
-            :
-            <Button small={true} onClick={onClick}>Answer</Button>
-        }
-        <div className='reaction-wrapper'>
+        <p className="post__text">{props.text}</p>
+        {newPost ? (
+          <Button
+            small={true}
+            loading={
+              isAddAnswerLoading || isMessageLoading || isMessageFetching
+            }
+            onClick={onClick}>
+            Send
+          </Button>
+        ) : (
+          <Button small={true} onClick={onClick}>
+            Answer
+          </Button>
+        )}
+        <div className="reaction-wrapper">
           <ReactionBar onSelect={onSelectReaction} />
         </div>
         <ReactionCounter
@@ -89,18 +104,18 @@ export const Post: FC<PostProps> = ({ answers= [], reactions= [], ...props }) =>
             reactions.map(({ label }) => ({
               label: label,
               node: <img src={REACTIONS[label].srcImg} />,
-              by: ''
+              by: '',
             })) || []
           }
           style={{ display: !reactions ? 'none' : 'flex' }}
           showTotalOnly={true}
           showReactsOnly={!reactions.length}
-          className='reaction-count'
+          className="reaction-count"
           iconSize={REACTIONS_ICON_SIZE}
         />
       </div>
 
-      <form className='form post__form'>
+      <form className="form post__form">
         <div
           ref={refAnswer}
           contentEditable={true}
@@ -110,12 +125,20 @@ export const Post: FC<PostProps> = ({ answers= [], reactions= [], ...props }) =>
 
       {answers?.map(({ text, id, user }) => {
         return (
-          <div key={id} className='post post__answer'>
-            <div className='post__author'>
-              <img src={user.avatar ? `${API_RESOURCES_URL}/${user.avatar}` : USER_AVATAR_DEFAULT} alt='avatar' className='post__photo' />
-              <div className='post__author-name'>{user.name}</div>
+          <div key={id} className="post post__answer">
+            <div className="post__author">
+              <img
+                src={
+                  user.avatar
+                    ? `${API_RESOURCES_URL}/${user.avatar}`
+                    : USER_AVATAR_DEFAULT
+                }
+                alt="avatar"
+                className="post__photo"
+              />
+              <div className="post__author-name">{user.name}</div>
             </div>
-            <p className='post__text'>{text}</p>
+            <p className="post__text">{text}</p>
           </div>
         )
       })}
