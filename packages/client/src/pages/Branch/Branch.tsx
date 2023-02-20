@@ -5,7 +5,7 @@ import { Loader } from '@/components/UI/Loader'
 import { useGetMessagesQuery, useGetTopicQuery } from '@/store/forum/forum.api'
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { USER_AVATAR_DEFAULT } from '@/core/consts'
+import { API_RESOURCES_URL, USER_AVATAR_DEFAULT } from '@/core/consts'
 
 export const Branch = () => {
   const navigate = useNavigate()
@@ -70,7 +70,7 @@ export const Branch = () => {
                       key={id}
                       author={user.name}
                       avatar={
-                        user.avatar || USER_AVATAR_DEFAULT
+                        user.avatar ? `${API_RESOURCES_URL}/${user.avatar}` : USER_AVATAR_DEFAULT
                       }
                       text={text}
                       answers={answers}

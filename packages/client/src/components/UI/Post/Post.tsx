@@ -1,5 +1,5 @@
 import { ReactionBar } from '@/components/ReactionBar/ReactionBar'
-import { REACTIONS, REACTIONS_ICON_SIZE, USER_AVATAR_DEFAULT } from '@/core/consts'
+import { API_RESOURCES_URL, REACTIONS, REACTIONS_ICON_SIZE, USER_AVATAR_DEFAULT } from '@/core/consts'
 import {
   useAddAnswerMutation,
   useAddReactionMutation,
@@ -21,7 +21,7 @@ type PostProps = {
   reactions?: ReactionDTO
 } & AllHTMLAttributes<HTMLDivElement>
 
-export const Post: FC<PostProps> = ({ answers, reactions, ...props }) => {
+export const Post: FC<PostProps> = ({ answers= [], reactions= [], ...props }) => {
   const { data } = useGetUserQuery()
 
   const [createAnswer, { isSuccess: isSuccessAddAnswer, isLoading: isAddAnswerLoading }] =
@@ -112,7 +112,7 @@ export const Post: FC<PostProps> = ({ answers, reactions, ...props }) => {
         return (
           <div key={id} className='post post__answer'>
             <div className='post__author'>
-              <img src={user.avatar || USER_AVATAR_DEFAULT} alt='avatar' className='post__photo' />
+              <img src={user.avatar ? `${API_RESOURCES_URL}/${user.avatar}` : USER_AVATAR_DEFAULT} alt='avatar' className='post__photo' />
               <div className='post__author-name'>{user.name}</div>
             </div>
             <p className='post__text'>{text}</p>
