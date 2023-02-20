@@ -7,7 +7,7 @@ export function findLocation() {
     navigator.geolocation.getCurrentPosition(success, error)
   }
 
-  function success(position) {
+  function success(position: any) {
     // если всё хорошо, получаем координаты
     const { longitude, latitude } = position.coords
     getCoords({ longitude, latitude })
