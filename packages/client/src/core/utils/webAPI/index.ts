@@ -1,1 +1,1 @@
-export { fullscreenAPI } from './fullscreen'
+export { fullscreenAPI, toggleFullScreen } from './fullscreen'
