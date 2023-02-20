@@ -18,7 +18,7 @@ const FeedbackForm = [
   },
 ]
 
-let coords: Coords = null
+let coords: Coords
 
 export const getCoords = (value: Coords) => {
   coords = value
