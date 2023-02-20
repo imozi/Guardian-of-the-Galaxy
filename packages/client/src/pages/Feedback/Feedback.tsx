@@ -5,7 +5,7 @@ import { useForm } from '@/hooks'
 import { findLocation } from '@/core/utils/webAPI/geolocation'
 import { Card } from '@/components/Card'
 import { useAddFeedbackMutation } from '@/store/feedback/feedback.api'
-import { FeedbackInputDTO } from '@/types/api/feedback'
+import { Coords, FeedbackInputDTO } from '@/types/api/feedback'
 
 const FeedbackForm = [
   {
@@ -18,9 +18,9 @@ const FeedbackForm = [
   },
 ]
 
-let coords = null
+let coords: Coords = null
 
-export const getCoords = value => {
+export const getCoords = (value: Coords) => {
   coords = value
   alert('Thank you!')
 }
