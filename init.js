@@ -5,4 +5,4 @@ fs.copyFileSync('.env.sample', '.env')
 
 fs.mkdirSync('tmp/pgdata', { recursive: true })
 
-fs.mkdirSync('mongodb-data', { recursive: true })
+fs.mkdirSync('mongodb-data_tmp', { recursive: true })
