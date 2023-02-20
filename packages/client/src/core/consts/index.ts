@@ -1,6 +1,6 @@
 export const API_URL = 'http://localhost:3001/api'
 export const YA_API_URL = 'http://localhost:3001/api/ya'
-export const DEV_API_URL = 'http://localhost:3000'
+export const DEV_API_URL = 'https://web2rists-gotg-20.ya-praktikum.tech'
 export const API_RESOURCES_URL = 'http://localhost:3001/api/ya/resources'
 export const TEAM_NAME = 'web2rists'
 export const LEADERBOARD_DEFAULT_PAGE = 0
