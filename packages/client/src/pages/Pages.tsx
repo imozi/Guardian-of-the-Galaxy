@@ -19,13 +19,13 @@ import { NewTopic } from '@/pages/NewTopic'
 import { useGetUserQuery } from '@/store/user/user.api'
 import { useSigninWithOAuthYandexMutation } from '@/store/auth/auth.api'
 import { useAppSelector } from '@/store'
-import { DEV_API_URL } from '@/core/consts'
+import { REDIRECT_URL } from '@/core/consts'
 
 export function Pages() {
   const { isSuccess } = useGetUserQuery()
   const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
   const { isAuth } = useAppSelector(state => state.userState)
-  const redirectUri = DEV_API_URL
+  const redirectUri = REDIRECT_URL
 
   useEffect(() => {
     const OAuthParams = new URLSearchParams(location.search)
