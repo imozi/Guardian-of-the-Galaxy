@@ -1,7 +1,16 @@
-export const API_URL = 'http://localhost:3001/api'
-export const YA_API_URL = 'http://localhost:3001/api/ya'
-export const DEV_API_URL = 'http://localhost:3000'
-export const API_RESOURCES_URL = 'http://localhost:3001/api/ya/resources'
+const { VITE_REDIRECT_URL, VITE_MAIN_DOMAIN, PROD } = import.meta.env
+export const API_URL = `${
+  PROD ? VITE_MAIN_DOMAIN : 'http://localhost:3001'
+}/api`
+export const YA_API_URL = `${
+  PROD ? VITE_MAIN_DOMAIN : 'http://localhost:3001'
+}/api/ya`
+export const REDIRECT_URL = `${
+  PROD ? VITE_REDIRECT_URL : 'http://localhost:3000/user'
+}`
+export const API_RESOURCES_URL = `${
+  PROD ? VITE_MAIN_DOMAIN : 'http://localhost:3001'
+}/api/ya/resources`
 export const TEAM_NAME = 'web2rists'
 export const LEADERBOARD_DEFAULT_PAGE = 0
 export const LEADERBOARD_LIMIT_PAGE = 100
