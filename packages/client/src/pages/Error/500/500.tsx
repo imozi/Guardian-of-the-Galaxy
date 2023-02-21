@@ -8,7 +8,7 @@ export const ServerError = () => {
     <Page title="Server Error">
       <section className="server-error">
         <h1 className="server-error__status">500</h1>
-        <p className="server-error__text">Oops! Server error</p>
+        <p className="server-error__text">Oops! Server error...</p>
         <a className="link" onClick={() => navigate(-1)}>
           Back
         </a>

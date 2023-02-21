@@ -40,6 +40,21 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: $fz48;
+    font-size: $fz120;
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 2px;
+      bottom: -10px;
+      left: 0;
+      background: transparent;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &:hover::after {
+      background: $color-white;
+    }
   }
 }

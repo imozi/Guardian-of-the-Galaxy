@@ -40,13 +40,10 @@
 }
 
 @mixin btn {
-  display: inline-block;
-  vertical-align: middle;
   background-color: transparent;
   border: unset;
   border-radius: 0;
   box-shadow: none;
-  text-align: center;
   text-decoration: none;
   font-family: $font-family;
   line-height: $line-height;
@@ -58,24 +55,22 @@
   cursor: pointer;
   padding: 0;
 }
+
 @mixin title {
   margin: 0;
-  font-size: 24px;
+  font-size: 50px;
 }
 
 @mixin title_fz16 {
   font-size: 16px;
-  line-height: 22px;
 }
 
-@mixin title_fz40 {
-  font-size: 40px;
-  line-height: 55px;
+@mixin title_fz70 {
+  font-size: 70px;
 }
 
 @mixin title_fz96 {
   font-size: 96px;
-  line-height: 132px;
 }
 
 @mixin img-cover {

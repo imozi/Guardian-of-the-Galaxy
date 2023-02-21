@@ -1,10 +1,10 @@
 .current-level {
   display: flex;
   text-transform: uppercase;
-  font-size: $fz24;
+  font-size: $fz40;
   gap: 10px;
 
-  &__titile,
+  &__title,
   &__number {
     margin: 0;
   }

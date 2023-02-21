@@ -37,7 +37,7 @@ export const Branch = () => {
   const [lastMessagePage, setLastMessagePage] = useState(limitPosts)
 
   return (
-    <Page title="Game progress">
+    <Page title={(topic && topic.name) || 'Forum'}>
       <section className="profile forum">
         <h2 className="profile__title">{topic && topic.name}</h2>
         <div className="profile__wrapper">

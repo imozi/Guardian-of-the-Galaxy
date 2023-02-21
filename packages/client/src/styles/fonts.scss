@@ -10,3 +10,16 @@
     /* Safari, Android, iOS */
       url('./fonts/minecraftia_regular.svg#minecraftia_regular') format('svg'); /* Chrome < 4, Legacy iOS */
 }
+
+@font-face {
+  font-family: 'Arbata Compact';
+  src: url('./fonts/Arbata_Compact.eot'); /* IE 9 Compatibility Mode */
+  src: url('./fonts/Arbata_Compact.eot?#iefix') format('embedded-opentype'),
+    /* IE < 9 */ url('./fonts/Arbata_Compact.woff2') format('woff2'),
+    /* Super Modern Browsers */ url('./fonts/Arbata_Compact.woff')
+      format('woff'),
+    /* Firefox >= 3.6, any other modern browser */
+      url('./fonts/Arbata_Compact.ttf') format('truetype'),
+    /* Safari, Android, iOS */ url('./fonts/Arbata_Compact.svg#Arbata_Compact')
+      format('svg'); /* Chrome < 4, Legacy iOS */
+}

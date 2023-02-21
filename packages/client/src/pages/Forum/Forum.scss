@@ -39,5 +39,6 @@
 
   & .profile__wrapper {
     grid-template-columns: $grid-template-forum;
+    min-height: 500px;
   }
 }

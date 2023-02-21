@@ -25,9 +25,6 @@ $photo-size: 30px;
   }
 
   &__name {
-    font-weight: $font-weight;
-    font-size: $fz16;
-    line-height: 22px;
     color: $color-white;
   }
 
@@ -40,9 +37,6 @@ $photo-size: 30px;
   }
 
   &__score {
-    font-weight: $font-weight;
-    font-size: $fz16;
-    line-height: 22px;
     color: $color-white;
     margin-left: auto;
   }

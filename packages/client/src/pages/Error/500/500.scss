@@ -11,14 +11,11 @@
   }
 
   &__status {
-    @include title_fz96;
-    font-weight: $font-weight;
+    font-size: $fz180;
     text-align: center;
   }
 
   &__text {
-    @include title_fz40;
-    font-weight: $font-weight;
     margin-bottom: 20px;
   }
 }

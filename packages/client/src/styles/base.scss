@@ -32,8 +32,12 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+h1,
+h2,
 h3,
+h4,
 p {
+  font-weight: $font-weight;
   margin: 0;
 }
 

@@ -2,19 +2,15 @@
   display: flex;
   align-items: center;
   text-transform: uppercase;
+  font-size: $fz40;
   gap: 10px;
 
   &__title,
   &__number {
     margin: 0;
-    font-size: $fz24;
   }
 
   &__title {
     color: var(--color-accent);
-  }
-
-  &__number {
-    font-size: $fz20;
   }
 }

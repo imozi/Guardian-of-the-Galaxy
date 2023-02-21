@@ -44,7 +44,7 @@ export const NewTopic = () => {
 
   return (
     <Page title="New message">
-      <section className="forum profile">
+      <section className="new-topic forum profile">
         <h2 className="profile__title">New topic</h2>
         <div className="profile__wrapper">
           <div className="profile__nav">
