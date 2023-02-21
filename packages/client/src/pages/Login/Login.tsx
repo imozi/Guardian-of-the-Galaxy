@@ -81,6 +81,3 @@ export const Login = () => {
     </Page>
   )
 }
-function getLocationOrigin() {
-  throw new Error('Function not implemented.')
-}

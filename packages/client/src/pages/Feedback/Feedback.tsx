@@ -6,6 +6,7 @@ import { findLocation } from '@/core/utils/webAPI/geolocation'
 import { Card } from '@/components/Card'
 import { useAddFeedbackMutation } from '@/store/feedback/feedback.api'
 import { Coords, FeedbackInputDTO } from '@/types/api/feedback'
+import { useState } from 'react'
 
 const FeedbackForm = [
   {
@@ -14,7 +15,7 @@ const FeedbackForm = [
     label: 'Input message',
     value: '',
     isValid: true,
-    errorMessage: 'Name is required',
+    errorMessage: 'Message is required',
   },
 ]
 
@@ -34,6 +35,7 @@ export const Feedback = () => {
   const [formValues, isFormValid, formInputs] =
     useForm<FeedbackInputDTO>(FeedbackForm)
   const [addFeedback, { isLoading }] = useAddFeedbackMutation()
+  const [isSendFeedback, setSendFeedback] = useState(false)
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -44,7 +46,8 @@ export const Feedback = () => {
     formData['coords'] = coords
 
     if (isValid) {
-      addFeedback(formData)
+      await addFeedback(formData)
+      setSendFeedback(true)
     }
   }
 
@@ -59,22 +62,29 @@ export const Feedback = () => {
             </a>
           </div>
           <Card>
-            <form className="form" onSubmit={onSubmit}>
-              <>{formInputs()}</>
-              <div className="feedback__text">
-                Also, we will be glad if you give us access to geolocation so
-                that we understand from which city or country users are playing.
-                This will help us improve the game!
-              </div>
-              <Button
-                onClick={onGeolocation}
-                className="feedback__button_geolocation">
-                Geolocation
-              </Button>
-              <Button type="submit" loading={isLoading}>
-                Send
-              </Button>
-            </form>
+            {!isSendFeedback ? (
+              <form className="form" onSubmit={onSubmit}>
+                <>{formInputs()}</>
+                <div className="feedback__text">
+                  Also, we will be glad if you give us access to geolocation so
+                  that we understand from which city or country users are
+                  playing. This will help us improve the game!
+                </div>
+                <Button
+                  onClick={onGeolocation}
+                  className="feedback__button_geolocation">
+                  Geolocation
+                </Button>
+                <Button type="submit" loading={isLoading}>
+                  Send
+                </Button>
+              </form>
+            ) : (
+              <p>
+                Thank you for your feedback, your feedback is realy important to
+                us!
+              </p>
+            )}
           </Card>
         </div>
       </section>

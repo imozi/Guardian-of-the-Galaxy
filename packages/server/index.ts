@@ -15,9 +15,6 @@ dotenv.config()
 
 const app = express()
 
-initPostgresConnection()
-initMongoDBConnection()
-
 app.use(cors)
 app.use(logger)
 app.use(express.urlencoded({ extended: false }))
@@ -34,7 +31,9 @@ app.get('/', (req, res) => {
 initPostgresConnection().then(() => {
   initMongoDBConnection().then(() => {
     app.listen(cfg.server.port, () => {
-      console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
+      console.log(
+        `  ➜ 🥳 Backend started at http://localhost:${cfg.server.port}`
+      )
     })
   })
 })

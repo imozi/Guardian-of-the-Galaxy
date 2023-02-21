@@ -16,14 +16,18 @@ const {
   POSTGRES_PORT,
   MONGO_USERNAME,
   MONGO_PASSWORD,
+  MONGO_HOST_DEV,
+  MONGO_DB_DEV,
   MONGO_HOST,
   MONGO_DB,
   POSTGRES_HOST_DEV,
   POSTGRES_HOST,
 } = process.env
 
+const isProd = NODE_ENV === 'production'
+
 const sequelizeOptions: SequelizeOptions = {
-  host: NODE_ENV === 'production' ? POSTGRES_HOST : POSTGRES_HOST_DEV,
+  host: isProd ? POSTGRES_HOST : POSTGRES_HOST_DEV,
   port: Number(POSTGRES_PORT),
   username: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
@@ -90,14 +94,14 @@ export async function initPostgresConnection() {
   try {
     await sequelize.authenticate()
     await sequelize.sync()
-    console.log('  ➜ 🐘 Connected to the database.')
+    console.log('  ➜ 🐘 Connected to the Postgres database.')
 
     await Theme.findOrCreate({ where: { name: 'space' } })
     await Theme.findOrCreate({ where: { name: 'mars' } })
     await Theme.findOrCreate({ where: { name: 'saturn' } })
     await Theme.findOrCreate({ where: { name: 'uranus' } })
   } catch (error) {
-    console.error('  ➜ 😨 Unable to connect to the database:', error)
+    console.error('  ➜ 😨 Unable to connect to the Postgres database:', error)
   }
 }
 
@@ -105,13 +109,17 @@ export const initMongoDBConnection = async (): Promise<void> => {
   try {
     mongoose.set('strictQuery', false)
     await mongoose.connect(
-      `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/${MONGO_DB}`
+      `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${
+        isProd ? MONGO_HOST : MONGO_HOST_DEV
+      }:27017/${isProd ? MONGO_DB : MONGO_DB_DEV}`
     )
 
-    console.log('  ➜ 🎸 Connected to the Mongo database')
+    console.log('  ➜ 🌿 Connected to the Mongo database.')
   } catch (e) {
     if (e instanceof Error) {
-      console.error(`Mongo DB connect error: ${e.message}`)
+      console.error(
+        ` ➜ 😨 Unable to connect to the Mongo database:: ${e.message}`
+      )
     } else {
       console.error(e)
     }
