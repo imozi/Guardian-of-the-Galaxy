@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import { useGetOAuthYandexServiceIdMutation } from '../../store/auth/auth.api'
-import { selectServiceId } from '../../store/user/userSlice'
+import { useGetOAuthYandexServiceIdMutation } from '@/store/auth/auth.api'
+import { selectServiceId } from '@/store/user/userSlice'
 import { useAppSelector } from '@/store'
 import { REDIRECT_URL } from '@/core/consts'
 

@@ -82,25 +82,11 @@ export const forumApi = createApi({
       }),
       transformErrorResponse: response => response.data,
     }),
-    getReactions: build.query<ReactionDTO, string | undefined>({
-      query: messageId => ({
-        url: `/reaction/${messageId}`,
-        method: 'GET',
-      }),
-      transformErrorResponse: response => response.data,
-    }),
     addReaction: build.mutation<ReactionDTO | ForumErrorDTO, ReactionInputDTO>({
       query: data => ({
         url: `/reaction`,
         method: 'POST',
         body: data,
-      }),
-      transformErrorResponse: response => response.data,
-    }),
-    getAnswer: build.query<AnswerDTO, string | undefined>({
-      query: messageId => ({
-        url: `/answer/${messageId}`,
-        method: 'GET',
       }),
       transformErrorResponse: response => response.data,
     }),
@@ -123,8 +109,6 @@ export const {
   useUpdateUserMutation,
   useGetMessagesQuery,
   useAddMessageMutation,
-  useGetReactionsQuery,
   useAddReactionMutation,
   useAddAnswerMutation,
-  useGetAnswerQuery,
 } = forumApi

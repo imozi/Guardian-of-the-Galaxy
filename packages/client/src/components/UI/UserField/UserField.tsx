@@ -1,5 +1,5 @@
 import { AllHTMLAttributes, FC } from 'react'
-import { API_RESOURCES_URL } from '@/core/consts'
+import { API_RESOURCES_URL, USER_AVATAR_DEFAULT } from '@/core/consts'
 import { UserFieldProps } from '@/types/components/field'
 
 export const UserField: FC<
@@ -9,9 +9,7 @@ export const UserField: FC<
     <div className="user-field">
       {number && <div className="user-field__number">{number}</div>}
       <img
-        src={
-          avatar ? `${API_RESOURCES_URL}/${avatar}` : '/images/user-default.svg'
-        }
+        src={avatar ? `${API_RESOURCES_URL}/${avatar}` : USER_AVATAR_DEFAULT}
         alt="avatar"
         className="user-field__photo"
       />

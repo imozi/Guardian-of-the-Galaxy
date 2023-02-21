@@ -38,9 +38,17 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled
-          dispatch(
+          const { data } = await dispatch(
             userApi.endpoints.getUser.initiate(undefined, {
               forceRefetch: true,
+            })
+          )
+          const { id, firstName, avatar } = data as UserType
+          dispatch(
+            forumApi.endpoints.addUser.initiate({
+              externalId: id,
+              name: firstName,
+              avatar,
             })
           )
         } catch (error) {
