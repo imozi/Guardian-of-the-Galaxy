@@ -42,7 +42,6 @@ export const Feedback = () => {
 
     const formData = formValues()
     formData['coords'] = coords
-    console.log(formData)
 
     if (isValid) {
       addFeedback(formData)

@@ -9,9 +9,7 @@ export class FeedbackController {
     }
 
     try {
-      console.log(req.body)
       const feedback = new Feedback(req.body)
-      console.log(feedback)
       await feedback.save()
       return res.json(feedback)
     } catch (e) {
