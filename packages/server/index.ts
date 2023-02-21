@@ -28,7 +28,7 @@ app.use('/api', router)
 app.use(errorHandler)
 
 app.get('/', (req, res) => {
-  res.status(200).send('work')
+  res.status(200).json({ status: 'UP' })
 })
 
 initPostgresConnection().then(() => {

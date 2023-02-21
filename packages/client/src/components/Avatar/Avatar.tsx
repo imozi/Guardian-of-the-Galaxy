@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { API_RESOURCES_URL } from '@/core/consts'
+import { API_RESOURCES_URL, USER_AVATAR_DEFAULT } from '@/core/consts'
 
 type AvatarProps = {
   src?: string
@@ -16,7 +16,7 @@ export const Avatar: FC<AvatarProps> = ({ src, onChange, loading }) => {
     <div className={className}>
       <label htmlFor="avatar" className="avatar__img" data-loading="false">
         <img
-          src={src ? `${API_RESOURCES_URL}/${src}` : '/images/user-default.svg'}
+          src={src ? `${API_RESOURCES_URL}/${src}` : USER_AVATAR_DEFAULT}
           alt="avatar"
         />
         <input

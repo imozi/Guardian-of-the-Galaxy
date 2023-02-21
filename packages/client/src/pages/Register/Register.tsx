@@ -80,7 +80,7 @@ export const Register = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate('/game')
+      navigate('/user')
     }
   }, [isSuccess])
 

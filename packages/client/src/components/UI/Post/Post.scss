@@ -2,15 +2,13 @@ $photo-size: 36px;
 
 .post {
   position: relative;
-  width: 546px;
-  height: 78px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: $color-back-topic;
   border: none;
   border-radius: $border-radius;
-  padding: 10px;
+  padding: 24px 10px;
   line-height: 14px;
   color: $color-white;
   cursor: pointer;
@@ -18,8 +16,15 @@ $photo-size: 36px;
   &__answer {
     margin-top: 8px;
     margin-left: 16px;
-    background-color: rgba(63, 40, 139, 0.85);
+    background-color: rgba(153, 153, 153, 0.65);
     width: calc(100% - 26px);
+    flex-direction: row-reverse;
+    padding: 10px;
+
+    .post__author {
+      border-right: none;
+      border-left: 1px solid var(--color-accent);
+    }
   }
 
   &__field {
@@ -51,7 +56,7 @@ $photo-size: 36px;
     width: 100px;
     align-items: center;
     gap: 10px;
-    border-right: 1px solid #00ffd1;
+    border-right: 1px solid var(--color-accent);
 
     &-name {
       font-weight: $font-weight;
@@ -73,6 +78,7 @@ $photo-size: 36px;
     margin-left: 10px;
     display: flex;
     align-items: center;
+    line-height: $line-height;
   }
 
   &__btn {
@@ -91,6 +97,10 @@ $photo-size: 36px;
     animation-name: slidegdz;
     animation-fill-mode: forwards;
   }
+}
+
+.post-wrapper {
+  width: 546px;
 }
 
 @keyframes slidegdz {

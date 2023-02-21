@@ -4,3 +4,5 @@ node_modules/
 .vscode
 dist
 tmp
+proxy/nginx/app.conf
+init-proxy-ssl-and-start.sh

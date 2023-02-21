@@ -9,19 +9,21 @@ import { topicModel } from '../models/topic'
 import { userModel } from '../models/user'
 
 const {
+  NODE_ENV,
   POSTGRES_USER,
   POSTGRES_PASSWORD,
   POSTGRES_DB,
   POSTGRES_PORT,
-  DB_HOST,
   MONGO_USERNAME,
   MONGO_PASSWORD,
   MONGO_HOST,
   MONGO_DB,
+  POSTGRES_HOST_DEV,
+  POSTGRES_HOST,
 } = process.env
 
 const sequelizeOptions: SequelizeOptions = {
-  host: DB_HOST,
+  host: NODE_ENV === 'production' ? POSTGRES_HOST : POSTGRES_HOST_DEV,
   port: Number(POSTGRES_PORT),
   username: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
