@@ -22,11 +22,11 @@ app.use('/api', router)
 app.use(errorHandler)
 
 app.get('/', (req, res) => {
-  res.status(200).send('work')
+  res.status(200).json({ status: 'UP' })
 })
 
 dbConnect().then(() => {
   app.listen(cfg.server.port, () => {
-    console.log(`  ➜ 🥳 Backend started at ${cfg.server.port}`)
+    console.log(`  ➜ 🥳 Backend started at http://localhost:${cfg.server.port}`)
   })
 })

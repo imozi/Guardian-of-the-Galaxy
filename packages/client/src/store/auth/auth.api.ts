@@ -53,7 +53,7 @@ export const authApi = createApi({
         ...apiDefaultHeaders,
         url: `/auth/signup`,
         method: 'POST',
-        query: JSON.stringify(data),
+        body: JSON.stringify(data),
       }),
       transformErrorResponse: response => response.data,
       async onQueryStarted(args, { dispatch, queryFulfilled }) {

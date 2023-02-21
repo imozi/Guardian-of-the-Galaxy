@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import { useGetOAuthYandexServiceIdMutation } from '../../store/auth/auth.api'
 import { selectServiceId } from '../../store/user/userSlice'
 import { useAppSelector } from '@/store'
-import { DEV_API_URL } from '../../core/consts'
+import { REDIRECT_URL } from '@/core/consts'
 
-const redirectUri = DEV_API_URL
+const redirectUri = REDIRECT_URL
 
 const renderOAuthLink = (serviceId: string, redirectUri: string): string => {
   if (typeof serviceId !== 'string') {
