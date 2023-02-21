@@ -34,6 +34,7 @@ export type MessageDTO = {
       createdAt?: string
       updatedAt?: string
       answers?: AnswerDTO
+      reactions?: ReactionDTO
       user: {
         id: number
         externalId: number
@@ -76,18 +77,15 @@ export type ReactionInputDTO = {
   messageId: number
 }
 
-export type ReactionDTO = {
-  count: number
-  rows: [
-    {
-      id: number
-      label: string
-      createdAt?: string
-      updatedAt?: string
-      messageId: number
-    }
-  ]
-}
+export type ReactionDTO = [
+  {
+    id: number
+    label: string
+    createdAt?: string
+    updatedAt?: string
+    messageId: number
+  }
+]
 
 export type ForumUserDTO = {
   externalId: number

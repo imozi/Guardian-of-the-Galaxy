@@ -1,5 +1,5 @@
 import type { NextFunction, Request, Response } from 'express'
-import { Answer, Message, User } from '../database/db'
+import { Answer, Message, Reaction, User } from '../database/db'
 import ApiError from '../error/ApiError'
 
 export class MessageController {
@@ -40,9 +40,16 @@ export class MessageController {
         },
         {
           model: Answer,
+          include: [{ model: User }]
+        },
+        {
+          model: Reaction,
         },
       ],
-      order: ['id'],
+      order: [
+        ['createdAt', 'DESC'],
+        [Answer, 'createdAt', 'DESC'],
+      ]
     })
 
     return res.json(messages)
