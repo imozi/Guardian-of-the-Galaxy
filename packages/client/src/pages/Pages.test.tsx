@@ -14,6 +14,10 @@ global.fetch = jest.fn(() =>
   Promise.resolve({ json: () => Promise.resolve('hey') })
 )
 
+jest.mock('@/core/consts', () => ({
+  NODE_ENV: 'development',
+}))
+
 test('Example test', async () => {
   render(
     <Provider store={store}>

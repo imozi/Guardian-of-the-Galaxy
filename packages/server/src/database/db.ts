@@ -1,5 +1,6 @@
-import type { SequelizeOptions } from 'sequelize-typescript'
+import mongoose from 'mongoose'
 import { Sequelize } from 'sequelize-typescript'
+import type { SequelizeOptions } from 'sequelize-typescript'
 import { answerModel } from '../models/answer'
 import { messageModel } from '../models/message'
 import { reactionModel } from '../models/reaction'
@@ -8,15 +9,21 @@ import { topicModel } from '../models/topic'
 import { userModel } from '../models/user'
 
 const {
+  NODE_ENV,
   POSTGRES_USER,
   POSTGRES_PASSWORD,
   POSTGRES_DB,
   POSTGRES_PORT,
-  DB_HOST,
+  MONGO_USERNAME,
+  MONGO_PASSWORD,
+  MONGO_HOST,
+  MONGO_DB,
+  POSTGRES_HOST_DEV,
+  POSTGRES_HOST,
 } = process.env
 
 const sequelizeOptions: SequelizeOptions = {
-  host: DB_HOST,
+  host: NODE_ENV === 'production' ? POSTGRES_HOST : POSTGRES_HOST_DEV,
   port: Number(POSTGRES_PORT),
   username: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
@@ -79,7 +86,7 @@ Message.belongsTo(Topic, {
   foreignKey: 'topicId',
 })
 
-export async function dbConnect() {
+export async function initPostgresConnection() {
   try {
     await sequelize.authenticate()
     await sequelize.sync()
@@ -91,5 +98,22 @@ export async function dbConnect() {
     await Theme.findOrCreate({ where: { name: 'uranus' } })
   } catch (error) {
     console.error('  ➜ 😨 Unable to connect to the database:', error)
+  }
+}
+
+export const initMongoDBConnection = async (): Promise<void> => {
+  try {
+    mongoose.set('strictQuery', false)
+    await mongoose.connect(
+      `mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@${MONGO_HOST}:27017/${MONGO_DB}`
+    )
+
+    console.log('  ➜ 🎸 Connected to the Mongo database')
+  } catch (e) {
+    if (e instanceof Error) {
+      console.error(`Mongo DB connect error: ${e.message}`)
+    } else {
+      console.error(e)
+    }
   }
 }

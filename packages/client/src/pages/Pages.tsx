@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Front } from './Front'
 import { Login } from './Login'
 import { Register } from './Register'
+import { Feedback } from './Feedback/Feedback'
 import { Game } from './Game'
 import { Leaderboard } from './Leaderboard'
 import { Profile } from './Profile'
@@ -19,13 +20,13 @@ import { NewTopic } from '@/pages/NewTopic'
 import { useGetUserQuery } from '@/store/user/user.api'
 import { useSigninWithOAuthYandexMutation } from '@/store/auth/auth.api'
 import { useAppSelector } from '@/store'
-import { DEV_API_URL } from '@/core/consts'
+import { REDIRECT_URL } from '@/core/consts'
 
 export function Pages() {
   const { isSuccess } = useGetUserQuery()
   const [signinWithOAuthYandex] = useSigninWithOAuthYandexMutation()
   const { isAuth } = useAppSelector(state => state.userState)
-  const redirectUri = DEV_API_URL
+  const redirectUri = REDIRECT_URL
 
   useEffect(() => {
     const OAuthParams = new URLSearchParams(location.search)
@@ -61,6 +62,14 @@ export function Pages() {
         element={
           <PrivateRoute isAuth={isSuccess}>
             <Leaderboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="feedback"
+        element={
+          <PrivateRoute isAuth={isSuccess}>
+            <Feedback />
           </PrivateRoute>
         }
       />
