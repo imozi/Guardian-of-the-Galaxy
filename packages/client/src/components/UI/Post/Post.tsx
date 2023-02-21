@@ -27,10 +27,10 @@ type PostProps = {
 } & AllHTMLAttributes<HTMLDivElement>
 
 export const Post: FC<PostProps> = ({
-                                      answers = [],
-                                      reactions = [],
-                                      ...props
-                                    }) => {
+  answers = [],
+  reactions = [],
+  ...props
+}) => {
   const { data } = useGetUserQuery()
 
   const [

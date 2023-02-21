@@ -1,3 +1,4 @@
+export const DEV_API_URL = 'https://web2rists-gotg-20.ya-praktikum.tech'
 const { VITE_REDIRECT_URL, VITE_MAIN_DOMAIN, PROD } = import.meta.env
 export const API_URL = `${
   PROD ? VITE_MAIN_DOMAIN : 'http://localhost:3001'

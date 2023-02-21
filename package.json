@@ -16,6 +16,7 @@
     "format": "lerna run format && git add .",
     "docker up": "docker compose -f docker-compose.dev.yml up -d",
     "docker down": "docker compose -f docker-compose.dev.yml down",
+    "docker:mongo": "docker-compose up mongo-express -d",
     "build:prod-client": "yarn && lerna clean --yes && lerna bootstrap && yarn build:client",
     "build:prod-server": "yarn && lerna clean --yes && lerna bootstrap && yarn build:server"
   },

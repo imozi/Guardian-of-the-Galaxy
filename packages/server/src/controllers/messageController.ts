@@ -40,7 +40,7 @@ export class MessageController {
         },
         {
           model: Answer,
-          include: [{ model: User }]
+          include: [{ model: User }],
         },
         {
           model: Reaction,
@@ -49,7 +49,7 @@ export class MessageController {
       order: [
         ['createdAt', 'DESC'],
         [Answer, 'createdAt', 'DESC'],
-      ]
+      ],
     })
 
     return res.json(messages)

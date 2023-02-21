@@ -17,7 +17,7 @@ export class UserController {
     try {
       const user = await User.findOrCreate({
         where: { externalId },
-        defaults: {externalId, name, avatar}
+        defaults: { externalId, name, avatar },
       })
       return res.json(user)
     } catch (e) {

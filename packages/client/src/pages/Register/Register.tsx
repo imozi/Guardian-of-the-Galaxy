@@ -89,6 +89,7 @@ export const Register = () => {
 
     const isValid = isFormValid()
     const formData = formValues()
+    console.log({ formData })
 
     if (isValid) {
       authRegister(formData)

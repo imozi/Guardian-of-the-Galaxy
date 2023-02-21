@@ -70,7 +70,9 @@ export const Branch = () => {
                       key={id}
                       author={user.name}
                       avatar={
-                        user.avatar ? `${API_RESOURCES_URL}/${user.avatar}` : USER_AVATAR_DEFAULT
+                        user.avatar
+                          ? `${API_RESOURCES_URL}/${user.avatar}`
+                          : USER_AVATAR_DEFAULT
                       }
                       text={text}
                       answers={answers}

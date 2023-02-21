@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Front } from './Front'
 import { Login } from './Login'
 import { Register } from './Register'
+import { Feedback } from './Feedback/Feedback'
 import { Game } from './Game'
 import { Leaderboard } from './Leaderboard'
 import { Profile } from './Profile'
@@ -61,6 +62,14 @@ export function Pages() {
         element={
           <PrivateRoute isAuth={isSuccess}>
             <Leaderboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="feedback"
+        element={
+          <PrivateRoute isAuth={isSuccess}>
+            <Feedback />
           </PrivateRoute>
         }
       />

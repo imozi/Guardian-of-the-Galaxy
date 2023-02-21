@@ -30,6 +30,11 @@ export const UserNav = () => {
           </Link>
         </li>
         <li>
+          <Link className="link" to="/feedback">
+            Feedback
+          </Link>
+        </li>
+        <li>
           <button className="link" onClick={onLogoutClick}>
             Logout
           </button>

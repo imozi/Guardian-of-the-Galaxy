@@ -9,9 +9,7 @@ export const UserField: FC<
     <div className="user-field">
       {number && <div className="user-field__number">{number}</div>}
       <img
-        src={
-          avatar ? `${API_RESOURCES_URL}/${avatar}` : USER_AVATAR_DEFAULT
-        }
+        src={avatar ? `${API_RESOURCES_URL}/${avatar}` : USER_AVATAR_DEFAULT}
         alt="avatar"
         className="user-field__photo"
       />
