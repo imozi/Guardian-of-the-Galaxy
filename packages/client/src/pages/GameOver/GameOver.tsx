@@ -19,6 +19,7 @@ type stateGame = {
 
 export const GameOver = () => {
   const { state }: stateGame = useLocation()
+  const [addScore] = useAddScoreMutation()
 
   if (!state) {
     return <Navigate to="/" />
@@ -30,8 +31,6 @@ export const GameOver = () => {
 
   if (user) {
     const { displayName, firstName, avatar } = user
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [addScore] = useAddScoreMutation()
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
       addScore({
