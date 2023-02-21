@@ -29,21 +29,24 @@ export const GameOver = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const user = useAppSelector(state => state.userState.user) as UserType
 
-  if (user) {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    if (!user) {
+      return
+    }
+
     const { displayName, firstName, avatar } = user
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-      addScore({
-        data: {
-          username: displayName || firstName,
-          avatar,
-          score: hightScore,
-        },
-        teamName: TEAM_NAME,
-        ratingFieldName: 'score',
-      })
-    }, [user, state, addScore, displayName, firstName, avatar, hightScore])
-  }
+
+    addScore({
+      data: {
+        username: displayName || firstName,
+        avatar,
+        score: hightScore,
+      },
+      teamName: TEAM_NAME,
+      ratingFieldName: 'score',
+    })
+  }, [user, addScore, hightScore])
 
   return (
     <Page title="Game Over" isGame={true}>
