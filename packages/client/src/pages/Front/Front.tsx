@@ -10,7 +10,7 @@ export const Front = () => {
       <section className="front">
         <div className="front__content">
           <h1 className="front__title">
-            Welcome aboard the Guardian of the Galaxy
+            Welcome to the aboard the Guardian of the Galaxy
           </h1>
           <div className="front__buttons">
             <Link className="btn" to="/game">
