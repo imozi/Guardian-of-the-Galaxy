@@ -11,29 +11,34 @@ export const ReactionBar: FC<ReactionProps> = ({ ...props }) => {
     <ReactionBarSelector
       reactions={[
         {
-          label: REACTIONS.jupiter.label,
-          node: <img height={17} src={REACTIONS.jupiter.srcImg} />,
-          key: REACTIONS.jupiter.label,
+          label: REACTIONS.cool.label,
+          node: <img height={17} src={REACTIONS.cool.srcImg} />,
+          key: REACTIONS.cool.label,
         },
         {
-          label: REACTIONS.uranus.label,
-          node: <img height={17} src={REACTIONS.uranus.srcImg} />,
-          key: REACTIONS.uranus.label,
+          label: REACTIONS.rofl.label,
+          node: <img height={17} src={REACTIONS.rofl.srcImg} />,
+          key: REACTIONS.rofl.label,
         },
         {
-          label: REACTIONS.earth.label,
-          node: <img height={17} src={REACTIONS.earth.srcImg} />,
-          key: REACTIONS.earth.label,
+          label: REACTIONS.sad.label,
+          node: <img height={17} src={REACTIONS.sad.srcImg} />,
+          key: REACTIONS.sad.label,
         },
         {
-          label: REACTIONS.blackHole.label,
-          node: <img height={17} src={REACTIONS.blackHole.srcImg} />,
-          key: REACTIONS.blackHole.label,
+          label: REACTIONS.like.label,
+          node: <img height={17} src={REACTIONS.like.srcImg} />,
+          key: REACTIONS.like.label,
         },
         {
-          label: REACTIONS.saturn.label,
-          node: <img height={17} src={REACTIONS.saturn.srcImg} />,
-          key: REACTIONS.saturn.label,
+          label: REACTIONS.fire.label,
+          node: <img height={17} src={REACTIONS.fire.srcImg} />,
+          key: REACTIONS.fire.label,
+        },
+        {
+          label: REACTIONS.rocket.label,
+          node: <img height={17} src={REACTIONS.rocket.srcImg} />,
+          key: REACTIONS.rocket.label,
         },
       ]}
       iconSize={17}

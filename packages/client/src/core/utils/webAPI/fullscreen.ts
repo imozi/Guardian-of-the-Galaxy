@@ -2,7 +2,7 @@ export function fullscreenAPI() {
   document.addEventListener(
     'keydown',
     e => {
-      if ((e.ctrlKey && e.key === 'f') || e.key === 'а') {
+      if (e.ctrlKey && (e.key === 'f' || e.key === 'а')) {
         toggleFullScreen()
       }
     },

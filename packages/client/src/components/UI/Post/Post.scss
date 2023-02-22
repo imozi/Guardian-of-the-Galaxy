@@ -79,6 +79,8 @@ $photo-size: 36px;
     display: flex;
     align-items: center;
     line-height: $line-height;
+    word-break: break-word;
+    padding: 6px;
   }
 
   &__btn {

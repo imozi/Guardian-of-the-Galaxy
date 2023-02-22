@@ -1,21 +1,69 @@
 .feedback {
+  & .card {
+    max-width: 550px;
+    min-height: auto;
+  }
+
+  & .form {
+    width: 100%;
+    align-items: normal;
+  }
+
+  & .form__item {
+    max-width: 100%;
+  }
+
+  & .field__input {
+    height: 150px;
+  }
+
+  &__thanks {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  &__error {
+    display: block;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  &__message {
+    padding: 10px;
+    color: $color-black;
+    background-color: $color-white;
+    border-radius: $border-radius;
+    min-height: 150px;
+    max-height: 250px;
+    margin-bottom: 20px;
+  }
+
   &__text {
-    // font-size: $font-size;
-    // text-transform: uppercase;
     text-align: center;
     margin-bottom: 20px;
   }
-  &__button_geolocation {
+
+  &__geo-thanks {
+    margin-bottom: 20px;
     color: rgb(20, 156, 65);
+    text-align: center;
+  }
+
+  &__button_geolocation {
+    color: $color-white;
     margin-bottom: 20px;
     min-width: 200px;
     --height: 50px;
     text-transform: uppercase;
     height: var(--height);
+    border: none;
     border-radius: $border-radius;
+    cursor: pointer;
+    background-color: rgb(20, 156, 65);
+    transition: all 0.2s ease-in-out;
 
     &:hover {
-      opacity: 0.8;
+      transform: scale(1.02);
     }
   }
 }

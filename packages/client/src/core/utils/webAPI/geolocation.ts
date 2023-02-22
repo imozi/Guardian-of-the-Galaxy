@@ -1,20 +1,16 @@
-import { getCoords } from '@/pages/Feedback/Feedback'
-
-export function findLocation() {
+export function findLocation(
+  success: (position: GeolocationPosition) => void,
+  error: (data: GeolocationPositionError) => void
+) {
   if (!navigator.geolocation) {
-    alert('Ваш браузер не дружит с геолокацией...')
+    error({
+      message: 'Ваш браузер не дружит с геолокацией...',
+      code: 1,
+      PERMISSION_DENIED: 1,
+      POSITION_UNAVAILABLE: 2,
+      TIMEOUT: 3,
+    })
   } else {
     navigator.geolocation.getCurrentPosition(success, error)
-  }
-
-  function success(position: any) {
-    // если всё хорошо, получаем координаты
-    const { longitude, latitude } = position.coords
-    getCoords({ longitude, latitude })
-  }
-
-  function error() {
-    // если всё плохо, просто напишем об этом
-    alert('Не получается определить вашу геолокацию :(')
   }
 }

@@ -73,7 +73,10 @@ app.use('*', async (req, res) => {
     const html = template
       .replace(`<!--head-outlet-->`, rendered.head ?? '')
       .replace(`<!--ssr-outlet-->`, rendered.html ?? '')
-      .replace(`<!--state-outlet-->`, JSON.stringify(rendered.state) ?? '')
+      .replace(
+        `<!--state-outlet-->`,
+        JSON.stringify(rendered.state).replace(/</g, '\\u003c') ?? ''
+      )
 
     res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
   } catch (e) {

@@ -138,7 +138,7 @@ export const Game = () => {
             </button>
           </li>
           <li className="game__menu__item">
-            <Link className="link" to={'/user'}>
+            <Link className="link" to={'/'}>
               Quit
             </Link>
           </li>

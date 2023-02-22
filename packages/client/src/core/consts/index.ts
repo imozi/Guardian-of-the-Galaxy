@@ -6,7 +6,7 @@ export const YA_API_URL = `${
   PROD ? VITE_MAIN_DOMAIN : 'http://localhost:3001'
 }/api/ya`
 export const REDIRECT_URL = `${
-  PROD ? VITE_REDIRECT_URL : 'http://localhost:3000/user'
+  PROD ? VITE_REDIRECT_URL : 'http://localhost:3000'
 }`
 export const API_RESOURCES_URL = `${
   PROD ? VITE_MAIN_DOMAIN : 'http://localhost:3001'
@@ -22,24 +22,28 @@ export const USER_THEME_DEFAULT = 'space'
 export const USER_AVATAR_DEFAULT = '/images/user-default.svg'
 export const REACTIONS_ICON_SIZE = 18
 export const REACTIONS: Record<string, any> = {
-  jupiter: {
-    label: 'jupiter',
-    srcImg: '../../../images/spaceship/planet_1.png',
+  cool: {
+    label: 'cool',
+    srcImg: '../../../images/emoji/cool.png',
   },
-  uranus: {
-    label: 'uranus',
-    srcImg: '../../../images/spaceship/planet_2.png',
+  rofl: {
+    label: 'rofl',
+    srcImg: '../../../images/emoji/rofl.png',
   },
-  earth: {
-    label: 'earth',
-    srcImg: '../../../images/spaceship/planet_3.png',
+  sad: {
+    label: 'sad',
+    srcImg: '../../../images/emoji/sad.png',
   },
-  blackHole: {
-    label: 'blackHole',
-    srcImg: '../../../images/spaceship/planet_4.png',
+  like: {
+    label: 'like',
+    srcImg: '../../../images/emoji/like.png',
   },
-  saturn: {
-    label: 'saturn',
-    srcImg: '../../../images/spaceship/planet_5.png',
+  fire: {
+    label: 'fire',
+    srcImg: '../../../images/emoji/fire.png',
+  },
+  rocket: {
+    label: 'rocket',
+    srcImg: '../../../images/emoji/rocket.png',
   },
 }
