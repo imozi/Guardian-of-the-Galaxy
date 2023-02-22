@@ -13,11 +13,14 @@
   border-radius: $border-radius;
   background-color: var(--color-primary);
   text-transform: uppercase;
-  transition: background-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   position: relative;
 
   &:hover {
-    opacity: 0.8;
+    transform: scale(1.02);
+  }
+  &:active {
+    transform: scale(1);
   }
 
   &[disabled] {

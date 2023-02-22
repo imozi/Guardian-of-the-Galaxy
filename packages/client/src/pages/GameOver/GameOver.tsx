@@ -62,7 +62,7 @@ export const GameOver = () => {
             <Link className="link" to="/game">
               Retry
             </Link>
-            <Link className="link" to="/user">
+            <Link className="link" to="/">
               Home
             </Link>
           </div>

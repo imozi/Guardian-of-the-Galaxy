@@ -8,12 +8,11 @@ interface PrivateRoute {
 }
 
 export const PrivateRoute: FC<PrivateRoute> = ({ isAuth, children }) => {
+  const user = useAppSelector(state => state.userState.user)
+
   if (!isAuth) {
     return <Navigate to="/" replace />
   }
-
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const user = useAppSelector(state => state.userState.user)
 
   return user && children
 }

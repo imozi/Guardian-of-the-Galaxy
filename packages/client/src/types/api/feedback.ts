@@ -5,7 +5,7 @@ export type Coords = {
 
 export type FeedbackInputDTO = {
   message: string
-  coords: Coords
+  coords: Coords | null
 }
 
 export type FeedbackErrorDTO = {

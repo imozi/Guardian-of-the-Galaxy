@@ -40,7 +40,7 @@ export const Login = () => {
 
   useEffect(() => {
     if (isSuccess) {
-      navigate('/user')
+      return navigate('/user')
     }
   }, [isSuccess, navigate])
 
@@ -80,7 +80,4 @@ export const Login = () => {
       </section>
     </Page>
   )
-}
-function getLocationOrigin() {
-  throw new Error('Function not implemented.')
 }

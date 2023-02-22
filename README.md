@@ -1,4 +1,4 @@
-# Учебный командный проект (ремейк игры [Galaxian](https://en.wikipedia.org/wiki/Galaxian))
+# Учебный командный проект (ремейк на игру [Galaxian](https://en.wikipedia.org/wiki/Galaxian))
 
 ![Guardian of the Galaxy - Front Page](https://user-images.githubusercontent.com/29326762/215745569-0d828deb-ffa9-4844-868e-faa37f9b9ee2.png)
 
@@ -12,7 +12,7 @@
 
 > Стейт-менеджер [Redux](https://redux.js.org/) - набор инструментов [Redux Toolkit](https://redux-toolkit.js.org/)
 
-> REST API форума и лидерборда, в качестве сервера используется - [Express](https://expressjs.com/) в качестве базы данных - [Postgres](https://www.postgresql.org/)
+> REST API форума и лидерборда, в качестве сервера используется - [Express](https://expressjs.com/) в качестве базы данных - [Postgres](https://www.postgresql.org/) а для обратной связи  [MongoDB](https://www.mongodb.com/)
 
 > Сборщик проекта - [Vite](https://vitejs.dev/) (настроен - [SSR](https://vitejs.dev/guide/ssr.html))
 
@@ -101,7 +101,7 @@
 
 6. Запускает проект в режиме разработки (эта команда запустит клиент с SSR адресу - http://localhost:3000 и сервер API по адресу - http://localhost:3001 )
 
-## Запуск проекта в режиме production
+## Запуск проекта в режиме production локально
 
 **Должен быть установлен `nodejs >= v16` и `docker` (docker должен быть запущен)**
 
@@ -111,7 +111,7 @@
 
     yarn bootstrap - (это обязательный шаг, без него ничего работать не будет)
 
-    Скопируйте и переименуйте файл .env.sample в .env в корне проекта
+    Скопируйте и переименуйте файл .env.sample.prod в .env в корне проекта
 
     docker compose -f docker-compose.dev.yml up -d или docker-compose -f docker-compose.dev.yml up -d (в зависимости на какой OS запускаете)
 
