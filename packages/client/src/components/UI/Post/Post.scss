@@ -1,0 +1,132 @@
+$photo-size: 36px;
+
+.post {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $color-back-topic;
+  border: none;
+  border-radius: $border-radius;
+  padding: 24px 10px;
+  line-height: 14px;
+  color: $color-white;
+  cursor: pointer;
+
+  &__answer {
+    margin-top: 8px;
+    margin-left: 16px;
+    background-color: rgba(153, 153, 153, 0.65);
+    width: calc(100% - 26px);
+    flex-direction: row-reverse;
+    padding: 10px;
+
+    .post__author {
+      border-right: none;
+      border-left: 1px solid var(--color-accent);
+    }
+  }
+
+  &__field {
+    width: 0;
+    height: 0;
+    transition: all 1s;
+
+    &-active {
+      width: 80%;
+      padding: 5px;
+      height: 80px;
+      background-color: $color-white;
+      color: $color-black;
+      margin-top: 10px;
+      border: 2px solid #666;
+      border-radius: 4px;
+      overflow: auto;
+      transition: all 1s;
+    }
+  }
+
+  &__form {
+    margin-bottom: 0;
+  }
+
+  &__author {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    align-items: center;
+    gap: 10px;
+    border-right: 1px solid var(--color-accent);
+
+    &-name {
+      font-weight: $font-weight;
+      font-size: $fz10;
+      line-height: 14px;
+      text-align: center;
+      color: $color-white;
+    }
+  }
+
+  &__photo {
+    width: $photo-size;
+    height: $photo-size;
+    border-radius: $border-radius-circle;
+  }
+
+  &__text {
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    line-height: $line-height;
+    word-break: break-word;
+    padding: 6px;
+  }
+
+  &__btn {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: $fz10;
+  }
+}
+
+.post:hover {
+  .reaction-wrapper {
+    transition: 1s all;
+    display: block;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-name: slidegdz;
+    animation-fill-mode: forwards;
+  }
+}
+
+.post-wrapper {
+  width: 546px;
+}
+
+@keyframes slidegdz {
+  0% {
+    width: 30%;
+  }
+  100% {
+    width: 30%;
+  }
+}
+
+.reaction-count {
+  position: absolute;
+  right: 0;
+  top: -5px;
+  display: flex;
+  align-items: center;
+  line-height: 24px;
+
+  div {
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 24px;
+  }
+}

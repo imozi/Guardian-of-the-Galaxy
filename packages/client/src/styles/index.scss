@@ -1,0 +1,49 @@
+@import 'normalize.css';
+
+@import 'fonts';
+@import 'variables';
+@import 'mixins';
+@import 'base';
+@import 'link';
+
+@import 'form';
+
+@import '../components/Page/Page.scss';
+@import '../components/Avatar/Avatar.scss';
+@import '../components/Card/Card.scss';
+@import '../components/Timer/Timer.scss';
+@import '../components/GameStartTimer/GameStartTimer.scss';
+@import '../components/CurrentLevel/CurrentLevel.scss';
+@import '../components/CurrentScore/CurrentScore.scss';
+@import '../components/HightScore/HightScore.scss';
+@import '../components/HP/hp.scss';
+@import '../components/Ammunition/Ammunition.scss';
+@import '../components/AudioPlayer/AudioPlayer.scss';
+@import '../components/ThemeToggle/ThemeToggle.scss';
+@import '../components/ReactionBar/ReactionBar.scss';
+@import '../components/Oauth//Oauth.scss';
+
+@import '../components/UI/Button/Button.scss';
+@import '../components/UI/Field/Field.scss';
+@import '../components/UI/UserField/UserField.scss';
+@import '../components/UI/Loader/Loader.scss';
+
+@import '../components/UI/Topic/Topic.scss';
+@import '../components/UI/Post/Post.scss';
+@import '../components/UI/PageNumber/PageNumber.scss';
+
+@import '../pages/Front/Front.scss';
+@import '../pages/Login/Login.scss';
+@import '../pages/User/User.scss';
+@import '../pages/Game/Game.scss';
+@import '../pages/GameOver/GameOver.scss';
+@import '../pages/Error/500/500.scss';
+@import '../pages/Error/404/404.scss';
+@import '../pages/Register/Register.scss';
+@import '../pages/Forum/Forum.scss';
+@import '../pages/Feedback/Feedback.scss';
+@import '../pages/Branch/Branch.scss';
+@import '../pages/NewMessage/NewMessage.scss';
+@import '../pages/Profile/Profile.scss';
+@import '../pages/Password/Password.scss';
+@import '../pages/Leaderboard/Leaderboard.scss';

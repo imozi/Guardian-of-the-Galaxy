@@ -1,0 +1,1 @@
+export { GuardianOfTheGalaxy } from './Game'

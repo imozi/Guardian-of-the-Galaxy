@@ -1,0 +1,30 @@
+.branch {
+  &__page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    width: 30px;
+    height: 30px;
+    font-size: $font-size;
+    line-height: 19px;
+    text-align: center;
+    color: $color-white;
+    border: 1px solid $color-white;
+    border-radius: $border-radius;
+    background: $color-back-topic;
+    cursor: pointer;
+
+    &-active {
+      width: 40px;
+      height: 40px;
+      transition: 0.5s all;
+    }
+
+    &:hover {
+      width: 40px;
+      height: 40px;
+      transition: 0.5s all;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & .form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch;
+    column-gap: 60px;
+  }
+
+  & .form__footer {
+    display: flex;
+    justify-content: center;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+}

@@ -1,0 +1,24 @@
+.server-error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__status,
+  &__text {
+    color: $color-white;
+    margin: 0;
+  }
+
+  &__status {
+    @include title_fz96;
+    font-weight: $font-weight;
+    text-align: center;
+  }
+
+  &__text {
+    @include title_fz40;
+    font-weight: $font-weight;
+    margin-bottom: 20px;
+  }
+}

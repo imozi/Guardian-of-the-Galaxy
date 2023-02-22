@@ -4,3 +4,8 @@ node_modules/
 .vscode
 dist
 tmp
+proxy/certbot
+proxy/nginx/app.conf
+init-proxy-ssl-and-start.sh
+.idea
+.DS_Store

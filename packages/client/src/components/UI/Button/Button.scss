@@ -1,0 +1,95 @@
+.btn {
+  @include btn;
+
+  --height: 50px;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--height);
+  min-width: 200px;
+  padding: 16px;
+  font-size: $font-size;
+  border-radius: $border-radius;
+  background-color: var(--color-primary);
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+  &:active {
+    transform: scale(1);
+  }
+
+  &[disabled] {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+}
+
+.btn--loading {
+  pointer-events: none;
+
+  &::before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    width: calc(var(--height) / 2);
+    height: calc(var(--height) / 2);
+    top: 50%;
+    left: 50%;
+    border-radius: $border-radius-circle;
+    border: 3px solid $color-white;
+    border-color: $color-white transparent $color-white transparent;
+    animation: rotate 1.2s linear infinite;
+    z-index: 2;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: inherit;
+    border-radius: inherit;
+  }
+}
+
+.btn--small {
+  --height: 32px;
+
+  min-width: 90px;
+  font-size: $fz10;
+}
+
+.btn--green {
+  background-color: $color-green;
+
+  &:hover {
+    background-color: $color-green;
+  }
+}
+
+.btn-audio {
+  @include btn;
+
+  transition: transform 0.4s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

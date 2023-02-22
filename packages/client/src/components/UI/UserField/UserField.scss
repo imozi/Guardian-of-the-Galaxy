@@ -1,0 +1,49 @@
+$photo-size: 30px;
+
+.user-field {
+  display: flex;
+  align-items: center;
+  background: $color-back-topic;
+  border-radius: $border-radius;
+  min-width: 140px;
+  padding: 10px;
+
+  &__number {
+    position: relative;
+    padding-right: 6px;
+    margin-right: 20px;
+    width: 30px;
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 2px;
+      height: 100%;
+      background-color: $color-white;
+    }
+  }
+
+  &__name {
+    font-weight: $font-weight;
+    font-size: $fz16;
+    line-height: 22px;
+    color: $color-white;
+  }
+
+  &__photo {
+    margin-right: 10px;
+    width: $photo-size;
+    height: $photo-size;
+    border-radius: $border-radius-circle;
+    object-fit: cover;
+  }
+
+  &__score {
+    font-weight: $font-weight;
+    font-size: $fz16;
+    line-height: 22px;
+    color: $color-white;
+    margin-left: auto;
+  }
+}

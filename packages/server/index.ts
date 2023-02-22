@@ -1,20 +1,39 @@
 import dotenv from 'dotenv'
-import cors from 'cors'
+import express from 'express'
+import {
+  initPostgresConnection,
+  initMongoDBConnection,
+} from './src/database/db'
+import router from './src/routes'
+import errorHandler from './src/middleware/ErrorHandlingMiddleware'
+import { cors } from './src/middleware/cors'
+import { logger } from './src/middleware/logger'
+import { cfg } from './src/cfg'
+import proxyMiddleware from './src/middleware/proxy'
+
 dotenv.config()
 
-import express from 'express'
-import { createClientAndConnect } from './db'
-
 const app = express()
-app.use(cors())
-const port = Number(process.env.SERVER_PORT) || 3001
 
-createClientAndConnect()
+app.use(cors)
+app.use(logger)
+app.use(express.urlencoded({ extended: false }))
 
-app.get('/', (_, res) => {
-  res.json('👋 Howdy from the server :)')
+app.use('/api/ya', proxyMiddleware)
+app.use(express.json())
+app.use('/api', router)
+app.use(errorHandler)
+
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'UP' })
 })
 
-app.listen(port, () => {
-  console.log(`  ➜ 🎸 Server is listening on port: ${port}`)
+initPostgresConnection().then(() => {
+  initMongoDBConnection().then(() => {
+    app.listen(cfg.server.port, () => {
+      console.log(
+        `  ➜ 🥳 Backend started at http://localhost:${cfg.server.port}`
+      )
+    })
+  })
 })

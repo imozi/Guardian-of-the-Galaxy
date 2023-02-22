@@ -1,0 +1,4 @@
+.link {
+  @include link;
+  color: var(--color-accent);
+}

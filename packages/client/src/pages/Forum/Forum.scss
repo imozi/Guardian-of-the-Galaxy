@@ -1,0 +1,43 @@
+.forum {
+  &__names {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+
+  &__name {
+    font-size: $font-size;
+    text-transform: uppercase;
+  }
+
+  &__links {
+    position: absolute;
+    top: 30px;
+    left: -120px;
+    gap: 20px;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__loader {
+    width: 100%;
+    text-align: center;
+  }
+
+  &__topic {
+    width: 100%;
+    color: $color-white;
+    text-decoration: none;
+    margin-bottom: 8px;
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+
+  & .profile__wrapper {
+    grid-template-columns: $grid-template-forum;
+  }
+}

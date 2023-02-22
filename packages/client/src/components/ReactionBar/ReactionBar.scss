@@ -1,0 +1,14 @@
+.reaction-wrapper {
+  position: absolute;
+  bottom: 0px;
+  right: 150px;
+  display: none;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px;
+  border: none;
+
+  div {
+    background-color: none;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px;
+  }
+}
