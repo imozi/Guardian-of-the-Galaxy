@@ -2,7 +2,7 @@ export function fullscreenAPI() {
   document.addEventListener(
     'keydown',
     e => {
-      if (e.key === 'g' && e.altKey) {
+      if ((e.ctrlKey && e.key === 'f') || e.key === 'а') {
         toggleFullScreen()
       }
     },
@@ -10,7 +10,7 @@ export function fullscreenAPI() {
   )
 }
 
-function toggleFullScreen() {
+export function toggleFullScreen() {
   if (!document.fullscreenElement) {
     document.documentElement.requestFullscreen()
   } else if (document.exitFullscreen) {

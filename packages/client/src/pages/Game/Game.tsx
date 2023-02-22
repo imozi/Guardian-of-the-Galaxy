@@ -8,6 +8,7 @@ import { GuardianOfTheGalaxy } from '@/game'
 import { Health } from '@/components/HP'
 import { GameStartTimer } from '@/components/GameStartTimer'
 import { Ammunition } from '@/components/Ammunition'
+import { toggleFullScreen } from '@/core/utils/webAPI'
 
 export const Game = () => {
   const navigation = useNavigate()
@@ -85,6 +86,15 @@ export const Game = () => {
     elem.blur()
   }
 
+  const onClickFullscreen = (
+    evt: React.MouseEvent<HTMLButtonElement> & {
+      target: HTMLButtonElement
+    }
+  ) => {
+    toggleFullScreen()
+    onBlurElement(evt.target)
+  }
+
   const onClickPause = (
     evt: React.MouseEvent<HTMLButtonElement> & {
       target: HTMLButtonElement
@@ -113,6 +123,11 @@ export const Game = () => {
         </div>
         <ul className="game__menu">
           <li className="game__menu__item">
+            <button className="link" onClick={onClickFullscreen}>
+              Fullscreen
+            </button>
+          </li>
+          <li className="game__menu__item">
             <button className="link" onClick={onClickPause}>
               Pause
             </button>
@@ -123,7 +138,7 @@ export const Game = () => {
             </button>
           </li>
           <li className="game__menu__item">
-            <Link className="link" to={'/'}>
+            <Link className="link" to={'/user'}>
               Quit
             </Link>
           </li>

@@ -1,45 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import { Page } from '@/components/Page'
 import { UserField } from '@/components/UI'
-import { useAppSelector } from '@/store'
-import {
-  useAddScoreMutation,
-  useGetLeaderboardQuery,
-} from '@/store/leaderboard/leaderboard.api'
-import { UserType } from '@/types'
-import { TEAM_NAME } from '@/core/consts'
+import { useGetLeaderboardQuery } from '@/store/leaderboard/leaderboard.api'
+
 import { Loader } from '@/components/UI/Loader'
 import { Card } from '@/components/Card'
 
 export const Leaderboard = () => {
   const navigate = useNavigate()
 
-  const {
-    data: leaderboard,
-    isLoading,
-    isFetching,
-    refetch,
-  } = useGetLeaderboardQuery()
+  const { data: leaderboard, isLoading, isFetching } = useGetLeaderboardQuery()
   const loading = isLoading || isFetching
-
-  //TODO удалить после реализации игры
-  //Временное добавление своего результата в лидерборд(запись обновляется только если новый результат выше предыдущего)
-  const user = useAppSelector(state => state.userState.user) as UserType
-  const [addScore] = useAddScoreMutation()
-  const onAddClick = async () => {
-    const { displayName, firstName, avatar } = user
-    await addScore({
-      data: {
-        username: displayName || firstName,
-        avatar,
-        score: 960,
-      },
-      teamName: TEAM_NAME,
-      ratingFieldName: 'score',
-    })
-
-    refetch()
-  }
 
   return (
     <Page title="Leaderboard">
@@ -49,9 +20,6 @@ export const Leaderboard = () => {
           <div className="profile__nav">
             <a className="link" onClick={() => navigate(-1)}>
               Back
-            </a>
-            <a className="link" onClick={onAddClick}>
-              Add
             </a>
           </div>
           <Card>
@@ -72,7 +40,8 @@ export const Leaderboard = () => {
                     number={i + 1}
                     author={username}
                     avatar={avatar}
-                    score={score}></UserField>
+                    score={score}
+                  />
                 ))}
             </div>
           </Card>
